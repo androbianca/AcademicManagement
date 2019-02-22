@@ -1,0 +1,77 @@
+@import "../../../styles/sizes.scss";
+@import "../../../styles/mixins.scss";
+
+.page-container {
+  @include flex(none, center, center);
+  height: $height-wo-tb;
+  background: rgb(49, 87, 119);
+
+  .container {
+    @include flex(row, none, center);
+    width: 50%;
+    height: 60%;
+    box-shadow: 6px 6px 18px 20px #083757;
+
+    .form-container {
+      @include flex(column, center, center);
+     // padding: 50px;
+      color: antiquewhite;
+      width: 50%;
+      background-color: #4781B1;
+
+    }
+
+      .form{
+        @include flex(column, flex-start, center);
+        width: 80%;
+        height: 80%;
+
+        p {
+          margin: 10px 0 30px 0;
+          font-size: 13px;
+        }
+
+      }
+
+      input[type=text],
+      [type=password] {
+        display: inline-block;
+        width: 100%;
+        height: 12%;
+        padding: 15px;
+        margin: 20px 0 0 0;
+        border: 2px solid white;
+        border-radius: 15px;
+        color: antiquewhite;
+        background-color: #4781B1;
+      }
+
+      ::placeholder {
+        color: white;
+        opacity: 1;
+      }
+
+      button {
+        background: white;
+        width: 100%;
+        height: 40px;
+        border-radius: 15px;
+        border: none;
+      }
+    }
+
+    img {
+      width: 55%;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 35px;
+    }
+
+   }
+
+
+
+
+

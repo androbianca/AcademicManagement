@@ -1,0 +1,13 @@
+@import 'colors';
+
+$content-line: 1px solid $content-line-color;
+$round:50%;
+
+$header-height: 60px;
+$filter-bar-height: 100px;
+$top-and-filter-bar-height: 160px;
+
+$height-wo-tb:calc(100vh - #{$header-height});
+$height-wo-tb-and-fb:calc(100vh - #{$top-and-filter-bar-height});
+$height-add-roles: calc(100vh - 12vw);
+$height-no-matches: calc(100vh - 160px);
