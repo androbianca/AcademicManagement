@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
-import { LoginComponent } from './pages/login-page/components/login/login.component';
-import { SignupComponent } from './pages/login-page/components/signup/signup.component';
+import { SignupComponent } from './pages/home-page/components/signup/signup.component';
+import { LoginComponent } from './pages/home-page/components/login/login.component';
+import { HomePageComponent } from './pages/home-page/login-page.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
+    HomePageComponent,
     LoginComponent,
     SignupComponent
   ],
