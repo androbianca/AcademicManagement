@@ -1,0 +1,24 @@
+<div class="page__container">
+  <div class="auth__card">
+    <ng-container>
+      <img src="../../../assets/images/426430-PE93QI-643.jpg">
+    </ng-container>
+
+    <div class="form__container">
+      <div class="buttons">
+        <button class="login" (click)="changeToSignIn()">Sign In</button>
+        <button class="signup" (click)="changeToSignUp()">Sign Up</button>
+      </div>
+      <div class="form">
+
+      </div>
+
+      <ng-template [ngIf]="isSignIn" [ngIfElse]="isSignup">
+        <app-login></app-login>
+      </ng-template>
+
+      <ng-template #isSignup>
+        <app-signup></app-signup>
+      </ng-template>
+    </div>
+  </div>
