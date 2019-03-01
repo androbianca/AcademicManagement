@@ -16,9 +16,6 @@ namespace DataAccess.Abstractions
         void Insert<T>(T entity)
             where T : BaseEntity;
 
-        void Update<T>(T entity)
-            where T : BaseEntity;
-
         void Save();
 
         void Delete<T>(T entity)

@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Bandro\\Documents\\GitHub\\CourseManager\\AcademicManagementBackEnd\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\Bandro\\Documents\\GitHub\\AcademincManagement\\AcademicManagementBackEnd\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\Bandro\\Documents\\GitHub\\CourseManager\\AcademicManagementBackEnd\\Entities\\Entities.csproj",
+      "projectPath": "C:\\Users\\Bandro\\Documents\\GitHub\\AcademincManagement\\AcademicManagementBackEnd\\Entities\\Entities.csproj",
       "packagesPath": "C:\\Users\\Bandro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Bandro\\Documents\\GitHub\\CourseManager\\AcademicManagementBackEnd\\Entities\\obj\\",
+      "outputPath": "C:\\Users\\Bandro\\Documents\\GitHub\\AcademincManagement\\AcademicManagementBackEnd\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

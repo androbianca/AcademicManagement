@@ -19,59 +19,74 @@ namespace DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Entities.Course", b =>
+            modelBuilder.Entity("Entities.Account", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CourseName");
-
-                    b.Property<int>("Semester");
-
-                    b.Property<int>("Year");
+                    b.Property<Guid>("RegistrationId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses");
+                    b.HasIndex("RegistrationId")
+                        .IsUnique();
+
+                    b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("Entities.CourseProf", b =>
-                {
-                    b.Property<Guid>("CourseId");
-
-                    b.Property<Guid>("ProfId");
-
-                    b.HasKey("CourseId", "ProfId");
-
-                    b.HasIndex("ProfId");
-
-                    b.ToTable("CourseProf");
-                });
-
-            modelBuilder.Entity("Entities.Prof", b =>
+            modelBuilder.Entity("Entities.PotentialUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("CourseName");
+                    b.Property<string>("Code")
+                        .IsRequired();
 
-                    b.Property<string>("ProfName");
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(40);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Professors");
+                    b.ToTable("PotentialUsers");
                 });
 
-            modelBuilder.Entity("Entities.CourseProf", b =>
+            modelBuilder.Entity("Entities.Registration", b =>
                 {
-                    b.HasOne("Entities.Prof", "Prof")
-                        .WithMany("Courses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.HasOne("Entities.Course", "Course")
-                        .WithMany("Profs")
-                        .HasForeignKey("ProfId")
+                    b.Property<string>("Code")
+                        .IsRequired();
+
+                    b.Property<string>("Email")
+                        .IsRequired();
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(40);
+
+                    b.Property<string>("Password")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("Entities.Account", b =>
+                {
+                    b.HasOne("Entities.Registration", "Registration")
+                        .WithOne("Account")
+                        .HasForeignKey("Entities.Account", "RegistrationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

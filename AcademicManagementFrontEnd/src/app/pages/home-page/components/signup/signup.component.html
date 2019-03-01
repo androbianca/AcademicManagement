@@ -1,10 +1,10 @@
-<div class="form">
-    <h1>Sign up</h1>
-    <input type="text" placeholder="Numar matricol" name="email" required>
-    <input type="text" placeholder="Email" name="email" required>
-    <input type="password" placeholder="Password" name="psw" required>
-    <input type="password" placeholder="Confirm Password" name="psw" required>
-    <button type="submit">Signup</button>
-  </div>
-  
-  
+<form class="form" [formGroup]="signupForm">
+  <h1>Sign up</h1>
+  <input type="text" formControlName="code" placeholder="Code">
+  <input type="text" formControlName="lname" placeholder="Last name">
+  <input type="text" formControlName="fname" placeholder="First name">
+  <input type="text" formControlName="email" placeholder="Email">
+  <input type="password" formControlName="password" placeholder="Password">
+  <input type="password" formControlName="cpassword" placeholder="Confirm Password">
+  <button type="submit" (click)="register(signupForm)">Signup</button>
+</form>

@@ -9,10 +9,6 @@
         <button class="login" (click)="changeToSignIn()">Sign In</button>
         <button class="signup" (click)="changeToSignUp()">Sign Up</button>
       </div>
-      <div class="form">
-
-      </div>
-
       <ng-template [ngIf]="isSignIn" [ngIfElse]="isSignup">
         <app-login></app-login>
       </ng-template>

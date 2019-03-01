@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './pages/home-page/components/signup/signup.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { SuccessComponent } from './pages/success/success.component';
 import { LoginComponent } from './pages/home-page/components/login/login.component';
-import { HomePageComponent } from './pages/home-page/login-page.component';
 
 
 @NgModule({
@@ -13,11 +16,14 @@ import { HomePageComponent } from './pages/home-page/login-page.component';
     AppComponent,
     HomePageComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccess.Configurations;
+﻿using DataAccess.Configurations;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,16 +11,17 @@ namespace DataAccess
         {
         }
 
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<CourseProf> CourseProf { get; set; }
-        public DbSet<Prof> Professors { get; set; }
+        public DbSet<PotentialUser> PotentialUsers { get; set; }
+        public DbSet<Registration> Registrations { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
                       
-            modelBuilder.ApplyConfiguration(new CourseProfConfiguration());
-            modelBuilder.ApplyConfiguration(new CourseConfiguration());
-            modelBuilder.ApplyConfiguration(new ProfConfiguration());
+            modelBuilder.ApplyConfiguration(new PotentialUserConfiguration());
+            modelBuilder.ApplyConfiguration(new RegistrationConfiguration());
+            modelBuilder.ApplyConfiguration(new AccountConfiguration());
 
         }
     }

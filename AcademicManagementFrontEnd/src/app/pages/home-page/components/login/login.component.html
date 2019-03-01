@@ -1,8 +1,7 @@
-<div class="form">
-  <h1>Sign in</h1>
-  <input type="text" placeholder="Enter Email" name="email" required>
-  <input type="password" placeholder="Enter Password" name="psw" required>
+<h1>Sign in</h1>
+<form class="form" [formGroup]="loginForm">
+  <input type="text" formControlName="username" placeholder="Code">
+  <input type="password" formControlName="password" placeholder="Password">
   <p class="passwd__txt">Forgot password?</p>
-  <button type="submit">Login</button>
-</div>
-
+  <button type="submit" (click)="login(loginForm)">Login</button>
+</form>
