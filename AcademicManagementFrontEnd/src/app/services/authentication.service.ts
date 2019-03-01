@@ -19,5 +19,5 @@ export class AuthenticationService {
         return this.baseService.post( url, data );
     }
 
-    
+
 }

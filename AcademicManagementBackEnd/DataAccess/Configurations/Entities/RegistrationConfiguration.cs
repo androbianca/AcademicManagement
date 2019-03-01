@@ -24,12 +24,6 @@ namespace DataAccess.Configurations
             builder.Property(p => p.Email)
                 .IsRequired();
 
-            builder.Property(p => p.Password)
-                .IsRequired();
-
-            builder.HasOne(a => a.Account)
-                .WithOne(b => b.Registration)
-                .HasForeignKey<Account>(b => b.RegistrationId);
         }
     }
 }

@@ -22,34 +22,36 @@ namespace Service.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody]AccountDto user)
+        public IActionResult Login([FromBody] AccountDto user)
         {
             if (user == null)
             {
                 return BadRequest("Invalid client request");
             }
 
-            if (user.Code == "1" && user.Password == "1")
-            {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
-                var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
-                var tokeOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:44304",
-                    audience: "http://localhost:44304",
-                    claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
-                    signingCredentials: signinCredentials
-                );
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-                return Ok(new { Token = tokenString });
-            }
-            else
+            if (_authLogic.Authenticate(user.Code, user.Password) == null)
             {
                 return Unauthorized();
             }
+
+            var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+            var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+
+            var tokeOptions = new JwtSecurityToken(
+                issuer: "http://localhost:44304",
+                audience: "http://localhost:44304",
+                claims: new List<Claim>(),
+                expires: DateTime.Now.AddMinutes(5),
+                signingCredentials: signinCredentials
+            );
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
+            return Ok(new { Token = tokenString });
         }
+
+
+
+
         [HttpPost("register")]
         public IActionResult Register([FromBody]RegistrationDto registration)
         {

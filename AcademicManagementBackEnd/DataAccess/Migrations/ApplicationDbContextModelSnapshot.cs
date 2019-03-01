@@ -19,21 +19,6 @@ namespace DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Entities.Account", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("RegistrationId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RegistrationId")
-                        .IsUnique();
-
-                    b.ToTable("Accounts");
-                });
-
             modelBuilder.Entity("Entities.PotentialUser", b =>
                 {
                     b.Property<Guid>("Id")
@@ -74,20 +59,13 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(40);
 
-                    b.Property<string>("Password")
-                        .IsRequired();
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PasswordSalt");
 
                     b.HasKey("Id");
 
                     b.ToTable("Registrations");
-                });
-
-            modelBuilder.Entity("Entities.Account", b =>
-                {
-                    b.HasOne("Entities.Registration", "Registration")
-                        .WithOne("Account")
-                        .HasForeignKey("Entities.Account", "RegistrationId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

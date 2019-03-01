@@ -13,15 +13,13 @@ namespace DataAccess
 
         public DbSet<PotentialUser> PotentialUsers { get; set; }
         public DbSet<Registration> Registrations { get; set; }
-        public DbSet<Account> Accounts { get; set; }
-       
-
+      
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
                       
             modelBuilder.ApplyConfiguration(new PotentialUserConfiguration());
             modelBuilder.ApplyConfiguration(new RegistrationConfiguration());
-            modelBuilder.ApplyConfiguration(new AccountConfiguration());
 
         }
     }

@@ -4,8 +4,9 @@ using Models;
 namespace BusinessLogic.Abstractions
 {
     public interface IAuthLogic
-   {
-       Registration Create(RegistrationDto registrationDto);
+    {
+        Registration Authenticate(string code, string password);
+        Registration Create(RegistrationDto registrationDto);
 
    }
 }

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190228093326_InitialMigration")]
+    [Migration("20190301123839_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,21 +20,6 @@ namespace DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Entities.Account", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("RegistrationId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RegistrationId")
-                        .IsUnique();
-
-                    b.ToTable("Accounts");
-                });
 
             modelBuilder.Entity("Entities.PotentialUser", b =>
                 {
@@ -76,20 +61,13 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(40);
 
-                    b.Property<string>("Password")
-                        .IsRequired();
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("PasswordSalt");
 
                     b.HasKey("Id");
 
                     b.ToTable("Registrations");
-                });
-
-            modelBuilder.Entity("Entities.Account", b =>
-                {
-                    b.HasOne("Entities.Registration", "Registration")
-                        .WithOne("Account")
-                        .HasForeignKey("Entities.Account", "RegistrationId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
