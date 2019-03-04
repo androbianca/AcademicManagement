@@ -5,10 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SignupComponent } from './pages/home-page/components/signup/signup.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { SuccessComponent } from './pages/success/success.component';
-import { LoginComponent } from './pages/home-page/components/login/login.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
+import { SignupComponent } from './components/public/signup/signup.component';
+import { LoginComponent } from './components/public/login/login.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoginComponent } from './pages/home-page/components/login/login.compone
     HomePageComponent,
     LoginComponent,
     SignupComponent,
-    SuccessComponent
+    UserProfileComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

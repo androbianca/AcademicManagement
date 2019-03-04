@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.authenticationService.authenticate(this.loginModel).subscribe(response => {
       let token = (<any>response).token;
       localStorage.setItem("jwt", token);
-      this.router.navigate(["/success"]);
+      this.router.navigate(["/profile"]);
     }, err => {
     });
   }
