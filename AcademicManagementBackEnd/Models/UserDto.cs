@@ -1,8 +1,8 @@
 ﻿namespace Models
 {
-    public class RegistrationDto
+    public class UserDto
     {
-        public string Code { get; set; }
+        public string UserCode { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Email { get; set; }

@@ -10,6 +10,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
 import { SignupComponent } from './components/public/signup/signup.component';
 import { LoginComponent } from './components/public/login/login.component';
+import { TopBarComponent } from './components/shared/top-bar/top-bar.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { LoginComponent } from './components/public/login/login.component';
     LoginComponent,
     SignupComponent,
     UserProfileComponent,
-    SideBarComponent
+    SideBarComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,

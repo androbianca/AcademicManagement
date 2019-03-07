@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Register } from 'src/app/models/register';
-import { registerContentQuery } from '@angular/core/src/render3';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +10,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class SignupComponent implements OnInit {
 
-  registration = new Register();
+ public user = new User();
   signupForm = new FormGroup({
     code: new FormControl(''),
     email: new FormControl(''),
@@ -27,13 +26,13 @@ export class SignupComponent implements OnInit {
   }
 
   public register(form){
-    this.registration.Code = form.value.code;
-    this.registration.Email = form.value.email;
-    this.registration.LastName =form.value.lname;
-    this.registration.FirstName = form.value.fname;
-    this.registration.Password = form.value.password;
+    this.user.UserCode = form.value.code;
+    this.user.Email = form.value.email;
+    this.user.LastName =form.value.lname;
+    this.user.FirstName = form.value.fname;
+    this.user.Password = form.value.password;
 
-    this.autenticationService.register(this.registration).subscribe(result => {
+    this.autenticationService.register(this.user).subscribe(result => {
        console.log(result)
     }, err => {
     });

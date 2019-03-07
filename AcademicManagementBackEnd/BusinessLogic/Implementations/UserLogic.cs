@@ -6,16 +6,16 @@ using Models;
 
 namespace BusinessLogic.Implementations
 {
-    public class AuthLogic : BaseLogic, IAuthLogic
+    public class UserLogic : BaseLogic, IUserLogic
     {
-        public AuthLogic(IRepository repository)
+        public UserLogic(IRepository repository)
             : base(repository)
         {
         }
 
-        public Registration Authenticate(string code, string password)
+        public User Authenticate(string code, string password)
         {
-            var user = _repository.GetByFilter<Registration>(x => x.Code == code);
+            var user = _repository.GetByFilter<User>(x => x.UserCode == code);
             if (user == null)
                 return null;
 
@@ -28,26 +28,26 @@ namespace BusinessLogic.Implementations
             return user;
         }
 
-        public Registration Create(RegistrationDto registrationDto)
+        public User Create(UserDto userDto)
         {
-            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Code == registrationDto.Code);
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userDto.UserCode);
 
             if (potentialUser == null)
             {
                 return null;
             }
 
-            var newRegistration = new Registration
+            var newRegistration = new User
             {
-                Code = registrationDto.Code,
-                Email = registrationDto.Email,
-                LastName = registrationDto.LastName,
-                FirstName = registrationDto.FirstName,
+                UserCode = userDto.UserCode,
+                Email = userDto.Email,
+                LastName = userDto.LastName,
+                FirstName = userDto.FirstName,
             };
 
             byte[] passwordHash, passwordSalt;
 
-            CreatePasswordHash(registrationDto.Password, out passwordHash, out passwordSalt);
+            CreatePasswordHash(userDto.Password, out passwordHash, out passwordSalt);
 
             newRegistration.PasswordHash = System.Convert.ToBase64String(passwordHash);
             newRegistration.PasswordSalt = System.Convert.ToBase64String(passwordSalt);

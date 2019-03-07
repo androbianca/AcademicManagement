@@ -8,7 +8,7 @@ namespace DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<PotentialUser> builder)
         {
-            builder.Property(p => p.Code)
+            builder.Property(p => p.UserCode)
                 .IsRequired();
 
             builder.Property(p => p.LastName)
@@ -18,6 +18,14 @@ namespace DataAccess.Configurations
             builder.Property(p => p.FirstName)
                 .IsRequired()
                 .HasMaxLength(40);
+
+            builder.Property(p => p.Year)
+                .IsRequired()
+                .HasMaxLength(3);
+
+            builder.Property(p => p.Group)
+                .IsRequired()
+                .HasMaxLength(3);
 
         }
     }

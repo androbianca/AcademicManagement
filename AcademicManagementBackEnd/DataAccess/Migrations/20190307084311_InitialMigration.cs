@@ -12,9 +12,12 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Code = table.Column<string>(nullable: false),
+                    UserCode = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(maxLength: 40, nullable: false),
-                    FirstName = table.Column<string>(maxLength: 40, nullable: false)
+                    FirstName = table.Column<string>(maxLength: 40, nullable: false),
+                    Year = table.Column<string>(maxLength: 3, nullable: false),
+                    Group = table.Column<string>(maxLength: 3, nullable: false),
+                    Photo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -22,11 +25,11 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Registrations",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Code = table.Column<string>(nullable: false),
+                    UserCode = table.Column<string>(nullable: false),
                     LastName = table.Column<string>(maxLength: 40, nullable: false),
                     FirstName = table.Column<string>(maxLength: 40, nullable: false),
                     Email = table.Column<string>(nullable: false),
@@ -35,7 +38,7 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Registrations", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
         }
 
@@ -45,7 +48,7 @@ namespace DataAccess.Migrations
                 name: "PotentialUsers");
 
             migrationBuilder.DropTable(
-                name: "Registrations");
+                name: "Users");
         }
     }
 }

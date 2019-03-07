@@ -19,3 +19,4 @@ C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\E
 C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.AssemblyInfo.cs
 C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.dll
 C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.pdb
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.csprojAssemblyReference.cache

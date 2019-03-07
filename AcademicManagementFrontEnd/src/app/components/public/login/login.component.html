@@ -1,6 +1,6 @@
 <h1>Sign in</h1>
 <form class="form" [formGroup]="loginForm">
-  <input type="text" formControlName="username" placeholder="Code">
+  <input type="text" formControlName="userCode" placeholder="Code">
   <input type="password" formControlName="password" placeholder="Password">
   <p class="passwd__txt">Forgot password?</p>
   <button type="submit" (click)="login(loginForm)">Login</button>

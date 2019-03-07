@@ -10,15 +10,15 @@ using Models;
 
 namespace Service.Controllers
 {
-    [Route("api/auth")]
+    [Route("api")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class UserController : ControllerBase
     {
-        private readonly IAuthLogic _authLogic;
+        private readonly IUserLogic _userLogic;
 
-        public AuthController(IAuthLogic authLogic)
+        public UserController(IUserLogic userLogic)
         {
-            _authLogic = authLogic;
+            _userLogic = userLogic;
         }
 
         [HttpPost("login")]
@@ -29,7 +29,7 @@ namespace Service.Controllers
                 return BadRequest("Invalid client request");
             }
 
-            if (_authLogic.Authenticate(user.Code, user.Password) == null)
+            if (_userLogic.Authenticate(user.UserCode, user.Password) == null)
             {
                 return Unauthorized();
             }
@@ -49,16 +49,12 @@ namespace Service.Controllers
             return Ok(new { Token = tokenString });
         }
 
-
-
-
         [HttpPost("register")]
-        public IActionResult Register([FromBody]RegistrationDto registration)
+        public IActionResult Register([FromBody]UserDto user)
         {
-            var potentialUser = _authLogic.Create(registration);
+            var potentialUser = _userLogic.Create(user);
             return Ok(ModelState);
         }
-
 
     }
 }

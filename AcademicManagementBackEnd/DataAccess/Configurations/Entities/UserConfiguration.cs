@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Configurations
 {
-    public class RegistrationConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<Registration>
+    public class UserConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Registration> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
             base.Configure(builder);
 
-            builder.Property(p => p.Code)
+            builder.Property(p => p.UserCode)
                 .IsRequired();
 
             builder.Property(p => p.LastName)

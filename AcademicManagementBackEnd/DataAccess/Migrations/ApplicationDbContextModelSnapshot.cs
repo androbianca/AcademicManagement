@@ -24,29 +24,36 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Code")
-                        .IsRequired();
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(40);
 
+                    b.Property<string>("Group")
+                        .IsRequired()
+                        .HasMaxLength(3);
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(40);
+
+                    b.Property<string>("Photo");
+
+                    b.Property<string>("UserCode")
+                        .IsRequired();
+
+                    b.Property<string>("Year")
+                        .IsRequired()
+                        .HasMaxLength(3);
 
                     b.HasKey("Id");
 
                     b.ToTable("PotentialUsers");
                 });
 
-            modelBuilder.Entity("Entities.Registration", b =>
+            modelBuilder.Entity("Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code")
-                        .IsRequired();
 
                     b.Property<string>("Email")
                         .IsRequired();
@@ -63,9 +70,12 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("PasswordSalt");
 
+                    b.Property<string>("UserCode")
+                        .IsRequired();
+
                     b.HasKey("Id");
 
-                    b.ToTable("Registrations");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

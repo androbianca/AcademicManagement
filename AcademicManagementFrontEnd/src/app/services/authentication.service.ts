@@ -14,7 +14,7 @@ export class AuthenticationService {
         return this.baseService.post( url, data );
     }
 
-    public register<Register>(data: Register): Observable<Register> {
+    public register<User>(data: User): Observable<User> {
         let url = "register";
         return this.baseService.post( url, data );
     }
