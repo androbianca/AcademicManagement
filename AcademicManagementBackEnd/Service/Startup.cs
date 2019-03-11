@@ -1,9 +1,12 @@
-﻿using System.Text;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using BusinessLogic.Configurations;
+using Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +30,13 @@ namespace Service
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -38,12 +48,18 @@ namespace Service
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-
+                        NameClaimType = "name",
                         ValidIssuer = "http://localhost:5000",
                         ValidAudience = "http://localhost:5000",
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"))
                     };
+
                 });
+
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.ClaimsIdentity.UserIdClaimType = JwtRegisteredClaimNames.Sub;
+            });
 
             services.AddCors(options =>
             {
@@ -53,6 +69,7 @@ namespace Service
                 corsBuilder.WithOrigins(Configuration["WhiteList"]);
                 corsBuilder.AllowCredentials();
                 options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
+
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddBusinessLogic(Configuration.GetConnectionString("AcademicManagement"));

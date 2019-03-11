@@ -19,8 +19,8 @@ export class BaseService {
     });
   }
 
-  public get<T>( url: string,data: T): Observable<T> {
+  public get<T>( url: string , id:T ): Observable<T> {
     const completeUrl: string = this.enviroment + url;
-    return this.http.get<T>(completeUrl, data);
+    return this.http.get<T>(completeUrl, id);
   }
 }

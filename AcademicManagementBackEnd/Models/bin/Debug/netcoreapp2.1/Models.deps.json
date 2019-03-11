@@ -1,17 +1,51 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "c3f7ec88e42dd60ed3ed3d02a6783b8f65e905b8"
+    "signature": "431e42e724d263a9d4ddcb1c1784d6f29a7b8373"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
       "Models/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNet.Identity.Core": "2.2.2",
+          "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Swashbuckle.AspNetCore.SwaggerUI": "4.0.1"
         },
         "runtime": {
           "Models.dll": {}
+        }
+      },
+      "EntityFramework/6.1.0": {
+        "runtime": {
+          "lib/net45/EntityFramework.SqlServer.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.1.30225.0"
+          },
+          "lib/net45/EntityFramework.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.1.30225.0"
+          }
+        }
+      },
+      "Microsoft.AspNet.Identity.Core/2.2.2": {
+        "runtime": {
+          "lib/net45/Microsoft.AspNet.Identity.Core.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Microsoft.AspNet.Identity.EntityFramework/2.2.2": {
+        "dependencies": {
+          "EntityFramework": "6.1.0",
+          "Microsoft.AspNet.Identity.Core": "2.2.2"
+        },
+        "runtime": {
+          "lib/net45/Microsoft.AspNet.Identity.EntityFramework.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
         }
       },
       "Microsoft.AspNetCore.Hosting.Abstractions/2.0.0": {
@@ -578,6 +612,27 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "EntityFramework/6.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BWmOeG+3Cbf0Zpit42g2tpiJe07bozetbhvipK/tnkPc4re3O56uOEKah7YkyJa8Z7dRxuS7bnDf3mLOkV5EEg==",
+      "path": "entityframework/6.1.0",
+      "hashPath": "entityframework.6.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Identity.Core/2.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DJNnLn/eElAudZqNUsQ8qQy3LlKnlQ/kBjl+Zi6Xvur/InJ6DZYCuTLV5mtNtDZ0egvpl/e/Q8MLlh+3te7tYw==",
+      "path": "microsoft.aspnet.identity.core/2.2.2",
+      "hashPath": "microsoft.aspnet.identity.core.2.2.2.nupkg.sha512"
+    },
+    "Microsoft.AspNet.Identity.EntityFramework/2.2.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-S/CPI5YfU6dLDmXE9cHvPculn/ccCtLf0mCRPo/9P6IVbuXHbGDxx9PRAX6pEG8Hy10/jW3LSBi+ot4TxM0uHw==",
+      "path": "microsoft.aspnet.identity.entityframework/2.2.2",
+      "hashPath": "microsoft.aspnet.identity.entityframework.2.2.2.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Hosting.Abstractions/2.0.0": {
       "type": "package",

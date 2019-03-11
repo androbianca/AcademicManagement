@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { Login } from "src/app/models/login";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "src/app/services/authentication.service";
+import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 
 @Component({
   selector: "app-login",
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private currentUserDetailsService : CurrentUserDetailsService
   ) {}
 
   ngOnInit() {}

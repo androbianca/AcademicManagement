@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: "app-side-bar",
@@ -6,7 +8,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./side-bar.component.scss"]
 })
 export class SideBarComponent implements OnInit {
-  constructor() {}
+  user: User;
+  constructor(private currentUserDetailsService: CurrentUserDetailsService, private changeDetectorRef: ChangeDetectorRef) { 
+    this.user = currentUserDetailsService.getUser();
+   
+  }
 
-  ngOnInit() {}
-}
+  ngOnInit() {
+    console.log(this.user);
+   
+  
+}}

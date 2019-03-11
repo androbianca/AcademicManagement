@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using BusinessLogic.Abstractions;
@@ -24,6 +24,7 @@ namespace Service.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] AccountDto user)
         {
+
             if (user == null)
             {
                 return BadRequest("Invalid client request");
@@ -36,11 +37,14 @@ namespace Service.Controllers
 
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[] {
+                new Claim("Identifier", user.UserCode),
+            };
 
             var tokeOptions = new JwtSecurityToken(
                 issuer: "http://localhost:44304",
                 audience: "http://localhost:44304",
-                claims: new List<Claim>(),
+                claims: claims,
                 expires: DateTime.Now.AddMinutes(5),
                 signingCredentials: signinCredentials
             );
@@ -53,9 +57,29 @@ namespace Service.Controllers
         public IActionResult Register([FromBody]UserDto user)
         {
             var potentialUser = _userLogic.Create(user);
+            if (potentialUser == null)
+            {
+                return BadRequest("Invalid client request");
+
+            }
             return Ok(ModelState);
         }
 
+        [HttpGet("user/current")]
+        public IActionResult Get()
+        {
+            var headerValue = Request.Headers["Authorization"];
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadToken(headerValue) as JwtSecurityToken;
+            var id = token.Claims.FirstOrDefault(c => c.Type == "Identifier").Value;
+            var user = _userLogic.GetById(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
     }
 }
 

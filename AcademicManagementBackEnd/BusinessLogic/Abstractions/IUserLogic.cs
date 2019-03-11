@@ -8,5 +8,7 @@ namespace BusinessLogic.Abstractions
         User Authenticate(string code, string password);
         User Create(UserDto userDto);
 
-   }
+        User GetById(string userCode);
+
+    }
 }

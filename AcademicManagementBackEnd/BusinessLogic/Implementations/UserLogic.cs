@@ -102,5 +102,18 @@ namespace BusinessLogic.Implementations
 
             return true;
         }
+
+        public User GetById(string userCode)
+        {
+            var user = _repository.GetByFilter<User>(x => x.UserCode == userCode);
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user;
+
+        }
+
     }
 }

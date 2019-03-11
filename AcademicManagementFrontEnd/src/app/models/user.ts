@@ -3,8 +3,4 @@ export class User {
     LastName: string;
     FirstName: string;
     Email: string;
-    Password: string;
-    Year: string;
-    Group: string;
-    Photo: string;
 }
