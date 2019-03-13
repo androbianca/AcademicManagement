@@ -7,6 +7,7 @@
   background: #24344D;
   width: 15%;
   color: white;
+  box-shadow: 9px 3px 19px 0px rgba(166,166,166,1);
   .user__details {
     @include flex(column, center, center);
     margin-bottom: 30px;
@@ -25,6 +26,7 @@ img {
 
 .menu__option {
   @include flex(column, center, center);
+  cursor: pointer;
   background: #2B3C58;
   width: 100%;
   height: 50px;
