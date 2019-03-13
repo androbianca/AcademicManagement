@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
-import { User } from 'src/app/models/user';
+import { UserDetails } from 'src/app/models/userDetails';
 
 @Component({
   selector: "app-side-bar",
@@ -8,14 +8,32 @@ import { User } from 'src/app/models/user';
   styleUrls: ["./side-bar.component.scss"]
 })
 export class SideBarComponent implements OnInit {
-  user: User;
-  constructor(private currentUserDetailsService: CurrentUserDetailsService, private changeDetectorRef: ChangeDetectorRef) { 
+
+  fullName: string;
+  year: string;
+  group: string;
+  private user = new UserDetails();
+
+  constructor(private currentUserDetailsService: CurrentUserDetailsService, private changeDetectorRef: ChangeDetectorRef) {
     this.user = currentUserDetailsService.getUser();
-   
+  }
+
+  setFullName() {
+    this.fullName = this.user.LastName + " " + this.user.FirstName;
+  }
+
+  setYear() {
+    this.year = "Year " + this.user.Year;
+  }
+
+  setGroup() {
+
+    this.group = "Group " + this.user.Group;
   }
 
   ngOnInit() {
-    console.log(this.user);
-   
-  
-}}
+    this.setFullName();
+    this.setGroup();
+    this.setYear();
+  }
+}

@@ -43,6 +43,7 @@ namespace BusinessLogic.Implementations
                 Email = userDto.Email,
                 LastName = userDto.LastName,
                 FirstName = userDto.FirstName,
+                PotentialUserId = potentialUser.Id
             };
 
             byte[] passwordHash, passwordSalt;
@@ -103,15 +104,27 @@ namespace BusinessLogic.Implementations
             return true;
         }
 
-        public User GetById(string userCode)
+        public UserDetailsDto GetById(string userCode)
         {
             var user = _repository.GetByFilter<User>(x => x.UserCode == userCode);
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == user.PotentialUserId);
             if (user == null)
             {
                 return null;
             }
 
-            return user;
+            var userDetails = new UserDetailsDto
+            {
+                LastName  = potentialUser.LastName,
+                FirstName = potentialUser.FirstName,
+                Email = user.Email,
+                Year = potentialUser.Year,
+                Group = potentialUser.Group,
+                Photo = potentialUser.Photo
+
+            };
+
+            return userDetails;
 
         }
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190307084311_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20190312165132_Initial_Migration")]
+    partial class Initial_Migration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -72,12 +72,26 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("PasswordSalt");
 
+                    b.Property<Guid>("PotentialUserId");
+
                     b.Property<string>("UserCode")
                         .IsRequired();
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PotentialUserId")
+                        .IsUnique();
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Entities.User", b =>
+                {
+                    b.HasOne("Entities.PotentialUser", "PotentialUser")
+                        .WithOne("User")
+                        .HasForeignKey("Entities.User", "PotentialUserId")
+                        .HasConstraintName("ForeignKey_User_PotentialUser")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

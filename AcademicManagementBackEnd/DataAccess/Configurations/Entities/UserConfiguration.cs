@@ -4,11 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Configurations
 {
-    public class UserConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<User>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
-        {
-            base.Configure(builder);
+        {       
+         
+            builder.HasOne(a => a.PotentialUser)
+                .WithOne(b => b.User)
+                .HasForeignKey<User>(c => c.PotentialUserId)
+                .HasConstraintName("ForeignKey_User_PotentialUser");
 
             builder.Property(p => p.UserCode)
                 .IsRequired();

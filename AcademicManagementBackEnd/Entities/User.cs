@@ -1,6 +1,8 @@
-﻿namespace Entities
+﻿using System;
+
+namespace Entities
 {
-    public class User :BaseEntity
+    public class User : BaseEntity
     {
         public string UserCode { get; set; }
         public string LastName { get; set; }
@@ -8,5 +10,7 @@
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string PasswordSalt { get; set; }
+        public Guid PotentialUserId { get; set; }
+        public PotentialUser PotentialUser { get; set; }
     }
 }

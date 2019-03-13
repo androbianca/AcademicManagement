@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Initial_Migration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,21 +34,34 @@ namespace DataAccess.Migrations
                     FirstName = table.Column<string>(maxLength: 40, nullable: false),
                     Email = table.Column<string>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
-                    PasswordSalt = table.Column<string>(nullable: true)
+                    PasswordSalt = table.Column<string>(nullable: true),
+                    PotentialUserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "ForeignKey_User_PotentialUser",
+                        column: x => x.PotentialUserId,
+                        principalTable: "PotentialUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_PotentialUserId",
+                table: "Users",
+                column: "PotentialUserId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PotentialUsers");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "PotentialUsers");
         }
     }
 }

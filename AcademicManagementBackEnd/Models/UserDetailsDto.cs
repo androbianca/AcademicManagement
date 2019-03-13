@@ -1,13 +1,13 @@
-﻿namespace Entities
+﻿namespace Models
 {
-    public class PotentialUser : BaseEntity
-    {
-        public string UserCode { get; set; }
+   public class UserDetailsDto
+    {  
         public string LastName { get; set; }
         public string FirstName { get; set; }
+        public string Email { get; set; }
         public string Year { get; set; }
         public string Group { get; set; }
         public string Photo { get; set; }
-        public User User { get; set; }
+
     }
 }

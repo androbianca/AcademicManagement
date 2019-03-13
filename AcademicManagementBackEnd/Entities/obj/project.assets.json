@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "EntityFramework/6.1.0": {
+      "EntityFramework/6.2.0": {
         "type": "package",
         "compile": {
           "lib/net45/EntityFramework.SqlServer.dll": {},
@@ -4370,15 +4370,15 @@
     }
   },
   "libraries": {
-    "EntityFramework/6.1.0": {
-      "sha512": "BWmOeG+3Cbf0Zpit42g2tpiJe07bozetbhvipK/tnkPc4re3O56uOEKah7YkyJa8Z7dRxuS7bnDf3mLOkV5EEg==",
+    "EntityFramework/6.2.0": {
+      "sha512": "+aB/cnEAr9KqVMjmZwu+Fzy3EOPjCIzNsPAUyn19WbB2u3LFHd2OB3X56ohAj7EBf2hppl9M27nlRnkQxOhoAA==",
       "type": "package",
-      "path": "entityframework/6.1.0",
+      "path": "entityframework/6.2.0",
       "files": [
         ".signature.p7s",
-        "content/App.config.transform",
-        "content/Web.config.transform",
-        "entityframework.6.1.0.nupkg.sha512",
+        "content/net40/App.config.transform",
+        "content/net40/Web.config.transform",
+        "entityframework.6.2.0.nupkg.sha512",
         "entityframework.nuspec",
         "lib/net40/EntityFramework.SqlServer.dll",
         "lib/net40/EntityFramework.SqlServer.xml",
@@ -11580,6 +11580,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "EntityFramework >= 6.2.0",
       "Microsoft.AspNet.Identity.Core >= 2.2.2",
       "Microsoft.AspNet.Identity.EntityFramework >= 2.2.2",
       "Microsoft.AspNetCore.App >= 2.1.1",
@@ -11627,6 +11628,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "EntityFramework": {
+            "target": "Package",
+            "version": "[6.2.0, )"
+          },
           "Microsoft.AspNet.Identity.Core": {
             "target": "Package",
             "version": "[2.2.2, )"
@@ -11659,7 +11664,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'EntityFramework 6.1.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "message": "Package 'EntityFramework 6.2.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "EntityFramework",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"

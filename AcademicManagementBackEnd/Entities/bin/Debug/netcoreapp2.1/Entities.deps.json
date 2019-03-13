@@ -1,13 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "b3f016a079c6797c8aa8c60b2f408e6d8d61db5a"
+    "signature": "544609ba06776de964dc6067c3e5e55b1bb69357"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
       "Entities/1.0.0": {
         "dependencies": {
+          "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2",
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Microsoft.NETCore.App": "2.1.0"
@@ -16,15 +17,15 @@
           "Entities.dll": {}
         }
       },
-      "EntityFramework/6.1.0": {
+      "EntityFramework/6.2.0": {
         "runtime": {
           "lib/net45/EntityFramework.SqlServer.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.1.30225.0"
+            "fileVersion": "6.2.61023.0"
           },
           "lib/net45/EntityFramework.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.1.30225.0"
+            "fileVersion": "6.2.61023.0"
           }
         }
       },
@@ -38,7 +39,7 @@
       },
       "Microsoft.AspNet.Identity.EntityFramework/2.2.2": {
         "dependencies": {
-          "EntityFramework": "6.1.0",
+          "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2"
         },
         "runtime": {
@@ -82,12 +83,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "EntityFramework/6.1.0": {
+    "EntityFramework/6.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BWmOeG+3Cbf0Zpit42g2tpiJe07bozetbhvipK/tnkPc4re3O56uOEKah7YkyJa8Z7dRxuS7bnDf3mLOkV5EEg==",
-      "path": "entityframework/6.1.0",
-      "hashPath": "entityframework.6.1.0.nupkg.sha512"
+      "sha512": "sha512-+aB/cnEAr9KqVMjmZwu+Fzy3EOPjCIzNsPAUyn19WbB2u3LFHd2OB3X56ohAj7EBf2hppl9M27nlRnkQxOhoAA==",
+      "path": "entityframework/6.2.0",
+      "hashPath": "entityframework.6.2.0.nupkg.sha512"
     },
     "Microsoft.AspNet.Identity.Core/2.2.2": {
       "type": "package",

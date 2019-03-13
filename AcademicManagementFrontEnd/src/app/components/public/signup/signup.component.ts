@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
     this.user.Password = form.value.password;
 
     this.autenticationService.register(this.user).subscribe(result => {
-       console.log(result)
     }, err => {
     });
       

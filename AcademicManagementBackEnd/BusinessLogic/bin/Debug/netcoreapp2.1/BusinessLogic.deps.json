@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "2b9cf31d87d8b3cfd9c3190c8c8f0d10fd933ddb"
+    "signature": "d2d96b4e6eac547a819ad5b8d17ff409e7d7a506"
   },
   "compilationOptions": {},
   "targets": {
@@ -9,6 +9,7 @@
       "BusinessLogic/1.0.0": {
         "dependencies": {
           "DataAccess": "1.0.0",
+          "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2",
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Microsoft.NETCore.App": "2.1.0",
@@ -18,15 +19,15 @@
           "BusinessLogic.dll": {}
         }
       },
-      "EntityFramework/6.1.0": {
+      "EntityFramework/6.2.0": {
         "runtime": {
           "lib/net45/EntityFramework.SqlServer.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.1.30225.0"
+            "fileVersion": "6.2.61023.0"
           },
           "lib/net45/EntityFramework.dll": {
             "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.1.30225.0"
+            "fileVersion": "6.2.61023.0"
           }
         }
       },
@@ -40,7 +41,7 @@
       },
       "Microsoft.AspNet.Identity.EntityFramework/2.2.2": {
         "dependencies": {
-          "EntityFramework": "6.1.0",
+          "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2"
         },
         "runtime": {
@@ -119,6 +120,7 @@
       "DataAccess/1.0.0": {
         "dependencies": {
           "Entities": "1.0.0",
+          "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2",
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Swashbuckle.AspNetCore": "4.0.1"
@@ -129,6 +131,7 @@
       },
       "Entities/1.0.0": {
         "dependencies": {
+          "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2",
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2"
         },
@@ -138,6 +141,7 @@
       },
       "Models/1.0.0": {
         "dependencies": {
+          "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2",
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",
           "Swashbuckle.AspNetCore.SwaggerUI": "4.0.1"
@@ -154,12 +158,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "EntityFramework/6.1.0": {
+    "EntityFramework/6.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-BWmOeG+3Cbf0Zpit42g2tpiJe07bozetbhvipK/tnkPc4re3O56uOEKah7YkyJa8Z7dRxuS7bnDf3mLOkV5EEg==",
-      "path": "entityframework/6.1.0",
-      "hashPath": "entityframework.6.1.0.nupkg.sha512"
+      "sha512": "sha512-+aB/cnEAr9KqVMjmZwu+Fzy3EOPjCIzNsPAUyn19WbB2u3LFHd2OB3X56ohAj7EBf2hppl9M27nlRnkQxOhoAA==",
+      "path": "entityframework/6.2.0",
+      "hashPath": "entityframework.6.2.0.nupkg.sha512"
     },
     "Microsoft.AspNet.Identity.Core/2.2.2": {
       "type": "package",
