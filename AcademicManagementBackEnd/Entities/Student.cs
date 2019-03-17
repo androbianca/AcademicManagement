@@ -2,9 +2,9 @@
 
 namespace Entities
 {
-    public class User : BaseEntity
+    public class Student : BaseEntity
     {
-        public string UserCode { get; set; }
+        public string StudentCode { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Email { get; set; }

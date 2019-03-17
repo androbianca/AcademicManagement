@@ -3,25 +3,31 @@
 
 .container {
   @include flex(column, center, flex-start);
-  height: $height-wo-tb;
+  height: 100%;
+  width: 250px;
   background: #24344D;
-  width: 15%;
   color: white;
-  box-shadow: 9px 3px 19px 0px rgba(166,166,166,1);
+  box-shadow: 9px 3px 19px 0px rgba(166, 166, 166, 1);
+
   .user__details {
     @include flex(column, center, center);
     margin-bottom: 30px;
   }
 }
 
+.logo {
+  height: 60px;
+  background-color: white;
+  border-bottom: 3px solid #45C2BA;
+}
+
 img {
   border-radius: 50%;
-  padding:3px;
+  padding: 3px;
   height: 140px;
   width: 140px;
   margin: 30% 0 20px 0;
   border: 2px solid #2B3C58;
- // box-shadow: 6px 4px 8px rgb(25, 36, 54);
 }
 
 .menu__option {
@@ -30,4 +36,8 @@ img {
   background: #2B3C58;
   width: 100%;
   height: 50px;
+
+  &:hover {
+    background: rgb(57, 80, 117);
+  }
 }

@@ -4,22 +4,22 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class StudentConfiguration : IEntityTypeConfiguration<Student>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Student> builder)
         {       
          
             builder.HasOne(a => a.PotentialUser)
-                .WithOne(b => b.User)
-                .HasForeignKey<User>(c => c.PotentialUserId)
-                .HasConstraintName("ForeignKey_User_PotentialUser");
+                .WithOne(b => b.Student)
+                .HasForeignKey<Student>(c => c.PotentialUserId)
+                .HasConstraintName("ForeignKey_Student_PotentialUser");
 
-            builder.Property(p => p.UserCode)
+            builder.Property(p => p.StudentCode)
                 .IsRequired();
 
             builder.Property(p => p.LastName)
                 .IsRequired()
-                .HasMaxLength(40);
+                .HasMaxLength(30);
 
             builder.Property(p => p.FirstName)
                 .IsRequired()

@@ -13,9 +13,9 @@ namespace BusinessLogic.Implementations
         {
         }
 
-        public User Authenticate(string code, string password)
+        public Student Authenticate(string code, string password)
         {
-            var user = _repository.GetByFilter<User>(x => x.UserCode == code);
+            var user = _repository.GetByFilter<Student>(x => x.StudentCode == code);
             if (user == null)
                 return null;
 
@@ -28,7 +28,7 @@ namespace BusinessLogic.Implementations
             return user;
         }
 
-        public User Create(UserDto userDto)
+        public Student Create(UserDto userDto)
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userDto.UserCode);
 
@@ -37,9 +37,9 @@ namespace BusinessLogic.Implementations
                 return null;
             }
 
-            var newRegistration = new User
+            var newRegistration = new Student
             {
-                UserCode = userDto.UserCode,
+                StudentCode = userDto.UserCode,
                 Email = userDto.Email,
                 LastName = userDto.LastName,
                 FirstName = userDto.FirstName,
@@ -106,7 +106,7 @@ namespace BusinessLogic.Implementations
 
         public UserDetailsDto GetById(string userCode)
         {
-            var user = _repository.GetByFilter<User>(x => x.UserCode == userCode);
+            var user = _repository.GetByFilter<Student>(x => x.StudentCode == userCode);
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == user.PotentialUserId);
             if (user == null)
             {

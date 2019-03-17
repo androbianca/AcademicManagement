@@ -13,7 +13,7 @@ namespace DataAccess.Configurations
 
             builder.Property(p => p.LastName)
                 .IsRequired()
-                .HasMaxLength(40);
+                .HasMaxLength(30);
 
             builder.Property(p => p.FirstName)
                 .IsRequired()
@@ -21,11 +21,15 @@ namespace DataAccess.Configurations
 
             builder.Property(p => p.Year)
                 .IsRequired()
-                .HasMaxLength(3);
+                .HasMaxLength(1);
+
+            builder.Property(p => p.Semester)
+                .IsRequired()
+                .HasMaxLength(1);
 
             builder.Property(p => p.Group)
                 .IsRequired()
-                .HasMaxLength(3);
+                .HasMaxLength(2);
 
         }
     }

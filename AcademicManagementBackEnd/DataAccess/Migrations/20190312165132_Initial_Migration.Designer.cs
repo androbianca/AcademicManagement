@@ -52,7 +52,7 @@ namespace DataAccess.Migrations
                     b.ToTable("PotentialUsers");
                 });
 
-            modelBuilder.Entity("Entities.User", b =>
+            modelBuilder.Entity("Entities.Student", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -85,11 +85,11 @@ namespace DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Entities.User", b =>
+            modelBuilder.Entity("Entities.Student", b =>
                 {
                     b.HasOne("Entities.PotentialUser", "PotentialUser")
-                        .WithOne("User")
-                        .HasForeignKey("Entities.User", "PotentialUserId")
+                        .WithOne("Student")
+                        .HasForeignKey("Entities.Student", "PotentialUserId")
                         .HasConstraintName("ForeignKey_User_PotentialUser")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -1,15 +1,11 @@
 <div class="main-container">
-
-    <section class="right-container">
-
-      <section class="top-bar-container">
-
-        <app-top-bar></app-top-bar>
-
-      </section>
-
-      <router-outlet></router-outlet>
-
+  <section *ngIf="!home" class="sidebar-container">
+    <app-side-bar></app-side-bar>
+  </section>
+  <section  class="right-container">
+    <section *ngIf="!home" class="top-bar-container">
+      <app-top-bar></app-top-bar>
     </section>
-
-  </div>
+    <router-outlet></router-outlet>
+  </section>
+</div>

@@ -56,7 +56,7 @@ namespace Service
 
                 });
 
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<Student, IdentityRole>(options =>
             {
                 options.ClaimsIdentity.UserIdClaimType = JwtRegisteredClaimNames.Sub;
             });

@@ -2,11 +2,12 @@
 
 .main-container {
   display: inline-flex;
+
   width: 100%;
   height: 100vh;
 
   .sidebar-container{
-    border-right: 1px solid $light-grey;
+
   }
 
   .right-container {
