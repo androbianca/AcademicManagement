@@ -1,3 +1,4 @@
-<p>
-  grades works!
-</p>
+
+<app-year-grouped-courses-card *ngIf="firstYearCourses" [title]="'First Year'" [courses]="firstYearCourses"></app-year-grouped-courses-card>
+<app-year-grouped-courses-card *ngIf="secondYearCourses" [title]="'Second Year'" [courses]="secondYearCourses"></app-year-grouped-courses-card>
+<app-year-grouped-courses-card *ngIf="thirdYearCourses" [title]="'Third Year'" [courses]="thirdYearCourses"></app-year-grouped-courses-card>

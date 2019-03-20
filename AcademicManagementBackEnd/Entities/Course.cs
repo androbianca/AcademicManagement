@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Entities
 {
     public class Course : BaseEntity
     {
-
         public string Name { get; set; }
 
         public int Year { get; set; }

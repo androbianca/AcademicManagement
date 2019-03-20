@@ -1,40 +1,38 @@
 import { BaseService } from './base-service.service';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 import { UserDetails } from '../models/userDetails';
+import { Subject } from 'rxjs';
 
-const currentEmployeeUrl: string = "user/current";
+const currentEmployeeUrl = 'user/current';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CurrentUserDetailsService {
-  private user = new UserDetails();
+  private user : UserDetails;
   private user$ = new Subject();
-  private headers = new Headers();
   constructor(private service: BaseService) { }
 
-  setCurrentUser(user) {
+  setCurrentUser(user) 
+  {
     this.user = user;
-   // this.user$.next(user);
+    this.user$.next(user);
   }
 
   isCurrentUserSet() {
     return !!this.user;
   }
 
-  getUser() : UserDetails{
+  getUser() {
     return this.user;
   }
 
-  getUserObservable() {
+  getUserObservable(){
     return this.user$.asObservable();
   }
 
  getCurrentUserService() {
-    let authToken = localStorage.getItem('jwt');
-    return this.service.get(currentEmployeeUrl, { headers: {'Content-Type': 'application/json',
-     'Authorization': authToken}});
+    return this.service.get(currentEmployeeUrl);
   }
 }

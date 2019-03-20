@@ -1,5 +1,4 @@
-﻿using System;
-using DataAccess.Abstractions;
+﻿using DataAccess.Abstractions;
 
 namespace BusinessLogic.Implementations
 {
@@ -9,7 +8,7 @@ namespace BusinessLogic.Implementations
 
         public BaseLogic(IRepository repository)
         {
-            _repository = repository ?? throw new ArgumentNullException();
+            _repository = repository;
         }
     }
 }

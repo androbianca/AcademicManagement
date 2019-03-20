@@ -4,7 +4,7 @@
 .container {
   @include flex(column, center, flex-start);
   height: 100%;
-  width: 250px;
+  width: 280px;
   background: #24344D;
   color: white;
   box-shadow: 9px 3px 19px 0px rgba(166, 166, 166, 1);
@@ -40,4 +40,8 @@ img {
   &:hover {
     background: rgb(57, 80, 117);
   }
+}
+
+a {
+  all: unset;
 }

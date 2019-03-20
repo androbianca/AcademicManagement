@@ -1,0 +1,30 @@
+@import "../../../../styles/mixins.scss";
+@import "../../../../styles/colors.scss";
+
+.wrapper {
+  border: 1px solid rgb(199, 196, 196);
+  margin: 40px;
+  ::ng-deep app-card-header {
+    section.header {
+      background-color: $turquoize;
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    ::ng-deep app-card-header {
+      section.header {
+        background-color: white;
+      }
+    }
+
+    .left {
+      padding-bottom: 40px;
+      width: 50%;
+      height: 100%;
+    }
+  }
+}

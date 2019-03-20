@@ -6,21 +6,19 @@ import { Observable, throwError, of } from 'rxjs';
   providedIn: 'root'
 })
 export class BaseService {
-  public enviroment = "https://localhost:44304/api/"
-
+  public enviroment = 'https://localhost:44304/api/';
+  public authToken = localStorage.getItem('jwt');
   constructor(private http: HttpClient) { }
 
   public post<T>(url: string, data: T): Observable<T> {
     const completeUrl: string = this.enviroment + url;
-    return this.http.post<T>(completeUrl, data, {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    });
+    return this.http.post<T>(completeUrl, data,  { headers: {'Content-Type': 'application/json',
+    Authorization: this.authToken}});
   }
 
-  public get<T>(url: string, headers: T): Observable<T> {
+  public get<T>(url: string): Observable<T> {
     const completeUrl: string = this.enviroment + url;
-    return this.http.get<T>(completeUrl, headers);
+    return this.http.get<T>(completeUrl, { headers: {'Content-Type': 'application/json',
+    Authorization: this.authToken}});
   }
 }

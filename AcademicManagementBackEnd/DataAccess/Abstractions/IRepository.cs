@@ -9,8 +9,11 @@ namespace DataAccess.Abstractions
     {
         ICollection<T> GetAll<T>()
             where T : BaseEntity;
-
+      
         T GetByFilter<T>(Expression<Func<T, bool>> filter)
+            where T : BaseEntity;
+
+        ICollection<T> GetAllByFilter<T>(Expression<Func<T, bool>> filter)
             where T : BaseEntity;
 
         void Insert<T>(T entity)

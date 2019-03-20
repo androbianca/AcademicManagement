@@ -16,8 +16,9 @@ const routes: Routes = [
     canActivate: [UserGuard]
   },
   {
-    path: "grades",
-    component: GradesComponent
+    path: 'grades',
+    component: GradesComponent,
+    canActivate: [UserGuard]
   },
 ];
 

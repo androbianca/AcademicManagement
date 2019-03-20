@@ -25,6 +25,11 @@ namespace DataAccess.Implementations
             return _context.Set<T>().FirstOrDefault(filter);
         }
 
+        public ICollection<T> GetAllByFilter<T>(Expression<Func<T, bool>> filter) where T : BaseEntity
+        {
+            return _context.Set<T>().Where(filter).ToList();
+        }
+
         public void Insert<T>(T entity) where T : BaseEntity
         {
             _context.Set<T>().Add(entity);
@@ -39,5 +44,6 @@ namespace DataAccess.Implementations
         {
             _context.Set<T>().Remove(entity);
         }
+
     }
 }

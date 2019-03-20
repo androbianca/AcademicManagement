@@ -26,11 +26,11 @@ export class SignupComponent implements OnInit {
   }
 
   public register(form){
-    this.user.UserCode = form.value.code;
-    this.user.Email = form.value.email;
-    this.user.LastName =form.value.lname;
-    this.user.FirstName = form.value.fname;
-    this.user.Password = form.value.password;
+    this.user.userCode = form.value.code;
+    this.user.email = form.value.email;
+    this.user.lastName =form.value.lname;
+    this.user.firstName = form.value.fname;
+    this.user.password = form.value.password;
 
     this.autenticationService.register(this.user).subscribe(result => {
     }, err => {

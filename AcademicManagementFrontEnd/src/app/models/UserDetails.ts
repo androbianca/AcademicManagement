@@ -1,8 +1,8 @@
 export class UserDetails {
-    LastName: string;
-    FirstName: string
-    Email: string
-    Year: string
-    Group: string
-    Photo: string
+    lastName: string;
+    firstName: string;
+    email: string;
+    year: string;
+    group: string;
+    photo: string;
 }

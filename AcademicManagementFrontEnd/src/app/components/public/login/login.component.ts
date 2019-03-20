@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   public login(form) {
-    this.loginModel.UserCode = form.value.userCode;
-    this.loginModel.Password = form.value.password;
+    this.loginModel.userCode = form.value.userCode;
+    this.loginModel.password = form.value.password;
     this.authenticationService.authenticate(this.loginModel).subscribe(
       response => {
         let token = (<any>response).token;
