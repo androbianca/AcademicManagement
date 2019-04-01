@@ -20,8 +20,7 @@ export class YearGroupedCoursesCardComponent implements OnInit {
     this.groupBySemester();
   }
 
-  groupBySemester() {
-    
+  groupBySemester() { 
       this.firstSemester = this.courses.filter(x => x.semester == '1');
       this.seconSemester = this.courses.filter(x => x.semester == '2');
   }

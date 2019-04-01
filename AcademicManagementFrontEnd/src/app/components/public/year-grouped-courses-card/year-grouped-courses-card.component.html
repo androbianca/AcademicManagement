@@ -2,10 +2,10 @@
   <app-card-header [title]="title"></app-card-header>
   <div class="content">
     <div class="left">
-      <app-courses-card [title]="'First Semester'" [courses]="firstSemester"></app-courses-card>
+      <app-semester-grouped-courses-card *ngIf="firstSemester" [title]="'First Semester'" [courses]="firstSemester"></app-semester-grouped-courses-card>
     </div>
     <div class="left">
-      <app-courses-card [title]="'Second Semester'" [courses]="seconSemester"></app-courses-card>
+      <app-semester-grouped-courses-card *ngIf="seconSemester" [title]="'Second Semester'" [courses]="seconSemester"></app-semester-grouped-courses-card>
     </div>
   </div>
 </div>

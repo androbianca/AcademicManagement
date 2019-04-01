@@ -1,4 +1,6 @@
-﻿namespace Entities
+﻿using System.Collections.Generic;
+
+namespace Entities
 {
     public class PotentialUser : BaseEntity
     {
@@ -10,5 +12,6 @@
         public int Semester { get; set; }
         public string Photo { get; set; }
         public Student Student { get; set; }
+        public IEnumerable<OptionalPotentialUser> Optionals { get; set; }
     }
 }

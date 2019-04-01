@@ -10,7 +10,7 @@ namespace DataAccess.Configurations.Entities
         {
             builder.Property(p => p.Name)
                 .IsRequired()
-                .HasMaxLength(40);
+                .HasMaxLength(60);
       
             builder.Property(p => p.Year)
                 .IsRequired()

@@ -1,0 +1,31 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+INSERT INTO Courses VALUES (NEWID(), 'Limba engleza I', 1,1);
+INSERT INTO Courses VALUES (NEWID(), 'Arhitectura calculatoarelor si sisteme de operare', 1,1);
+INSERT INTO Courses VALUES (NEWID(), 'Structuri de date', 1,1);
+INSERT INTO Courses VALUES (NEWID(), 'Matematica', 1,1);
+INSERT INTO Courses VALUES (NEWID(), 'Introducere în programare', 1,1);
+INSERT INTO Courses VALUES (NEWID(), 'Logica pentru informatica', 1,1);
+INSERT INTO Courses VALUES (NEWID(), 'Proiectarea algoritmilor', 1,2);
+INSERT INTO Courses VALUES (NEWID(), 'Probabilitati si statistica', 1,2);
+INSERT INTO Courses VALUES (NEWID(), 'Sisteme de operare', 1,2);
+INSERT INTO Courses VALUES (NEWID(), 'Limba engleza II', 1,2);
+INSERT INTO Courses VALUES (NEWID(), 'Programare orientata-obiect', 1,2);
+INSERT INTO Courses VALUES (NEWID(), 'Fundamente algebrice ale informaticii', 1,2);
+INSERT INTO Courses VALUES (NEWID(), 'Algoritmica grafurilor', 2,1);
+INSERT INTO Courses VALUES (NEWID(), 'Retele de calculatoare', 2,1);
+INSERT INTO Courses VALUES (NEWID(), 'Limbaje formale, automate si compilatoare', 2,1);
+INSERT INTO Courses VALUES (NEWID(), 'Limba engleza III', 2,1);
+INSERT INTO Courses VALUES (NEWID(), 'Baze de date', 2,1);
+INSERT INTO Courses VALUES (NEWID(), 'Ingineria programarii	', 2,2);
+INSERT INTO Courses VALUES (NEWID(), 'Limba engleza IV', 2,2);
+INSERT INTO Courses VALUES (NEWID(), 'Practica SGBD	', 2,2);
+INSERT INTO Courses VALUES (NEWID(), 'Tehnologii WEB', 2,2);
+INSERT INTO Courses VALUES (NEWID(), 'Programare avansata', 2,2);
+INSERT INTO Courses VALUES (NEWID(), 'Securitatea informatiei', 3,1);
+INSERT INTO Courses VALUES (NEWID(), 'Inteligenta artificiala', 3,1);
+INSERT INTO Courses VALUES (NEWID(), 'Învatare automata', 3,1);
+INSERT INTO Courses VALUES (NEWID(), 'Practica (Programare în Python)', 3,1);
+INSERT INTO Courses VALUES (NEWID(), 'Grafica pe calculator', 3,2);
+INSERT INTO Courses VALUES (NEWID(), 'Calcul numeric', 3,2);
+
+
