@@ -5,10 +5,10 @@
     </ng-container>
 
     <div class="form__container">
-      <div class="buttons">
+      <section class="buttons">
         <button class="login" (click)="changeToSignIn()">Sign In</button>
         <button class="signup" (click)="changeToSignUp()">Sign Up</button>
-      </div>
+      </section>
       <ng-template [ngIf]="isSignIn" [ngIfElse]="isSignup">
         <app-login></app-login>
       </ng-template>

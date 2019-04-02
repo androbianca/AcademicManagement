@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
 import { TopBarComponent } from './components/shared/top-bar/top-bar.component';
 import { HomeModule } from './pages/home-page/home.modules';
@@ -17,10 +16,8 @@ import { GradesModule } from './pages/grades/grades.module';
   declarations: [
     AppComponent,
     HomePageComponent,
-    UserProfileComponent,
     SideBarComponent,
     TopBarComponent,
-
   ],
   imports: [
     BrowserModule,

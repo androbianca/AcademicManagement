@@ -16,9 +16,7 @@ export class SideBarComponent implements OnInit {
   constructor(
     private currentUserDetailsService: CurrentUserDetailsService,
     private changeDetectorRef: ChangeDetectorRef
-  ) {
-
-  }
+  ) {}
 
   setFullName() {
     this.fullName = this.user.lastName + ' ' + this.user.firstName;
@@ -33,14 +31,13 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUserDetailsService.getUserObservable().subscribe ((user:UserDetails) => {
-      if(user){
+    this.currentUserDetailsService.getUserObservable().subscribe((user: UserDetails) => {
+      if (user) {
         this.user = user;
         this.setFullName();
         this.setGroup();
         this.setYear();
       }
     })
-
   }
 }

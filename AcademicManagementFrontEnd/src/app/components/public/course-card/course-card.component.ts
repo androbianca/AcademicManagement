@@ -1,17 +1,14 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-course-card',
-  templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.scss']
+  selector: "app-course-card",
+  templateUrl: "./course-card.component.html",
+  styleUrls: ["./course-card.component.scss"]
 })
 export class CourseCardComponent implements OnInit {
-
   @Input() name: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

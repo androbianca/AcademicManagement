@@ -16,7 +16,6 @@ export class YearGroupedCoursesCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
     this.groupBySemester();
   }
 

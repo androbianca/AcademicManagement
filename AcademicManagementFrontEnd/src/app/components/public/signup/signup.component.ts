@@ -10,7 +10,7 @@ import { User } from 'src/app/models/user';
 })
 export class SignupComponent implements OnInit {
 
- public user = new User();
+  public user = new User();
   signupForm = new FormGroup({
     code: new FormControl(''),
     email: new FormControl(''),
@@ -25,18 +25,18 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  public register(form){
+  public register(form) {
     this.user.userCode = form.value.code;
     this.user.email = form.value.email;
-    this.user.lastName =form.value.lname;
+    this.user.lastName = form.value.lname;
     this.user.firstName = form.value.fname;
     this.user.password = form.value.password;
 
     this.autenticationService.register(this.user).subscribe(result => {
     }, err => {
     });
-      
-    }
+
   }
+}
 
 

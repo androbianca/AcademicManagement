@@ -1,5 +1,38 @@
 @import "../../../styles/mixins.scss";
 
+.buttons {
+  @include flex(row, center, center);
+  width: 100%;
+  margin-top: 30px;
+
+  .button {
+    display: inline-block;
+    background: #FFFFFF;
+    padding: 0.5em 3em;
+    border: 0.16em solid rgb(146, 144, 144);
+    margin: 0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color:  rgb(146, 144, 144);
+    text-align: center;
+    transition: all 0.15s;
+  }
+
+  .button:hover {
+    color: rgb(119, 114, 114);
+    border-color: rgb(119, 114, 114);;
+  }
+
+  .button:active {
+    color: rgb(119, 114, 114);;
+    border-color: rgb(119, 114, 114);;
+  }
+}
+
 .page__wrapper {
-  padding:20px;
+  @include flex(column, center, center);
+  width: 100%;
 }

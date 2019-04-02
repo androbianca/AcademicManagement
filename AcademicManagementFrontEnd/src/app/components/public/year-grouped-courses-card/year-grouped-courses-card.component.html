@@ -1,11 +1,11 @@
-<div class="wrapper">
+<section class="year__container">
   <app-card-header [title]="title"></app-card-header>
-  <div class="content">
-    <div class="left">
+  <section class="semesters__wrapper">
+    <section class="semester__container">
       <app-semester-grouped-courses-card *ngIf="firstSemester" [title]="'First Semester'" [courses]="firstSemester"></app-semester-grouped-courses-card>
-    </div>
-    <div class="left">
+    </section>
+    <section class="semester__container">
       <app-semester-grouped-courses-card *ngIf="seconSemester" [title]="'Second Semester'" [courses]="seconSemester"></app-semester-grouped-courses-card>
-    </div>
-  </div>
-</div>
+    </section>
+  </section>
+</section>

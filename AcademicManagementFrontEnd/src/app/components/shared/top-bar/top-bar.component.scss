@@ -1,16 +1,14 @@
+@import "../../../../styles/mixins.scss";
+
 .top__bar {
+  @include flex (row,center,flex-end);
   background-color: white;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
   height: 100%;
-  flex-direction: row;
   border-bottom: 3px solid #45C2BA;
   box-shadow: 21px 3px 19px 0px rgba(166, 166, 166, 1);
 
   img {
-    width: 25px;
-    height: 25px;
+    @include size(25px,25px);
     margin-right: 50px;
   }
 }
