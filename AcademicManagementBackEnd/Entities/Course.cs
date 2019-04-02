@@ -10,6 +10,8 @@ namespace Entities
 
         public int Semester { get; set; }
 
-        public IEnumerable<CourseProfessor> Professors { get; set; }
+        public string Package { get; set; }
+
+        public IEnumerable<PUserOptionalCourse> PotentialUsers { get; set; }
     }
 }

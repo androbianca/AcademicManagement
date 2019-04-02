@@ -5,19 +5,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace DataAccess.Configurations.Entities
 {
 
-    public class OptionalPotentialUserConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<OptionalPotentialUser>
+    public class OptionalPotentialUserConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<PUserOptionalCourse>
     {
-        public void Configure(EntityTypeBuilder<OptionalPotentialUser> builder)
+        public void Configure(EntityTypeBuilder<PUserOptionalCourse> builder)
         {
-            builder.HasKey(x => new { x.OptionalId, x.PotentialUserId });
+            builder.HasKey(x => new { x.OptionalCourseId, x.PotentialUserId });
 
-            builder.HasOne(x => x.Optional)
+            builder.HasOne(x => x.OptionalCourse)
                 .WithMany(y => y.PotentialUsers)
-                .HasForeignKey(y => y.PotentialUserId);
+                .HasForeignKey(y => y.OptionalCourseId);
 
             builder.HasOne(x => x.PotentialUser)
-                .WithMany(y => y.Optionals)
-                .HasForeignKey(y => y.OptionalId);
+                .WithMany(y => y.OptionalCourses)
+                .HasForeignKey(y => y.PotentialUserId);
         }
     }
 

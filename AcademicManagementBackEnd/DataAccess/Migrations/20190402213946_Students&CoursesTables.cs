@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class CourseProfLink : Migration
+    public partial class StudentsCoursesTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,9 +15,17 @@ namespace DataAccess.Migrations
                 name: "PK_Users",
                 table: "Users");
 
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_PotentialUsers",
+                table: "PotentialUsers");
+
             migrationBuilder.RenameTable(
                 name: "Users",
                 newName: "Students");
+
+            migrationBuilder.RenameTable(
+                name: "PotentialUsers",
+                newName: "PotentialUser");
 
             migrationBuilder.RenameColumn(
                 name: "UserCode",
@@ -31,7 +39,15 @@ namespace DataAccess.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
-                table: "PotentialUsers",
+                table: "Students",
+                maxLength: 30,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldMaxLength: 40);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "LastName",
+                table: "PotentialUser",
                 maxLength: 30,
                 nullable: false,
                 oldClrType: typeof(string),
@@ -39,23 +55,20 @@ namespace DataAccess.Migrations
 
             migrationBuilder.AlterColumn<string>(
                 name: "Group",
-                table: "PotentialUsers",
+                table: "PotentialUser",
                 maxLength: 2,
                 nullable: false,
                 oldClrType: typeof(string),
                 oldMaxLength: 3);
 
-            migrationBuilder.AlterColumn<string>(
-                name: "LastName",
-                table: "Students",
-                maxLength: 30,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 40);
-
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Students",
                 table: "Students",
+                column: "Id");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_PotentialUser",
+                table: "PotentialUser",
                 column: "Id");
 
             migrationBuilder.CreateTable(
@@ -63,9 +76,10 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 40, nullable: false),
+                    Name = table.Column<string>(maxLength: 60, nullable: false),
                     Year = table.Column<int>(maxLength: 1, nullable: false),
-                    Semester = table.Column<int>(maxLength: 1, nullable: false)
+                    Semester = table.Column<int>(maxLength: 1, nullable: false),
+                    Package = table.Column<string>(maxLength: 5, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,54 +87,39 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Professors",
+                name: "PUserOptionalCourse",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(nullable: false),
-                    ProfessorCode = table.Column<string>(nullable: false),
-                    FirstName = table.Column<string>(maxLength: 30, nullable: false),
-                    LastName = table.Column<string>(maxLength: 40, nullable: false),
-                    CourseName = table.Column<string>(maxLength: 40, nullable: false)
+                    OptionalCourseId = table.Column<Guid>(nullable: false),
+                    PotentialUserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Professors", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CourseProfessor",
-                columns: table => new
-                {
-                    CourseId = table.Column<Guid>(nullable: false),
-                    ProfessorId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CourseProfessor", x => new { x.CourseId, x.ProfessorId });
+                    table.PrimaryKey("PK_PUserOptionalCourse", x => new { x.OptionalCourseId, x.PotentialUserId });
                     table.ForeignKey(
-                        name: "FK_CourseProfessor_Professors_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Professors",
+                        name: "FK_PUserOptionalCourse_Courses_OptionalCourseId",
+                        column: x => x.OptionalCourseId,
+                        principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CourseProfessor_Courses_ProfessorId",
-                        column: x => x.ProfessorId,
-                        principalTable: "Courses",
+                        name: "FK_PUserOptionalCourse_PotentialUser_PotentialUserId",
+                        column: x => x.PotentialUserId,
+                        principalTable: "PotentialUser",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseProfessor_ProfessorId",
-                table: "CourseProfessor",
-                column: "ProfessorId");
+                name: "IX_PUserOptionalCourse_PotentialUserId",
+                table: "PUserOptionalCourse",
+                column: "PotentialUserId");
 
             migrationBuilder.AddForeignKey(
                 name: "ForeignKey_Student_PotentialUser",
                 table: "Students",
                 column: "PotentialUserId",
-                principalTable: "PotentialUsers",
+                principalTable: "PotentialUser",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -132,10 +131,7 @@ namespace DataAccess.Migrations
                 table: "Students");
 
             migrationBuilder.DropTable(
-                name: "CourseProfessor");
-
-            migrationBuilder.DropTable(
-                name: "Professors");
+                name: "PUserOptionalCourse");
 
             migrationBuilder.DropTable(
                 name: "Courses");
@@ -144,9 +140,17 @@ namespace DataAccess.Migrations
                 name: "PK_Students",
                 table: "Students");
 
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_PotentialUser",
+                table: "PotentialUser");
+
             migrationBuilder.RenameTable(
                 name: "Students",
                 newName: "Users");
+
+            migrationBuilder.RenameTable(
+                name: "PotentialUser",
+                newName: "PotentialUsers");
 
             migrationBuilder.RenameColumn(
                 name: "StudentCode",
@@ -157,6 +161,14 @@ namespace DataAccess.Migrations
                 name: "IX_Students_PotentialUserId",
                 table: "Users",
                 newName: "IX_Users_PotentialUserId");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "LastName",
+                table: "Users",
+                maxLength: 40,
+                nullable: false,
+                oldClrType: typeof(string),
+                oldMaxLength: 30);
 
             migrationBuilder.AlterColumn<string>(
                 name: "LastName",
@@ -174,17 +186,14 @@ namespace DataAccess.Migrations
                 oldClrType: typeof(string),
                 oldMaxLength: 2);
 
-            migrationBuilder.AlterColumn<string>(
-                name: "LastName",
-                table: "Users",
-                maxLength: 40,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldMaxLength: 30);
-
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Users",
                 table: "Users",
+                column: "Id");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_PotentialUsers",
+                table: "PotentialUsers",
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
