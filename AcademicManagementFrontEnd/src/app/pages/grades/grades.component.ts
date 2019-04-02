@@ -20,7 +20,7 @@ export class GradesComponent {
   }
 
   getCourses() {
-    this.courseService.getAll().subscribe((response: Course[]) => {
+    this.courseService.getAllByYear().subscribe((response: Course[]) => {
       this.firstYearCourses = response.filter(x => x.year == "1");
       this.secondYearCourses = response.filter(x => x.year == "2");
       this.thirdYearCourses = response.filter(x => x.year == "3");

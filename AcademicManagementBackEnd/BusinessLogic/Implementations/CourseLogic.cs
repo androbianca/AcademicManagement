@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BusinessLogic.Abstractions;
 using DataAccess.Abstractions;
 using Entities;
@@ -45,7 +46,33 @@ namespace BusinessLogic.Implementations
 
                 courseDtos.Add(courseDto);
             }
-            return courseDtos;
+
+            return filterCourses(courseDtos);
+        }
+
+        private ICollection<CourseDto> filterCourses(ICollection<CourseDto> courses)
+        {
+            var currentDate = DateTime.Now;
+            var courseDtos = new List<CourseDto>();
+            var currentYear = DateTime.Today.Year;
+            var endOfFirstSemester = new DateTime(currentDate.Year,2,18);
+            if (currentDate < endOfFirstSemester)
+            {
+                foreach (var course in courses)
+                {
+                    var courseDto = new CourseDto
+                    {
+                        Name = course.Name,
+                        Year = course.Year,
+                        Semester = course.Semester
+                    };
+
+                    courseDtos.Add(courseDto);
+                }
+                return courseDtos;
+            }
+
+            return courses;
         }
     }
 }

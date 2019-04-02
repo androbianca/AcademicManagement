@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class OptionalPotentialUser
+    public class OptionalPotentialUser : BaseEntity
     {
         public Guid OptionalId { get; set; }
         public Guid PotentialUserId { get; set; }
