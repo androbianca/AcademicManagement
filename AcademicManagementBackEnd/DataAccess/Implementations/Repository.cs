@@ -15,22 +15,22 @@ namespace DataAccess.Implementations
         {
             _context = context;
         }
-        public ICollection<T> GetAll<T>() where T : BaseEntity
+        public ICollection<T> GetAll<T>() where T : class 
         {
             return _context.Set<T>().ToList();
         }
 
-        public T GetByFilter<T>(Expression<Func<T, bool>> filter) where T : BaseEntity
+        public T GetByFilter<T>(Expression<Func<T, bool>> filter) where T : class
         {
             return _context.Set<T>().FirstOrDefault(filter);
         }
 
-        public ICollection<T> GetAllByFilter<T>(Expression<Func<T, bool>> filter) where T : BaseEntity
+        public ICollection<T> GetAllByFilter<T>(Expression<Func<T, bool>> filter) where T : class
         {
             return _context.Set<T>().Where(filter).ToList();
         }
 
-        public void Insert<T>(T entity) where T : BaseEntity
+        public void Insert<T>(T entity) where T : class
         {
             _context.Set<T>().Add(entity);
         }
@@ -40,7 +40,7 @@ namespace DataAccess.Implementations
             _context.SaveChanges();
         }
 
-        public void Delete<T>(T entity) where T : BaseEntity
+        public void Delete<T>(T entity) where T : class
         {
             _context.Set<T>().Remove(entity);
         }

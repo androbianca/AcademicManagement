@@ -29,3 +29,4 @@ C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\En
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.AssemblyInfo.cs
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.dll
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.pdb
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.csprojAssemblyReference.cache

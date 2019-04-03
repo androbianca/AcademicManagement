@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using BusinessLogic.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
 namespace Service.Controllers
 {
-    [Route("api/course")]
+    [Route("api/courses")]
     [ApiController]
     public class CourseController : ControllerBase
     {
@@ -24,10 +26,14 @@ namespace Service.Controllers
             return Ok(courses);
         }
 
-        [HttpGet("{year:int}")]
+        [HttpGet("current")]
         public ActionResult<ICollection<CourseDto>> GetAllByYear([FromRoute] int year)
         {
-            var courses = _courseLogic.GetByYear(year);
+            var headerValue = Request.Headers["Authorization"];
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadToken(headerValue) as JwtSecurityToken;
+            var id = token.Claims.FirstOrDefault(c => c.Type == "Identifier").Value;
+            var courses = _courseLogic.GetByYear(id);
 
             return Ok(courses);
         }
