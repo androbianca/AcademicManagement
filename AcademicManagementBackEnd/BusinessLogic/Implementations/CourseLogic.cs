@@ -66,7 +66,7 @@ namespace BusinessLogic.Implementations
 
         private ICollection<CourseDto> filterCourses(ICollection<CourseDto> courses,int year)
         {
-            var endOfFirstSemester = new DateTime(DateTime.Today.Year, 7, 18);
+            var endOfFirstSemester = new DateTime(DateTime.Today.Year, 2, 18);
             List<CourseDto> ongoingCourses = new List<CourseDto>();
 
             if (DateTime.Now < endOfFirstSemester)

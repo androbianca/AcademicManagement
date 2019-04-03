@@ -17,7 +17,7 @@ export class CourseService {
     }
 
     public getAll() {
-        return this.baseService.get<Course[]>('course');
+        return this.baseService.get<Course[]>('courses');
     }
 
     public getAllByYear() {

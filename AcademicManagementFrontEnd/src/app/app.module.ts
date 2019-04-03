@@ -8,24 +8,21 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
 import { TopBarComponent } from './components/shared/top-bar/top-bar.component';
-import { HomeModule } from './pages/home-page/home.modules';
-import { GradesModule } from './pages/grades/grades.module';
-
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent,
     SideBarComponent,
-    TopBarComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HomeModule,
-    GradesModule
+    PagesModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

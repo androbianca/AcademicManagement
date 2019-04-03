@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { CourseService } from "src/app/services/course-service.service";
 import { Course } from "src/app/models/course";
 
@@ -15,9 +15,11 @@ export class GradesComponent {
   firstYear = true;
   scondYear = false;
   thirdYear = false;
+  hasCourses1 = false;
+  hasCourses2 = false;
+  hasCourses3 = false;
   constructor(private courseService: CourseService) {
     this.getCourses();
-    console.log(this.thirdYearCourses);
   }
 
   getCourses() {
@@ -25,6 +27,9 @@ export class GradesComponent {
       this.firstYearCourses = response.filter(x => x.year == "1");
       this.secondYearCourses = response.filter(x => x.year == "2");
       this.thirdYearCourses = response.filter(x => x.year == "3");
+      this.hasCourses1 = this.firstYearCourses.length !==0;
+      this.hasCourses2 = this.secondYearCourses.length !==0;
+      this.hasCourses3 = this.thirdYearCourses.length !==0;
     });
   }
 

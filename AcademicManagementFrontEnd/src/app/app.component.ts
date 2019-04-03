@@ -17,6 +17,7 @@ export class AppComponent {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.route = this.router.url;
+      console.log(this.route);
       this.home = this.route === '/' ? true : false;
     });
   }

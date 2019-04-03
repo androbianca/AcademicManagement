@@ -25,12 +25,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   public login(form) {
-    console.log('a')
     this.loginModel.userCode = form.value.userCode;
     this.loginModel.password = form.value.password;
     this.authenticationService.authenticate(this.loginModel).subscribe(
       response => {
-        console.log(response)
         let token = (<any>response).token;
         localStorage.setItem("jwt", token);
         this.router.navigate(["/grades"]);
