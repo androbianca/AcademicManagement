@@ -2,11 +2,14 @@
 
 namespace Entities
 {
-    public class OptionalPotentialUser : BaseEntity
+    public class PUserOptionalCourse
     {
-        public Guid OptionalId { get; set; }
+        public Guid OptionalCourseId { get; set; }
+
         public Guid PotentialUserId { get; set; }
-        public Optional Optional { get; set; }
+
+        public Course OptionalCourse { get; set; }
+
         public PotentialUser PotentialUser { get; set; }
 
     }

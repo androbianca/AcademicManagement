@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190317171436_CourseProfLink.cs" />
+    <Compile Remove="Migrations\20190401163448_OptionalTableCreated.cs" />
+    <Compile Remove="Migrations\20190401163848_CourseNameLengthIncreased.cs" />
+    <Compile Remove="Migrations\20190401165103_OptionalNameLengthIncreased.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.2" />

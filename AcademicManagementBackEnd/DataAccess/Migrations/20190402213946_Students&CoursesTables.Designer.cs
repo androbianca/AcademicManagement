@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190401163848_CourseNameLengthIncreased")]
-    partial class CourseNameLengthIncreased
+    [Migration("20190402213946_Students&CoursesTables")]
+    partial class StudentsCoursesTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -30,45 +30,7 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasMaxLength(60);
 
-                    b.Property<int>("Semester")
-                        .HasMaxLength(1);
-
-                    b.Property<int>("Year")
-                        .HasMaxLength(1);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Courses");
-                });
-
-            modelBuilder.Entity("Entities.CourseProfessor", b =>
-                {
-                    b.Property<Guid>("CourseId");
-
-                    b.Property<Guid>("ProfessorId");
-
-                    b.Property<Guid?>("OptionalId");
-
-                    b.HasKey("CourseId", "ProfessorId");
-
-                    b.HasIndex("OptionalId");
-
-                    b.HasIndex("ProfessorId");
-
-                    b.ToTable("CourseProfessor");
-                });
-
-            modelBuilder.Entity("Entities.Optional", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(40);
-
                     b.Property<string>("Package")
-                        .IsRequired()
                         .HasMaxLength(5);
 
                     b.Property<int>("Semester")
@@ -79,20 +41,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Optionals");
-                });
-
-            modelBuilder.Entity("Entities.OptionalPotentialUser", b =>
-                {
-                    b.Property<Guid>("OptionalId");
-
-                    b.Property<Guid>("PotentialUserId");
-
-                    b.HasKey("OptionalId", "PotentialUserId");
-
-                    b.HasIndex("PotentialUserId");
-
-                    b.ToTable("OptionalPotentialUsers");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Entities.PotentialUser", b =>
@@ -125,32 +74,20 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PotentialUsers");
+                    b.ToTable("PotentialUser");
                 });
 
-            modelBuilder.Entity("Entities.Professor", b =>
+            modelBuilder.Entity("Entities.PUserOptionalCourse", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("OptionalCourseId");
 
-                    b.Property<string>("CourseName")
-                        .IsRequired()
-                        .HasMaxLength(40);
+                    b.Property<Guid>("PotentialUserId");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(30);
+                    b.HasKey("OptionalCourseId", "PotentialUserId");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(40);
+                    b.HasIndex("PotentialUserId");
 
-                    b.Property<string>("ProfessorCode")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Professors");
+                    b.ToTable("PUserOptionalCourse");
                 });
 
             modelBuilder.Entity("Entities.Student", b =>
@@ -186,32 +123,15 @@ namespace DataAccess.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Entities.CourseProfessor", b =>
+            modelBuilder.Entity("Entities.PUserOptionalCourse", b =>
                 {
-                    b.HasOne("Entities.Professor", "Professor")
-                        .WithMany("Courses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Entities.Optional")
-                        .WithMany("Professors")
-                        .HasForeignKey("OptionalId");
-
-                    b.HasOne("Entities.Course", "Course")
-                        .WithMany("Professors")
-                        .HasForeignKey("ProfessorId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Entities.OptionalPotentialUser", b =>
-                {
-                    b.HasOne("Entities.PotentialUser", "PotentialUser")
-                        .WithMany("Optionals")
-                        .HasForeignKey("OptionalId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Entities.Optional", "Optional")
+                    b.HasOne("Entities.Course", "OptionalCourse")
                         .WithMany("PotentialUsers")
+                        .HasForeignKey("OptionalCourseId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Entities.PotentialUser", "PotentialUser")
+                        .WithMany("OptionalCourses")
                         .HasForeignKey("PotentialUserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -1,28 +1,1 @@
-INSERT INTO Optionals VALUES (NEWID(), 'Algoritmi genetici', 2,1,"CO1");
-INSERT INTO Optionals VALUES (NEWID(), 'Calculabilitate, decidabilitate si complexitate', 2,1,"CO1");
-INSERT INTO Optionals VALUES (NEWID(), 'Principii ale limbajelor de programare', 2,1,"CO1");
-INSERT INTO Optionals VALUES (NEWID(), 'Antreprenoriat si inovare în IT', 2,2,"CO2");
-INSERT INTO Optionals VALUES (NEWID(), 'Introducere în criptografie', 2,2,"CO2");
-INSERT INTO Optionals VALUES (NEWID(), 'Modele continue si Matlab', 2,2,"CO2");
-INSERT INTO Optionals VALUES (NEWID(), 'Programare functionala', 2,2,"CO2");
-INSERT INTO Optionals VALUES (NEWID(), 'Animatie 3D: algoritmi si tehnici fundamentale', 3,1,"CO3");
-INSERT INTO Optionals VALUES (NEWID(), 'Dezvoltarea sistemelor fizice utilizând microprocesoare', 3,1,"CO3");
-INSERT INTO Optionals VALUES (NEWID(), 'Introducere in .NET', 3,1,"CO3");
-INSERT INTO Optionals VALUES (NEWID(), 'Retele neuronale', 3,1,"CO3");
-INSERT INTO Optionals VALUES (NEWID(), 'Capitole speciale de sisteme de operare', 3,1,"CO4");
-INSERT INTO Optionals VALUES (NEWID(), 'Dezvoltarea aplicatiilor Web la nivel de client', 3,1,"CO4");
-INSERT INTO Optionals VALUES (NEWID(), 'Inginerie software specifca automobilelor', 3,1,"CO4");
-INSERT INTO Optionals VALUES (NEWID(), 'Programare si modelare probabilista', 3,1,"CO4");
-INSERT INTO Optionals VALUES (NEWID(), 'Analiza retelelor media sociale', 3,2,"CO5");
-INSERT INTO Optionals VALUES (NEWID(), 'Aspecte computationale în teoria numerelor', 3,2,"CO5");
-INSERT INTO Optionals VALUES (NEWID(), 'Programare bazata pe reguli', 3,2,"CO5");
-INSERT INTO Optionals VALUES (NEWID(), 'Tehnici de programare pe platforma Android', 3,2,"CO5");
-INSERT INTO Optionals VALUES (NEWID(), 'Cloud Computing', 3,2,"CO6");
-INSERT INTO Optionals VALUES (NEWID(), 'Metodologii de lucru în mediul Open Source', 3,2,"CO6");
-INSERT INTO Optionals VALUES (NEWID(), 'Psihologia comunicarii profesionale în domeniul IT-ului', 3,2,"CO6");
-INSERT INTO Optionals VALUES (NEWID(), 'Programare MS-Office', 3,2,"CO6");
-INSERT INTO Optionals VALUES (NEWID(), 'Retele Petri si aplicatii', 3,2,"CO7");
-INSERT INTO Optionals VALUES (NEWID(), 'Smart Card-uri si Aplicatii', 3,2,"CO7");
-INSERT INTO Optionals VALUES (NEWID(), 'Tehnici de ingineria limbajului natural', 3,2,"CO7");
-INSERT INTO Optionals VALUES (NEWID(), 'Topici speciale de programare .NET', 3,2,"CO7");
-
+INSERT INTO Courses VALUES (NEWID(), 'Algoritmi genetici', 2,1,'CO1');INSERT INTO Courses VALUES (NEWID(), 'Calculabilitate, decidabilitate si complexitate', 2,1,'CO1');INSERT INTO Courses VALUES (NEWID(), 'Principii ale limbajelor de programare', 2,1,'CO1');INSERT INTO Courses VALUES (NEWID(), 'Antreprenoriat si inovare în IT', 2,2,'CO2');INSERT INTO Courses VALUES (NEWID(), 'Introducere în criptografie', 2,2,'CO2');INSERT INTO Courses VALUES (NEWID(), 'Modele continue si Matlab', 2,2,'CO2');INSERT INTO Courses VALUES (NEWID(), 'Programare functionala', 2,2,'CO2');INSERT INTO Courses VALUES (NEWID(), 'Animatie 3D: algoritmi si tehnici fundamentale', 3,1,'CO3');INSERT INTO Courses VALUES (NEWID(), 'Dezvoltarea sistemelor fizice utilizând microprocesoare', 3,1,'CO3');INSERT INTO Courses VALUES (NEWID(), 'Introducere in .NET', 3,1,'CO3');INSERT INTO Courses VALUES (NEWID(), 'Retele neuronale', 3,1,'CO3');INSERT INTO Courses VALUES (NEWID(), 'Capitole speciale de sisteme de operare', 3,1,'CO4');INSERT INTO Courses VALUES (NEWID(), 'Dezvoltarea aplicatiilor Web la nivel de client', 3,1,'CO4');INSERT INTO Courses VALUES (NEWID(), 'Inginerie software specifca automobilelor', 3,1,'CO4');INSERT INTO Courses VALUES (NEWID(), 'Programare si modelare probabilista', 3,1,'CO4');INSERT INTO Courses VALUES (NEWID(), 'Analiza retelelor media sociale', 3,2,'CO5');INSERT INTO Courses VALUES (NEWID(), 'Aspecte computationale în teoria numerelor', 3,2,'CO5');INSERT INTO Courses VALUES (NEWID(), 'Programare bazata pe reguli', 3,2,'CO5');INSERT INTO Courses VALUES (NEWID(), 'Tehnici de programare pe platforma Android', 3,2,'CO5');INSERT INTO Courses VALUES (NEWID(), 'Cloud Computing', 3,2,'CO6');INSERT INTO Courses VALUES (NEWID(), 'Metodologii de lucru în mediul Open Source', 3,2,'CO6');INSERT INTO Courses VALUES (NEWID(), 'Psihologia comunicarii profesionale în domeniul IT-ului', 3,2,'CO6');INSERT INTO Courses VALUES (NEWID(), 'Programare MS-Office', 3,2,'CO6');INSERT INTO Courses VALUES (NEWID(), 'Retele Petri si aplicatii', 3,2,'CO7');INSERT INTO Courses VALUES (NEWID(), 'Smart Card-uri si Aplicatii', 3,2,'CO7');INSERT INTO Courses VALUES (NEWID(), 'Tehnici de ingineria limbajului natural', 3,2,'CO7');INSERT INTO Courses VALUES (NEWID(), 'Topici speciale de programare .NET', 3,2,'CO7');
