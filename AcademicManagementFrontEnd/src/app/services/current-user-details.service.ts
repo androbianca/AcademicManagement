@@ -10,12 +10,11 @@ const currentEmployeeUrl = 'user/current';
 })
 
 export class CurrentUserDetailsService {
-  private user : UserDetails;
+  private user: UserDetails;
   private user$ = new Subject();
   constructor(private service: BaseService) { }
 
-  setCurrentUser(user) 
-  {
+  setCurrentUser(user) {
     this.user = user;
     this.user$.next(user);
   }
@@ -28,11 +27,11 @@ export class CurrentUserDetailsService {
     return this.user;
   }
 
-  getUserObservable(){
+  getUserObservable() {
     return this.user$.asObservable();
   }
 
- getCurrentUserService() {
+  getCurrentUserService() {
     return this.service.get(currentEmployeeUrl);
   }
 }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base-service.service';
 import { Course } from '../models/course';
 import { CurrentUserDetailsService } from './current-user-details.service';
-import { User } from '../models/user';
 import { UserDetails } from '../models/userDetails';
 
 @Injectable({
@@ -22,6 +21,6 @@ export class CourseService {
     }
 
     public getAllByYear() {
-        return this.baseService.get<Course[]>(`course/${this.user.year}`);
+        return this.baseService.get<Course[]>(`courses/current`);
     }
 }

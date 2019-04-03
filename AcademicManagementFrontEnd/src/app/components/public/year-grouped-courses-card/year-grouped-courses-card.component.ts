@@ -9,19 +9,17 @@ import { Course } from 'src/app/models/course';
 export class YearGroupedCoursesCardComponent implements OnInit {
 
   @Input() courses: Course[];
-  @Input() title: string;
-  firstSemester: Course[];
-  seconSemester: Course[];
+  orderedCourses: Course[];
 
   constructor() { }
 
   ngOnInit() {
-    this.groupBySemester();
-  }
-
-  groupBySemester() { 
-      this.firstSemester = this.courses.filter(x => x.semester == '1');
-      this.seconSemester = this.courses.filter(x => x.semester == '2');
+    this.orderedCourses = this.courses.sort((n1, n2) => {
+      if (n1.semester > n2.semester) {
+        return 1;
+      }
+      else return -1;
+    })
   }
 
 }

@@ -1,15 +1,21 @@
 <section class="page__wrapper">
   <section class="buttons">
-    <button class="button" (click)="selectYear('1')">First Year</button>
-    <button  class="button" (click)="selectYear('2')">Second Year</button>
-    <button  class="button" (click)="selectYear('3')">Third Year</button>
+      <button class="button" (click)="selectYear('1')">First Year</button>
+
+      <button class="button" (click)="selectYear('2')">SecondYear</button>
+
+      <button class="button" (click)="selectYear('3')">Third Year</button>
+
   </section>
   <section class="cards">
     <app-year-grouped-courses-card *ngIf="firstYearCourses && firstYear" [title]="'First Year'"
       [courses]="firstYearCourses"></app-year-grouped-courses-card>
     <app-year-grouped-courses-card *ngIf="secondYearCourses && scondYear" [title]="'Second Year'"
-      [courses]="secondYearCourses"></app-year-grouped-courses-card>
+      [courses]="firstYearCourses"></app-year-grouped-courses-card>
     <app-year-grouped-courses-card *ngIf="thirdYearCourses && thirdYear" [title]="'Third Year'"
       [courses]="thirdYearCourses"></app-year-grouped-courses-card>
   </section>
 </section>
+<ng-template *ngFor="let x of firstYearCourses">
+    {{ x }}
+ </ng-template>

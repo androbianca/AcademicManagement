@@ -1,8 +1,0 @@
-@import "../../../../styles/mixins.scss";
-
-.container {
-  @include flex (column, center, center);
-  padding: 30px;
-  height: 100%;
-  border: 1px solid grey;
-}

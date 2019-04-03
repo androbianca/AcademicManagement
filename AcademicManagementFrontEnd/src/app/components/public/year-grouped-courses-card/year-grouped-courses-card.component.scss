@@ -2,27 +2,6 @@
 @import "../../../../styles/colors.scss";
 
 .year__container {
-  border: 1px solid rgb(199, 196, 196);
-  margin: 40px;
-  width: 110vh;
-  ::ng-deep app-card-header {
-    section.header {
-      background-color: $turquoize;
-    }
-  }
-
-  .semesters__wrapper {
-    @include flex (row,none,none);
-    ::ng-deep app-card-header {
-      section.header {
-        background-color: white;
-      }
-    }
-    .semester__container {
-      display: inline;
-      padding-bottom: 40px;
-      width: 50%;
-    }
-  }
+  @include flex(row, center, center);
+  flex-wrap: wrap;
 }
-

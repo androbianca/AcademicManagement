@@ -1,11 +1,5 @@
 <section class="year__container">
-  <app-card-header [title]="title"></app-card-header>
-  <section class="semesters__wrapper">
-    <section class="semester__container">
-      <app-semester-grouped-courses-card *ngIf="firstSemester" [title]="'First Semester'" [courses]="firstSemester"></app-semester-grouped-courses-card>
-    </section>
-    <section class="semester__container">
-      <app-semester-grouped-courses-card *ngIf="seconSemester" [title]="'Second Semester'" [courses]="seconSemester"></app-semester-grouped-courses-card>
-    </section>
-  </section>
+  <ng-container *ngFor="let course of orderedCourses">
+    <app-course-card [name]="course.name"></app-course-card>
+  </ng-container>
 </section>

@@ -17,6 +17,7 @@ export class GradesComponent {
   thirdYear = false;
   constructor(private courseService: CourseService) {
     this.getCourses();
+    console.log(this.thirdYearCourses);
   }
 
   getCourses() {

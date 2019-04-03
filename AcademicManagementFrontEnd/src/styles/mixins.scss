@@ -9,3 +9,9 @@
   height: $height;
   width: $width;
 }
+
+@mixin circle($size) {
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+}

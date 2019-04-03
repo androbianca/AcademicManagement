@@ -1,13 +1,10 @@
-@font-face {
-  font-family: "Open Sans";
-  src: url("/fonts/OpenSans-Regular-webfont.woff2") format("woff2"),
-       url("/fonts/OpenSans-Regular-webfont.woff") format("woff");
-}
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Georgia, serif;
+  font-family: 'Roboto';
 }
 
 html {
