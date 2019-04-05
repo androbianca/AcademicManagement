@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using BusinessLogic.Abstractions;
 using DataAccess.Abstractions;
 using Entities;
@@ -35,8 +34,11 @@ namespace BusinessLogic.Implementations
         public ICollection<CourseDto> GetByYear(String id)
         {
 
-            var currentUser = _repository.GetByFilter<Student>(x => x.StudentCode == id);
-            var currentpotentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == currentUser.PotentialUserId);
+            var student = _repository.GetByFilter<Student>(x => x.UserCode == id)?.PotentialUserId;
+            var professor = _repository.GetByFilter<Professor>(x => x.UserCode == id)?.PotentialUserId;
+
+            var currentUser = student  ?? professor;
+            var currentpotentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == currentUser);
 
             var mandatoryCourses = getMandatoryCourses(currentpotentialUser.Year);
             var optionalCourses = getOptionalCourses(currentpotentialUser.Id);

@@ -1,5 +1,5 @@
 import { BaseService } from './base-service.service';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { UserDetails } from '../models/userDetails';
 import { Subject } from 'rxjs';
 
@@ -10,12 +10,17 @@ const currentEmployeeUrl = 'user/current';
 })
 
 export class CurrentUserDetailsService {
-  private user: UserDetails;
-  private user$ = new Subject();
-  constructor(private service: BaseService) { }
 
+  private user: UserDetails;
+  private user$ = new Subject<any>();
+  public isSet:boolean;
+  constructor(private service: BaseService) { 
+   
+  }
+  
   setCurrentUser(user) {
     this.user = user;
+    this.isSet = true;
     this.user$.next(user);
   }
 

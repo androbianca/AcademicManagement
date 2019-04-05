@@ -7,22 +7,19 @@ import { UserDetails } from '../models/userDetails';
   providedIn: 'root'
 })
 export class UserGuard implements CanActivate {
-  user : UserDetails;
 
   constructor(
     private currentUserDetailsService: CurrentUserDetailsService
   ) { }
 
   canActivate(): Promise<boolean> {
-
     return new Promise((resolve, reject) => {
-      if (this.currentUserDetailsService.isCurrentUserSet()) {
+      if (this.currentUserDetailsService.isSet) {
         resolve(true);
       } else {
         this.currentUserDetailsService.getCurrentUserService().subscribe(
           (data: UserDetails) => {
-            this.user = data;
-            this.currentUserDetailsService.setCurrentUser(this.user);
+            this.currentUserDetailsService.setCurrentUser(data);
             resolve(true);
           },
           error => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ɵConsole } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Login } from "src/app/models/login";
 import { Router } from "@angular/router";
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   public login(form) {
+    localStorage.clear();
     this.loginModel.userCode = form.value.userCode;
     this.loginModel.password = form.value.password;
     this.authenticationService.authenticate(this.loginModel).subscribe(

@@ -17,6 +17,8 @@ namespace DataAccess
         public DbSet<Course> Courses { get; set; }
         public DbSet<PotentialUser> PotentialUsersCourse { get; set; }
 
+        public DbSet<Professor> Professors { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
                       
@@ -24,6 +26,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
             modelBuilder.ApplyConfiguration(new CourseConfiguration());
             modelBuilder.ApplyConfiguration(new OptionalPotentialUserConfiguration());
+           // modelBuilder.ApplyConfiguration(new ProfessorConfiguration());
 
         }
     }

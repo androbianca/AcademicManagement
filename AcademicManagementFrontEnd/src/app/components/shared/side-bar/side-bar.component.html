@@ -1,12 +1,21 @@
 <section class="logo">Logo</section>
 <div class="container">
-  <img src="../../../../assets/images/cat.jpg">
+  <p class="profile">{{ initials }}</p>
   <section class="user__details">
     <p class="name">{{ fullName }}</p>
-    <p> {{ group }} {{ year }}</p>
   </section>
-  <section class="menu__option"><a routerLink="/grades"> Grades</a></section>
-  <section class="menu__option"><a routerLink="/courses">Courses</a></section>
-  <section class="menu__option">Professors</section>
-  <section class="menu__option">NewsFeed</section>
+
+  <ng-container *ngIf="user.isStudent">
+    <section class="menu__option"><a routerLink="/grades">Grades</a></section>
+    <section class="menu__option"><a routerLink="/courses">Courses</a></section>
+    <section class="menu__option">Professors</section>
+    <section class="menu__option">NewsFeed</section>
+  </ng-container>
+
+  <ng-container *ngIf="!user.isStudent">
+    <section class="menu__option"><a routerLink="/courses">Courses</a></section>
+    <section class="menu__option">Professors</section>
+    <section class="menu__option">NewsFeed</section>
+  </ng-container>
 </div>
+

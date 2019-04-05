@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+
+import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
 
@@ -8,36 +9,28 @@ import { UserDetails } from 'src/app/models/userDetails';
   styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
+
+  @Input() user: UserDetails;
   fullName: string;
-  year: string;
-  group: string;
-  private user = new UserDetails();
+  initials: string;
 
   constructor(
-    private currentUserDetailsService: CurrentUserDetailsService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+    private currentUserDetailsService: CurrentUserDetailsService
+  ) { this.currentUserDetailsService.getUserObservable().subscribe((user: UserDetails) => {
+    if (user && !this.user) {
+      this.user=user;
+      this.setFullName();
+
+    }
+  })}
 
   setFullName() {
-    this.fullName = this.user.lastName + ' ' + this.user.firstName;
-  }
-
-  setYear() {
-    this.year = 'Year ' + this.user.year;
-  }
-
-  setGroup() {
-    this.group = 'Group ' + this.user.group;
+   this.fullName = this.user.lastName + ' ' + this.user.firstName;
+   this.initials = this.user.lastName[0] + ' ' + this.user.firstName[0];
   }
 
   ngOnInit() {
-    this.currentUserDetailsService.getUserObservable().subscribe((user: UserDetails) => {
-      if (user) {
-        this.user = user;
-        this.setFullName();
-        this.setGroup();
-        this.setYear();
-      }
-    })
+
   }
 }
+

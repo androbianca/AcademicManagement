@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course-service.service';
+import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
+import { UserDetails } from 'src/app/models/userDetails';
 
 @Component({
   selector: 'app-courses',
@@ -9,8 +11,12 @@ import { CourseService } from 'src/app/services/course-service.service';
 })
 export class CoursesComponent {
   courses: Course[];
-  constructor(private courseService: CourseService) {
+  user:UserDetails;
+  constructor(private courseService: CourseService, private currentUserDetailservice:CurrentUserDetailsService) {
+    this.user = currentUserDetailservice.getUser();
+    if(this.user.isStudent){
     this.getCourses();
+  }
   }
 
   getCourses() {

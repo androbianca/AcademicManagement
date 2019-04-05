@@ -7,4 +7,5 @@ export class User {
     year: string;
     group: string;
     photo: string;
+    isStudent: boolean;
 }

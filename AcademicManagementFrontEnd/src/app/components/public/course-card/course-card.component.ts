@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class CourseCardComponent implements OnInit {
   @Input() name: string;
   @Input() route:string;
+  @Input() message:string;
   initials :string = "";
 
   constructor(private router: Router) {}

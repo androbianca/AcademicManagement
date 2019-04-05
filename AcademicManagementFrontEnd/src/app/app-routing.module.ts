@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'grades',

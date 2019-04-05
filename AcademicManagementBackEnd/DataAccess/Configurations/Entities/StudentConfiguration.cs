@@ -14,7 +14,7 @@ namespace DataAccess.Configurations
                 .HasForeignKey<Student>(c => c.PotentialUserId)
                 .HasConstraintName("ForeignKey_Student_PotentialUser");
 
-            builder.Property(p => p.StudentCode)
+            builder.Property(p => p.UserCode)
                 .IsRequired();
 
             builder.Property(p => p.LastName)

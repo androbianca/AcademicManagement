@@ -7,18 +7,25 @@ import { Observable, throwError, of } from 'rxjs';
 })
 export class BaseService {
   public enviroment = 'https://localhost:44304/api/';
-  public authToken = localStorage.getItem('jwt');
   constructor(private http: HttpClient) { }
 
   public post<T>(url: string, data: T): Observable<T> {
+    const authToken = localStorage.getItem('jwt');
+
     const completeUrl: string = this.enviroment + url;
     return this.http.post<T>(completeUrl, data,  { headers: {'Content-Type': 'application/json',
-    Authorization: this.authToken}});
+    Authorization: authToken}});
   }
 
   public get<T>(url: string): Observable<T> {
+    const authToken = localStorage.getItem('jwt');
     const completeUrl: string = this.enviroment + url;
     return this.http.get<T>(completeUrl, { headers: {'Content-Type': 'application/json',
-    Authorization: this.authToken}});
+    Authorization: authToken}});
+  }
+
+  public post2<T>(url: string, data: T): Observable<T> {
+    const completeUrl: string = this.enviroment + url;
+    return this.http.post<T>(completeUrl, data);
   }
 }

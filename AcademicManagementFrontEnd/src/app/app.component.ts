@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { UserDetails } from './models/userDetails';
+import { CurrentUserDetailsService } from './services/current-user-details.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +14,23 @@ export class AppComponent {
   title = 'AcademicManagementFrontEnd';
   home = false;
   route: string;
-  constructor(private router: Router) {
+  user = new UserDetails();
+  constructor(private router: Router, private currentUserDetailsService:CurrentUserDetailsService) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
       this.route = this.router.url;
-      console.log(this.route);
       this.home = this.route === '/' ? true : false;
     });
+   
+    this.currentUserDetailsService.getUserObservable().subscribe((user: UserDetails) => {
+      if (user) {
+        this.user = user;
+      }
+    })
+
   }
-}
+
+  ngOnInit() {
+   
+}}
