@@ -1,6 +1,6 @@
 <div class="main-container">
-  <section *ngIf="!home" class="sidebar-container">
-    <app-side-bar [user]="user"></app-side-bar>
+  <section *ngIf="!home && user" class="sidebar-container">
+    <app-side-bar></app-side-bar>
   </section>
   <section  class="right-container">
     <section *ngIf="!home" class="top-bar-container">

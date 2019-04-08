@@ -10,19 +10,17 @@ import { UserDetails } from 'src/app/models/userDetails';
 })
 export class SideBarComponent implements OnInit {
 
-  @Input() user: UserDetails;
+  user: UserDetails;
   fullName: string;
   initials: string;
 
   constructor(
     private currentUserDetailsService: CurrentUserDetailsService
-  ) { this.currentUserDetailsService.getUserObservable().subscribe((user: UserDetails) => {
-    if (user && !this.user) {
-      this.user=user;
-      this.setFullName();
-
-    }
-  })}
+  ) { 
+    
+    this.user = this.currentUserDetailsService.getUser();
+    this.setFullName();  
+  }
 
   setFullName() {
    this.fullName = this.user.lastName + ' ' + this.user.firstName;
@@ -30,7 +28,6 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 }
 

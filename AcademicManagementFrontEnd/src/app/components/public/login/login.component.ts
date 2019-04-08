@@ -19,13 +19,14 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authenticationService: AuthenticationService,private currentUserService:CurrentUserDetailsService,
     private router: Router) {}
 
   ngOnInit() {}
 
   public login(form) {
     localStorage.clear();
+    this.currentUserService.isSet = false;
     this.loginModel.userCode = form.value.userCode;
     this.loginModel.password = form.value.password;
     this.authenticationService.authenticate(this.loginModel).subscribe(

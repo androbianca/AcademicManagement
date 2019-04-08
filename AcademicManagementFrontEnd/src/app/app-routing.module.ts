@@ -9,8 +9,7 @@ import { CourseGradesComponent } from './pages/course-grades/course-grades.compo
 const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent,
-    canActivate: [UserGuard]
+    component: HomePageComponent
   },
   {
     path: 'grades',
