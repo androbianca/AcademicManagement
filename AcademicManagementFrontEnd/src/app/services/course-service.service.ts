@@ -20,7 +20,11 @@ export class CourseService {
         return this.baseService.get<Course[]>('courses');
     }
 
-    public getAllByYear() {
-        return this.baseService.get<Course[]>(`courses/current`);
+    public getStudCourses() {
+        return this.baseService.get<Course[]>(`courses/current/stud`);
+    }
+
+    public getProfCourses() {
+        return this.baseService.get<Course[]>(`courses/current/prof`);
     }
 }

@@ -4,10 +4,10 @@ import { Course } from "src/app/models/course";
 
 @Component({
   selector: "app-grades",
-  templateUrl: "./grades.component.html",
-  styleUrls: ["./grades.component.scss"]
+  templateUrl: "./stud-grades.component.html",
+  styleUrls: ["./stud-grades.component.scss"]
 })
-export class GradesComponent {
+export class StudGradesComponent {
   courses: Course[];
   firstYearCourses: Course[];
   secondYearCourses: Course[];
@@ -19,11 +19,11 @@ export class GradesComponent {
   hasCourses2 = false;
   hasCourses3 = false;
   constructor(private courseService: CourseService) {
-    this.getCourses();
+    this.getStudCourses();
   }
 
-  getCourses() {
-    this.courseService.getAllByYear().subscribe((response: Course[]) => {
+  getStudCourses() {
+    this.courseService.getStudCourses().subscribe((response: Course[]) => {
       this.firstYearCourses = response.filter(x => x.year == "1");
       this.secondYearCourses = response.filter(x => x.year == "2");
       this.thirdYearCourses = response.filter(x => x.year == "3");

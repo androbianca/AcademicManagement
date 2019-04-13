@@ -17,14 +17,12 @@ namespace Entities
 
         public int Semester { get; set; }
 
-        public string Photo { get; set; }
-
         public Boolean IsStudent { get; set; }
 
         public Student Student { get; set; }
 
         public Professor Professor { get; set; }
 
-        public IEnumerable<PUserOptionalCourse> OptionalCourses { get; set; }
+        public IEnumerable<PotentialUserCourse> Courses { get; set; }
     }
 }

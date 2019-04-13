@@ -8,7 +8,7 @@
 
         public int Semester { get; set; }
 
-        public string Pachage { get; set; }
+        public string Package { get; set; }
 
     }
 }

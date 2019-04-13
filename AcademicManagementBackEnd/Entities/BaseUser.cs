@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entities
+﻿namespace Entities
 {
     public class BaseUser : BaseEntity
     {
@@ -11,6 +7,8 @@ namespace Entities
         public string LastName { get; set; }
 
         public string FirstName { get; set; }
+
+        public string Email { get; set; }
 
         public string PasswordHash { get; set; }
 

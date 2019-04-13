@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       response => {
         let token = (<any>response).token;
         localStorage.setItem("jwt", token);
-        this.router.navigate(["/grades"]);
+        this.router.navigate(["/courses"]);
       },
       err => {}
     );

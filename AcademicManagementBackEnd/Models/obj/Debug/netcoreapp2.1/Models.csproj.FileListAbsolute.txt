@@ -1,12 +1,3 @@
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.deps.json
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.dll
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.pdb
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.csproj.CoreCompileInputs.cache
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.AssemblyInfoInputs.cache
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.AssemblyInfo.cs
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.dll
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.pdb
-C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.csprojAssemblyReference.cache
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.deps.json
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.dll
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.pdb
@@ -15,3 +6,12 @@ C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Mo
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.AssemblyInfo.cs
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.dll
 C:\Users\bianca\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.pdb
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.deps.json
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.dll
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\bin\Debug\netcoreapp2.1\Models.pdb
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.csprojAssemblyReference.cache
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.csproj.CoreCompileInputs.cache
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.AssemblyInfoInputs.cache
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.AssemblyInfo.cs
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.dll
+C:\Users\Bandro\Documents\GitHub\AcademincManagement\AcademicManagementBackEnd\Models\obj\Debug\netcoreapp2.1\Models.pdb

@@ -20,15 +20,12 @@ namespace DataAccess.Configurations
                 .HasMaxLength(40);
 
             builder.Property(p => p.Year)
-                .IsRequired()
                 .HasMaxLength(1);
 
             builder.Property(p => p.Semester)
-                .IsRequired()
                 .HasMaxLength(1);
 
             builder.Property(p => p.Group)
-                .IsRequired()
                 .HasMaxLength(2);
 
         }

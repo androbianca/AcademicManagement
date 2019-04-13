@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Entity;
 using BusinessLogic.Abstractions;
 using DataAccess.Abstractions;
 using Entities;
@@ -44,12 +43,12 @@ namespace BusinessLogic.Implementations
                 return null;
             }
 
-            if (userDto.IsStudent && potentialUser.IsStudent)
+            if (potentialUser.IsStudent)
             {
                 newRegistration = CreateStud(userDto, potentialUser.Id);
                
             }
-             if (!userDto.IsStudent && !potentialUser.IsStudent)
+             if (!potentialUser.IsStudent)
             {
                 newRegistration = CreateProf(userDto, potentialUser.Id);
       

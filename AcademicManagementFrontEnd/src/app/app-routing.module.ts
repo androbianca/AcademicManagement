@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { UserGuard } from './guards/user.guard';
-import { GradesComponent } from './pages/grades/grades.component';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { CourseGradesComponent } from './pages/course-grades/course-grades.component';
+import { StudGradesComponent } from './pages/stud-grades/stud-grades.component';
+import { ProfGradesComponent } from './pages/prof-grades/prof-grades.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,12 @@ const routes: Routes = [
   },
   {
     path: 'grades',
-    component: GradesComponent,
+    component: StudGradesComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'courses/grades',
+    component: ProfGradesComponent,
     canActivate: [UserGuard]
   },
   {

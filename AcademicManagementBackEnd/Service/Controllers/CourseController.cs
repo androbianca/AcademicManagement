@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using BusinessLogic.Abstractions;
@@ -26,16 +27,33 @@ namespace Service.Controllers
             return Ok(courses);
         }
 
-        [HttpGet("current")]
-        public ActionResult<ICollection<CourseDto>> GetAllByYear([FromRoute] int year)
+        [HttpGet("current/stud")]
+        public ActionResult<ICollection<CourseDto>> GetStudCourses()
+        {
+            var id = getCurrentUserId();
+            var courses = _courseLogic.GetStudCourses(id);
+
+            return Ok(courses);
+        }
+
+        [HttpGet("current/prof")]
+        public ActionResult<ICollection<CourseDto>> GetProfCourses()
+        {
+            var id = getCurrentUserId();
+            var courses = _courseLogic.GetProfCourses(id);
+
+            return Ok(courses);
+        }
+
+        private string getCurrentUserId()
         {
             var headerValue = Request.Headers["Authorization"];
             var handler = new JwtSecurityTokenHandler();
             var token = handler.ReadToken(headerValue) as JwtSecurityToken;
             var id = token.Claims.FirstOrDefault(c => c.Type == "Identifier").Value;
-            var courses = _courseLogic.GetByYear(id);
 
-            return Ok(courses);
+            return id;
+
         }
     }
 }

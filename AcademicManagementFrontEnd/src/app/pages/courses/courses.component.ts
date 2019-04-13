@@ -11,15 +11,21 @@ import { UserDetails } from 'src/app/models/userDetails';
 })
 export class CoursesComponent {
   courses: Course[];
-  user:UserDetails;
-  constructor(private courseService: CourseService, private currentUserDetailservice:CurrentUserDetailsService) {
+  user: UserDetails;
+  route: string;
+  cardMessage: string;
+  constructor(private courseService: CourseService, private currentUserDetailservice: CurrentUserDetailsService) {
     this.user = currentUserDetailservice.getUser();
-    if(this.user.isStudent){
-    this.getCourses();
-  }
+    this.cardMessage = this.user.isStudent ? 'See more' : 'Add grades';
+    if (this.user.isStudent) {
+      this.getAllCourses();
+      return;
+    }
+    this.getProfCourses();
+    this.route = 'courses/grades';
   }
 
-  getCourses() {
+  getAllCourses() {
     this.courseService.getAll().subscribe((response: Course[]) => {
       this.courses = response.sort((n1, n2) => {
         if (n1.name > n2.name) {
@@ -27,6 +33,18 @@ export class CoursesComponent {
         }
         else return -1;
       })
+    });
+  }
+
+  getProfCourses() {
+    this.courseService.getProfCourses().subscribe((response: Course[]) => {
+      this.courses = response.sort((n1, n2) => {
+        if (n1.name > n2.name) {
+          return 1;
+        }
+        else return -1;
+      })
+      console.log(this.courses);
     });
   }
 }
