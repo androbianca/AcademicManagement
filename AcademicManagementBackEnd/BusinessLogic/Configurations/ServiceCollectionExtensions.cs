@@ -12,7 +12,8 @@ namespace BusinessLogic.Configurations
             services.AddDataAccess(connectionString);
             services.AddTransient<IUserLogic, UserLogic>();
             services.AddTransient<ICourseLogic, CourseLogic>();
-     
+            services.AddTransient<IStudentLogic, StudentLogic>();
+
         }
     }
 }

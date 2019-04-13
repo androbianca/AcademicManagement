@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace DataAccess.Configurations.Entities
 {
 
-    public class CoursePotentialUserConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<PotentialUserCourse>
+    public class PotentialUserCourseConfiguration : BaseEntityConfiguration, IEntityTypeConfiguration<PotentialUserCourse>
     {
         public void Configure(EntityTypeBuilder<PotentialUserCourse> builder)
         {

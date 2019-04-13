@@ -28,13 +28,13 @@ namespace BusinessLogic.Implementations
             var studentId = _repository.GetByFilter<Student>(x => x.UserCode == id)?.PotentialUserId;
             var currentpotentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == studentId);
 
-            var mandatoryCourses = getMandatoryCourses(currentpotentialUser.Year);
+            var mandatoryCourses = getMandatoryCourses(currentpotentialUser.Year.Value);
             var optionalCourses = getCoursesByUserId(currentpotentialUser.Id);
           
             userCourses.AddRange(mandatoryCourses);
             userCourses.AddRange(optionalCourses);
 
-            return filterCourses(mapCourses(userCourses), currentpotentialUser.Year);
+            return filterCourses(mapCourses(userCourses), currentpotentialUser.Year.Value);
         }
 
         public ICollection<CourseDto> GetProfCourses(String id)
@@ -95,6 +95,7 @@ namespace BusinessLogic.Implementations
             {
                 var courseDto = new CourseDto
                 {
+                    Id = 
                     Name = course.Name,
                     Year = course.Year,
                     Semester = course.Semester,

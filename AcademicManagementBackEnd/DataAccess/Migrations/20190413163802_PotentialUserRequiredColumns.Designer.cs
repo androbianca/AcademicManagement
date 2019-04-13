@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190413163802_PotentialUserRequiredColumns")]
+    partial class PotentialUserRequiredColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,6 +56,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Group")
                         .HasMaxLength(2);
 
+                    b.Property<bool?>("IsMainProfessor");
+
                     b.Property<bool?>("IsStudent");
 
                     b.Property<string>("LastName")
@@ -87,19 +91,6 @@ namespace DataAccess.Migrations
                     b.ToTable("PotentialUsersCourse");
                 });
 
-            modelBuilder.Entity("Entities.PotentialUserProfRole", b =>
-                {
-                    b.Property<Guid>("RoleId");
-
-                    b.Property<Guid>("PotentialUserId");
-
-                    b.HasKey("RoleId", "PotentialUserId");
-
-                    b.HasIndex("PotentialUserId");
-
-                    b.ToTable("PotentialUserProfRole");
-                });
-
             modelBuilder.Entity("Entities.Professor", b =>
                 {
                     b.Property<Guid>("Id")
@@ -125,20 +116,6 @@ namespace DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Professors");
-                });
-
-            modelBuilder.Entity("Entities.ProfRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProfRoles");
                 });
 
             modelBuilder.Entity("Entities.Student", b =>
@@ -178,19 +155,6 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.PotentialUser", "PotentialUser")
                         .WithMany("Courses")
                         .HasForeignKey("PotentialUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Entities.PotentialUserProfRole", b =>
-                {
-                    b.HasOne("Entities.PotentialUser", "PotentialUser")
-                        .WithMany("Roles")
-                        .HasForeignKey("PotentialUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Entities.ProfRole", "ProfRole")
-                        .WithMany("PotentialUsers")
-                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

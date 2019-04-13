@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StudentService } from 'src/app/services/student-service.service';
 
 @Component({
   selector: 'app-prof-grades',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfGradesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private studentService:StudentService) { }
 
   ngOnInit() {
+
+
+    this.studentService.getStudentsByProf();
   }
 
 }

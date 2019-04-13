@@ -17,15 +17,19 @@ namespace DataAccess
         public DbSet<Course> Courses { get; set; }
         public DbSet<PotentialUser> PotentialUsers { get; set; }
         public DbSet<PotentialUserCourse> PotentialUsersCourse { get; set; }
-        
+        public DbSet<ProfRole> ProfRoles{ get; set; }
+        public DbSet<PotentialUserProfRole> PotentialUserProfRole { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
                       
             modelBuilder.ApplyConfiguration(new PotentialUserConfiguration());
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
             modelBuilder.ApplyConfiguration(new CourseConfiguration());
-            modelBuilder.ApplyConfiguration(new CoursePotentialUserConfiguration());
+            modelBuilder.ApplyConfiguration(new PotentialUserCourseConfiguration());
             modelBuilder.ApplyConfiguration(new ProfessorConfiguration());
+            modelBuilder.ApplyConfiguration(new ProfRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new PotentialUserProfRoleConfiguration());
 
         }
     }

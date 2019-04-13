@@ -43,12 +43,12 @@ namespace BusinessLogic.Implementations
                 return null;
             }
 
-            if (potentialUser.IsStudent)
+            if (potentialUser.IsStudent.Value)
             {
                 newRegistration = CreateStud(userDto, potentialUser.Id);
                
             }
-             if (!potentialUser.IsStudent)
+             if (!potentialUser.IsStudent.Value)
             {
                 newRegistration = CreateProf(userDto, potentialUser.Id);
       
@@ -153,7 +153,7 @@ namespace BusinessLogic.Implementations
             {
                 LastName  = potentialUser.LastName,
                 FirstName = potentialUser.FirstName,
-                isStudent = potentialUser.IsStudent
+                isStudent = potentialUser.IsStudent.Value
                 
             };
 

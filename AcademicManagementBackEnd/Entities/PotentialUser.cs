@@ -11,18 +11,19 @@ namespace Entities
       
         public string FirstName { get; set; }
 
-        public int Year { get; set; }
+        public int? Year { get; set; }
 
         public string Group { get; set; }
 
-        public int Semester { get; set; }
+        public int? Semester { get; set; }
 
-        public Boolean IsStudent { get; set; }
+        public Boolean? IsStudent { get; set; }
 
         public Student Student { get; set; }
 
         public Professor Professor { get; set; }
 
         public IEnumerable<PotentialUserCourse> Courses { get; set; }
+        public IEnumerable<PotentialUserProfRole> Roles { get; set; }
     }
 }
