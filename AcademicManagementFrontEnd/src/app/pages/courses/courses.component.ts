@@ -22,7 +22,7 @@ export class CoursesComponent {
       return;
     }
     this.getProfCourses();
-    this.route = 'courses/grades';
+    this.route = 'courses/';
   }
 
   getAllCourses() {
@@ -44,7 +44,6 @@ export class CoursesComponent {
         }
         else return -1;
       })
-      console.log(this.courses);
     });
   }
 }

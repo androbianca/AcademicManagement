@@ -8,19 +8,15 @@ namespace BusinessLogic.Implementations
 {
     public class UserLogic : BaseLogic, IUserLogic
     {
-        private BaseUser newRegistration;
 
         public UserLogic(IRepository repository)
             : base(repository)
         {
         }
 
-        public BaseUser Authenticate(string code, string password)
+        public Account Authenticate(string code, string password)
         {
-            BaseUser student = _repository.GetByFilter<Student>(x => x.UserCode == code);
-            BaseUser professor =  _repository.GetByFilter<Professor>(x => x.UserCode == code);
-
-            var user = student ?? professor;
+            Account user = _repository.GetByFilter<Account>(x => x.UserCode == code);
 
             if (user == null)
                 return null;
@@ -34,7 +30,7 @@ namespace BusinessLogic.Implementations
             return user;
         }
 
-        public BaseUser Create(UserDto userDto)
+        public Account Create(UserDto userDto)
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userDto.UserCode);
 
@@ -43,16 +39,11 @@ namespace BusinessLogic.Implementations
                 return null;
             }
 
-            if (potentialUser.IsStudent.Value)
+            var newRegistration = new Account()
             {
-                newRegistration = CreateStud(userDto, potentialUser.Id);
-               
-            }
-             if (!potentialUser.IsStudent.Value)
-            {
-                newRegistration = CreateProf(userDto, potentialUser.Id);
-      
-            }
+                PotentialUserId = potentialUser.Id,
+                UserCode = userDto.UserCode,
+            };
 
             byte[] passwordHash, passwordSalt;
 
@@ -67,34 +58,6 @@ namespace BusinessLogic.Implementations
 
             return newRegistration;
 
-        }
-
-        private Student CreateStud(UserDto userDto,Guid id)
-        {
-            var newRegistration = new Student
-            {
-                UserCode = userDto.UserCode,
-                Email = userDto.Email,
-                LastName = userDto.LastName,
-                FirstName = userDto.FirstName,
-                PotentialUserId = id
-            };
-
-            return newRegistration;
-
-        }
-
-        private Professor CreateProf(UserDto userDto,Guid id)
-        {
-            var newRegistration = new Professor
-            {
-                UserCode = userDto.UserCode,
-                LastName = userDto.LastName,
-                FirstName = userDto.FirstName,
-                PotentialUserId = id
-            };
-
-            return newRegistration;
         }
 
 
@@ -143,18 +106,28 @@ namespace BusinessLogic.Implementations
 
         public UserDetailsDto GetById(string id)
         {
-            var student = _repository.GetByFilter<Student>(x => x.UserCode == id)?.PotentialUserId;
-            var professor = _repository.GetByFilter<Professor>(x => x.UserCode == id)?.PotentialUserId;
+            var user = new BaseUser();
 
-            var potentialUserId = student ?? professor;
-            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == potentialUserId);
-        
+            var account = _repository.GetByFilter<Account>(x => x.UserCode == id);
+            var currentPotentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == id);
+
+            if (currentPotentialUser.isStudent)
+            {
+                user = _repository.GetByFilter<Student>(x => x.PotentialUserId == account.PotentialUserId);
+            }
+            else
+            {
+                user = _repository.GetByFilter<Professor>(x => x.PotentialUserId == account.PotentialUserId);
+
+            }
+
             var userDetails = new UserDetailsDto
             {
-                LastName  = potentialUser.LastName,
-                FirstName = potentialUser.FirstName,
-                isStudent = potentialUser.IsStudent.Value
-                
+                UserCode = id,
+                LastName = user.LastName,
+                FirstName = user.FirstName,
+                isStudent = currentPotentialUser.isStudent
+
             };
 
             return userDetails;

@@ -8,8 +8,6 @@ namespace DataAccess.Configurations.Entities
         public void Configure<T>(EntityTypeBuilder<T> builder)
             where T : BaseUser
         {
-            builder.Property(p => p.UserCode)
-                    .IsRequired();
 
             builder.Property(p => p.LastName)
                 .IsRequired()

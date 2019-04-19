@@ -14,8 +14,6 @@ export class SignupComponent implements OnInit {
   signupForm = new FormGroup({
     code: new FormControl(''),
     email: new FormControl(''),
-    fname: new FormControl(''),
-    lname: new FormControl(''),
     password: new FormControl(''),
     cpassword: new FormControl('')
   });
@@ -28,8 +26,6 @@ export class SignupComponent implements OnInit {
   public register(form) {
     this.user.userCode = form.value.code;
     this.user.email = form.value.email;
-    this.user.lastName = form.value.lname;
-    this.user.firstName = form.value.fname;
     this.user.password = form.value.password;
 
     this.autenticationService.register(this.user).subscribe(result => {

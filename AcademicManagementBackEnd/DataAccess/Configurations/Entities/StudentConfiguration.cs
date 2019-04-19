@@ -15,6 +15,11 @@ namespace DataAccess.Configurations
                 .HasForeignKey<Student>(c => c.PotentialUserId)
                 .HasConstraintName("ForeignKey_Student_PotentialUser");
 
+            builder.HasOne(x => x.Group)
+                .WithMany(y => y.Students)
+                .HasForeignKey(z => z.GroupId)
+                .HasConstraintName("ForeignKey_Student_Group");
+
         }
     }
 }

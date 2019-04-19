@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using BusinessLogic.Abstractions;
@@ -7,7 +8,7 @@ using Models;
 
 namespace Service.Controllers
 {
-    [Route("api/students")]
+    [Route("api/courses")]
     [ApiController]
     public class StudentController : ControllerBase
     {
@@ -18,12 +19,12 @@ namespace Service.Controllers
             _studentLogic = studentLogic;
         }
 
-        [HttpGet]
-        public ActionResult<ICollection<StudentDto>> getStudents()
+        [HttpGet("{courseId:guid}")]
+        public ActionResult<ICollection<StudentDto>> getStudents([FromRoute] Guid CourseId)
         {
             var id = getCurrentUserId();
 
-            var students = _studentLogic.getByProfId(id);
+            var students = _studentLogic.getByProfId(id,CourseId);
 
             return Ok(students);
 

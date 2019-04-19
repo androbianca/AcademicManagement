@@ -12,7 +12,7 @@ export class StudentService {
     constructor(private baseService: BaseService) {  }
 
     public getStudentsByProf(id) {
-        return this.baseService.get<Course[]>('course/'+ id);
+        return this.baseService.get<Course[]>(`courses/${id}`);
     }
 
 }

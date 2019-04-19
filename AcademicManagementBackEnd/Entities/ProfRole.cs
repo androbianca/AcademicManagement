@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Entities
 {
-   public class ProfRole : BaseEntity
+    public class ProfRole
     {
-        public string Role { get; set; }
-        public IEnumerable<PotentialUserProfRole> PotentialUsers { get; set; }
+        public Guid ProfId { get; set; }
+        public Guid RoleId { get; set; }
+        public Role Role { get; set; }
+        public Professor Professor { get; set; }
     }
 }

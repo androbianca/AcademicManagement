@@ -18,6 +18,7 @@ export class BaseService {
   }
 
   public get<T>(url: string): Observable<T> {
+    console.log(url);
     const authToken = localStorage.getItem('jwt');
     const completeUrl: string = this.enviroment + url;
     return this.http.get<T>(completeUrl, { headers: {'Content-Type': 'application/json',

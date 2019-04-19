@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Models
+﻿namespace Models
 {
     public class StudentDto
     {
@@ -16,6 +12,6 @@ namespace Models
 
         public string Group { get; set; }
 
-        public int Semester { get; set; }
+ 
     }
 }

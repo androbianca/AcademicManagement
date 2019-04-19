@@ -23,27 +23,40 @@ namespace BusinessLogic.Implementations
 
         public ICollection<CourseDto> GetStudCourses(String id)
         {
+            var optionalCourses = new List<Course>();
             var userCourses = new List<Course>();
 
-            var studentId = _repository.GetByFilter<Student>(x => x.UserCode == id)?.PotentialUserId;
-            var currentpotentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == studentId);
+            var account = _repository.GetByFilter<Account>(x => x.UserCode == id);
+            var currentUser = _repository.GetByFilter<Student>(x => x.PotentialUserId == account.PotentialUserId);
+            var group = _repository.GetByFilter<Group>(x => x.Id == currentUser.GroupId);
 
-            var mandatoryCourses = getMandatoryCourses(currentpotentialUser.Year.Value);
-            var optionalCourses = getCoursesByUserId(currentpotentialUser.Id);
+            var studCourses = _repository.GetAllByFilter<StudCourse>(x => x.StudId == currentUser.Id);
+            foreach (var studCourse in studCourses)
+            {
+                var course = _repository.GetByFilter<Course>(x => x.Id == studCourse.CourseId);
+                optionalCourses.Add(course);
+            }
+
+            var mandatoryCourses = getMandatoryCourses(group.Year);
           
             userCourses.AddRange(mandatoryCourses);
             userCourses.AddRange(optionalCourses);
 
-            return filterCourses(mapCourses(userCourses), currentpotentialUser.Year.Value);
+            return filterCourses(mapCourses(userCourses), group.Year);
         }
 
         public ICollection<CourseDto> GetProfCourses(String id)
         {
-          
-            var professorId = _repository.GetByFilter<Professor>(x => x.UserCode == id)?.PotentialUserId;
-            var currentUser = _repository.GetByFilter<PotentialUser>(x => x.Id == professorId);
-            var courses = getCoursesByUserId(currentUser.Id);
-
+            var courses = new List<Course>();
+            var account = _repository.GetByFilter<Account>(x => x.UserCode == id);          
+            var currentUser = _repository.GetByFilter<Professor>(x => x.PotentialUserId == account.PotentialUserId);
+            var profCourses = _repository.GetAllByFilter<ProfCourse>(x => x.ProfId == currentUser.Id);
+            foreach (var profCourse in profCourses)
+            {
+                var course = _repository.GetByFilter<Course>(x => x.Id == profCourse.CourseId);
+                courses.Add(course);
+            }
+    
             return mapCourses(courses);
         }
 
@@ -68,19 +81,6 @@ namespace BusinessLogic.Implementations
             return courses;
         }
 
-        private ICollection<Course> getCoursesByUserId(Guid id)
-        {
-            var optionalCourses = new List<Course>();
-            var potentialUserCourses = _repository.GetAllByFilter<PotentialUserCourse>(x => x.PotentialUserId == id);
-            foreach (var course in potentialUserCourses)
-            {
-                var optionalCourse = _repository.GetByFilter<Course>(x => x.Id == course.CourseId);
-                optionalCourses.Add(optionalCourse);
-            }
-
-            return optionalCourses;
-        }
-
         private ICollection<Course> getMandatoryCourses(int year)
         {
             var mandatoryCourses = _repository.GetAllByFilter<Course>(x => x.Package == null && x.Year <= year);
@@ -95,7 +95,7 @@ namespace BusinessLogic.Implementations
             {
                 var courseDto = new CourseDto
                 {
-                    Id = 
+                    Id = course.Id,
                     Name = course.Name,
                     Year = course.Year,
                     Semester = course.Semester,
