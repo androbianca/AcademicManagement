@@ -14,5 +14,7 @@ namespace Entities
         public IEnumerable<ProfRole> Roles { get; set; }
 
         public IEnumerable<ProfGroup> Groups { get; set; }
+
+        public IEnumerable<Grade> Grades { get; set; }
     }
 }

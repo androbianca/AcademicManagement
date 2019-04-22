@@ -47,7 +47,6 @@ namespace BusinessLogic.Implementations
                 {
                     LastName = student.LastName,
                     FirstName = student.FirstName,
-                    UserCode = usercode,
                     Year = student.Group.Year,
                     Group = student.Group.Name
 

@@ -1,0 +1,4 @@
+@import '../../../styles/mixins.scss';
+:host(.page-wrapper){
+    @include flex(row, flex-start, none)
+}

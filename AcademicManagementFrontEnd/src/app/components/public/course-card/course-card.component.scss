@@ -1,6 +1,6 @@
 @import "../../../../styles/mixins.scss";
 
-.card {
+:host(.card) {
   margin:40px;
   @include size(none,20vw);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
@@ -23,9 +23,8 @@
   padding:10px;
   @include size(8vh,100%);
 }
- .seat-rating-fee {
-  padding-right:10px;
-  font-size:1.5vh;
+ .card-bottom {
+  font-size:15px;
   @include flex (none,center,flex-end);
   @include size(10%,100%);
   width: 100%;
@@ -35,7 +34,7 @@
   cursor:pointer;
 
   img{
-    margin:10px;
+    margin:5px;
     @include size(25px,25px);
   }
 }}

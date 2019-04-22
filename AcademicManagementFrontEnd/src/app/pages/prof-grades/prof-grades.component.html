@@ -1,3 +1,6 @@
-<p>
-  prof-grades works!
-</p>
+<ng-container *ngFor="let student of students">
+  <app-student-card [student]="student"
+                    (addGradesChanged)="onAddGradesChanged($event)"></app-student-card>
+</ng-container>
+
+<ng-container *ngIf="isAddGradesOpen"><app-add-grade></app-add-grade></ng-container>

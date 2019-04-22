@@ -8,6 +8,7 @@ namespace DataAccess.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<Group> builder)
         {
+           
             
         }
     }

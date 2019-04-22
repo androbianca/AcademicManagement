@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { StudentService } from 'src/app/services/student-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
+import { Student } from 'src/app/models/student';
 
 @Component({
   selector: 'app-prof-grades',
@@ -11,21 +12,27 @@ import { UserDetails } from 'src/app/models/userDetails';
 })
 export class ProfGradesComponent implements OnInit {
 
-  public courseId : string;
-  public user: UserDetails;
-  constructor(private studentService:StudentService,private route: ActivatedRoute, private userDetailsService:CurrentUserDetailsService) { 
+  @HostBinding('class') classes = 'page-wrapper';
+
+  courseId: string;
+  user: UserDetails;
+  students = new Array<Student>();
+  isAddGradesOpen = false;
+ 
+  constructor(private studentService: StudentService, private route: ActivatedRoute, private userDetailsService: CurrentUserDetailsService) {
     this.user = userDetailsService.getUser();
   }
 
-  ngOnInit() {
-
-    this.route.params.subscribe(params => {    
-      this.courseId = params['courseId']; 
-    });
-
-    this.studentService.getStudentsByProf(this.courseId).subscribe(result=>{
-      console.log(result);
-    });
+  onAddGradesChanged(event) {
+    this.isAddGradesOpen = event;
   }
 
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.courseId = params['courseId'];
+    });
+    this.studentService.getStudentsByProf(this.courseId).subscribe((result: Student[]) => {
+      this.students = result;
+    });
+  }
 }

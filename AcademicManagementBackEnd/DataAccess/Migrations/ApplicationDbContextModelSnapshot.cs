@@ -15,7 +15,7 @@ namespace DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -62,6 +62,30 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("Entities.Grade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CourseId");
+
+                    b.Property<Guid>("ProfId");
+
+                    b.Property<Guid>("StudentId");
+
+                    b.Property<float>("Value");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("ProfId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("Entities.Group", b =>
@@ -227,6 +251,27 @@ namespace DataAccess.Migrations
                         .WithOne("Account")
                         .HasForeignKey("Entities.Account", "PotentialUserId")
                         .HasConstraintName("ForeignKey_Account_PotentialUser")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entities.Grade", b =>
+                {
+                    b.HasOne("Entities.Course", "Course")
+                        .WithMany("Grades")
+                        .HasForeignKey("CourseId")
+                        .HasConstraintName("ForeignKey_Course_Grade")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Entities.Professor", "Professor")
+                        .WithMany("Grades")
+                        .HasForeignKey("ProfId")
+                        .HasConstraintName("ForeignKey_Prof_Grade")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Entities.Student", "Student")
+                        .WithMany("Grades")
+                        .HasForeignKey("StudentId")
+                        .HasConstraintName("ForeignKey_Student_Grade")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

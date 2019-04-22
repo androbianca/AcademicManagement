@@ -1,0 +1,6 @@
+<form class="form" [formGroup]="gradesForm">
+    <input type="text" formControlName="purpose" placeholder="For what">
+    <input type="text" formControlName="value" placeholder="Value">
+    <button type="submit" (click)="save(gradesForm)">Save</button>
+</form>
+  

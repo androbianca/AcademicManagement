@@ -9,12 +9,14 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { SideBarComponent } from './components/shared/side-bar/side-bar.component';
 import { TopBarComponent } from './components/shared/top-bar/top-bar.component';
 import { PagesModule } from './pages/pages.module';
+import { GradeCardComponent } from './components/public/grade-card/grade-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideBarComponent,
-    TopBarComponent
+    TopBarComponent,
+    GradeCardComponent,
   ],
   imports: [
     BrowserModule,

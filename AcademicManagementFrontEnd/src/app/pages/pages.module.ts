@@ -11,6 +11,8 @@ import { CourseCardComponent } from '../components/public/course-card/course-car
 import { CourseGradesComponent } from './course-grades/course-grades.component';
 import { ProfGradesComponent } from './prof-grades/prof-grades.component';
 import { StudGradesComponent } from './stud-grades/stud-grades.component';
+import { StudentCardComponent } from '../components/public/student-card/student-card.component';
+import { AddGradeComponent } from '../components/public/add-grade/add-grade.component';
 
 @NgModule({
   imports: [CommonModule,ReactiveFormsModule],
@@ -23,7 +25,9 @@ import { StudGradesComponent } from './stud-grades/stud-grades.component';
     CardHeaderComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
-    LoginComponent,SignupComponent, CourseGradesComponent, ProfGradesComponent
+    LoginComponent,SignupComponent, CourseGradesComponent, ProfGradesComponent,
+    StudentCardComponent,
+    AddGradeComponent
   ],
   exports: [
     StudGradesComponent,
@@ -34,7 +38,8 @@ import { StudGradesComponent } from './stud-grades/stud-grades.component';
     CardHeaderComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
-    LoginComponent,SignupComponent
+    LoginComponent,SignupComponent,StudentCardComponent,
+    AddGradeComponent
   ]
 })
 export class PagesModule {}

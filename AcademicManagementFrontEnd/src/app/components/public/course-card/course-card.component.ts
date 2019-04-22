@@ -12,6 +12,8 @@ export class CourseCardComponent implements OnInit {
   @Input() course: Course;
   @Input() route:string;
   @Input() message:string;
+
+  @HostBinding('class') classes = 'card';
   initials :string = "";
 
   constructor(private router: Router) {}

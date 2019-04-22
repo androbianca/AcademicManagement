@@ -2,7 +2,6 @@
 {
     public class StudentDto
     {
-        public string UserCode { get; set; }
 
         public string LastName { get; set; }
 

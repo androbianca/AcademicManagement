@@ -1,0 +1,13 @@
+@import '../../../../styles/home.scss';
+@import '../../../../styles/mixins.scss';
+
+.form{
+@include flex (row,center,center);
+input{
+    width: 120px;
+}
+button {
+    width:50px;
+    margin:0;
+}
+}

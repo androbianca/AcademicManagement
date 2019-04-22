@@ -24,6 +24,7 @@ namespace DataAccess
         public DbSet<ProfRole> ProfRole { get; set; }
         public DbSet<ProfGroup> ProfGroup { get; set; }
         public DbSet<ProfStuds> ProfStuds { get; set; }
+        public DbSet<Grade> Grades { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,6 +41,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new ProfRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProfGroupConfiguration());
             modelBuilder.ApplyConfiguration(new ProfStudsConfiguration());
+            modelBuilder.ApplyConfiguration(new GradeConfiguration());
 
         }
     }
