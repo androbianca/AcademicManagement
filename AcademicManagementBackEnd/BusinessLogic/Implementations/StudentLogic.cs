@@ -45,6 +45,7 @@ namespace BusinessLogic.Implementations
                 var usercode = _repository.GetByFilter<PotentialUser>(x => x.Id == student.PotentialUserId).UserCode;
                 var studentDto = new StudentDto
                 {
+                    Id = student.Id,
                     LastName = student.LastName,
                     FirstName = student.FirstName,
                     Year = student.Group.Year,

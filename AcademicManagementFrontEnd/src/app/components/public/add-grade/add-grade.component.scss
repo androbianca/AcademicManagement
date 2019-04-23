@@ -1,13 +1,26 @@
 @import '../../../../styles/home.scss';
 @import '../../../../styles/mixins.scss';
 
-.form{
-@include flex (row,center,center);
-input{
-    width: 120px;
-}
-button {
-    width:50px;
-    margin:0;
-}
-}
+:host(.add-grade-card) {
+  margin: 40px;
+  @include flex(row, center, center);
+  @include size(100px, 500px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  background-color: #ffffff;
+
+  .form {
+    @include flex (row, center, center);
+
+    input {
+      width: 160px;
+      margin: 5px;
+    }
+
+    button {
+      color: white;
+      width: 80px;
+      margin: 0 0 0 15px;
+    }
+  }
+} 

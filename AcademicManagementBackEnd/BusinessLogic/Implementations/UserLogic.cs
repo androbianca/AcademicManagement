@@ -123,6 +123,7 @@ namespace BusinessLogic.Implementations
 
             var userDetails = new UserDetailsDto
             {
+                Id = user.Id,
                 UserCode = id,
                 LastName = user.LastName,
                 FirstName = user.FirstName,

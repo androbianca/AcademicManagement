@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Service.Controllers
 {
-    [Route("api/grades")]
+    [Route("api/grade")]
     [ApiController]
     public class GradeController : ControllerBase
     {
@@ -19,9 +19,12 @@ namespace Service.Controllers
             _gradeLogic = gradeLogic;
         }
 
-        [HttpGet]
-        public ActionResult<ICollection<GradeDto>> getGrades([FromRoute] Guid CourseId, Guid StudentId, Guid ProfId)
+        [HttpPost]
+        public IActionResult addGrade ([FromBody] GradeDto grade)
         {
+            _gradeLogic.addGrade(grade);
+
+            return Ok(grade);
 
         }
     }

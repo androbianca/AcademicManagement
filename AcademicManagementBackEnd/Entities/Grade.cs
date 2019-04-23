@@ -8,6 +8,8 @@ namespace Entities
     {
         public float Value { get; set; }
 
+        public string Category { get; set; }
+
         public Guid StudentId { get; set; }
 
         public Student Student { get; set; }

@@ -31,5 +31,19 @@ namespace BusinessLogic.Implementations
 
             return gradeDtos;
         }
+
+        public void addGrade(GradeDto gradeDto)
+        {
+            var grade = new Grade()
+            {
+                StudentId = gradeDto.StudentId,
+                ProfId = gradeDto.ProfId,
+                CourseId = gradeDto.CourseId,
+                Value = gradeDto.Value,
+                Category = gradeDto.Category
+            };
+            _repository.Insert(grade);
+            _repository.Save();
+        }
     }
 }

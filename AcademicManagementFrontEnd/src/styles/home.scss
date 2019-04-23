@@ -6,12 +6,12 @@ input[type=text],
   display: inline-block;
   padding: 1vh;
   margin-top: 1vh;
-  border: 2px solid #45C2BA;
+  border: 2px solid #5C9EAD;
   border-radius: 15px;
 }
 
 button {
-  background: #45C2BA;
+  background: #5C9EAD;
   @include size(4vh,22vw);
   border-radius: 15px;
   border: none;
