@@ -17,15 +17,11 @@ export class ProfGradesComponent implements OnInit {
   courseId: string;
   user: UserDetails;
   students = new Array<Student>();
-  isAddGradesOpen = false;
  
   constructor(private studentService: StudentService, private route: ActivatedRoute, private userDetailsService: CurrentUserDetailsService) {
     this.user = userDetailsService.getUser();
   }
 
-  onAddGradesChanged(event) {
-    this.isAddGradesOpen = event;
-  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

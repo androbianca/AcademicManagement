@@ -19,6 +19,7 @@ export class CoursesComponent {
     this.cardMessage = this.user.isStudent ? 'See more' : 'Add grades';
     if (this.user.isStudent) {
       this.getAllCourses();
+      this.route = 'courses/grades/'
       return;
     }
     this.getProfCourses();

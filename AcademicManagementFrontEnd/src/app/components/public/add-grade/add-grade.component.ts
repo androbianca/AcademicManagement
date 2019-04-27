@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, ɵConsole } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, ɵConsole, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
@@ -14,6 +14,10 @@ export class AddGradeComponent implements OnInit {
 
   @Input() studentId : string;
   @Input() courseId : string;
+
+  newGrade:Grade;
+
+  @Output() gradesListChanged : EventEmitter<any> = new EventEmitter();
   @HostBinding('class') classes = 'add-grade-card';
   user: UserDetails;
   grade = new Grade();
@@ -35,9 +39,10 @@ export class AddGradeComponent implements OnInit {
     this.grade.value = gradesForm.value.value;
     this.grade.category = gradesForm.value.category;
 
-    console.log(this.grade);
-    this.gradeService.addGrade(this.grade).subscribe(result =>
-    console.log("success"))
+    this.newGrade = Object.assign({}, this.grade);
+    this.gradesListChanged.emit(this.newGrade);
+    console.log("success");
+ 
 
   }
 

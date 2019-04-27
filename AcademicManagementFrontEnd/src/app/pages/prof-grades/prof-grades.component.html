@@ -1,7 +1,5 @@
 <ng-container *ngFor="let student of students">
-  <app-student-card [student]="student"
-                    (addGradesChanged)="onAddGradesChanged($event)"></app-student-card>
+  <app-student-card [student]="student" [courseId]="courseId" [profId]="user.id"
+                   ></app-student-card>
 
-
-<ng-container *ngIf="isAddGradesOpen"><app-add-grade [studentId]="student.id" [courseId]="courseId"></app-add-grade></ng-container>
 </ng-container>

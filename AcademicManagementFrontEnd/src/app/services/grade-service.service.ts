@@ -15,5 +15,13 @@ export class GradeService {
      public addGrade(grade:Grade){
         return this.baseService.post<Grade>('grade',grade);
      }
+
+     public getGrades(courseId,studentId,profId){
+         return this.baseService.get<Grade[]>(`grade/${courseId}/${studentId}/${profId}`);
+     }
+
+     public getGrades2(courseId,studentId){
+        return this.baseService.get<Grade[]>(`grade/${courseId}/${studentId}`);
+    }
 }
  

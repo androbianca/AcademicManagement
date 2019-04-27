@@ -20,11 +20,11 @@ namespace Service.Controllers
         }
 
         [HttpGet("{courseId:guid}")]
-        public ActionResult<ICollection<StudentDto>> getStudents([FromRoute] Guid CourseId)
+        public ActionResult<ICollection<StudentDto>> getStudents([FromRoute] Guid courseId)
         {
             var id = getCurrentUserId();
 
-            var students = _studentLogic.getByProfId(id,CourseId);
+            var students = _studentLogic.getByProfId(id,courseId);
 
             return Ok(students);
 

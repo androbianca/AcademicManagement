@@ -18,6 +18,11 @@ const routes: Routes = [
     canActivate: [UserGuard]
   },
   {
+    path: 'grades/:courseId',
+    component: CourseGradesComponent,
+    canActivate: [UserGuard]
+  },
+  {
     path: 'courses/:courseId',
     component: ProfGradesComponent,
     canActivate: [UserGuard]
@@ -27,11 +32,7 @@ const routes: Routes = [
     component: CoursesComponent,
     canActivate: [UserGuard]
   },
-  {
-    path: 'grades/course',
-    component: CourseGradesComponent,
-    canActivate: [UserGuard]
-  },
+
 ];
 
 @NgModule({

@@ -1,20 +1,26 @@
-import { Component, OnInit, HostBinding, Input, Output } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, Output, Injectable } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import {MatDialogModule, MatDialogRef, MatDialog} from '@angular/material/dialog';
+import { GradesCardComponent } from '../grades-card/grades-card.component';
+import { AddGradeModalContentComponent } from '../add-grade-modal-content/add-grade-modal-content.component';
 
 @Component({
   selector: 'app-student-card',
   templateUrl: './student-card.component.html',
   styleUrls: ['./student-card.component.scss']
 })
+
 export class StudentCardComponent implements OnInit {
 
-  @Input() student;
-  @Output() addGradesChanged : EventEmitter<any> =  new EventEmitter();
+  @Input() student; 
+  @Input() courseId;
+  @Input() profId;
+
   public name: string;
   public initials:string;
   public isAddGradesOpen: boolean = false;
   @HostBinding('class') classes = 'student-card';
-  constructor() {
+  constructor(public dialog: MatDialog) {
 
    }
 
@@ -27,8 +33,16 @@ export class StudentCardComponent implements OnInit {
   }
 
   onArrowClick(){
-    this.isAddGradesOpen = !this.isAddGradesOpen;
-    this.addGradesChanged.emit(this.isAddGradesOpen);
+    
+    const dialogRef = this.dialog.open(AddGradeModalContentComponent, {
+      width: '350px',
+      height: '500px',
+      data: { studentId: this.student.id, profId : this.profId , courseId : this.courseId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
   ngOnInit() {
     this.getName();
