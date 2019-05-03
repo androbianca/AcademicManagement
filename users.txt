@@ -1,1 +1,0 @@
-INSERT INTO PotentialUsers VALUES (NEWID(), '1','1','1',1,'1',NULL,1);
