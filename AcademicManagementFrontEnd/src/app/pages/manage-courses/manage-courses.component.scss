@@ -1,0 +1,10 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/general.scss';
+
+:host(.manage-courses-container){
+    @include flex(column,center,none);
+    height: 100%;
+}
+
+
+  

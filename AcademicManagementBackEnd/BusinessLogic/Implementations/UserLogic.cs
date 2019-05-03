@@ -120,6 +120,10 @@ namespace BusinessLogic.Implementations
             {
                 user = _repository.GetByFilter<Professor>(x => x.PotentialUserId == account.PotentialUserId);
             }
+            if (role.Name == "Admin")
+            {
+                user = _repository.GetByFilter<Admin>(x => x.PotentialUserId == account.PotentialUserId);
+            }
 
             var userDetails = new UserDetailsDto
             {

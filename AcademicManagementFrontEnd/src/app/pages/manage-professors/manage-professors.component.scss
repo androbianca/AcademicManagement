@@ -1,0 +1,6 @@
+@import '../../../styles/general.scss';
+
+:host(.manage-profs-container){
+    @include flex(column,center,none);
+    height: 100%;
+}
