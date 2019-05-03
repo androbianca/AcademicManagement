@@ -4462,6 +4462,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "Entities": "1.0.0",
           "EntityFramework": "6.2.0",
           "Microsoft.AspNet.Identity.Core": "2.2.2",
           "Microsoft.AspNet.Identity.EntityFramework": "2.2.2",

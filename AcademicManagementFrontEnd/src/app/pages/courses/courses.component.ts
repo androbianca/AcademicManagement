@@ -16,8 +16,8 @@ export class CoursesComponent {
   cardMessage: string;
   constructor(private courseService: CourseService, private currentUserDetailservice: CurrentUserDetailsService) {
     this.user = currentUserDetailservice.getUser();
-    this.cardMessage = this.user.isStudent ? 'See more' : 'Add grades';
-    if (this.user.isStudent) {
+    this.cardMessage = this.user.userRole == 'Student' ? 'See more' : 'Add grades';
+    if (this.user.userRole == 'Student') {
       this.getAllCourses();
       return;
     }

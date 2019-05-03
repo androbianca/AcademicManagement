@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190502135240_UserRoleTable")]
+    partial class UserRoleTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,7 +133,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("UserCode")
                         .IsRequired();
 
-                    b.Property<Guid>("UserRoleId");
+                    b.Property<string>("UserRole")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -187,14 +190,13 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.ProfRole", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("ProfId");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(15);
+                    b.Property<Guid>("RoleId");
 
-                    b.HasKey("Id");
+                    b.HasKey("ProfId", "RoleId");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("ProfRole");
                 });
@@ -213,6 +215,20 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProfStuds");
+                });
+
+            modelBuilder.Entity("Entities.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Entities.StudCourse", b =>
@@ -251,20 +267,6 @@ namespace DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("Entities.UserRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Entities.Account", b =>
@@ -338,6 +340,19 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Professor", "Professor")
                         .WithMany("Groups")
                         .HasForeignKey("ProfId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entities.ProfRole", b =>
+                {
+                    b.HasOne("Entities.Professor", "Professor")
+                        .WithMany("Roles")
+                        .HasForeignKey("ProfId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Entities.Role", "Role")
+                        .WithMany("Profs")
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

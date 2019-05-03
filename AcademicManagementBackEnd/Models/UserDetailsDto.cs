@@ -8,6 +8,6 @@ namespace Models
         public string UserCode { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
-        public Boolean isStudent { get; set; }     
+        public string UserRole { get; set; }     
     }
 }

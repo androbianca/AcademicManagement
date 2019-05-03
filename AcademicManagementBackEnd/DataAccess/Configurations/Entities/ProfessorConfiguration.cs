@@ -12,7 +12,6 @@ namespace DataAccess.Configurations.Entities
                 .WithOne(b => b.Professor)
                 .HasForeignKey<Professor>(c => c.PotentialUserId)
                 .HasConstraintName("ForeignKey_Professor_PotentialUser");
-
         }
     }
 }

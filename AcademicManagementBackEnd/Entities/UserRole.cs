@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public class ProfRole : BaseEntity
+    public class UserRole : BaseEntity
     {
         public string Name { get; set; }
     }

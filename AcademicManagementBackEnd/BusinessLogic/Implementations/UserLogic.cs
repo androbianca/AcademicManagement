@@ -109,16 +109,16 @@ namespace BusinessLogic.Implementations
             var user = new BaseUser();
 
             var account = _repository.GetByFilter<Account>(x => x.UserCode == id);
+     
             var currentPotentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == id);
-
-            if (currentPotentialUser.isStudent)
+            var role = _repository.GetByFilter<UserRole>(x => x.Id == currentPotentialUser.UserRoleId);
+            if (role.Name == "Student")
             {
                 user = _repository.GetByFilter<Student>(x => x.PotentialUserId == account.PotentialUserId);
             }
-            else
+            if (role.Name == "Professor")
             {
                 user = _repository.GetByFilter<Professor>(x => x.PotentialUserId == account.PotentialUserId);
-
             }
 
             var userDetails = new UserDetailsDto
@@ -127,7 +127,7 @@ namespace BusinessLogic.Implementations
                 UserCode = id,
                 LastName = user.LastName,
                 FirstName = user.FirstName,
-                isStudent = currentPotentialUser.isStudent
+                UserRole = role.Name
 
             };
 

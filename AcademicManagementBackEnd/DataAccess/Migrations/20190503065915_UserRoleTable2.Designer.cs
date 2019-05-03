@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190503065915_UserRoleTable2")]
+    partial class UserRoleTable2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,7 +133,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("UserCode")
                         .IsRequired();
 
-                    b.Property<Guid>("UserRoleId");
+                    b.Property<string>("UserRole")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -193,6 +196,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(15);
+
+                    b.Property<Guid>("RoleId");
 
                     b.HasKey("Id");
 
@@ -261,6 +266,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(15);
+
+                    b.Property<Guid>("RoleId");
 
                     b.HasKey("Id");
 
