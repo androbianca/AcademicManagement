@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Grade } from 'src/app/models/grade';
 
 @Component({
   selector: 'app-grade-card',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GradeCardComponent implements OnInit {
 
+  @Input() grade:Grade;
+
+  @HostBinding('class') classes = 'grade-card';
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }

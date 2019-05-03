@@ -1,4 +1,9 @@
 @import '../../../styles/mixins.scss';
+
 :host(.page-wrapper){
     @include flex(row, flex-start, none)
+}
+
+.grades-wrapper{
+    @include flex(column, flex-start, none)
 }

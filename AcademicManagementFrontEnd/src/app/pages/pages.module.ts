@@ -13,9 +13,13 @@ import { ProfGradesComponent } from './prof-grades/prof-grades.component';
 import { StudGradesComponent } from './stud-grades/stud-grades.component';
 import { StudentCardComponent } from '../components/public/student-card/student-card.component';
 import { AddGradeComponent } from '../components/public/add-grade/add-grade.component';
+import { GradeCardComponent } from '../components/public/grade-card/grade-card.component';
+import { GradesCardComponent } from '../components/public/grades-card/grades-card.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { AddGradeModalContentComponent } from '../components/public/add-grade-modal-content/add-grade-modal-content.component';
 
 @NgModule({
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,MatDialogModule],
   declarations: [
     StudGradesComponent,
     CoursesComponent,
@@ -27,8 +31,9 @@ import { AddGradeComponent } from '../components/public/add-grade/add-grade.comp
     YearGroupedCoursesCardComponent,
     LoginComponent,SignupComponent, CourseGradesComponent, ProfGradesComponent,
     StudentCardComponent,
-    AddGradeComponent
+    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent
   ],
+  entryComponents : [AddGradeModalContentComponent],
   exports: [
     StudGradesComponent,
     CoursesComponent,
@@ -39,7 +44,12 @@ import { AddGradeComponent } from '../components/public/add-grade/add-grade.comp
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
     LoginComponent,SignupComponent,StudentCardComponent,
-    AddGradeComponent
+    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent
+  ],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
   ]
+
 })
 export class PagesModule {}

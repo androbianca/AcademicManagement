@@ -15,6 +15,26 @@ namespace Service.Controllers
             _gradeLogic = gradeLogic;
         }
 
+        [HttpGet("{courseId:guid}/{studentId:guid}/{profId:guid}")]
+        public ActionResult<ICollection<GradeDto>> getGrades([FromRoute] Guid courseId, [FromRoute] Guid studentId, [FromRoute] Guid profId)
+        {
+
+            var grades = _gradeLogic.getGrades(courseId, studentId, profId);
+
+            return Ok(grades);
+
+        }
+
+        [HttpGet("{courseId:guid}/{studentId:guid}")]
+        public ActionResult<ICollection<GradeDto>> getGrades2([FromRoute] Guid courseId, [FromRoute] Guid studentId)
+        {
+
+            var grades = _gradeLogic.getGrades2(courseId, studentId);
+
+            return Ok(grades);
+
+        }
+
         [HttpPost]
         public IActionResult addGrade ([FromBody] GradeDto grade)
         {

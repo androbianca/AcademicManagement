@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Add grades</h1>
+<div mat-dialog-content>
+<app-add-grade (gradesListChanged)="onGradesListChanged($event)" [studentId]="data.studentId" [courseId]="data.courseId"></app-add-grade>
+<app-grades-card [grades] = "grades"></app-grades-card>
+</div>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button [mat-dialog-close]="true" (click)="save()">Save</button>
+</mat-dialog-actions>

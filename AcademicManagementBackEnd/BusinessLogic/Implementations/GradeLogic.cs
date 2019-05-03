@@ -13,7 +13,7 @@ namespace BusinessLogic.Implementations
             : base(repository)
         {  }
 
-        public ICollection<GradeDto> getGrades(Guid studentId, Guid profId, Guid courseId)
+        public ICollection<GradeDto> getGrades(Guid courseId,Guid studentId, Guid profId)
         {
             var gradeDtos = new List<GradeDto>();
             var grades = _repository.GetAllByFilter<Grade>(x => x.CourseId == courseId && x.StudentId == studentId && x.ProfId == profId);
@@ -22,7 +22,12 @@ namespace BusinessLogic.Implementations
             {
                 var gradeDto = new GradeDto
                 {
-                    Value = grade.Value
+                    Value = grade.Value,
+                    Category = grade.Category,
+                    StudentId = grade.StudentId,
+                    ProfId = grade.ProfId,
+                    CourseId = grade.CourseId
+                  
                 };
 
                 gradeDtos.Add(gradeDto);
@@ -31,6 +36,28 @@ namespace BusinessLogic.Implementations
             return gradeDtos;
         }
 
+        public ICollection<GradeDto> getGrades2(Guid courseId, Guid studentId)
+        {
+            var gradeDtos = new List<GradeDto>();
+            var grades = _repository.GetAllByFilter<Grade>(x => x.CourseId == courseId && x.StudentId == studentId);
+
+            foreach (var grade in grades)
+            {
+                var gradeDto = new GradeDto
+                {
+                    Value = grade.Value,
+                    Category = grade.Category,
+                    StudentId = grade.StudentId,
+                    ProfId = grade.ProfId,
+                    CourseId = grade.CourseId
+
+                };
+
+                gradeDtos.Add(gradeDto);
+            }
+
+            return gradeDtos;
+        }
         public void addGrade(GradeDto gradeDto)
         {
             var grade = new Grade()
