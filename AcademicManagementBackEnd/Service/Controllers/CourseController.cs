@@ -44,6 +44,15 @@ namespace Service.Controllers
             return Ok(courses);
         }
 
+        [HttpPost]
+        public ActionResult<CourseDto> AddCourse([FromBody] CourseDto courseDto)
+        {
+
+            var course = _courseLogic.AddCourse(courseDto);
+
+            return Ok(course);
+        }
+
         private string getCurrentUserId()
         {
             var headerValue = Request.Headers["Authorization"];

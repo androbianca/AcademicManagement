@@ -41,6 +41,25 @@ namespace DataAccess.Migrations
                     b.ToTable("Accounts");
                 });
 
+            modelBuilder.Entity("Entities.Admin", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<Guid>("PotentialUserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PotentialUserId")
+                        .IsUnique();
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("Entities.Course", b =>
                 {
                     b.Property<Guid>("Id")
@@ -112,7 +131,7 @@ namespace DataAccess.Migrations
                     b.Property<string>("UserCode")
                         .IsRequired();
 
-                    b.Property<bool>("isStudent");
+                    b.Property<Guid>("UserRoleId");
 
                     b.HasKey("Id");
 
@@ -168,13 +187,14 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.ProfRole", b =>
                 {
-                    b.Property<Guid>("ProfId");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("RoleId");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(15);
 
-                    b.HasKey("ProfId", "RoleId");
-
-                    b.HasIndex("RoleId");
+                    b.HasKey("Id");
 
                     b.ToTable("ProfRole");
                 });
@@ -193,20 +213,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProfStuds");
-                });
-
-            modelBuilder.Entity("Entities.Role", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Entities.StudCourse", b =>
@@ -247,12 +253,35 @@ namespace DataAccess.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("Entities.UserRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(15);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("Entities.Account", b =>
                 {
                     b.HasOne("Entities.PotentialUser", "PotentialUser")
                         .WithOne("Account")
                         .HasForeignKey("Entities.Account", "PotentialUserId")
                         .HasConstraintName("ForeignKey_Account_PotentialUser")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entities.Admin", b =>
+                {
+                    b.HasOne("Entities.PotentialUser", "PotentialUser")
+                        .WithOne("Admin")
+                        .HasForeignKey("Entities.Admin", "PotentialUserId")
+                        .HasConstraintName("ForeignKey_Admin_PotentialUser")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -309,19 +338,6 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Professor", "Professor")
                         .WithMany("Groups")
                         .HasForeignKey("ProfId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Entities.ProfRole", b =>
-                {
-                    b.HasOne("Entities.Professor", "Professor")
-                        .WithMany("Roles")
-                        .HasForeignKey("ProfId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Entities.Role", "Role")
-                        .WithMany("Profs")
-                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

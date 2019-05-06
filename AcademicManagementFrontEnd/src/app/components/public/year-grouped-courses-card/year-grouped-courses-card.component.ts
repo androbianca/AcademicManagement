@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Course } from 'src/app/models/course';
+import { CourseRead } from 'src/app/models/course-read';
 
 @Component({
   selector: 'app-year-grouped-courses-card',
@@ -8,8 +8,8 @@ import { Course } from 'src/app/models/course';
 })
 export class YearGroupedCoursesCardComponent implements OnInit {
 
-  @Input() courses: Course[];
-  orderedCourses: Course[];
+  @Input() courses: CourseRead[];
+  orderedCourses: CourseRead[];
 
   constructor() { }
 

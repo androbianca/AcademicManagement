@@ -11,8 +11,6 @@ namespace Entities
 
         public IEnumerable<ProfCourse> Courses { get; set; }
 
-        public IEnumerable<ProfRole> Roles { get; set; }
-
         public IEnumerable<ProfGroup> Groups { get; set; }
 
         public IEnumerable<Grade> Grades { get; set; }

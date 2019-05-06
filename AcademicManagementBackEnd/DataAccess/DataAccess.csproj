@@ -9,6 +9,7 @@
     <Compile Remove="Migrations\20190401163448_OptionalTableCreated.cs" />
     <Compile Remove="Migrations\20190401163848_CourseNameLengthIncreased.cs" />
     <Compile Remove="Migrations\20190401165103_OptionalNameLengthIncreased.cs" />
+    <Compile Remove="Migrations\20190503065725_UserRoleTable2.cs" />
   </ItemGroup>
 
   <ItemGroup>

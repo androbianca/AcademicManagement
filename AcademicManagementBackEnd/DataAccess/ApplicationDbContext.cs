@@ -20,11 +20,12 @@ namespace DataAccess
         public DbSet<ProfCourse> ProfCourse { get; set; }
         public DbSet<StudCourse> StudCourse { get; set; }
         public DbSet<Group> Groups { get; set; }
-        public DbSet<Role> Roles { get; set; }
         public DbSet<ProfRole> ProfRole { get; set; }
         public DbSet<ProfGroup> ProfGroup { get; set; }
         public DbSet<ProfStuds> ProfStuds { get; set; }
         public DbSet<Grade> Grades { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,11 +38,12 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new StudCourseConfiguration());        
             modelBuilder.ApplyConfiguration(new GroupConfiguraton());
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProfRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProfGroupConfiguration());
             modelBuilder.ApplyConfiguration(new ProfStudsConfiguration());
             modelBuilder.ApplyConfiguration(new GradeConfiguration());
+            modelBuilder.ApplyConfiguration(new AdminConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
 
         }
     }

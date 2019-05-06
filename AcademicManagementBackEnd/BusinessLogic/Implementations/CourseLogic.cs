@@ -21,6 +21,22 @@ namespace BusinessLogic.Implementations
 
         }
 
+        public Course AddCourse(CourseDto courseDto)
+        {
+            var course = new Course
+            {
+                Id= Guid.NewGuid(),
+                Name = courseDto.Name,
+                Package = courseDto.Package,
+                Year = courseDto.Year,
+                Semester = courseDto.Semester
+
+            };
+            _repository.Insert(course);
+            _repository.Save();
+            return course;
+        }
+
         public ICollection<CourseDto> GetStudCourses(String id)
         {
             var optionalCourses = new List<Course>();

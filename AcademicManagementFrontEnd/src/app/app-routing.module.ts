@@ -7,6 +7,8 @@ import { CourseGradesComponent } from './pages/course-grades/course-grades.compo
 import { StudGradesComponent } from './pages/stud-grades/stud-grades.component';
 import { ProfGradesComponent } from './pages/prof-grades/prof-grades.component';
 import { ProfessorsComponent } from './pages/professors/professors.component';
+import { ManageCoursesComponent } from './pages/manage-courses/manage-courses.component';
+import { ManageProfessorsComponent } from './pages/manage-professors/manage-professors.component';
 
 const routes: Routes = [
   {
@@ -35,7 +37,14 @@ const routes: Routes = [
   },
   {
     path: 'professors',
-    component: ProfessorsComponent,
+    component: ProfessorsComponent,},
+    {path: 'manage/courses',
+    component: ManageCoursesComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'manage/professors',
+    component: ManageProfessorsComponent,
     canActivate: [UserGuard]
   },
 

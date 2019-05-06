@@ -13,5 +13,6 @@ namespace Entities
         public Guid PotentialUserId { get; set; }
 
         public PotentialUser PotentialUser { get; set; }
+
     }
 }

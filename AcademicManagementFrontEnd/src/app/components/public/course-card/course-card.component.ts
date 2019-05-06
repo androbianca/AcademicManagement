@@ -1,7 +1,6 @@
 import { Component, OnInit, HostBinding, Input } from "@angular/core";
-import { InitialStylingValuesIndex } from '@angular/core/src/render3/interfaces/styling';
 import { Router } from '@angular/router';
-import { Course } from 'src/app/models/course';
+import { CourseRead } from 'src/app/models/course-read';
 
 @Component({
   selector: "app-course-card",
@@ -9,7 +8,7 @@ import { Course } from 'src/app/models/course';
   styleUrls: ["./course-card.component.scss"]
 })
 export class CourseCardComponent implements OnInit {
-  @Input() course: Course;
+  @Input() course: CourseRead;
   @Input() route:string;
   @Input() message:string;
 

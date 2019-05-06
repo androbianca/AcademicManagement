@@ -13,13 +13,11 @@ export class BaseService {
     const authToken = localStorage.getItem('jwt');
 
     const completeUrl: string = this.enviroment + url;
-    console.log(completeUrl);
     return this.http.post<T>(completeUrl, data,  { headers: {'Content-Type': 'application/json',
     Authorization: authToken}});
   }
 
   public get<T>(url: string): Observable<T> {
-    console.log(url);
     const authToken = localStorage.getItem('jwt');
     const completeUrl: string = this.enviroment + url;
     return this.http.get<T>(completeUrl, { headers: {'Content-Type': 'application/json',

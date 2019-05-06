@@ -19,9 +19,15 @@ import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef } from '@angu
 import { AddGradeModalContentComponent } from '../components/public/add-grade-modal-content/add-grade-modal-content.component';
 import { ProfessorsComponent } from './professors/professors.component';
 import { ProfCardComponent } from '../components/public/prof-card/prof-card.component';
+import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { AddCoursesComponent } from '../components/public/add-courses/add-courses.component';
+import { ManageProfessorsComponent } from './manage-professors/manage-professors.component';
+import { AddProfComponent } from '../components/public/add-prof/add-prof.component';
+import {MatSelectModule} from '@angular/material/select';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @NgModule({
-  imports: [CommonModule,ReactiveFormsModule,MatDialogModule],
+  imports: [CommonModule,ReactiveFormsModule,MatDialogModule,MatSelectModule],
   declarations: [
     StudGradesComponent,
     CoursesComponent,
@@ -41,6 +47,7 @@ import { ProfCardComponent } from '../components/public/prof-card/prof-card.comp
     AddGradeModalContentComponent, 
     ProfessorsComponent,
     ProfCardComponent
+    ,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent, ManageCoursesComponent,AddCoursesComponent, ManageProfessorsComponent,AddProfComponent
   ],
   entryComponents : [AddGradeModalContentComponent],
   exports: [
@@ -60,10 +67,13 @@ import { ProfCardComponent } from '../components/public/prof-card/prof-card.comp
     GradesCardComponent,
     AddGradeModalContentComponent,
     ProfCardComponent
+    ,SignupComponent,StudentCardComponent,
+    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent,AddCoursesComponent,AddProfComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} ,
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ]
 
 })
