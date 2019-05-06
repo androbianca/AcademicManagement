@@ -6,6 +6,7 @@ import { CoursesComponent } from './pages/courses/courses.component';
 import { CourseGradesComponent } from './pages/course-grades/course-grades.component';
 import { StudGradesComponent } from './pages/stud-grades/stud-grades.component';
 import { ProfGradesComponent } from './pages/prof-grades/prof-grades.component';
+import { ProfessorsComponent } from './pages/professors/professors.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'courses',
     component: CoursesComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'professors',
+    component: ProfessorsComponent,
     canActivate: [UserGuard]
   },
 

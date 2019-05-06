@@ -17,6 +17,8 @@ import { GradeCardComponent } from '../components/public/grade-card/grade-card.c
 import { GradesCardComponent } from '../components/public/grades-card/grades-card.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { AddGradeModalContentComponent } from '../components/public/add-grade-modal-content/add-grade-modal-content.component';
+import { ProfessorsComponent } from './professors/professors.component';
+import { ProfCardComponent } from '../components/public/prof-card/prof-card.component';
 
 @NgModule({
   imports: [CommonModule,ReactiveFormsModule,MatDialogModule],
@@ -29,9 +31,16 @@ import { AddGradeModalContentComponent } from '../components/public/add-grade-mo
     CardHeaderComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
-    LoginComponent,SignupComponent, CourseGradesComponent, ProfGradesComponent,
+    LoginComponent,SignupComponent, 
+    CourseGradesComponent, 
+    ProfGradesComponent,
     StudentCardComponent,
-    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent
+    AddGradeComponent,
+    GradeCardComponent,
+    GradesCardComponent,
+    AddGradeModalContentComponent, 
+    ProfessorsComponent,
+    ProfCardComponent
   ],
   entryComponents : [AddGradeModalContentComponent],
   exports: [
@@ -43,8 +52,14 @@ import { AddGradeModalContentComponent } from '../components/public/add-grade-mo
     CardHeaderComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
-    LoginComponent,SignupComponent,StudentCardComponent,
-    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent
+    LoginComponent,
+    SignupComponent,
+    StudentCardComponent,
+    AddGradeComponent,
+    GradeCardComponent,
+    GradesCardComponent,
+    AddGradeModalContentComponent,
+    ProfCardComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
