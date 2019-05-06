@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities
+namespace Models
 {
-    public class Role : BaseEntity
+    public class GroupDto
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
-
-        public IEnumerable<ProfRole> Profs { get; set; }
+        public int Year { get; set; }
     }
 }

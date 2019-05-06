@@ -1,0 +1,11 @@
+<form class="form" [formGroup]="addCourseForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" placeholder="Name">
+  <label>Year</label>
+  <input type="text" formControlName="year" placeholder="Year">
+  <label>Semester</label>
+  <input type="text" formControlName="semester" placeholder="Semester">
+  <label>Package</label>
+  <input type="text" formControlName="package" placeholder="Package">
+  <input type="submit" value="Submit" (click)="submit(addCourseForm)">
+</form>

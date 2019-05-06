@@ -17,9 +17,15 @@ import { GradeCardComponent } from '../components/public/grade-card/grade-card.c
 import { GradesCardComponent } from '../components/public/grades-card/grades-card.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { AddGradeModalContentComponent } from '../components/public/add-grade-modal-content/add-grade-modal-content.component';
+import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
+import { AddCoursesComponent } from '../components/public/add-courses/add-courses.component';
+import { ManageProfessorsComponent } from './manage-professors/manage-professors.component';
+import { AddProfComponent } from '../components/public/add-prof/add-prof.component';
+import {MatSelectModule} from '@angular/material/select';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @NgModule({
-  imports: [CommonModule,ReactiveFormsModule,MatDialogModule],
+  imports: [CommonModule,ReactiveFormsModule,MatDialogModule,MatSelectModule],
   declarations: [
     StudGradesComponent,
     CoursesComponent,
@@ -31,7 +37,7 @@ import { AddGradeModalContentComponent } from '../components/public/add-grade-mo
     YearGroupedCoursesCardComponent,
     LoginComponent,SignupComponent, CourseGradesComponent, ProfGradesComponent,
     StudentCardComponent,
-    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent
+    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent, ManageCoursesComponent,AddCoursesComponent, ManageProfessorsComponent,AddProfComponent
   ],
   entryComponents : [AddGradeModalContentComponent],
   exports: [
@@ -44,11 +50,12 @@ import { AddGradeModalContentComponent } from '../components/public/add-grade-mo
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
     LoginComponent,SignupComponent,StudentCardComponent,
-    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent
+    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent,AddCoursesComponent,AddProfComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} ,
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ]
 
 })

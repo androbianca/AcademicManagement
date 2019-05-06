@@ -11,7 +11,7 @@ namespace DataAccess.Configurations
             builder.Property(p => p.UserCode)
                 .IsRequired();
 
-            builder.Property(p => p.isStudent)
+            builder.Property(p => p.UserRoleId)
                 .IsRequired();
 
         }

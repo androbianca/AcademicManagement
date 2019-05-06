@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Course } from 'src/app/models/course';
 import { CourseService } from 'src/app/services/course-service.service';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
+import { CourseRead } from 'src/app/models/course-read';
 
 @Component({
   selector: 'app-courses',
@@ -10,14 +10,14 @@ import { UserDetails } from 'src/app/models/userDetails';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent {
-  courses: Course[];
+  courses: CourseRead[];
   user: UserDetails;
   route: string;
   cardMessage: string;
   constructor(private courseService: CourseService, private currentUserDetailservice: CurrentUserDetailsService) {
     this.user = currentUserDetailservice.getUser();
-    this.cardMessage = this.user.isStudent ? 'See more' : 'Add grades';
-    if (this.user.isStudent) {
+    this.cardMessage = this.user.userRole == 'Student' ? 'See more' : 'Add grades';
+    if (this.user.userRole == 'Student') {
       this.getAllCourses();
       this.route = 'courses/grades/'
       return;
@@ -27,7 +27,7 @@ export class CoursesComponent {
   }
 
   getAllCourses() {
-    this.courseService.getAll().subscribe((response: Course[]) => {
+    this.courseService.getAll().subscribe((response: CourseRead[]) => {
       this.courses = response.sort((n1, n2) => {
         if (n1.name > n2.name) {
           return 1;
@@ -38,7 +38,7 @@ export class CoursesComponent {
   }
 
   getProfCourses() {
-    this.courseService.getProfCourses().subscribe((response: Course[]) => {
+    this.courseService.getProfCourses().subscribe((response: CourseRead[]) => {
       this.courses = response.sort((n1, n2) => {
         if (n1.name > n2.name) {
           return 1;

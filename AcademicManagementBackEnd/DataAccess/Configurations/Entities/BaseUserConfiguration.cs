@@ -17,8 +17,7 @@ namespace DataAccess.Configurations.Entities
                 .IsRequired()
                 .HasMaxLength(40);
 
-            builder.Property(p => p.Email)
-                .IsRequired();
+ 
 
         }
     }
