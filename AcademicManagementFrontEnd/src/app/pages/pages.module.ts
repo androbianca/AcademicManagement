@@ -1,11 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { YearGroupedCoursesCardComponent } from "src/app/components/public/year-grouped-courses-card/year-grouped-courses-card.component";
-import { CardHeaderComponent } from "src/app/components/public/card-header/card-header.component";
 import { LoginComponent } from "src/app/components/public/login/login.component";
 import { SignupComponent } from "src/app/components/public/signup/signup.component";
 import { ReactiveFormsModule } from '@angular/forms';
-import { CoursesComponent } from './courses/courses.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CourseCardComponent } from '../components/public/course-card/course-card.component';
 import { CourseGradesComponent } from './course-grades/course-grades.component';
@@ -23,40 +21,47 @@ import { ManageCoursesComponent } from './manage-courses/manage-courses.componen
 import { AddCoursesComponent } from '../components/public/add-courses/add-courses.component';
 import { ManageProfessorsComponent } from './manage-professors/manage-professors.component';
 import { AddProfComponent } from '../components/public/add-prof/add-prof.component';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { ProfCoursesComponent } from './prof-courses/prof-courses.component';
+import { StudentCoursesComponent } from './student-courses/student-courses.component';
 
 @NgModule({
-  imports: [CommonModule,ReactiveFormsModule,MatDialogModule,MatSelectModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule],
   declarations: [
     StudGradesComponent,
-    CoursesComponent,
+    StudentCoursesComponent,
     HomePageComponent,
     CourseGradesComponent,
     YearGroupedCoursesCardComponent,
-    CardHeaderComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
-    LoginComponent,SignupComponent, 
-    CourseGradesComponent, 
+    LoginComponent, SignupComponent,
+    CourseGradesComponent,
     ProfGradesComponent,
     StudentCardComponent,
     AddGradeComponent,
     GradeCardComponent,
     GradesCardComponent,
-    AddGradeModalContentComponent, 
+    AddGradeModalContentComponent,
     ProfessorsComponent,
-    ProfCardComponent
-    ,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent, ManageCoursesComponent,AddCoursesComponent, ManageProfessorsComponent,AddProfComponent
+    ProfCardComponent, 
+    GradeCardComponent, 
+    GradesCardComponent, 
+    AddGradeModalContentComponent, 
+    ManageCoursesComponent, 
+    AddCoursesComponent, 
+    ManageProfessorsComponent, 
+    AddProfComponent,
+    ProfCoursesComponent
   ],
-  entryComponents : [AddGradeModalContentComponent],
+  entryComponents: [AddGradeModalContentComponent],
   exports: [
     StudGradesComponent,
-    CoursesComponent,
+    StudentCoursesComponent,
     HomePageComponent,
     CourseGradesComponent,
     YearGroupedCoursesCardComponent,
-    CardHeaderComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
     LoginComponent,
@@ -66,15 +71,21 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
     GradeCardComponent,
     GradesCardComponent,
     AddGradeModalContentComponent,
-    ProfCardComponent
-    ,SignupComponent,StudentCardComponent,
-    AddGradeComponent,GradeCardComponent,GradesCardComponent,AddGradeModalContentComponent,AddCoursesComponent,AddProfComponent
+    ProfCardComponent, 
+    SignupComponent, 
+    StudentCardComponent,
+    AddGradeComponent, 
+    GradeCardComponent, 
+    GradesCardComponent, 
+    AddGradeModalContentComponent, 
+    AddCoursesComponent, 
+    AddProfComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}} ,
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ]
 
 })
-export class PagesModule {}
+export class PagesModule { }

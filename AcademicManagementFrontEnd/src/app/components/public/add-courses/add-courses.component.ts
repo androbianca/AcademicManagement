@@ -23,12 +23,15 @@ export class AddCoursesComponent implements OnInit {
   ngOnInit() {
   }
 
+  addCourse(){
+    this.courseService.addCourse(this.course).subscribe(result => {})
+  }
+
   submit(form){
     this.course.name = form.value.name;
     this.course.package = form.value.package;
     this.course.semester = form.value.semester;
     this.course.year = form.value.year;
-
-    this.courseService.addCourse(this.course).subscribe(result => console.log(result))
+    this.addCourse();
   }
 }

@@ -16,24 +16,15 @@ export class AddGradeModalContentComponent implements OnInit {
   ngOnInit() {
     this.gradeService.getGrades(this.data.courseId,this.data.studentId,this.data.profId).subscribe(result => this.grades = result);
   }
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
 
   onGradesListChanged(event:Grade){
     this.newGrades.push(event);
     this.grades.push(event);
   }
 
-  save(){
-    debugger
-
+  addGrade(){
     this.newGrades.forEach(element => {
-      this.gradeService.addGrade(element).subscribe(result =>
-        console.log("success"))
-      
+    this.gradeService.addGrade(element).subscribe(result =>{})
     })
-        
-  
   }
 }

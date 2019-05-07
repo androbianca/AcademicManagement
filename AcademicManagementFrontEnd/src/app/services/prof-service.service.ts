@@ -1,7 +1,7 @@
 import { BaseService } from './base-service.service';
 import { Injectable } from '@angular/core';
 import { Professor } from '../models/professor';
-import { ProfStuds } from '../models/prof-studs';
+import { ProfStud } from '../models/prof-studs';
 
 
 @Injectable({
@@ -16,8 +16,8 @@ export class ProfService {
         return this.baseService.post<Professor>('prof',prof);
      }
 
-     public addProfStuds(profStuds:ProfStuds){
-        return this.baseService.post<ProfStuds>('prof',profStuds);
+     public addProfStuds(profStuds:ProfStud){
+        return this.baseService.post<ProfStud>('prof',profStuds);
      }
 
 }

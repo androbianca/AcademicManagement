@@ -6,15 +6,15 @@
   </section>
 
   <ng-container *ngIf="user.userRole=='Student'">
+    <section class="menu__option"><a routerLink="/studcourses">Courses</a></section>
     <section class="menu__option"><a routerLink="/grades">Grades</a></section>
-    <section class="menu__option"><a routerLink="/courses">Courses</a></section>
     <section class="menu__option"><a routerLink="/professors">Professors</a></section>
     <section class="menu__option">NewsFeed</section>
   </ng-container>
 
   <ng-container *ngIf="user.userRole=='Professor'">
-    <section class="menu__option"><a routerLink="/courses">Courses</a></section>
-    <section class="menu__option">Professors</section>
+    <section class="menu__option"><a routerLink="/profcourses">Courses</a></section>
+    <section class="menu__option"><a routerLink="/professors">Professors</a></section>
     <section class="menu__option">NewsFeed</section>
   </ng-container>
 

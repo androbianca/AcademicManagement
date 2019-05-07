@@ -9,24 +9,23 @@ import { CourseRead } from 'src/app/models/course-read';
 })
 export class CourseCardComponent implements OnInit {
   @Input() course: CourseRead;
-  @Input() route:string;
-  @Input() message:string;
+  @Input() route: string;
+  @Input() message: string;
 
   @HostBinding('class') classes = 'card';
-  initials :string = "";
+  initials: string = "";
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.course)
-    let x = this.course.name.split(" ");
-    x.forEach(el => {
+    let name = this.course.name.split(" ");
+    name.forEach(el => {
       this.initials += el[0].toLocaleUpperCase();
     })
-    }
-
-    goTo(){
-      this.router.navigate([this.route + `${this.course.id}`]);
-    }
   }
+
+  goTo() {
+    this.router.navigate([this.route + `${this.course.id}`]);
+  }
+}
 

@@ -6,8 +6,9 @@ import { GroupService } from 'src/app/services/group-service.service';
 import { Group } from 'src/app/models/group';
 import { Professor } from 'src/app/models/professor';
 import { ProfService } from 'src/app/services/prof-service.service';
-import { ProfStuds } from 'src/app/models/prof-studs';
-import { runInThisContext } from 'vm';
+import { PotentialUserService } from 'src/app/services/potentialuser-service.service';
+import { ProfStudService } from 'src/app/services/prof-stud-service.service';
+import { ProfStud } from 'src/app/models/prof-studs';
 
 @Component({
   selector: 'app-add-prof',
@@ -16,11 +17,11 @@ import { runInThisContext } from 'vm';
 })
 export class AddProfComponent implements OnInit {
 
-  profId: string;
-  profStuds =  new Array<ProfStuds>();
-  profStud = new ProfStuds();
+  profId: any;
+  profStud = new ProfStud();
   courses: CourseRead[];
   groups: Group[];
+  allgroups: Group[];
   prof = new Professor();
   count = 1;
   forms = [{ course: 'course1', group: 'group1' }];
@@ -32,9 +33,17 @@ export class AddProfComponent implements OnInit {
     course1: new FormControl(''),
     group1: new FormControl('')
   });
- 
 
-  constructor(private courseService: CourseService, private groupService: GroupService, private profService: ProfService) { }
+  constructor(private courseService: CourseService, 
+    private groupService: GroupService, 
+    private profService: ProfService, 
+    private potentialUserService: PotentialUserService, 
+    private profStudService: ProfStudService) { }
+
+  ngOnInit() {
+    this.getCourses();
+    this.getGroups();
+  }
 
   getCourses() {
     this.courseService.getAll().subscribe(result =>
@@ -43,12 +52,12 @@ export class AddProfComponent implements OnInit {
 
   getGroups() {
     this.groupService.getAll().subscribe(result =>
-      this.groups = result
+      this.allgroups = result
     )
   }
-  ngOnInit() {
-    this.getCourses();
-    this.getGroups();
+
+  filterGroups(course){
+    this.groups = this.allgroups.filter(x=>x.year === course.year)
   }
 
   add() {
@@ -65,24 +74,42 @@ export class AddProfComponent implements OnInit {
     this.addProfForm.addControl(gname, group);
   }
 
+  addPotentialUser() {
+    var usercode = this.addProfForm.get('userCode').value;
+    this.potentialUserService.addPotentialUser(usercode).subscribe(response =>
+        { 
+          this.prof.potentialUserId =  response
+          this.addProfessor();
+        });
+  }
+
+  addProfessor(){
+     this.profService.addProf(this.prof).subscribe((result: Professor) => {
+       this.addProfStud(result.id)
+     },
+      error => {
+      });}
+  
+
   submit(form) {
     this.prof.firstName = form.value.firstName;
     this.prof.lastName = form.value.lastName;
     this.prof.userCode = form.value.userCode;
-    this.profService.addProf(this.prof);
-    this.saveProfStud();
+    this.addPotentialUser();
   }
 
-  saveProfStud(){
-    this.profStuds = new Array<ProfStuds>();
-    var profStud = Object.assign({}, new ProfStuds);
+  addProfStud(profId) {
+    var profStuds = new Array<ProfStud>();
+ 
     this.forms.forEach(el => {
-      this.profStud.courseId = this.addProfForm.get(el.course).value.id;
-      this.profStud.groupId = this.addProfForm.get(el.group).value.id;
-      this.profStuds.push(this.profStud);
+      var profStud = Object.assign({}, new ProfStud());
+      profStud.courseId = this.addProfForm.get(el.course).value.id;
+      profStud.groupId = this.addProfForm.get(el.group).value.id;
+      profStud.profId = profId;
+      profStuds.push(profStud);
     })
 
-    console.log(this.profStuds);
+   this.profStudService.addProfStuds(profStuds).subscribe(response =>{})
   }
 
 }

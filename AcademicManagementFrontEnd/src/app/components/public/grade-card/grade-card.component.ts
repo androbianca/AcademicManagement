@@ -6,15 +6,10 @@ import { Grade } from 'src/app/models/grade';
   templateUrl: './grade-card.component.html',
   styleUrls: ['./grade-card.component.scss']
 })
-export class GradeCardComponent implements OnInit {
+export class GradeCardComponent {
 
   @Input() grade:Grade;
 
   @HostBinding('class') classes = 'grade-card';
-  constructor() { }
-
-  ngOnInit() {
-    
-  }
 
 }
