@@ -11,8 +11,10 @@ namespace Models
 
         public int Year { get; set; }
 
-        public string Group { get; set; }
+        public Guid GroupId { get; set; }
 
- 
+        public Guid PotentialUserId { get; set; }
+
+
     }
 }

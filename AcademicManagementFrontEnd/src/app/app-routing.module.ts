@@ -10,6 +10,7 @@ import { ManageCoursesComponent } from './pages/manage-courses/manage-courses.co
 import { ManageProfessorsComponent } from './pages/manage-professors/manage-professors.component';
 import { ProfCoursesComponent } from './pages/prof-courses/prof-courses.component';
 import { StudentCoursesComponent } from './pages/student-courses/student-courses.component';
+import { ManageStudComponent } from './pages/manage-stud/manage-stud.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,11 @@ const routes: Routes = [
   {
     path: 'manage/professors',
     component: ManageProfessorsComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'manage/students',
+    component: ManageStudComponent,
     canActivate: [UserGuard]
   },
 

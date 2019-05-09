@@ -26,6 +26,15 @@ namespace Service.Controllers
             return Ok(courses);
         }
 
+        [HttpGet("optionals")]
+        public ActionResult<ICollection<CourseDto>> GetOptionals()
+        {
+            var id = getCurrentUserId();
+            var courses = _courseLogic.getOptionalCourses();
+
+            return Ok(courses);
+        }
+
         [HttpGet("current/stud")]
         public ActionResult<ICollection<CourseDto>> GetStudCourses()
         {

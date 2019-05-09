@@ -52,12 +52,13 @@ export class AddProfComponent implements OnInit {
 
   getGroups() {
     this.groupService.getAll().subscribe(result =>
-      this.allgroups = result
+      {console.log(result)
+      this.groups = result}
     )
   }
 
   filterGroups(course){
-    this.groups = this.allgroups.filter(x=>x.year === course.year)
+    //this.groups = this.allgroups.filter(x=>x.year === course.year)
   }
 
   add() {

@@ -25,6 +25,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { ProfCoursesComponent } from './prof-courses/prof-courses.component';
 import { StudentCoursesComponent } from './student-courses/student-courses.component';
+import { ManageStudComponent } from './manage-stud/manage-stud.component';
+import { AddStudComponent } from '../components/public/add-stud/add-stud.component';
+
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule],
@@ -53,7 +56,9 @@ import { StudentCoursesComponent } from './student-courses/student-courses.compo
     AddCoursesComponent, 
     ManageProfessorsComponent, 
     AddProfComponent,
-    ProfCoursesComponent
+    ProfCoursesComponent,
+    ManageStudComponent,
+    AddStudComponent
   ],
   entryComponents: [AddGradeModalContentComponent],
   exports: [
@@ -79,7 +84,8 @@ import { StudentCoursesComponent } from './student-courses/student-courses.compo
     GradesCardComponent, 
     AddGradeModalContentComponent, 
     AddCoursesComponent, 
-    AddProfComponent
+    AddProfComponent,
+    AddStudComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

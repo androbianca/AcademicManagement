@@ -6,6 +6,6 @@ namespace Models
     {
         public string UserCode { get; set; }
         public string Password { get; set; }
-        public Boolean isAdmin { get; set; }
+        public string Role { get; set; }
     }
 }

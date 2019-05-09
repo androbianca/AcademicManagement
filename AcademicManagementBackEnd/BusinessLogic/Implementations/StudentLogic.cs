@@ -24,19 +24,15 @@ namespace BusinessLogic.Implementations
             var potentialUserId = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userCode).Id;
             var prof = _repository.GetByFilter<Professor>(x => x.PotentialUserId == potentialUserId);
             var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.CourseId == courseId && x.ProfId == prof.Id);
-
             foreach (var profStud in profStuds)
             {
                 var group = _repository.GetByFilter<Group>(x => x.Id == profStud.GroupId);
-
                 groups.Add(group);
-
             }
 
             foreach (var group in groups)
             {
-                var student = _repository.GetAllByFilter<Student>(x => x.GroupId == group.Id);
-
+                var student = _repository.GetAllByFilter<Student>(x => x.GroupId == group.Id);       
                 students.AddRange(student);
             }
 
@@ -49,15 +45,30 @@ namespace BusinessLogic.Implementations
                     LastName = student.LastName,
                     FirstName = student.FirstName,
                     Year = student.Group.Year,
-                    Group = student.Group.Name
-
+                    GroupId = student.GroupId              
                 };
 
                 studentDtos.Add(studentDto);
-
             }
-            return studentDtos;
 
+            return studentDtos;
+        }
+
+        public Student addStud(StudentDto studentDto)
+        {
+            var student = new Student
+            {
+                Id = Guid.NewGuid(),
+                GroupId = studentDto.GroupId,
+                FirstName = studentDto.FirstName,
+                LastName = studentDto.LastName,
+                PotentialUserId = studentDto.PotentialUserId
+            };
+
+            _repository.Insert(student);
+            _repository.Save();
+
+            return student;
         }
 
     }
