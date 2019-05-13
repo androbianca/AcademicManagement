@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using BusinessLogic.Abstractions;
-using Entities;
+﻿using BusinessLogic.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -21,12 +17,16 @@ namespace Service.Controllers
 
 
         [HttpPost]
-        public ActionResult<Professor> AddCourse([FromBody] ProfDto profDto)
+        public IActionResult AddProf([FromBody] ProfDto profDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            var course = _profLogic.addProf(profDto);
+            var prof = _profLogic.addProf(profDto);
 
-            return Ok(course);
+            return Ok(prof);
         }
 
     }

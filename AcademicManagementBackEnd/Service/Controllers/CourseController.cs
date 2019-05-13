@@ -45,7 +45,7 @@ namespace Service.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CourseDto> AddCourse([FromBody] CourseDto courseDto)
+        public IActionResult AddCourse([FromBody] CourseDto courseDto)
         {
 
             var course = _courseLogic.AddCourse(courseDto);

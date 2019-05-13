@@ -5,7 +5,7 @@ namespace DataAccess.Configurations.Entities
 {
     public abstract class BaseUserConfiguration : BaseEntityConfiguration
     {
-        public void Configure<T>(EntityTypeBuilder<T> builder)
+        public new void Configure<T>(EntityTypeBuilder<T> builder)
             where T : BaseUser
         {
 

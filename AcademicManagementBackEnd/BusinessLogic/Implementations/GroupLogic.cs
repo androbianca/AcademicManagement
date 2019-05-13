@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using BusinessLogic.Abstractions;
 using DataAccess.Abstractions;
 using Entities;
-using Microsoft.CodeAnalysis.CSharp;
 using Models;
 
 namespace BusinessLogic.Implementations

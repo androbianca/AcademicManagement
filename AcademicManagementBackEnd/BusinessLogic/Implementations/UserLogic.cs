@@ -14,9 +14,11 @@ namespace BusinessLogic.Implementations
         {
         }
 
-        public Account Authenticate(string code, string password)
+        public AccountDto Authenticate(string code, string password)
         {
             Account user = _repository.GetByFilter<Account>(x => x.UserCode == code);
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == user.UserCode);
+            var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId);
 
             if (user == null)
                 return null;
@@ -26,14 +28,17 @@ namespace BusinessLogic.Implementations
 
             if (!VerifyPasswordHash(password, passwordHash, passwordSalt))
                 return null;
-
-            return user;
+            var accountDto = new AccountDto
+            {
+                UserCode = user.UserCode,
+                Role = role.Name,
+            };
+            return accountDto;
         }
 
         public Account Create(UserDto userDto)
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userDto.UserCode);
-
             if (potentialUser == null)
             {
                 return null;

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Models;
 
 namespace BusinessLogic.Abstractions
 {
-   public interface IGroupLogic
+    public interface IGroupLogic
    {
        ICollection<GroupDto> getAll();
    }

@@ -66,7 +66,7 @@ namespace BusinessLogic.Implementations
             var courses = new List<Course>();
             var account = _repository.GetByFilter<Account>(x => x.UserCode == id);          
             var currentUser = _repository.GetByFilter<Professor>(x => x.PotentialUserId == account.PotentialUserId);
-            var profCourses = _repository.GetAllByFilter<ProfCourse>(x => x.ProfId == currentUser.Id);
+            var profCourses = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == currentUser.Id);
             foreach (var profCourse in profCourses)
             {
                 var course = _repository.GetByFilter<Course>(x => x.Id == profCourse.CourseId);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BusinessLogic.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -20,6 +19,7 @@ namespace Service.Controllers
         [HttpGet]
         public ActionResult<ICollection<GradeDto>> getAll()
         {
+
             var groups = _groupLogic.getAll();
 
             return Ok(groups);
