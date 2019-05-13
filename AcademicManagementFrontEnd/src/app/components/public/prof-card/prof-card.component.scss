@@ -1,0 +1,57 @@
+@import '../../../../styles/mixins.scss';
+
+.prof-card {
+  border: none;
+  margin: 40px;
+  box-shadow: none;
+  width: 216px;
+  height: 290px;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  text-align: center;
+  background-color: #FFF;
+  border-bottom: none;
+  box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
+  opacity: 1;
+  padding: 25px 15px;
+
+  &:hover {
+    box-shadow: 0 2px 8px 2px rgba(20, 23, 28, 0.15);
+  }
+
+  img {
+    border-radius: 50%;
+  }
+
+  .initials {
+    @include flex(none, center, center);
+    @include size(30%, 100%);
+
+    .profile-picture {
+      @include flex(none, center, center);
+      @include size(75px, 75px);
+      font-size: 2vh;
+      border-radius: 50%;
+      padding: 3px;
+      border: 3px solid rgba(255, 255, 255, 0.719);
+      background: rgb(196, 199, 218);
+      color: white;
+      margin: 0 auto 25px auto;
+    }
+  }
+
+  &_details {
+    display: flex;
+    align-items: center;
+    color: #29303B;
+    font-size: 13px;
+    padding: 0 20px 15px 20px;
+
+    .card__title {
+      font-weight: 600;
+      font-size: 15px;
+      height: 20px;
+    }
+  }
+}

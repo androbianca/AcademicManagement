@@ -10,17 +10,18 @@ import { GradeService } from 'src/app/services/grade-service.service';
   templateUrl: './add-grade.component.html',
   styleUrls: ['./add-grade.component.scss']
 })
-export class AddGradeComponent implements OnInit {
+export class AddGradeComponent {
 
   @Input() studentId : string;
   @Input() courseId : string;
 
-  newGrade:Grade;
-
   @Output() gradesListChanged : EventEmitter<any> = new EventEmitter();
   @HostBinding('class') classes = 'add-grade-card';
+
+  newGrade:Grade;
   user: UserDetails;
   grade = new Grade();
+
   gradesForm = new FormGroup({
     category: new FormControl('',Validators.required),
     value: new FormControl('',Validators.required)
@@ -31,8 +32,6 @@ export class AddGradeComponent implements OnInit {
     this.grade.profId = this.user.id;
   }
 
-  ngOnInit() {}
-
   save(gradesForm) {
     this.grade.courseId = this.courseId;
     this.grade.studentId = this.studentId;
@@ -41,9 +40,6 @@ export class AddGradeComponent implements OnInit {
 
     this.newGrade = Object.assign({}, this.grade);
     this.gradesListChanged.emit(this.newGrade);
-    console.log("success");
- 
 
   }
-
 }

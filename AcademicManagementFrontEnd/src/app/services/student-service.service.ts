@@ -10,7 +10,11 @@ export class StudentService {
     constructor(private baseService: BaseService) {  }
 
     public getStudentsByProf(id) {
-        return this.baseService.get<Student[]>(`courses/${id}`);
+        return this.baseService.get<Student[]>(`students/${id}`);
+    }
+
+    public addStudent(student) {
+        return this.baseService.post<Student>(`students`,student);
     }
 
 }

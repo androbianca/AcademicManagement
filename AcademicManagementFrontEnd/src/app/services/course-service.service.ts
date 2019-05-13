@@ -31,4 +31,8 @@ export class CourseService {
     public addCourse(course) {
         return this.baseService.post<CourseRead[]>('courses', course);
     }
+
+    public getOptionalCourses(){
+        return this.baseService.get<CourseRead[]>('courses/optionals');
+    }
 }

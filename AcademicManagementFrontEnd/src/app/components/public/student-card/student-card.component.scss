@@ -8,11 +8,10 @@
   border-radius: 12px;
   background-color: #ffffff;
 
-  img{
-      @include size(20px,20px);
-      margin:8px;
-      cursor: pointer;
-
+  img {
+    @include size(20px, 20px);
+    margin: 8px;
+    cursor: pointer;
   }
 
   .initials {
@@ -27,13 +26,13 @@
       padding: 3px;
       border: 3px solid rgba(255, 255, 255, 0.719);
       background: rgb(196, 199, 218);
-      color:white;
+      color: white;
     }
   }
 
   .name {
     @include flex(none, center, flex-start);
     @include size(100%, 70%);
-    color:rgb(58, 56, 56);
+    color: rgb(58, 56, 56);
   }
 }

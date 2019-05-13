@@ -103,6 +103,12 @@ namespace BusinessLogic.Implementations
             return mandatoryCourses;
         }
 
+        public ICollection<Course> getOptionalCourses()
+        {
+            var optionalCourses = _repository.GetAllByFilter<Course>(x => x.Package != null );
+            return optionalCourses;
+        }
+
         private ICollection<CourseDto> mapCourses(ICollection<Course> courses)
         {
             var courseDtos = new List<CourseDto>();

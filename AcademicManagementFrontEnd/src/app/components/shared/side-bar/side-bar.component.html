@@ -6,22 +6,22 @@
   </section>
 
   <ng-container *ngIf="user.userRole=='Student'">
+    <section class="menu__option"><a routerLink="/studcourses">Courses</a></section>
     <section class="menu__option"><a routerLink="/grades">Grades</a></section>
-    <section class="menu__option"><a routerLink="/courses">Courses</a></section>
-    <section class="menu__option">Professors</section>
+    <section class="menu__option"><a routerLink="/professors">Professors</a></section>
     <section class="menu__option">NewsFeed</section>
   </ng-container>
 
   <ng-container *ngIf="user.userRole=='Professor'">
-    <section class="menu__option"><a routerLink="/courses">Courses</a></section>
-    <section class="menu__option">Professors</section>
+    <section class="menu__option"><a routerLink="/profcourses">Courses</a></section>
+    <section class="menu__option"><a routerLink="/professors">Professors</a></section>
     <section class="menu__option">NewsFeed</section>
   </ng-container>
 
   <ng-container *ngIf="user.userRole=='Admin'">
     <section class="menu__option"><a routerLink="/manage/courses">Courses</a></section>
     <section class="menu__option"><a routerLink="/manage/professors">Professors</a></section>
-    <section class="menu__option">Students</section>
+    <section class="menu__option"><a routerLink="/manage/students">Students</a></section>
   </ng-container>
 </div>
 

@@ -6,6 +6,7 @@ namespace BusinessLogic.Abstractions
 {
     public interface ICourseLogic
     {
+        ICollection<Course> getOptionalCourses();
         ICollection<CourseDto> GetAll();
         Course AddCourse(CourseDto course);
         ICollection<CourseDto> GetStudCourses(string id);

@@ -8,14 +8,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   templateUrl: './grades-card.component.html',
   styleUrls: ['./grades-card.component.scss']
 })
-export class GradesCardComponent implements OnInit {
+export class GradesCardComponent {
 
   @Input() grades:Grade[];
   
-  constructor( ) { }
-
-  ngOnInit() {
-  }
-
-
 }

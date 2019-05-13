@@ -24,13 +24,13 @@ namespace Service.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] AccountDto user)
         {
-            var ceva = _userLogic.Authenticate(user.UserCode, user.Password);
+            var account = _userLogic.Authenticate(user.UserCode, user.Password);
             if (user == null)
             {
                 return BadRequest("Invalid client request");
             }
 
-            if (ceva == null)
+            if (account == null)
             {
                 return Unauthorized();
             }
@@ -50,7 +50,7 @@ namespace Service.Controllers
             );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(tokeOptions);
-            return Ok(new { Token = tokenString, Role = ceva.Role });
+            return Ok(new { Token = tokenString, Role = account.Role });
         }
 
         [HttpPost("register")]

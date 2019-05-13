@@ -31,9 +31,18 @@ export class LoginComponent implements OnInit {
     this.loginModel.password = form.value.password;
     this.authenticationService.authenticate(this.loginModel).subscribe(
       response => {
+        let role = (<any>response).role;
         let token = (<any>response).token;
         localStorage.setItem("jwt", token);
-        this.router.navigate(["/courses"]);
+        if(role == "Student"){
+          this.router.navigate(["/studcourses"]);
+        }
+        if(role == "Admin"){
+          this.router.navigate(["/manage/courses"]);
+        }
+        if(role == "Professor"){
+          this.router.navigate(["/profcourses"]);
+        }
       },
       err => {}
     );

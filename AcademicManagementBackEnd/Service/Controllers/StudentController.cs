@@ -8,7 +8,7 @@ using Models;
 
 namespace Service.Controllers
 {
-    [Route("api/courses")]
+    [Route("api/students")]
     [ApiController]
     public class StudentController : ControllerBase
     {
@@ -28,6 +28,15 @@ namespace Service.Controllers
 
             return Ok(students);
 
+        }
+
+        [HttpPost]
+        public ActionResult<StudentDto> AddStud([FromBody] StudentDto studentDto)
+        {
+
+            var student = _studentLogic.addStud(studentDto);
+
+            return Ok(student);
         }
 
         private string getCurrentUserId()

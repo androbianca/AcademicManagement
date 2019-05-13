@@ -6,39 +6,23 @@ import { CourseRead } from 'src/app/models/course-read';
 
 @Component({
   selector: 'app-courses',
-  templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.scss']
+  templateUrl: './student-courses.component.html',
+  styleUrls: ['./student-courses.component.scss']
 })
-export class CoursesComponent {
+export class StudentCoursesComponent {
   courses: CourseRead[];
   user: UserDetails;
   route: string;
   cardMessage: string;
   constructor(private courseService: CourseService, private currentUserDetailservice: CurrentUserDetailsService) {
     this.user = currentUserDetailservice.getUser();
-    this.cardMessage = this.user.userRole == 'Student' ? 'See more' : 'Add grades';
-    if (this.user.userRole == 'Student') {
+    this.cardMessage = 'See more';
       this.getAllCourses();
       this.route = 'courses/grades/'
-      return;
-    }
-    this.getProfCourses();
-    this.route = 'courses/';
   }
 
   getAllCourses() {
     this.courseService.getAll().subscribe((response: CourseRead[]) => {
-      this.courses = response.sort((n1, n2) => {
-        if (n1.name > n2.name) {
-          return 1;
-        }
-        else return -1;
-      })
-    });
-  }
-
-  getProfCourses() {
-    this.courseService.getProfCourses().subscribe((response: CourseRead[]) => {
       this.courses = response.sort((n1, n2) => {
         if (n1.name > n2.name) {
           return 1;
