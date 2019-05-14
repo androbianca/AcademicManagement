@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace Entities
+namespace Models
 {
-    public class Notification : BaseEntity
+    public class NotificationDto
     {
         public string Title { get; set; }
         public string Body { get; set; }
         public bool IsRead { get; set; } = false;
-        public Guid StudentId { get; set; }
-        public Student Student { get; set; }
-
+        public Guid UserId { get; set; }
     }
 }
