@@ -20,21 +20,37 @@ namespace Service.Controllers
         }
 
         [HttpGet("{courseId:guid}")]
-        public ActionResult<ICollection<StudentDto>> getStudents([FromRoute] Guid courseId)
+        public ActionResult<ICollection<StudentDto>> GetStudentsByProfId([FromRoute] Guid courseId)
         {
             var id = getCurrentUserId();
 
-            var students = _studentLogic.getByProfId(id,courseId);
+            var students = _studentLogic.GetByProfId(id,courseId);
 
             return Ok(students);
 
         }
 
+        [HttpGet]
+        public ActionResult<ICollection<StudentDto>> GetAll()
+        {
+            var students = _studentLogic.GetAll();
+
+            return Ok(students);
+        }
+
+        [HttpDelete("{studentId:guid}")]
+        public IActionResult Remove([FromRoute] Guid studentId)
+        {
+            var student = _studentLogic.Remove(studentId);
+
+            return Ok(student);
+        }
+
         [HttpPost]
-        public ActionResult<StudentDto> AddStud([FromBody] StudentDto studentDto)
+        public ActionResult<StudentDto> Add([FromBody] StudentDto studentDto)
         {
 
-            var student = _studentLogic.addStud(studentDto);
+            var student = _studentLogic.Add(studentDto);
 
             return Ok(student);
         }

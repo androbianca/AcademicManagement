@@ -10,7 +10,7 @@ using Models;
 
 namespace Service.Controllers
 {
-    [Route("api")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -65,7 +65,7 @@ namespace Service.Controllers
             return Ok(ModelState);
         }
 
-        [HttpGet("user/current")]
+        [HttpGet("current")]
         public IActionResult Get()
         {
             var headerValue = Request.Headers["Authorization"];

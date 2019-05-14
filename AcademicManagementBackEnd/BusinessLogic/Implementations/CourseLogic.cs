@@ -21,7 +21,7 @@ namespace BusinessLogic.Implementations
 
         }
 
-        public Course AddCourse(CourseDto courseDto)
+        public Course Add(CourseDto courseDto)
         {
             var course = new Course
             {
@@ -35,6 +35,17 @@ namespace BusinessLogic.Implementations
             _repository.Insert(course);
             _repository.Save();
             return course;
+        }
+
+        public Course Remove(Guid courseId)
+        {
+            var course = _repository.GetByFilter<Course>(x => x.Id == courseId);
+
+            _repository.Delete(course);
+            _repository.Save();
+
+            return course;
+
         }
 
         public ICollection<CourseDto> GetStudCourses(String id)

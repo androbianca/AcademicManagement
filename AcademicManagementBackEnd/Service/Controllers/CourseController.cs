@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using BusinessLogic.Abstractions;
@@ -19,7 +20,7 @@ namespace Service.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ICollection<CourseDto>> Get()
+        public ActionResult<ICollection<CourseDto>> GetAll()
         {
             var courses = _courseLogic.GetAll();
 
@@ -54,14 +55,29 @@ namespace Service.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCourse([FromBody] CourseDto courseDto)
+        public IActionResult Add([FromBody] CourseDto courseDto)
         {
 
-            var course = _courseLogic.AddCourse(courseDto);
+            var course = _courseLogic.Add(courseDto);
 
             return Ok(course);
         }
 
+        [HttpDelete("{courseId:guid}")]
+        public IActionResult Remove([FromRoute] Guid courseId)
+        {
+            var result = _courseLogic.Remove(courseId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+
+        }
+    
+  
         private string getCurrentUserId()
         {
             var headerValue = Request.Headers["Authorization"];

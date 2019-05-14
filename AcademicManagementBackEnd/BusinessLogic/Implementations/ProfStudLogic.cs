@@ -16,7 +16,7 @@ namespace BusinessLogic.Implementations
           : base(repository)
         { }
 
-        public IEnumerable<ProfStuds> AddProfStud(IEnumerable<ProfStudDto> profStudDtos)
+        public IEnumerable<ProfStuds> Add(IEnumerable<ProfStudDto> profStudDtos)
         {
             var profStuds = new List<ProfStuds>();
 

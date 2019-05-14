@@ -6,7 +6,7 @@ namespace BusinessLogic.Abstractions
 {
     public interface IProfStudLogic
     {
-        IEnumerable<ProfStuds> AddProfStud(IEnumerable<ProfStudDto> profStudDtos);
+        IEnumerable<ProfStuds> Add(IEnumerable<ProfStudDto> profStudDtos);
 
     }
 }

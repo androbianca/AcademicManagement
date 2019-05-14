@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Service.Controllers
 {
 
-    [Route("api/profStud")]
+    [Route("api/profstuds")]
     [ApiController]
     public class ProfStudController : ControllerBase
     {
@@ -19,14 +19,14 @@ namespace Service.Controllers
 
 
         [HttpPost]
-        public IActionResult AddProf([FromBody] IEnumerable<ProfStudDto> profStudDto)
+        public IActionResult Add([FromBody] IEnumerable<ProfStudDto> profStudDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var profStuds = _profStudLogic.AddProfStud(profStudDto);
+            var profStuds = _profStudLogic.Add(profStudDto);
 
             return Ok(profStuds);
         }

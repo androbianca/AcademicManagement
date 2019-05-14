@@ -11,7 +11,17 @@ namespace BusinessLogic.Implementations
           : base(repository)
         { }
 
-        public Guid AddPotentialUser(string userCode)
+        public PotentialUser Remove(Guid id)
+        {
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == id);
+
+            _repository.Delete(potentialUser);
+            _repository.Save();
+
+            return potentialUser;
+        }
+
+        public Guid Add(string userCode)
         {
             var role = _repository.GetByFilter<UserRole>(x => x.Name == "Professor");
             var potentialUser = new PotentialUser
@@ -26,5 +36,6 @@ namespace BusinessLogic.Implementations
 
             return potentialUser.Id;
         }
+
     }
 }

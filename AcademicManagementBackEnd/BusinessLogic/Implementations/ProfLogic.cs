@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BusinessLogic.Abstractions;
 using DataAccess.Abstractions;
 using Entities;
@@ -12,7 +13,38 @@ namespace BusinessLogic.Implementations
         {
         }
 
-        public Professor addProf(ProfDto profDto)
+        public ICollection<ProfDto> GetAll()
+        {
+            var profDtos = new List<ProfDto>();
+            var profs = _repository.GetAll<Professor>();
+
+            foreach(var prof in profs)
+            {
+                var profDto = new ProfDto
+                {
+                    FirstName = prof.FirstName,
+                    LastName = prof.LastName,
+                    PotentialUserId = prof.PotentialUserId,
+                    Id = prof.Id
+                };
+
+                profDtos.Add(profDto);
+            }
+
+            return profDtos;
+        }
+
+        public Professor Remove(Guid id)
+        {
+            var prof = _repository.GetByFilter<Professor>(x => x.Id == id);
+
+            _repository.Delete(prof);
+            _repository.Save();
+
+            return prof;
+        }
+
+        public Professor Add(ProfDto profDto)
         {        
             var prof = new Professor
             {

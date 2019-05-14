@@ -18,7 +18,7 @@ namespace BusinessLogic.Configurations
             services.AddTransient<IProfLogic, ProfLogic>();
             services.AddTransient<IPotentialUserLogic, PotentialUserLogic>();
             services.AddTransient<IProfStudLogic, ProfStudLogic>();
-
+            services.AddTransient<IStudCourseLogic, StudCourseLogic>();
         }
     }
 }

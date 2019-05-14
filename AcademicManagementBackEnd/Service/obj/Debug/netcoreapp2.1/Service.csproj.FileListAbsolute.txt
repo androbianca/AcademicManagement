@@ -80,11 +80,11 @@ C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Servic
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\bin\Debug\netcoreapp2.1\Entities.pdb
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.csprojAssemblyReference.cache
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.csproj.CoreCompileInputs.cache
-C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.RazorAssemblyInfo.cache
-C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.RazorAssemblyInfo.cs
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.AssemblyInfoInputs.cache
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.AssemblyInfo.cs
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.RazorTargetAssemblyInfo.cache
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.csproj.CopyComplete
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.dll
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.pdb
+C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.RazorAssemblyInfo.cache
+C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Service\obj\Debug\netcoreapp2.1\Service.RazorAssemblyInfo.cs
