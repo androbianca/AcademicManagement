@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { UserDetails } from '../models/userDetails';
 import { Subject } from 'rxjs';
 
-const currentEmployeeUrl = 'user/current';
+const currentEmployeeUrl = 'users/current';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,6 @@ export class CurrentUserDetailsService {
   private user$ = new Subject<any>();
   public isSet:boolean;
   constructor(private service: BaseService) { 
-   
   }
   
   setCurrentUser(user) {

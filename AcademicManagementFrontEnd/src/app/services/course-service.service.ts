@@ -35,4 +35,9 @@ export class CourseService {
     public getOptionalCourses(){
         return this.baseService.get<CourseRead[]>('courses/optionals');
     }
+
+    public removeCourse(courseId:string){
+        return this.baseService.delete(`courses/${courseId}`);
+     }
+  
 }

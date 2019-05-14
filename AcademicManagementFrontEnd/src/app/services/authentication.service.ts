@@ -14,11 +14,11 @@ export class AuthenticationService {
      }
 
     public authenticate(data: Login): Observable<Login> {
-        return this.baseService.post2( 'login', data );
+        return this.baseService.post2( 'users/login', data );
     }
 
     public register(data: User): Observable<User> {
-        return this.baseService.post2( 'register', data );
+        return this.baseService.post2( 'users/register', data );
     }
 
 
