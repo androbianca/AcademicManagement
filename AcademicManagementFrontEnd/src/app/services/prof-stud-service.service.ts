@@ -11,7 +11,7 @@ export class ProfStudService {
     constructor(private baseService: BaseService) {}
 
      public addProfStuds (profStud:ProfStud[]){
-        return this.baseService.post<ProfStud[]>('profStud', profStud);
+        return this.baseService.post<ProfStud[]>('profstuds', profStud);
      }
 
 }

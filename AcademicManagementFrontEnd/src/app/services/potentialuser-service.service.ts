@@ -10,7 +10,11 @@ export class PotentialUserService {
     constructor(private baseService: BaseService) {}
 
      public addPotentialUser (userCode){
-        return this.baseService.post<string>('potentialUser',userCode);
+        return this.baseService.post<string>('potentialusers',userCode);
+     }
+
+     public remove (potentialUserId: string){
+        return this.baseService.delete(`potentialusers/${potentialUserId}`);
      }
 
 }

@@ -1,0 +1,7 @@
+<form class="form" [formGroup]="addGroupForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" placeholder="Name">
+  <label>Year</label>
+  <input type="text" formControlName="year" placeholder="Yaer">
+  <button (click)="submit(addGroupForm)">Submit</button>
+</form>

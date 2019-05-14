@@ -1,5 +1,4 @@
-export class Group {
-    id:string;
+export class GroupWrite {
     name: string;
     year: number;
 }

@@ -3,12 +3,12 @@ import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { CourseService } from 'src/app/services/course-service.service';
 import { CourseRead } from 'src/app/models/course-read';
 import { GroupService } from 'src/app/services/group-service.service';
-import { Group } from 'src/app/models/group';
 import { Professor } from 'src/app/models/professor';
 import { ProfService } from 'src/app/services/prof-service.service';
 import { PotentialUserService } from 'src/app/services/potentialuser-service.service';
 import { ProfStudService } from 'src/app/services/prof-stud-service.service';
 import { ProfStud } from 'src/app/models/prof-studs';
+import { GroupRead } from 'src/app/models/groupRead';
 
 @Component({
   selector: 'app-add-prof',
@@ -20,8 +20,8 @@ export class AddProfComponent implements OnInit {
   profId: any;
   profStud = new ProfStud();
   courses: CourseRead[];
-  groups: Group[];
-  allgroups: Group[];
+  groups: GroupRead[];
+  allgroups: GroupRead[];
   prof = new Professor();
   count = 1;
   forms = [{ course: 'course1', group: 'group1' }];
