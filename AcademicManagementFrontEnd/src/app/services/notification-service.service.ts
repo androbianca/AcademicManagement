@@ -1,0 +1,22 @@
+import { BaseService } from './base-service.service';
+import { Injectable } from '@angular/core';
+import { Group } from '../models/group';
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class NotificationService {
+
+    constructor(private baseService: BaseService) {}
+
+     public add(notification){
+        return this.baseService.post<Notification>('notifications',notification);
+     }
+
+     public get(){
+        return this.baseService.get<Notification[]>(`notifications`);
+     }
+
+}
+ 

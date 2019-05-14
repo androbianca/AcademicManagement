@@ -6,22 +6,20 @@ import { UserDetails } from './models/userDetails';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { Notification } from 'rxjs';
 import { Notif } from './models/notification';
+import { NotificationService } from './services/notification-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-
-  private _hubConnection: HubConnection;
-  msgs: Notif[] = [];
+export class AppComponent  {
   
   title = 'AcademicManagementFrontEnd';
   home = false;
   route: string;
   user:UserDetails;
-  constructor(private router: Router, private currentUserDetailsService:CurrentUserDetailsService) {
+  constructor(private router: Router, private currentUserDetailsService:CurrentUserDetailsService, private notififactionService:NotificationService) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -31,21 +29,7 @@ export class AppComponent implements OnInit {
     this.currentUserDetailsService.getUserObservable().subscribe(result => {
       this.user = result;
    });
+   this.notififactionService.get().subscribe(result => console.log(result));
   }
  
-  ngOnInit(): void {
-    this._hubConnection = new HubConnectionBuilder()
-            .withUrl('https://localhost:44304/api/notifications')
-            .build();
-
-    this._hubConnection
-      .start()
-      .then(() => console.log('Connection started!'))
-      .catch(err => console.log('Error while establishing connection :('));
-
-    this._hubConnection.on('BroadcastMessage', (title: string, body: string) => {
-      this.msgs.push({'title':title, 'body':body});
-    });
-  }
-
 }

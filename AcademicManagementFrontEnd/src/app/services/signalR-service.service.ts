@@ -1,10 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';  
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';  
-import { ChatMessage } from '../Models/chatmessage.model';  
   
 @Injectable()  
 export class SignalRService {  
-  messageReceived = new EventEmitter<ChatMessage>();  
   connectionEstablished = new EventEmitter<Boolean>();  
   
   private connectionIsEstablished = false;  
@@ -16,17 +14,13 @@ export class SignalRService {
     this.startConnection();  
   }  
   
-  sendChatMessage(message: ChatMessage) {  
-    this._hubConnection.invoke('SendMessage', message);  
-  }  
-  
   private createConnection() {  
     this._hubConnection = new HubConnectionBuilder()  
-      .withUrl(window.location.href+'chathub')  
+      .withUrl('/notify') 
       .build();  
   }  
   
-  private startConnection(): void {  
+  private startConnection(): any {  
     this._hubConnection  
       .start()  
       .then(() => {  
@@ -42,7 +36,7 @@ export class SignalRService {
   
   private registerOnServerEvents(): void {  
     this._hubConnection.on('ReceiveMessage', (data: any) => {  
-      this.messageReceived.emit(data);  
+     console.log(data) 
     });  
   }  
 }  

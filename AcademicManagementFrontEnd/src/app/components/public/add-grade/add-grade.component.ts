@@ -5,13 +5,15 @@ import { UserDetails } from 'src/app/models/userDetails';
 import { Grade } from 'src/app/models/grade';
 import { GradeService } from 'src/app/services/grade-service.service';
 import { SignalRService } from 'src/app/services/signalR-service.service';
+import { NotificationService } from 'src/app/services/notification-service.service';
+import { Notif } from 'src/app/models/notification';
 
 @Component({
   selector: 'app-add-grade',
   templateUrl: './add-grade.component.html',
   styleUrls: ['./add-grade.component.scss']
 })
-export class AddGradeComponent implements OnInit{
+export class AddGradeComponent{
 
   @Input() studentId : string;
   @Input() courseId : string;
@@ -19,6 +21,7 @@ export class AddGradeComponent implements OnInit{
   @Output() gradesListChanged : EventEmitter<any> = new EventEmitter();
   @HostBinding('class') classes = 'add-grade-card';
 
+  notification = new Notif();
   newGrade:Grade;
   user: UserDetails;
   grade = new Grade();
@@ -28,9 +31,18 @@ export class AddGradeComponent implements OnInit{
     value: new FormControl('',Validators.required)
   });
 
-  constructor(private currentUser: CurrentUserDetailsService, private gradeService :GradeService, private signalRService:SignalRService) {
+  constructor(private currentUser: CurrentUserDetailsService, 
+    private gradeService :GradeService, 
+    private notificationService:NotificationService) {
     this.user = this.currentUser.getUser();
     this.grade.profId = this.user.id;
+  }
+
+  addNotification(){
+    this.notification.title = "aa";
+    this.notification.body = "bb";
+    this.notification.userId = this.studentId;
+    this.notificationService.add(this.notification).subscribe(response=>console.log(response))
   }
 
   save(gradesForm) {
@@ -41,18 +53,7 @@ export class AddGradeComponent implements OnInit{
 
     this.newGrade = Object.assign({}, this.grade);
     this.gradesListChanged.emit(this.newGrade);
+    this.addNotification();
   }
 
-  ngOnInit(): void {
-    this.signalRService.startConnection();
-    this.signalRService.addTransferChartDataListener();   
-    this.startHttpRequest();
-  }
-
-  private startHttpRequest = () => {
-    this.signalRService.get()
-      .subscribe(res => {
-        console.log(res);
-      })
-  }
 }
