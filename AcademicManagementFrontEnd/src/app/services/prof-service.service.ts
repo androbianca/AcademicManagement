@@ -22,4 +22,8 @@ export class ProfService {
       return this.baseService.delete(`profs/${profId}`);
    }
 
+   public getByCourseId(courseId: string) {
+      return this.baseService.get<Professor[]>(`profs/${courseId}`);
+   }
+
 }

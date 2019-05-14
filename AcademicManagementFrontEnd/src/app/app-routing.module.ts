@@ -12,6 +12,8 @@ import { ProfCoursesComponent } from './pages/prof-courses/prof-courses.componen
 import { StudentCoursesComponent } from './pages/student-courses/student-courses.component';
 import { ManageStudComponent } from './pages/manage-studs/manage-stud.component';
 import { ManageGroupsComponent } from './pages/manage-groups/manage-groups.component';
+import { CourseProfileComponent } from './pages/course-profile/course-profile.component';
+import { ProfProfileComponent } from './pages/prof-profile/prof-profile.component';
 
 const routes: Routes = [
   {
@@ -46,6 +48,7 @@ const routes: Routes = [
   {
     path: 'professors',
     component: ProfessorsComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'manage/courses',
@@ -65,6 +68,16 @@ const routes: Routes = [
   {
     path: 'manage/groups',
     component: ManageGroupsComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'studcourses/course/:courseId',
+    component: CourseProfileComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'professors/:profId',
+    component: ProfProfileComponent,
     canActivate: [UserGuard]
   },
 

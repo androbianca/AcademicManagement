@@ -24,8 +24,8 @@ export class CourseService {
         return this.baseService.get<CourseRead[]>(`courses/current/stud`);
     }
 
-    public getProfCourses() {
-        return this.baseService.get<CourseRead[]>(`courses/current/prof`);
+    public getProfCourses(profId) {
+        return this.baseService.get<CourseRead[]>(`courses/${profId}`);
     }
 
     public addCourse(course) {

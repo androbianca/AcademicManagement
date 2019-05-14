@@ -35,6 +35,9 @@ import { RemoveStudentComponent } from '../components/public/management/student/
 import { RemoveGroupComponent } from '../components/public/management/group/remove-group/remove-group.component';
 import { AddProfCoursesComponent } from '../components/public/management/professor/add-prof-courses/add-prof-courses.component';
 import { AddOptionalCoursesComponent } from '../components/public/management/student/add-optional-courses/add-optional-courses.component';
+import { CourseProfileComponent } from './course-profile/course-profile.component';
+import { ProfProfileComponent } from './prof-profile/prof-profile.component';
+import { DisplayFeedbackComponent } from '../components/public/display-feedback/display-feedback.component';
 
 
 
@@ -75,7 +78,10 @@ import { AddOptionalCoursesComponent } from '../components/public/management/stu
     RemoveStudentComponent,
     RemoveGroupComponent,
     AddProfCoursesComponent,
-    AddOptionalCoursesComponent
+    AddOptionalCoursesComponent,
+    CourseProfileComponent,
+    ProfProfileComponent,
+    DisplayFeedbackComponent
   ],
   entryComponents: [AddGradeModalContentComponent],
   exports: [
@@ -109,8 +115,8 @@ import { AddOptionalCoursesComponent } from '../components/public/management/stu
     RemoveStudentComponent,
     RemoveGroupComponent,
     AddProfCoursesComponent,
-    AddOptionalCoursesComponent
-
+    AddOptionalCoursesComponent,
+    DisplayFeedbackComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
