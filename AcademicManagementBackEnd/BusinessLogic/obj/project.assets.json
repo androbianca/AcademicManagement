@@ -2,6 +2,9 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "Microsoft.AspNet.SignalR/2.4.1": {
+        "type": "package"
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4396,6 +4399,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Entities": "1.0.0",
+          "Microsoft.AspNet.SignalR": "2.4.1",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Swashbuckle.AspNetCore": "4.0.1"
         },
@@ -4410,6 +4414,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "Microsoft.AspNet.SignalR": "2.4.1",
           "Microsoft.AspNetCore.App": "2.1.1"
         },
         "compile": {
@@ -4424,6 +4429,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Entities": "1.0.0",
+          "Microsoft.AspNet.SignalR": "2.4.1",
           "Swashbuckle.AspNetCore.SwaggerUI": "4.0.1"
         },
         "compile": {
@@ -4436,6 +4442,16 @@
     }
   },
   "libraries": {
+    "Microsoft.AspNet.SignalR/2.4.1": {
+      "sha512": "KM+JSAg1w4YGoi4xxjw5KxrhbgRoGY6tTICMnxHpSaC0L2i3nBlD6mEm6OROvXFQi3hiyn48HfDfkJJrC0nrQA==",
+      "type": "package",
+      "path": "microsoft.aspnet.signalr/2.4.1",
+      "files": [
+        ".signature.p7s",
+        "microsoft.aspnet.signalr.2.4.1.nupkg.sha512",
+        "microsoft.aspnet.signalr.nuspec"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "91JMnE9zdIDphG00qgRvl8ZwKEjqAbNlJdfXUoMiIWPfpYyH7fyCsTSj6/aynRdw/Qr/K70xC7QC6MOJ1vFBJQ==",
       "type": "package",
@@ -11971,6 +11987,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "DataAccess >= 1.0.0",
+      "Microsoft.AspNet.SignalR >= 2.4.1",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "Models >= 1.0.0"
@@ -12024,6 +12041,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "Microsoft.AspNet.SignalR": {
+            "target": "Package",
+            "version": "[2.4.1, )"
+          },
           "Microsoft.AspNetCore.App": {
             "target": "Package",
             "version": "[2.1.1, )"

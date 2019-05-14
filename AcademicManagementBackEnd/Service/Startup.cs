@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using BusinessLogic.Configurations;
+using BusinessLogic.HubConfig;
 using Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -73,6 +74,8 @@ namespace Service
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddBusinessLogic(Configuration.GetConnectionString("AcademicManagement"));
+            services.AddSignalR();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -96,6 +99,10 @@ namespace Service
             });
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<SignalServer>("/notify");
+            });
         }
     }
 }

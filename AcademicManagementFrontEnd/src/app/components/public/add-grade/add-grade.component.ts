@@ -4,13 +4,14 @@ import { CurrentUserDetailsService } from 'src/app/services/current-user-details
 import { UserDetails } from 'src/app/models/userDetails';
 import { Grade } from 'src/app/models/grade';
 import { GradeService } from 'src/app/services/grade-service.service';
+import { SignalRService } from 'src/app/services/signalR-service.service';
 
 @Component({
   selector: 'app-add-grade',
   templateUrl: './add-grade.component.html',
   styleUrls: ['./add-grade.component.scss']
 })
-export class AddGradeComponent {
+export class AddGradeComponent implements OnInit{
 
   @Input() studentId : string;
   @Input() courseId : string;
@@ -27,7 +28,7 @@ export class AddGradeComponent {
     value: new FormControl('',Validators.required)
   });
 
-  constructor(private currentUser: CurrentUserDetailsService, private gradeService :GradeService) {
+  constructor(private currentUser: CurrentUserDetailsService, private gradeService :GradeService, private signalRService:SignalRService) {
     this.user = this.currentUser.getUser();
     this.grade.profId = this.user.id;
   }
@@ -40,6 +41,18 @@ export class AddGradeComponent {
 
     this.newGrade = Object.assign({}, this.grade);
     this.gradesListChanged.emit(this.newGrade);
+  }
 
+  ngOnInit(): void {
+    this.signalRService.startConnection();
+    this.signalRService.addTransferChartDataListener();   
+    this.startHttpRequest();
+  }
+
+  private startHttpRequest = () => {
+    this.signalRService.get()
+      .subscribe(res => {
+        console.log(res);
+      })
   }
 }

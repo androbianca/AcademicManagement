@@ -16,5 +16,6 @@ namespace Entities
         public IEnumerable<StudCourse> Courses { get; set; }
 
         public IEnumerable<Grade> Grades { get; set; }
+        public List<NotificationApplicationUser> NotificationApplicationUsers { get; set; }
     }
 }
