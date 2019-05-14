@@ -59,5 +59,29 @@ namespace BusinessLogic.Implementations
 
             return prof;
         }
+
+       public ICollection<ProfDto> GetByCourseId(Guid courseId)
+        {
+            var profDtos = new List<ProfDto>();
+            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.CourseId == courseId);
+
+            foreach(var profStud in profStuds)
+            {
+                var prof = _repository.GetByFilter<Professor>(x => x.Id == profStud.ProfId);
+
+                var profDto = new ProfDto
+                {
+                    FirstName = prof.FirstName,
+                    LastName = prof.LastName,
+                    Id = prof.Id
+                };
+
+                profDtos.Add(profDto);
+
+            }
+            return profDtos;
+
+        }
+
     }
 }

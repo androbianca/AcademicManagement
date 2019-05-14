@@ -45,11 +45,10 @@ namespace Service.Controllers
             return Ok(courses);
         }
 
-        [HttpGet("current/prof")]
-        public ActionResult<ICollection<CourseDto>> GetProfCourses()
+        [HttpGet("{profId:guid}")]
+        public ActionResult<ICollection<CourseDto>> GetProfCourses([FromRoute] Guid profId)
         {
-            var id = getCurrentUserId();
-            var courses = _courseLogic.GetProfCourses(id);
+            var courses = _courseLogic.GetProfCourses(profId);
 
             return Ok(courses);
         }

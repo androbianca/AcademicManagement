@@ -11,7 +11,7 @@ namespace BusinessLogic.Abstractions
         ICollection<CourseDto> GetAll();
         Course Add(CourseDto course);
         ICollection<CourseDto> GetStudCourses(string id);
-        ICollection<CourseDto> GetProfCourses(string id);
+        ICollection<CourseDto> GetProfCourses(Guid id);
         Course Remove(Guid courseId);
 
     }

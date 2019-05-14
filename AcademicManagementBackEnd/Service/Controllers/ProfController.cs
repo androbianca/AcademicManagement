@@ -52,5 +52,18 @@ namespace Service.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{courseId:guid}")]
+        public ActionResult<ICollection<ProfDto>> GetByCourseId([FromRoute] Guid courseId)
+        {
+            var result = _profLogic.GetByCourseId(courseId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
     }
 }

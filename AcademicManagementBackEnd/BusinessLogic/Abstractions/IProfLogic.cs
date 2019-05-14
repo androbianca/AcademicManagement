@@ -10,5 +10,6 @@ namespace BusinessLogic.Abstractions
         Professor Add(ProfDto prof);
         Professor Remove(Guid id);
         ICollection<ProfDto> GetAll();
-        }
+        ICollection<ProfDto> GetByCourseId(Guid CourseId);
+    }
 }
