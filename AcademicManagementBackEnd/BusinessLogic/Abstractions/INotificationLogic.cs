@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Entities;
+using Models;
 
 namespace BusinessLogic.Abstractions
 {
     public interface INotificationLogic
     {
-        List<NotificationApplicationUser> GetUserNotifications(string userId);
-        void Create(Notification notification, int petId);
-        void ReadNotification(int notificationId, string userId);
+        List<Notification> GetUserNotifications(string userId);
+        Notification Create(NotificationDto notificationDto);
+        void ReadNotification(Guid notificationId);
     }
 }
