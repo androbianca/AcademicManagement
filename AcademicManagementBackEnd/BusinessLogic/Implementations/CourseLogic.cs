@@ -25,7 +25,7 @@ namespace BusinessLogic.Implementations
         {
             var course = new Course
             {
-                Id= Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Name = courseDto.Name,
                 Package = courseDto.Package,
                 Year = courseDto.Year,
@@ -65,7 +65,7 @@ namespace BusinessLogic.Implementations
             }
 
             var mandatoryCourses = getMandatoryCourses(group.Year);
-          
+
             userCourses.AddRange(mandatoryCourses);
             userCourses.AddRange(optionalCourses);
 
@@ -82,7 +82,7 @@ namespace BusinessLogic.Implementations
                 var course = _repository.GetByFilter<Course>(x => x.Id == profCourse.CourseId);
                 courses.Add(course);
             }
-    
+
             return mapCourses(courses);
         }
 
@@ -115,7 +115,7 @@ namespace BusinessLogic.Implementations
 
         public ICollection<Course> getOptionalCourses()
         {
-            var optionalCourses = _repository.GetAllByFilter<Course>(x => x.Package != null );
+            var optionalCourses = _repository.GetAllByFilter<Course>(x => x.Package != null);
             return optionalCourses;
         }
 

@@ -4,18 +4,20 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190514214108_Notifications")]
+    partial class Notifications
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -128,19 +130,17 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("AccountId");
-
                     b.Property<string>("Body");
 
                     b.Property<bool>("IsRead");
 
-                    b.Property<string>("Title");
+                    b.Property<Guid>("StudentId");
 
-                    b.Property<Guid>("UserId");
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("Notifications");
                 });
@@ -150,15 +150,15 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("AccountId");
-
                     b.Property<Guid>("NotificationId");
+
+                    b.Property<Guid?>("StudentId");
 
                     b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("StudentId");
 
                     b.ToTable("NotificationUser");
                 });
@@ -344,16 +344,17 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Entities.Notification", b =>
                 {
-                    b.HasOne("Entities.Account", "Account")
+                    b.HasOne("Entities.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Entities.NotificationUser", b =>
                 {
-                    b.HasOne("Entities.Account")
+                    b.HasOne("Entities.Student")
                         .WithMany("Notifications")
-                        .HasForeignKey("AccountId");
+                        .HasForeignKey("StudentId");
                 });
 
             modelBuilder.Entity("Entities.ProfCourse", b =>
