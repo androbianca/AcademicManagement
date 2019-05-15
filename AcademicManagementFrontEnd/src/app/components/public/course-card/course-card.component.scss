@@ -6,6 +6,11 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   border-radius: 6px;
   background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 0 3px 8px rgba(126, 122, 122, 0.15);
+  }
 
 
 .no-picture-background {

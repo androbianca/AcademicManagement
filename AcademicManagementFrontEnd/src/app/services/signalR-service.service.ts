@@ -10,6 +10,7 @@ export class SignalRService {
   
   private connectionIsEstablished = false;  
   private _hubConnection: HubConnection;  
+  notifications : Notification[];
   
   constructor(private notificatonSrvice:NotificationService) {  
     this.createConnection();  
@@ -40,7 +41,10 @@ export class SignalRService {
   
   public registerOnServerEvents(): void {  
     this._hubConnection.on('ceva', () => {  
-    this.notificatonSrvice.get().subscribe(x=>console.log(x));   
+    this.notificatonSrvice.get().subscribe(x=>{
+      console.log(x);
+      this.notifications = x;
+    });   
    });  
   }  
 }  

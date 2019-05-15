@@ -13,6 +13,7 @@ export class SideBarComponent implements OnInit {
   user: UserDetails;
   fullName: string;
   initials: string;
+  route: string;
 
   constructor(
     private currentUserDetailsService: CurrentUserDetailsService
@@ -28,6 +29,7 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route = `professors/${this.user.id}`;
   }
 }
 

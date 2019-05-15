@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import {CdkConnectedOverlay, Overlay, ScrollStrategy, CdkOverlayOrigin} from '@angular/cdk/overlay';
+import { SignalRService } from 'src/app/services/signalR-service.service';
 
 @Component({
   selector: "app-top-bar",
@@ -6,7 +8,22 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./top-bar.component.scss"]
 })
 export class TopBarComponent implements OnInit {
-  constructor() {}
+
+  panelOpen = false;
+
+  constructor(protected overlay: Overlay){}
 
   ngOnInit() {}
+
+  toggle(){
+    this.panelOpen ? this.close() : this.open();
+  }
+
+  close(){
+    this.panelOpen= false;
+  }
+
+  open(){
+    this.panelOpen= true;
+  }
 }

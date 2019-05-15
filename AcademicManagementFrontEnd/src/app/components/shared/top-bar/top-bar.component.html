@@ -1,3 +1,15 @@
 <section class="top__bar">
-  <img src="../../../../assets/images/notification1.png">
+  <div  #origin="cdkOverlayOrigin" cdkOverlayOrigin
+  (click)="toggle()">
+    <img src="../../../../assets/images/notification1.png">
+  </div>
 </section>
+
+<ng-template cdkConnectedOverlay
+[cdkConnectedOverlayOrigin]="origin"
+[cdkConnectedOverlayOpen]="panelOpen"
+cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+cdkConnectedOverlayHasBackdrop
+(backdropClick)="close()" >
+    <app-notification-panel></app-notification-panel>
+</ng-template>

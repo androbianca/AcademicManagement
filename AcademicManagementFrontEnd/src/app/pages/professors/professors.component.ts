@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { ProfService } from 'src/app/services/prof-service.service';
 import { Professor } from 'src/app/models/professor';
 
@@ -9,6 +9,7 @@ import { Professor } from 'src/app/models/professor';
 })
 export class ProfessorsComponent implements OnInit {
 
+  @HostBinding('class') classes = "container";
   profs : Professor[];
 
   constructor(private profService:ProfService) { }

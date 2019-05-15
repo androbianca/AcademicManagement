@@ -38,6 +38,9 @@ import { AddOptionalCoursesComponent } from '../components/public/management/stu
 import { CourseProfileComponent } from './course-profile/course-profile.component';
 import { ProfProfileComponent } from './prof-profile/prof-profile.component';
 import { DisplayFeedbackComponent } from '../components/public/display-feedback/display-feedback.component';
+import { NotificationPanelComponent } from '../components/public/notification-panel/notification-panel.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { NotificationCardComponent } from '../components/public/notification-card/notification-card.component';
 
 
 
@@ -81,7 +84,9 @@ import { DisplayFeedbackComponent } from '../components/public/display-feedback/
     AddOptionalCoursesComponent,
     CourseProfileComponent,
     ProfProfileComponent,
-    DisplayFeedbackComponent
+    DisplayFeedbackComponent,
+    NotificationPanelComponent,
+    NotificationCardComponent
   ],
   entryComponents: [AddGradeModalContentComponent],
   exports: [
@@ -116,7 +121,10 @@ import { DisplayFeedbackComponent } from '../components/public/display-feedback/
     RemoveGroupComponent,
     AddProfCoursesComponent,
     AddOptionalCoursesComponent,
-    DisplayFeedbackComponent
+    DisplayFeedbackComponent,
+    NotificationPanelComponent,
+    NotificationCardComponent
+
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
