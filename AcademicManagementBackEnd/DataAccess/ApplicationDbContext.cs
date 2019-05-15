@@ -26,15 +26,16 @@ namespace DataAccess
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<NotificationUser> NotificationUser { get; set; }
+        public DbSet<Feedback> Feedback {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-                      
+
             modelBuilder.ApplyConfiguration(new PotentialUserConfiguration());
             modelBuilder.ApplyConfiguration(new StudentConfiguration());
             modelBuilder.ApplyConfiguration(new ProfessorConfiguration());
             modelBuilder.ApplyConfiguration(new CourseConfiguration());
-            modelBuilder.ApplyConfiguration(new StudCourseConfiguration());        
+            modelBuilder.ApplyConfiguration(new StudCourseConfiguration());
             modelBuilder.ApplyConfiguration(new GroupConfiguraton());
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new ProfRoleConfiguration());

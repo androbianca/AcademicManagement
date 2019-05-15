@@ -10,5 +10,10 @@ namespace Entities
         public PotentialUser PotentialUser { get; set; }
 
         public IEnumerable<Grade> Grades { get; set; }
+
+        public IEnumerable<Feedback> Feedback { get; set; }
+
+
+
     }
 }
