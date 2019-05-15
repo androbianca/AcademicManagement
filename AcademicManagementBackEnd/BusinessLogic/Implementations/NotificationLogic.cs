@@ -19,8 +19,7 @@ namespace BusinessLogic.Implementations
 
         public Notification Create(NotificationDto notificationDto)
         {
-           // var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == id);
-           // var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == potentialUser.Id);
+            var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.UserId);
 
             var notification = new Notification
             {
@@ -28,7 +27,7 @@ namespace BusinessLogic.Implementations
                 Title = notificationDto.Title,
                 IsRead = notificationDto.IsRead,
                 Id = Guid.NewGuid(),
-                UserId = notificationDto.UserId
+                UserId = account.Id
             };
 
             _repository.Insert(notification);

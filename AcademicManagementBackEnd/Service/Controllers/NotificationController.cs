@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Service.Controllers
 {
 
-    [Route("api/notifications")]
+    [Route("api/notify")]
     [ApiController]
     public class NotificationController: ControllerBase
     {

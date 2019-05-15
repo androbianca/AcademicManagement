@@ -85,13 +85,13 @@ namespace BusinessLogic.Implementations
         {
             var prof = _repository.GetByFilter<Professor>(x => x.Id == gradeDto.ProfId);
             var course = _repository.GetByFilter<Course>(x => x.Id == gradeDto.CourseId);
-
+            var stud = _repository.GetByFilter<Student>(x => x.Id == gradeDto.StudentId);
             var notification = new NotificationDto
             {
                 Title = "New grade",
                 Body = prof.FirstName + " added a new grade for " + course.Name,
                 IsRead = false,
-                UserId = gradeDto.StudentId
+                UserId = stud.PotentialUserId
             };
 
             return notification;
