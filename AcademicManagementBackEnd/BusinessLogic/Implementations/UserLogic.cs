@@ -1,17 +1,22 @@
 ﻿using System;
 using BusinessLogic.Abstractions;
+using BusinessLogic.HubConfig;
 using DataAccess.Abstractions;
 using Entities;
+using Microsoft.AspNetCore.SignalR;
 using Models;
 
 namespace BusinessLogic.Implementations
 {
     public class UserLogic : BaseLogic, IUserLogic
     {
-
-        public UserLogic(IRepository repository)
+        private IHubContext<SignalServer> _hubContext;
+        private INotificationLogic _notificationLogic;
+        public UserLogic(IRepository repository, INotificationLogic notificationLogic, IHubContext<SignalServer> hubContext)
             : base(repository)
         {
+            _notificationLogic = notificationLogic;
+            _hubContext = hubContext;
         }
 
         public AccountDto Authenticate(string code, string password)
@@ -141,6 +146,9 @@ namespace BusinessLogic.Implementations
                 UserRole = role.Name
 
             };
+
+            _hubContext.Clients.All.SendAsync("ceva", "");
+
 
             return userDetails;
 
