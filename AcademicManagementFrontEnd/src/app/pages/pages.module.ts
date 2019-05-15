@@ -18,15 +18,27 @@ import { AddGradeModalContentComponent } from '../components/public/add-grade-mo
 import { ProfessorsComponent } from './professors/professors.component';
 import { ProfCardComponent } from '../components/public/prof-card/prof-card.component';
 import { ManageCoursesComponent } from './manage-courses/manage-courses.component';
-import { AddCoursesComponent } from '../components/public/add-courses/add-courses.component';
+import { AddCoursesComponent } from '../components/public/management/course/add-courses/add-courses.component';
 import { ManageProfessorsComponent } from './manage-professors/manage-professors.component';
-import { AddProfComponent } from '../components/public/add-prof/add-prof.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { ProfCoursesComponent } from './prof-courses/prof-courses.component';
 import { StudentCoursesComponent } from './student-courses/student-courses.component';
-import { ManageStudComponent } from './manage-stud/manage-stud.component';
-import { AddStudComponent } from '../components/public/add-stud/add-stud.component';
+import { AddStudComponent } from '../components/public/management/student/add-stud/add-stud.component';
+import { ManageGroupsComponent } from './manage-groups/manage-groups.component';
+import { AddGroupComponent } from '../components/public/management/group/add-group/add-group.component';
+import { ManageStudComponent } from './manage-studs/manage-stud.component';
+import { AddProfComponent } from '../components/public/management/professor/add-prof/add-prof.component';
+import { RemoveCourseComponent } from '../components/public/management/course/remove-course/remove-course.component';
+import { RemoveProfComponent } from '../components/public/management/professor/remove-prof/remove-prof.component';
+import { RemoveStudentComponent } from '../components/public/management/student/remove-student/remove-student.component';
+import { RemoveGroupComponent } from '../components/public/management/group/remove-group/remove-group.component';
+import { AddProfCoursesComponent } from '../components/public/management/professor/add-prof-courses/add-prof-courses.component';
+import { AddOptionalCoursesComponent } from '../components/public/management/student/add-optional-courses/add-optional-courses.component';
+import { CourseProfileComponent } from './course-profile/course-profile.component';
+import { ProfProfileComponent } from './prof-profile/prof-profile.component';
+import { DisplayFeedbackComponent } from '../components/public/display-feedback/display-feedback.component';
+
 
 
 @NgModule({
@@ -58,7 +70,18 @@ import { AddStudComponent } from '../components/public/add-stud/add-stud.compone
     AddProfComponent,
     ProfCoursesComponent,
     ManageStudComponent,
-    AddStudComponent
+    AddStudComponent,
+    ManageGroupsComponent,
+    AddGroupComponent,
+    RemoveCourseComponent,
+    RemoveProfComponent,
+    RemoveStudentComponent,
+    RemoveGroupComponent,
+    AddProfCoursesComponent,
+    AddOptionalCoursesComponent,
+    CourseProfileComponent,
+    ProfProfileComponent,
+    DisplayFeedbackComponent
   ],
   entryComponents: [AddGradeModalContentComponent],
   exports: [
@@ -85,7 +108,15 @@ import { AddStudComponent } from '../components/public/add-stud/add-stud.compone
     AddGradeModalContentComponent, 
     AddCoursesComponent, 
     AddProfComponent,
-    AddStudComponent
+    AddStudComponent,
+    AddGroupComponent,
+    RemoveCourseComponent,
+    RemoveProfComponent,
+    RemoveStudentComponent,
+    RemoveGroupComponent,
+    AddProfCoursesComponent,
+    AddOptionalCoursesComponent,
+    DisplayFeedbackComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

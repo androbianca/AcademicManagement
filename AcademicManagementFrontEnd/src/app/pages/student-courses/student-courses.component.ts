@@ -18,7 +18,7 @@ export class StudentCoursesComponent {
     this.user = currentUserDetailservice.getUser();
     this.cardMessage = 'See more';
       this.getAllCourses();
-      this.route = 'courses/grades/'
+      this.route = 'studcourses/course/'
   }
 
   getAllCourses() {

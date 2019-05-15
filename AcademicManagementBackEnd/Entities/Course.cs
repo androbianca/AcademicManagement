@@ -12,8 +12,6 @@ namespace Entities
 
         public string Package { get; set; }
 
-        public IEnumerable<ProfCourse> Profs { get; set; }
-
         public IEnumerable<StudCourse> Studs { get; set; }
 
         public IEnumerable<Grade> Grades { get; set; } 

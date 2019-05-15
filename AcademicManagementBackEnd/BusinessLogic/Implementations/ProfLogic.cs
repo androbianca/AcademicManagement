@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using BusinessLogic.Abstractions;
 using DataAccess.Abstractions;
 using Entities;
@@ -8,37 +7,81 @@ using Models;
 
 namespace BusinessLogic.Implementations
 {
-   public class ProfLogic :BaseLogic,IProfLogic
+    public class ProfLogic :BaseLogic,IProfLogic
     {
         public ProfLogic(IRepository repository) : base(repository)
         {
         }
 
-        public Professor addProf(ProfDto profDto)
+        public ICollection<ProfDto> GetAll()
         {
-            var id = Guid.NewGuid();
-            var role = _repository.GetByFilter<UserRole>(x => x.Name == "Professor");
-            var potentialUser = new PotentialUser
+            var profDtos = new List<ProfDto>();
+            var profs = _repository.GetAll<Professor>();
+
+            foreach(var prof in profs)
             {
-                UserCode = profDto.UserCode,
-                Id = id,
-                UserRoleId = role.Id
-            };
+                var profDto = new ProfDto
+                {
+                    FirstName = prof.FirstName,
+                    LastName = prof.LastName,
+                    PotentialUserId = prof.PotentialUserId,
+                    Id = prof.Id
+                };
 
-            _repository.Insert(potentialUser);
+                profDtos.Add(profDto);
+            }
 
+            return profDtos;
+        }
+
+        public Professor Remove(Guid id)
+        {
+            var prof = _repository.GetByFilter<Professor>(x => x.Id == id);
+
+            _repository.Delete(prof);
+            _repository.Save();
+
+            return prof;
+        }
+
+        public Professor Add(ProfDto profDto)
+        {        
             var prof = new Professor
             {
                 Id = Guid.NewGuid(),
                 FirstName = profDto.FirstName,
                 LastName = profDto.LastName,
-                PotentialUserId = id
+                PotentialUserId = profDto.PotentialUserId
 
             };
-            _repository.Insert<Professor>(prof);
+            _repository.Insert(prof);
             _repository.Save();
 
             return prof;
         }
+
+       public ICollection<ProfDto> GetByCourseId(Guid courseId)
+        {
+            var profDtos = new List<ProfDto>();
+            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.CourseId == courseId);
+
+            foreach(var profStud in profStuds)
+            {
+                var prof = _repository.GetByFilter<Professor>(x => x.Id == profStud.ProfId);
+
+                var profDto = new ProfDto
+                {
+                    FirstName = prof.FirstName,
+                    LastName = prof.LastName,
+                    Id = prof.Id
+                };
+
+                profDtos.Add(profDto);
+
+            }
+            return profDtos;
+
+        }
+
     }
 }

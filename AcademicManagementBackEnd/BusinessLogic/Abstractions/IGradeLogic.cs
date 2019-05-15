@@ -6,8 +6,8 @@ namespace BusinessLogic.Abstractions
 {
     public interface IGradeLogic
     {
-        ICollection<GradeDto> getGrades(Guid studentId, Guid profId, Guid courseId);
-        ICollection<GradeDto> getGrades2(Guid studentId, Guid courseId);
-        void addGrade(GradeDto grade);
+        ICollection<GradeDto> GetGradesByStud(Guid studentId, Guid profId, Guid courseId);
+        ICollection<GradeDto> GetGradesByProf(Guid studentId, Guid courseId);
+        void Add(GradeDto grade);
     }
 }

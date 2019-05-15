@@ -7,7 +7,9 @@ namespace BusinessLogic.Abstractions
 {
     public interface IStudentLogic
     {
-        ICollection<StudentDto> getByProfId(string userCode, Guid courseId);
-        Student addStud(StudentDto studentDto);
+        ICollection<StudentDto> GetByProfId(string userCode, Guid courseId);
+        ICollection<StudentDto> GetAll();
+        Student Add(StudentDto studentDto);
+        Student Remove(Guid studentId);
     }
 }

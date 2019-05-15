@@ -1,0 +1,29 @@
+<form class="form" [formGroup]="addCourses">
+  <mat-form-field>
+    <mat-label>Select Prof</mat-label>
+    <mat-select formControlName="prof">
+      <mat-option *ngFor="let prof of profs" [value]="prof">{{prof.firstName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-container *ngFor="let form of forms">
+    <mat-form-field>
+      <mat-label>Course</mat-label>
+      <mat-select [formControlName]="form.course">
+        <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Group</mat-label>
+      <mat-select [formControlName]="form.group">
+        <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} {{group.year}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-container>
+
+  <button (click)="add()">Add more</button>
+
+  <input type="submit" value="Submit" (click)="submit(addCourses)">
+</form>
