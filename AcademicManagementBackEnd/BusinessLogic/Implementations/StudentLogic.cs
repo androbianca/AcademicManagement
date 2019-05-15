@@ -16,7 +16,7 @@ namespace BusinessLogic.Implementations
             _courseLogic = courseLogic;
         }
 
-        public ICollection<StudentDto> getByProfId(string userCode, Guid courseId)
+        public ICollection<StudentDto> GetByProfId(string userCode, Guid courseId)
         {
             var students = new List<Student>();
             var studentDtos = new List<StudentDto>();
@@ -54,7 +54,7 @@ namespace BusinessLogic.Implementations
             return studentDtos;
         }
 
-        public Student addStud(StudentDto studentDto)
+        public Student Add(StudentDto studentDto)
         {
             var student = new Student
             {
@@ -71,5 +71,33 @@ namespace BusinessLogic.Implementations
             return student;
         }
 
+        public ICollection<StudentDto> GetAll()
+        {
+            var students = _repository.GetAll<Student>();
+            var studentDtos = new List<StudentDto>();
+
+            foreach(var student in students)
+            {
+                var studentDto = new StudentDto
+                {
+                    FirstName = student.FirstName,
+                    LastName = student.LastName,
+                    Id = student.Id
+                };
+
+                studentDtos.Add(studentDto);
+            }
+
+            return studentDtos;
+        }
+
+        public Student Remove(Guid studentId)
+        {
+            var student = _repository.GetByFilter<Student>(x => x.Id == studentId);
+            _repository.Delete(student);
+
+            return student;
+
+        }
     }
 }

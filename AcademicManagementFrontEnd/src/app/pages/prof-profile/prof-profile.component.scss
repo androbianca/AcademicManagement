@@ -1,0 +1,6 @@
+@import "../../../styles/mixins.scss";
+
+.container {
+  @include flex(row, center, center);
+  flex-wrap: wrap;
+}

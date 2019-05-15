@@ -6,7 +6,7 @@ using Models;
 
 namespace Service.Controllers
 {
-    [Route("api/grade")]
+    [Route("api/grades")]
     [ApiController]
     public class GradeController : ControllerBase
     {
@@ -18,29 +18,29 @@ namespace Service.Controllers
         }
 
         [HttpGet("{courseId:guid}/{studentId:guid}/{profId:guid}")]
-        public ActionResult<ICollection<GradeDto>> getGrades([FromRoute] Guid courseId, [FromRoute] Guid studentId, [FromRoute] Guid profId)
+        public ActionResult<ICollection<GradeDto>> GetGradesByStud([FromRoute] Guid courseId, [FromRoute] Guid studentId, [FromRoute] Guid profId)
         {
 
-            var grades = _gradeLogic.getGrades(courseId, studentId, profId);
+            var grades = _gradeLogic.GetGradesByStud(courseId, studentId, profId);
 
             return Ok(grades);
 
         }
 
         [HttpGet("{courseId:guid}/{studentId:guid}")]
-        public ActionResult<ICollection<GradeDto>> getGrades2([FromRoute] Guid courseId, [FromRoute] Guid studentId)
+        public ActionResult<ICollection<GradeDto>> GetGradesByProf([FromRoute] Guid courseId, [FromRoute] Guid studentId)
         {
 
-            var grades = _gradeLogic.getGrades2(courseId, studentId);
+            var grades = _gradeLogic.GetGradesByProf(courseId, studentId);
 
             return Ok(grades);
 
         }
 
         [HttpPost]
-        public IActionResult addGrade ([FromBody] GradeDto grade)
+        public IActionResult Add([FromBody] GradeDto grade)
         {
-            _gradeLogic.addGrade(grade);
+            _gradeLogic.Add(grade);
 
             return Ok(grade);
 

@@ -17,4 +17,12 @@ export class StudentService {
         return this.baseService.post<Student>(`students`,student);
     }
 
+    public removeStudent(studentId) {
+        return this.baseService.delete(`students/${studentId}`);
+    }
+
+    public getAll() {
+        return this.baseService.get<Student[]>(`students`);
+    }
+
 }

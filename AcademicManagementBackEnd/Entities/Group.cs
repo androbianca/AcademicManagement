@@ -7,6 +7,5 @@ namespace Entities
         public string Name { get; set; }
         public int Year { get; set; }
         public IEnumerable<Student> Students { get; set; }
-        public IEnumerable<ProfGroup> Profs { get; set; }
     }
 }

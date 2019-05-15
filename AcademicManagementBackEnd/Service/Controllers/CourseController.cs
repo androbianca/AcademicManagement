@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using BusinessLogic.Abstractions;
@@ -19,7 +20,7 @@ namespace Service.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ICollection<CourseDto>> Get()
+        public ActionResult<ICollection<CourseDto>> GetAll()
         {
             var courses = _courseLogic.GetAll();
 
@@ -44,24 +45,38 @@ namespace Service.Controllers
             return Ok(courses);
         }
 
-        [HttpGet("current/prof")]
-        public ActionResult<ICollection<CourseDto>> GetProfCourses()
+        [HttpGet("{profId:guid}")]
+        public ActionResult<ICollection<CourseDto>> GetProfCourses([FromRoute] Guid profId)
         {
-            var id = getCurrentUserId();
-            var courses = _courseLogic.GetProfCourses(id);
+            var courses = _courseLogic.GetProfCourses(profId);
 
             return Ok(courses);
         }
 
         [HttpPost]
-        public ActionResult<CourseDto> AddCourse([FromBody] CourseDto courseDto)
+        public IActionResult Add([FromBody] CourseDto courseDto)
         {
 
-            var course = _courseLogic.AddCourse(courseDto);
+            var course = _courseLogic.Add(courseDto);
 
             return Ok(course);
         }
 
+        [HttpDelete("{courseId:guid}")]
+        public IActionResult Remove([FromRoute] Guid courseId)
+        {
+            var result = _courseLogic.Remove(courseId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+
+        }
+    
+  
         private string getCurrentUserId()
         {
             var headerValue = Request.Headers["Authorization"];

@@ -1,57 +1,38 @@
-@import '../../../../styles/mixins.scss';
+@import "../../../../styles/mixins.scss";
 
-.prof-card {
-  border: none;
+:host(.prof-card) {
   margin: 40px;
-  box-shadow: none;
-  width: 216px;
-  height: 290px;
-  display: inline-block;
-  position: relative;
-  vertical-align: top;
-  text-align: center;
-  background-color: #FFF;
-  border-bottom: none;
-  box-shadow: 0 0 1px 1px rgba(20, 23, 28, 0.1), 0 3px 1px 0 rgba(20, 23, 28, 0.1);
-  opacity: 1;
-  padding: 25px 15px;
-
-  &:hover {
-    box-shadow: 0 2px 8px 2px rgba(20, 23, 28, 0.15);
-  }
+  @include flex(row, center, center);
+  @include size(100px, 300px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  background-color: #ffffff;
 
   img {
-    border-radius: 50%;
+    @include size(20px, 20px);
+    margin: 8px;
+    cursor: pointer;
   }
 
   .initials {
     @include flex(none, center, center);
-    @include size(30%, 100%);
+    @include size(100%, 30%);
 
     .profile-picture {
       @include flex(none, center, center);
-      @include size(75px, 75px);
+      @include size(60px, 60px);
       font-size: 2vh;
       border-radius: 50%;
       padding: 3px;
       border: 3px solid rgba(255, 255, 255, 0.719);
       background: rgb(196, 199, 218);
       color: white;
-      margin: 0 auto 25px auto;
     }
   }
 
-  &_details {
-    display: flex;
-    align-items: center;
-    color: #29303B;
-    font-size: 13px;
-    padding: 0 20px 15px 20px;
-
-    .card__title {
-      font-weight: 600;
-      font-size: 15px;
-      height: 20px;
-    }
+  .name {
+    @include flex(none, center, flex-start);
+    @include size(100%, 70%);
+    color: rgb(58, 56, 56);
   }
 }

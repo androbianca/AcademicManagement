@@ -16,7 +16,7 @@ namespace BusinessLogic.Implementations
         {
             _notificationLogic = notificationLogic; }
 
-        public ICollection<GradeDto> getGrades(Guid courseId,Guid studentId, Guid profId)
+        public ICollection<GradeDto> GetGradesByStud(Guid courseId,Guid studentId, Guid profId)
         {
             var gradeDtos = new List<GradeDto>();
             var grades = _repository.GetAllByFilter<Grade>(x => x.CourseId == courseId && x.StudentId == studentId && x.ProfId == profId);
@@ -39,7 +39,7 @@ namespace BusinessLogic.Implementations
             return gradeDtos;
         }
 
-        public ICollection<GradeDto> getGrades2(Guid courseId, Guid studentId)
+        public ICollection<GradeDto> GetGradesByProf(Guid courseId, Guid studentId)
         {
             var gradeDtos = new List<GradeDto>();
             var grades = _repository.GetAllByFilter<Grade>(x => x.CourseId == courseId && x.StudentId == studentId);
@@ -58,10 +58,9 @@ namespace BusinessLogic.Implementations
 
                 gradeDtos.Add(gradeDto);
             }
-
             return gradeDtos;
         }
-        public void addGrade(GradeDto gradeDto)
+        public void Add(GradeDto gradeDto)
         {
             var grade = new Grade()
             {

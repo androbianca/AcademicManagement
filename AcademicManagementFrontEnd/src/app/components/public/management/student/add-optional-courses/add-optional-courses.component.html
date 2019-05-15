@@ -1,0 +1,15 @@
+<form class="form" [formGroup]="addCoursesForm">
+  <mat-form-field>
+    <mat-label>Select Course</mat-label>
+    <mat-select formControlName="stud">
+      <mat-option *ngFor="let stud of studs" [value]="stud">{{stud.firstName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Optional Courses</mat-label>
+    <mat-select formControlName="optionals" multiple>
+      <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <input type="submit" value="Submit" (click)="submit(addCoursesForm)">
+</form>

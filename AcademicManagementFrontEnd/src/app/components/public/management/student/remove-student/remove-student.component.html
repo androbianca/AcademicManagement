@@ -1,0 +1,10 @@
+<form class="form" [formGroup]="removeStudForm">
+  <mat-form-field>
+    <mat-label>Select Course</mat-label>
+    <mat-select formControlName="stud">
+      <mat-option *ngFor="let stud of studs" [value]="stud">{{stud.firstName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <input type="submit" value="Submit" (click)="submit(removeStudForm)">
+</form>
