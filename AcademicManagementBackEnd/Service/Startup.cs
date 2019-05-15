@@ -99,10 +99,8 @@ namespace Service
             });
             app.UseHttpsRedirection();
             app.UseMvc();
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<SignalServer>("/notify");
-            });
+
+            app.UseSignalR(routes => { routes.MapHub<SignalServer>("/notify"); });
         }
     }
 }

@@ -15,7 +15,7 @@ export class NotificationService {
      }
 
      public get(){
-        return this.baseService.get<Notification[]>(`notifications`);
+        return this.baseService.get<Notification[]>(`notify`);
      }
 
 }

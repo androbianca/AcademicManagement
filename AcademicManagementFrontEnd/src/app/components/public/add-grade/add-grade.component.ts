@@ -53,7 +53,6 @@ export class AddGradeComponent{
 
     this.newGrade = Object.assign({}, this.grade);
     this.gradesListChanged.emit(this.newGrade);
-    this.addNotification();
   }
 
 }

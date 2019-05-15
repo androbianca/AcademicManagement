@@ -1,26 +1,30 @@
 import { EventEmitter, Injectable } from '@angular/core';  
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';  
+import { HubConnectionBuilder, HubConnection, HttpTransportType, LogLevel } from '@aspnet/signalr';
+import { NotificationService } from './notification-service.service';
   
-@Injectable()  
+@Injectable({
+  providedIn: 'root'
+})
 export class SignalRService {  
   connectionEstablished = new EventEmitter<Boolean>();  
   
   private connectionIsEstablished = false;  
   private _hubConnection: HubConnection;  
   
-  constructor() {  
+  constructor(private notificatonSrvice:NotificationService) {  
     this.createConnection();  
     this.registerOnServerEvents();  
     this.startConnection();  
   }  
   
-  private createConnection() {  
+  public createConnection() {  
     this._hubConnection = new HubConnectionBuilder()  
-      .withUrl('/notify') 
+      .withUrl('/notify')
+      .configureLogging(LogLevel.Information)
       .build();  
   }  
   
-  private startConnection(): any {  
+  public startConnection(): any {  
     this._hubConnection  
       .start()  
       .then(() => {  
@@ -29,14 +33,14 @@ export class SignalRService {
         this.connectionEstablished.emit(true);  
       })  
       .catch(err => {  
-        console.log('Error while establishing connection, retrying...');  
-        setTimeout(this.startConnection(), 5000);  
+        console.log(err);  
+       // setTimeout(this.startConnection(), 5000);  
       });  
   }  
   
-  private registerOnServerEvents(): void {  
-    this._hubConnection.on('ReceiveMessage', (data: any) => {  
-     console.log(data) 
-    });  
+  public registerOnServerEvents(): void {  
+    this._hubConnection.on('ceva', () => {  
+    this.notificatonSrvice.get().subscribe(x=>console.log(x));   
+   });  
   }  
 }  

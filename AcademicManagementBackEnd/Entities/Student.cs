@@ -17,6 +17,6 @@ namespace Entities
 
         public IEnumerable<Grade> Grades { get; set; }
 
-        public List<NotificationUser> Notifications { get; set; }
+      
     }
 }

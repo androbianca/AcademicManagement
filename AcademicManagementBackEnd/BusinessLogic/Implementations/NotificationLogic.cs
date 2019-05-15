@@ -19,13 +19,16 @@ namespace BusinessLogic.Implementations
 
         public Notification Create(NotificationDto notificationDto)
         {
+           // var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == id);
+           // var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == potentialUser.Id);
+
             var notification = new Notification
             {
                 Body = notificationDto.Body,
                 Title = notificationDto.Title,
                 IsRead = notificationDto.IsRead,
                 Id = Guid.NewGuid(),
-                StudentId = notificationDto.UserId
+                UserId = notificationDto.UserId
             };
 
             _repository.Insert(notification);
@@ -33,21 +36,24 @@ namespace BusinessLogic.Implementations
 
             var userNotification = new NotificationUser
             {
-                UserId = notification.StudentId,
+                UserId = notification.UserId,
                 NotificationId = notification.Id
             };
 
             _repository.Insert(userNotification);
             _repository.Save();
+            _hubContext.Clients.All.SendAsync("ceva", "");
+
 
             return notification;
+
         }
 
         public List<Notification> GetUserNotifications(string userId)
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userId);
-            var student = _repository.GetByFilter<Student>(X => X.PotentialUserId == potentialUser.Id);
-            var notificationApplicationUsers = _repository.GetAllByFilter<NotificationUser>(x => x.UserId == student.Id);
+            var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == potentialUser.Id);
+            var notificationApplicationUsers = _repository.GetAllByFilter<NotificationUser>(x => x.UserId == account.Id);
             var notifications = new List<Notification>();
             foreach(var notificationApplicationUser in notificationApplicationUsers)
             {
