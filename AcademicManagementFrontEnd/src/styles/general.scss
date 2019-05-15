@@ -3,64 +3,69 @@
 
 
 .buttons {
-    @include flex(row, center, center);
-    width: 100%;
-    margin-top: 30px;
-  
-    .button {
-      display: inline-block;
-      background: #FFFFFF;
-      padding: 0.5em 3em;
-      border: 0.16em solid rgb(146, 144, 144);
-      margin: 0 0.3em 0.3em 0;
-      box-sizing: border-box;
-      text-decoration: none;
-      text-transform: uppercase;
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-      color:  rgb(146, 144, 144);
-      text-align: center;
-      transition: all 0.15s;
-    }
-  
-    .button:hover {
-      color: rgb(119, 114, 114);
-      border-color: rgb(119, 114, 114);;
-    }
-  
-    .button:active {
-      color: rgb(119, 114, 114);;
-      border-color: rgb(119, 114, 114);;
-    }}
+  @include flex(row, center, center);
+  width: 100%;
+  margin-top: 30px;
 
-    .form{
-        margin-top:40px;
-        width: 22vw;
-        border:1px solid rgb(209, 208, 208);
-        padding:15px;
-    }
-    
-    input[type=text], select {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-      
-      input[type=submit] {
-        width: 100%;
-        background-color: $turquoize;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      
-      input[type=submit]:hover {
-        background-color:$deep-turquoize;
-      }
+  .button {
+    display: inline-block;
+    background: #FFFFFF;
+    padding: 0.5em 3em;
+    border: 0.16em solid rgb(6, 6, 32);
+    background-color: $deep-blue;
+    border-radius: 15px;
+    margin: 0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: $white;
+    text-align: center;
+    transition: all 0.15s;
+  }
+
+  .button:hover {
+    background-color: rgb(5, 12, 73);
+  }
+
+  .button:active {
+    background-color: rgb(5, 12, 73);
+  }
+}
+
+
+.form {
+  @include flex(column, none, center);
+
+  margin-top: 40px;
+  min-width: 22vw;
+  border: 1px solid rgb(209, 208, 208);
+  padding: 15px;
+}
+
+input[type=text],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: $turquoize;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: $deep-turquoize;
+}

@@ -1,11 +1,17 @@
 <section class="buttons">
-    <button class="button" (click)="selectAction('1')">Add course</button>
 
-    <button class="button" (click)="selectAction('2')">Remove course</button>
-
-    <button class="button" (click)="selectAction('3')">Update course</button>
+  <button class="button" (click)="selectAction('1')">Add course</button>
+  <button class="button" (click)="selectAction('2')">Remove course</button>
+  <button class="button" (click)="selectAction('3')">Update course</button>
 </section>
 
-<app-add-courses></app-add-courses>
+<ng-container *ngIf="add">
+  <app-add-courses></app-add-courses>
+</ng-container>
 
-<app-remove-course></app-remove-course>
+<ng-container *ngIf="remove">
+  <app-remove-course></app-remove-course>
+</ng-container>
+
+<ng-container *ngIf="update">
+</ng-container>
