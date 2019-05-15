@@ -19,7 +19,7 @@ export class SignalRService {
   
   public createConnection() {  
     this._hubConnection = new HubConnectionBuilder()  
-      .withUrl('/notify')
+      .withUrl('https://localhost:44304/api/notify')
       .configureLogging(LogLevel.Information)
       .build();  
   }  
