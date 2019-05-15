@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, HostListener } from '@angular/core';
 import { Professor } from 'src/app/models/professor';
 import { Router } from '@angular/router';
 
@@ -11,6 +11,10 @@ export class ProfCardComponent implements OnInit {
 
   @Input() prof : Professor;
   @HostBinding('class') classes = 'prof-card';
+  @HostListener('click', ['$event.target'])
+  onClick() {
+    this.goTo();
+ }
 
   name: string;
   initials:string;

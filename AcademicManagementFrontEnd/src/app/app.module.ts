@@ -8,6 +8,7 @@ import { SideBarComponent } from './components/shared/side-bar/side-bar.componen
 import { TopBarComponent } from './components/shared/top-bar/top-bar.component';
 import { PagesModule } from './pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     PagesModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    OverlayModule
 
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, Output, Injectable } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, Output, Injectable, HostListener } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import {MatDialogModule, MatDialogRef, MatDialog} from '@angular/material/dialog';
 import { GradesCardComponent } from '../grades-card/grades-card.component';
@@ -20,6 +20,11 @@ export class StudentCardComponent implements OnInit {
   public initials:string;
   public isAddGradesOpen: boolean = false;
   @HostBinding('class') classes = 'student-card';
+  @HostListener('click', ['$event.target'])
+  onClick() {
+    this.openModal();
+ }
+
   constructor(public dialog: MatDialog) {
 
    }
@@ -32,8 +37,7 @@ export class StudentCardComponent implements OnInit {
     this.initials = this.student.lastName[0] + ' ' + this.student.firstName[0];
   }
 
-  onArrowClick(){
-    
+  openModal(){   
     const dialogRef = this.dialog.open(AddGradeModalContentComponent, {
       width: '350px',
       height: '500px',
@@ -43,6 +47,7 @@ export class StudentCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     });
   }
+
   ngOnInit() {
     this.getName();
     this.getInitials();

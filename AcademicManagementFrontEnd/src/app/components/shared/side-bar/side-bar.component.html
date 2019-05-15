@@ -13,8 +13,8 @@
   </ng-container>
 
   <ng-container *ngIf="user.userRole=='Professor'">
-    <section class="menu__option"><a routerLink="/profcourses">Courses</a></section>
-    <section class="menu__option"><a routerLink="/professors">Professors</a></section>
+    <section class="menu__option"><a routerLink="/profcourses">My courses</a></section>
+    <section class="menu__option"><a [routerLink]="route">My profile</a></section>
     <section class="menu__option">NewsFeed</section>
   </ng-container>
 

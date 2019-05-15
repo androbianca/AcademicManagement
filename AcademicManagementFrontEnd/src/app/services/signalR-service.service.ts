@@ -10,6 +10,7 @@ export class SignalRService {
   
   private connectionIsEstablished = false;  
   private _hubConnection: HubConnection;  
+  notifications : Notification[];
   
   constructor(private notificatonSrvice:NotificationService) {  
     this.createConnection();  
@@ -19,7 +20,7 @@ export class SignalRService {
   
   public createConnection() {  
     this._hubConnection = new HubConnectionBuilder()  
-      .withUrl('/notify')
+      .withUrl('https://localhost:44304/notify')
       .configureLogging(LogLevel.Information)
       .build();  
   }  
@@ -34,13 +35,16 @@ export class SignalRService {
       })  
       .catch(err => {  
         console.log(err);  
-       // setTimeout(this.startConnection(), 5000);  
+        setTimeout(this.startConnection(), 5000);  
       });  
   }  
   
   public registerOnServerEvents(): void {  
     this._hubConnection.on('ceva', () => {  
-    this.notificatonSrvice.get().subscribe(x=>console.log(x));   
+    this.notificatonSrvice.get().subscribe(x=>{
+      console.log(x);
+      this.notifications = x;
+    });   
    });  
   }  
 }  

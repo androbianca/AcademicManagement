@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input } from "@angular/core";
+import { Component, OnInit, HostBinding, Input, HostListener } from "@angular/core";
 import { Router } from '@angular/router';
 import { CourseRead } from 'src/app/models/course-read';
 
@@ -13,6 +13,10 @@ export class CourseCardComponent implements OnInit {
   @Input() message: string;
 
   @HostBinding('class') classes = 'card';
+  @HostListener('click', ['$event.target'])
+  onClick() {
+    this.goTo();
+ }
   initials: string = "";
 
   constructor(private router: Router) { }
