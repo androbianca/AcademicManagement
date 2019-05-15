@@ -1,37 +1,7 @@
 @import "../../../styles/mixins.scss";
 @import "../../../styles/colors.scss";
+@import "../../..//styles/general.scss";
 
-.buttons {
-  @include flex(row, center, center);
-  width: 100%;
-  margin-top: 30px;
-
-  .button {
-    display: inline-block;
-    background: #FFFFFF;
-    padding: 0.5em 3em;
-    border: 0.16em solid rgb(6, 6, 32);
-    background-color: $deep-blue;
-    border-radius:15px;
-    margin: 0 0.3em 0.3em 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    color: $white;
-    text-align: center;
-    transition: all 0.15s;
-  }
-
-  .button:hover {
-    background-color: rgb(5, 12, 73);
-  }
-
-  .button:active {
-    background-color: rgb(5, 12, 73);
-  }
-}
 
 .page__wrapper {
   @include flex(column, center, center);

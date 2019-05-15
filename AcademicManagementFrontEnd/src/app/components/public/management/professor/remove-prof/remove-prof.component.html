@@ -1,6 +1,6 @@
 <form class="form" [formGroup]="removeProfForm">
   <mat-form-field>
-    <mat-label>Select Course</mat-label>
+    <mat-label>Select Professor</mat-label>
     <mat-select formControlName="prof">
       <mat-option *ngFor="let prof of profs" [value]="prof">{{prof.firstName}}</mat-option>
     </mat-select>

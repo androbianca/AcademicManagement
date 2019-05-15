@@ -8,9 +8,20 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 export class ManageStudComponent implements OnInit {
 
   @HostBinding('class') classes = 'manage-studs-container';
+  remove: boolean;
+  add: boolean = true;
+  update: boolean;
+  courses: boolean;
   constructor() { }
 
   ngOnInit() {
   }
 
+  selectAction(number: string) {
+    this.add = number == '1';
+    this.remove = number == '2';
+    this.update = number == '3';
+    this.courses = number == '4';
+
+  }
 }

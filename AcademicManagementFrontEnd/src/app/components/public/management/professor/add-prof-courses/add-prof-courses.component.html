@@ -7,21 +7,24 @@
   </mat-form-field>
 
   <ng-container *ngFor="let form of forms">
-    <mat-form-field>
-      <mat-label>Course</mat-label>
-      <mat-select [formControlName]="form.course">
-        <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Group</mat-label>
-      <mat-select [formControlName]="form.group">
-        <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} {{group.year}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </ng-container>
+      <div class="pair">
+        <mat-form-field>
+          <mat-label>Course</mat-label>
+          <mat-select [formControlName]="form.course">
+            <mat-option (click)="filterGroups(course)" *ngFor="let course of courses" [value]="course">{{course.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-label>Group</mat-label>
+          <mat-select [formControlName]="form.group">
+            <mat-option *ngFor="let group of groups" [value]="group">{{group.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </ng-container>
+  
 
   <button (click)="add()">Add more</button>
 

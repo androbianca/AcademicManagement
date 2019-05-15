@@ -1,6 +1,6 @@
 <form class="form" [formGroup]="removeGroupForm">
   <mat-form-field>
-    <mat-label>Select Course</mat-label>
+    <mat-label>Select Group</mat-label>
     <mat-select formControlName="group">
       <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} <span>{{group.year}}</span></mat-option>
     </mat-select>
