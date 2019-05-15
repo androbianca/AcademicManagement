@@ -75,7 +75,8 @@ namespace BusinessLogic.Implementations
         public ICollection<CourseDto> GetProfCourses(Guid id)
         {
             var courses = new List<Course>();
-            var currentUser = _repository.GetByFilter<Professor>(x => x.Id == id);
+            var account = _repository.GetByFilter<Account>(x => x.UserCode == id);          
+            var currentUser = _repository.GetByFilter<Professor>(x => x.PotentialUserId == account.PotentialUserId);
             var profCourses = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == currentUser.Id);
             foreach (var profCourse in profCourses)
             {
