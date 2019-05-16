@@ -27,40 +27,39 @@ namespace BusinessLogic.Implementations
                 Title = notificationDto.Title,
                 IsRead = notificationDto.IsRead,
                 Id = Guid.NewGuid(),
-                UserId = account.Id
+                AccountId = account.Id
             };
 
             _repository.Insert(notification);
             _repository.Save();
 
-            var userNotification = new NotificationUser
-            {
-                UserId = notification.UserId,
-                NotificationId = notification.Id
-            };
-
-            _repository.Insert(userNotification);
             _repository.Save();
             _hubContext.Clients.All.SendAsync("ceva", "");
-
 
             return notification;
 
         }
 
-        public List<Notification> GetUserNotifications(string userId)
+        public List<NotificationDto> GetUserNotifications(string userId)
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userId);
             var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == potentialUser.Id);
-            var notificationApplicationUsers = _repository.GetAllByFilter<NotificationUser>(x => x.UserId == account.Id);
-            var notifications = new List<Notification>();
-            foreach(var notificationApplicationUser in notificationApplicationUsers)
+            var notifications = _repository.GetAllByFilter<Notification>(x => x.AccountId == account.Id);
+            var notificationDtos = new List<NotificationDto>();
+            foreach(var notification in notifications)
             {
-                var notification = _repository.GetByFilter<Notification>(x => x.Id == notificationApplicationUser.NotificationId);
-                notifications.Add(notification);
+                var notificationDto = new NotificationDto
+                {
+                    Title = notification.Title,
+                    Body = notification.Body,
+                    IsRead = notification.IsRead,
+
+                };
+
+                notificationDtos.Add(notificationDto);
             }
 
-            return notifications;
+            return notificationDtos;
         }
 
         public void ReadNotification(Guid notificationId)

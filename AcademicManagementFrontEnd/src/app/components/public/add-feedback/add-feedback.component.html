@@ -1,0 +1,6 @@
+<form class="form" [formGroup]="feedbackForm">
+  <textarea formControlName="feedback" id="comments">
+  Hey... say something!
+  </textarea>
+  <button (click)="addFeedback(feedbackForm)">Sumbit</button>
+</form>

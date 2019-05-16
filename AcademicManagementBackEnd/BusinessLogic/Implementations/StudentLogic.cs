@@ -7,7 +7,7 @@ using Models;
 
 namespace BusinessLogic.Implementations
 {
-    public class StudentLogic : BaseLogic,IStudentLogic
+    public class StudentLogic : BaseLogic, IStudentLogic
     {
         private ICourseLogic _courseLogic;
         public StudentLogic(IRepository repository, ICourseLogic courseLogic)
@@ -32,7 +32,7 @@ namespace BusinessLogic.Implementations
 
             foreach (var group in groups)
             {
-                var student = _repository.GetAllByFilter<Student>(x => x.GroupId == group.Id);       
+                var student = _repository.GetAllByFilter<Student>(x => x.GroupId == group.Id);
                 students.AddRange(student);
             }
 
@@ -45,13 +45,27 @@ namespace BusinessLogic.Implementations
                     LastName = student.LastName,
                     FirstName = student.FirstName,
                     Year = student.Group.Year,
-                    GroupId = student.GroupId              
+                    GroupId = student.GroupId
                 };
 
                 studentDtos.Add(studentDto);
             }
 
             return studentDtos;
+        }
+
+        public StudentDto GetById(Guid studId)
+        {
+            var student = _repository.GetByFilter<Student>(x => x.Id == studId);
+            var studentDto = new StudentDto
+            {
+                Id = student.Id,
+                LastName = student.LastName,
+                FirstName = student.FirstName,
+                GroupId = student.GroupId
+            };
+
+            return studentDto;
         }
 
         public Student Add(StudentDto studentDto)
@@ -76,7 +90,7 @@ namespace BusinessLogic.Implementations
             var students = _repository.GetAll<Student>();
             var studentDtos = new List<StudentDto>();
 
-            foreach(var student in students)
+            foreach (var student in students)
             {
                 var studentDto = new StudentDto
                 {

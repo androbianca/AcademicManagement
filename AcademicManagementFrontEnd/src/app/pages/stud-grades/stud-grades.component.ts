@@ -24,6 +24,7 @@ export class StudGradesComponent {
 
   getStudCourses() {
     this.courseService.getStudCourses().subscribe((response: CourseRead[]) => {
+      this.courses = response;
       this.firstYearCourses = response.filter(x => x.year == "1");
       this.secondYearCourses = response.filter(x => x.year == "2");
       this.thirdYearCourses = response.filter(x => x.year == "3");

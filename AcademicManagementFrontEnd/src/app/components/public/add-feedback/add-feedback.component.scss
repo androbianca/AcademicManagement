@@ -1,0 +1,9 @@
+@import "../../../../styles/mixins.scss";
+
+.from {
+  @include flex(column, center, center);
+}
+
+textarea {
+  @include size(100px,100%);
+}

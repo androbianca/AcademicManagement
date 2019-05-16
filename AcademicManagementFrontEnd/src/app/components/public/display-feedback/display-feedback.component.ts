@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-display-feedback',
@@ -7,28 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayFeedbackComponent implements OnInit {
 
+  @Input() feedbackStud:any;
   slideIndex = 0;
-
-  items: Array<any> = [
-    {
-      'photo': null,
-      'name': 'Birsan Ioana',
-      'despre': '“You guys are the best! “ ',
-      'slidenumber': 1
-    },
-    {
-      'photo': null,
-      'name': 'Lazar Cosmin-Alexandru',
-      'despre': '“Keep up the great work!“ ',
-      'slidenumber': 2
-    },
-    {
-      'photo': null,
-      'name': 'Neagu Oana-Andreea',
-      'despre': '“You are doing a great job, and up to date with technology“ ',
-      'slidenumber': 3
-    },
-  ];
 
   constructor() { }
 
@@ -63,7 +43,9 @@ export class DisplayFeedbackComponent implements OnInit {
     el[this.slideIndex].className = 'display_on';
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    console.log(this.feedbackStud)
+  }
 
 
 }

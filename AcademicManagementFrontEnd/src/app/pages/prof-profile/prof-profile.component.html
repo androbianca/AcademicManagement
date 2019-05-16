@@ -4,8 +4,8 @@
   </ng-container>
 </section>
 
-please leave your feedback below
-<input>
-<div class="feedback">
-<app-display-feedback></app-display-feedback>
-</div>
+
+<button (click)="openDialog()">Give feedback</button>
+
+
+<app-display-feedback [feedbackStud]="feedbackStud"></app-display-feedback>

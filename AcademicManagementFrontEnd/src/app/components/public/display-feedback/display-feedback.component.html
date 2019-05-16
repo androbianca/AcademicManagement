@@ -12,21 +12,21 @@
       </div>
     </div>
 
-    <ng-container *ngFor="let person of items">
+    <ng-container *ngFor="let feedback of feedbackStud">
       <div class="display_off fade">
         <section class="initials">
-          <section class="profile-picture">Initials</section>
+          <section class="profile-picture">{{feedback.Initials}}</section>
         </section>
         <div class="txt fade">
-          <h2>{{ person.name }}</h2>
-          <p>{{ person.despre }}</p>
+          <h2>{{ feedback.UserName }}</h2>
+          <p>{{ feedback.Body }}</p>
         </div>
       </div>
     </ng-container>
 
     <div class="dot_container">
       <span class="slides-dot" (click)="currentSlide(0)"></span>
-      <ng-container *ngFor="let person of items">
+      <ng-container *ngFor="let person of feedbackStud">
         <span class="slides-dot" (click)="currentSlide(person.slidenumber)"></span>
       </ng-container>
     </div>

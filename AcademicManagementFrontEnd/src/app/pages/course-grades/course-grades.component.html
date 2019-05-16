@@ -1,2 +1,10 @@
 <ng-container *ngFor="let grade of grades">
-    <app-grade-card [grade]="grade"></app-grade-card></ng-container>
+  <app-grade-card [grade]="grade"></app-grade-card>
+</ng-container>
+
+<div class="noresults">
+  <ng-container *ngIf="grades?.length == 0">
+    <img src="../../../assets/images/1178479.svg">
+    <h6>No results found</h6>
+  </ng-container>
+</div>

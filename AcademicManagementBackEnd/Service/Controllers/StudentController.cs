@@ -19,7 +19,7 @@ namespace Service.Controllers
             _studentLogic = studentLogic;
         }
 
-        [HttpGet("{courseId:guid}")]
+        [HttpGet("course/{courseId:guid}")]
         public ActionResult<ICollection<StudentDto>> GetStudentsByProfId([FromRoute] Guid courseId)
         {
             var id = getCurrentUserId();
@@ -34,6 +34,14 @@ namespace Service.Controllers
         public ActionResult<ICollection<StudentDto>> GetAll()
         {
             var students = _studentLogic.GetAll();
+
+            return Ok(students);
+        }
+
+        [HttpGet("{studId:guid}")]
+        public ActionResult<StudentDto> GetById([FromRoute] Guid studId)
+        {
+            var students = _studentLogic.GetById(studId);
 
             return Ok(students);
         }

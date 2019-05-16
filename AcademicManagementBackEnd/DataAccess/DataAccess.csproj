@@ -10,6 +10,9 @@
     <Compile Remove="Migrations\20190401163848_CourseNameLengthIncreased.cs" />
     <Compile Remove="Migrations\20190401165103_OptionalNameLengthIncreased.cs" />
     <Compile Remove="Migrations\20190503065725_UserRoleTable2.cs" />
+    <Compile Remove="Migrations\20190515231259_FeedbackTable.cs" />
+    <Compile Remove="Migrations\20190516130108_FeedbackTableUpdate.cs" />
+    <Compile Remove="Migrations\20190516132315_FeedbackNotificationConfig.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,8 +1,6 @@
 import { Component, OnInit, HostBinding, Input, Output, Injectable, HostListener } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import {MatDialogModule, MatDialogRef, MatDialog} from '@angular/material/dialog';
-import { GradesCardComponent } from '../grades-card/grades-card.component';
 import { AddGradeModalContentComponent } from '../add-grade-modal-content/add-grade-modal-content.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-student-card',

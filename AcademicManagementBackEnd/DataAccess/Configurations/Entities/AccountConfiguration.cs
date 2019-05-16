@@ -16,6 +16,7 @@ namespace DataAccess.Configurations.Entities
                 .HasForeignKey<Account>(c => c.PotentialUserId)
                 .HasConstraintName("ForeignKey_Account_PotentialUser");
 
+
         }
     }
 }

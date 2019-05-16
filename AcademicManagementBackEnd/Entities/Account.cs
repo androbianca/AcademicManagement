@@ -15,7 +15,7 @@ namespace Entities
 
         public PotentialUser PotentialUser { get; set; }
 
-        public List<NotificationUser> Notifications { get; set; }
+        public IEnumerable<Notification> Notifications { get; set; }
 
     }
 }

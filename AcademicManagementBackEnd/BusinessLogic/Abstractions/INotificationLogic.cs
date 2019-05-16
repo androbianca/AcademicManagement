@@ -7,7 +7,7 @@ namespace BusinessLogic.Abstractions
 {
     public interface INotificationLogic
     {
-        List<Notification> GetUserNotifications(string userId);
+        List<NotificationDto> GetUserNotifications(string userId);
         Notification Create(NotificationDto notificationDto);
         void ReadNotification(Guid notificationId);
     }

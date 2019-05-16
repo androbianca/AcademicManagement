@@ -23,7 +23,7 @@ namespace Service.Controllers
         }
 
        [HttpPost]
-       public ActionResult<Notification> AddNotification(NotificationDto notification)
+       public IActionResult AddNotification(NotificationDto notification)
         {
             var id = getCurrentUserId();
 
@@ -33,7 +33,7 @@ namespace Service.Controllers
         }
 
         [HttpGet]
-        public ActionResult<ICollection<Notification>> Get()
+        public ActionResult<ICollection<NotificationDto>> Get()
         {
             var id = getCurrentUserId();
 

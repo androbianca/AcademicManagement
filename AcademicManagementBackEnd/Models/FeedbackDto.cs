@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities
+namespace Models
 {
-    public class Feedback : BaseEntity
+    public class FeedbackDto
     {
         public string Body { get; set; }
         public Guid ProfessorId { get; set; }
-        public Professor Professor { get; set; }
         public Guid? StudentId { get; set; }
-        public Student Student { get; set; }
-
     }
 }

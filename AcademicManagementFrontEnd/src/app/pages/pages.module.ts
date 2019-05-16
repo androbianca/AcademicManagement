@@ -41,6 +41,8 @@ import { DisplayFeedbackComponent } from '../components/public/display-feedback/
 import { NotificationPanelComponent } from '../components/public/notification-panel/notification-panel.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { NotificationCardComponent } from '../components/public/notification-card/notification-card.component';
+import { AddFeedbackComponent } from '../components/public/add-feedback/add-feedback.component';
+import { AddFeedbackModalContentComponent } from '../components/public/add-feedback-modal-content/add-feedback-modal-content.component';
 
 
 
@@ -50,18 +52,14 @@ import { NotificationCardComponent } from '../components/public/notification-car
     StudGradesComponent,
     StudentCoursesComponent,
     HomePageComponent,
-    CourseGradesComponent,
-    YearGroupedCoursesCardComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
-    LoginComponent, SignupComponent,
+    LoginComponent, 
+    SignupComponent,
     CourseGradesComponent,
     ProfGradesComponent,
     StudentCardComponent,
     AddGradeComponent,
-    GradeCardComponent,
-    GradesCardComponent,
-    AddGradeModalContentComponent,
     ProfessorsComponent,
     ProfCardComponent, 
     GradeCardComponent, 
@@ -86,28 +84,23 @@ import { NotificationCardComponent } from '../components/public/notification-car
     ProfProfileComponent,
     DisplayFeedbackComponent,
     NotificationPanelComponent,
-    NotificationCardComponent
+    NotificationCardComponent,
+    AddFeedbackComponent,
+    AddFeedbackModalContentComponent
   ],
-  entryComponents: [AddGradeModalContentComponent],
+  entryComponents: [AddGradeModalContentComponent,AddFeedbackModalContentComponent],
   exports: [
     StudGradesComponent,
     StudentCoursesComponent,
     HomePageComponent,
     CourseGradesComponent,
-    YearGroupedCoursesCardComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
     LoginComponent,
     SignupComponent,
     StudentCardComponent,
     AddGradeComponent,
-    GradeCardComponent,
-    GradesCardComponent,
-    AddGradeModalContentComponent,
     ProfCardComponent, 
-    SignupComponent, 
-    StudentCardComponent,
-    AddGradeComponent, 
     GradeCardComponent, 
     GradesCardComponent, 
     AddGradeModalContentComponent, 
@@ -123,12 +116,14 @@ import { NotificationCardComponent } from '../components/public/notification-car
     AddOptionalCoursesComponent,
     DisplayFeedbackComponent,
     NotificationPanelComponent,
-    NotificationCardComponent
+    NotificationCardComponent,
+    AddFeedbackComponent,
+    AddFeedbackModalContentComponent
 
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ]
 

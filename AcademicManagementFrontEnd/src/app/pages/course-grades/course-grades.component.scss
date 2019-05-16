@@ -1,0 +1,14 @@
+@import "../../../styles/mixins.scss";
+
+.noresults {
+  @include flex(none, center, center);
+  height: 100%;
+
+  img {
+    @include size(100px, 100px);
+  }
+
+  h6 {
+    font-size: 50px;
+  }
+}
