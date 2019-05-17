@@ -37,8 +37,8 @@ export class StudentCardComponent implements OnInit {
 
   openModal(){   
     const dialogRef = this.dialog.open(AddGradeModalContentComponent, {
-      width: '360px',
-      height: '600px',
+      width: '390px',
+      height: '640px',
       data: { studentId: this.student.id, profId : this.profId , courseId : this.courseId }
     });
 

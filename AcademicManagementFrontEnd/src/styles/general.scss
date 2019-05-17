@@ -111,3 +111,11 @@ input[type=submit]:hover {
 	color: rgba(255, 255, 255, 0.85);
 	box-shadow: $deep-turquoize 0 0px 0px 40px inset;
 }
+
+::ng-deep mat-dialog-actions {
+  height: 100px;
+}
+
+mat-dialog-content {
+  background: pink !important;
+}
