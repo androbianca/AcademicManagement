@@ -1,15 +1,1 @@
-button {
-    outline: 1px solid rgba(92, 158, 173, 0.664);
-    border:none;
-    background: white;
-    color:rgba(0, 0, 0, 0.473);
-    height: 20px;
-    width: 70px;
-    margin:5px;
-
-    &:hover{
-        outline: 1px solid #5C9EAD;
-        color:black;
-    }
-}
-
+@import "../../../../styles/general.scss";

@@ -25,6 +25,7 @@
 .container {
   @include flex(row, center, center);
   padding: 15px 0 15px 0;
+  height: 250px;
   background-color: #f7f7f7;
 }
 

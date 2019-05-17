@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { GradeService } from 'src/app/services/grade-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';

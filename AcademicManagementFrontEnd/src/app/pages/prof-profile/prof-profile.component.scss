@@ -1,6 +1,15 @@
 @import "../../../styles/mixins.scss";
+@import "../../../styles/general.scss";
 
 .container {
   @include flex(row, center, center);
   flex-wrap: wrap;
-}
+ }
+
+  button {
+    margin:30px !important;  
+  }
+
+  .wrapper {
+    height: calc(100% - 265px);
+  }

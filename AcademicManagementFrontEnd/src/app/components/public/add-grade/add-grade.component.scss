@@ -1,24 +1,15 @@
 @import '../../../../styles/home.scss';
 @import '../../../../styles/mixins.scss';
+@import '../../../../styles/general.scss';
 
-  .form {
+  form {
     width: 100%;
     @include flex (column, center, none);
     padding: 10px 0 10px 0;
-
-    input {
-      width: 150px;
-      height: 30px;
-      margin: 5px;
-      border-radius:10px;
-      border: 1px solid #5C9EAD;    }
-
-    button {
-      @include flex (none, none, center);
-      @include size(20px,70px);
-      border-radius: 5px;
-      align-self: flex-end;
-      color: white;
-      margin: 10px 0 0 15px;
-    }
   }
+
+  input[type=text] {
+    width: 80% !important;
+    height: 40px !important;
+  }
+  

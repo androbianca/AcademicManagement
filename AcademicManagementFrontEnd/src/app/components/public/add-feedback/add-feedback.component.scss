@@ -1,9 +1,15 @@
 @import "../../../../styles/mixins.scss";
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/general.scss";
 
-.from {
-  @include flex(column, center, center);
-}
 
 textarea {
-  @include size(100px,100%);
+  @include size(100px,200px);
+  width: 100%;
 }
+
+button {
+  font-size: 10px;
+  margin-bottom:10px;
+}
+

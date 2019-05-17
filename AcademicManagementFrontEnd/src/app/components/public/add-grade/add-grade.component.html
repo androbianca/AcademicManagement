@@ -1,6 +1,6 @@
-<form class="form" [formGroup]="gradesForm">
+<form [formGroup]="gradesForm">
     <input type="text" formControlName="category" placeholder="Category (ex: exam)">
     <input type="text" formControlName="value" placeholder="Value">
-    <button type="submit" (click)="save(gradesForm)">Save</button>
+    <button class="button2" type="submit" (click)="save(gradesForm)">Save</button>
 </form>
   
