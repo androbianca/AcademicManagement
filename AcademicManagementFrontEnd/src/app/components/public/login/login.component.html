@@ -1,7 +1,11 @@
 <h1>Sign in</h1>
 <form class="form" [formGroup]="loginForm">
   <input type="text" formControlName="userCode" placeholder="Code">
+  <div *ngIf="loginForm.get('userCode')?.errors && loginForm.get('userCode')?.touched" class="error-message">This field
+    is required!</div>
   <input type="password" formControlName="password" placeholder="Password">
-  <p class="passwd__txt">Forgot password?</p>
-  <button type="submit" (click)="login(loginForm)">Login</button>
+  <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="error-message">This field
+    is required!</div>
+ <!-- // <p class="passwd__txt">Forgot password?</p> -->
+  <button [disabled] = "isDisabled" class="button" type="submit" (click)="login(loginForm)">Login</button>
 </form>

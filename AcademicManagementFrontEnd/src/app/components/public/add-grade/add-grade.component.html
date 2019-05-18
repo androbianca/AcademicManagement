@@ -1,6 +1,10 @@
 <form [formGroup]="gradesForm">
-    <input type="text" formControlName="category" placeholder="Category (ex: exam)">
-    <input type="text" formControlName="value" placeholder="Value">
-    <button class="button2" type="submit" (click)="save(gradesForm)">Save</button>
+  <input type="text" formControlName="category" placeholder="Category (ex: exam)">
+  <div *ngIf="gradesForm.get('category')?.errors && gradesForm.get('category')?.touched" class="error-message">This
+    field
+    is required!</div>
+  <input type="text" formControlName="value" placeholder="Value">
+  <div *ngIf="gradesForm.get('value')?.errors && gradesForm.get('value')?.touched" class="error-message">This field
+    is required!</div>
+  <button class="button2" type="submit" (click)="save(gradesForm)" [disabled]="isDisabled">Save</button>
 </form>
-  

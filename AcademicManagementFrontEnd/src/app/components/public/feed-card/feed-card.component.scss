@@ -1,0 +1,52 @@
+@import '../../../../styles/mixins.scss';
+$facebook: #3b5998;
+
+.card {
+  margin: 40px;
+  background-color: #f7f7f7c7;
+  padding: 20px;
+  height: 200px;
+  border-radius: 12px;
+  width: 60%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+
+  &-header{
+    @include flex(row, center, flex-start);
+  }
+  &-content{
+      padding: 10px;
+  }
+}
+
+.content {
+  h1 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: .4px;
+    color: $facebook;
+  }
+
+  span {
+    font-size: 14px;
+    color: darken(white, 30%);
+    display: block;
+    letter-spacing: .4px;
+  }
+}
+
+.initials {
+  @include flex(none, center, center);
+  margin :10px;
+  .profile-picture {
+    @include flex(none, center, center);
+    @include size(60px, 60px);
+    font-size: 2vh;
+    border-radius: 50%;
+    padding: 3px;
+    border: 3px solid rgba(255, 255, 255, 0.719);
+    background: rgb(196, 199, 218);
+    color: white;
+    margin-bottom: 10px;
+  }
+}

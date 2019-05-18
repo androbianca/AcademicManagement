@@ -13,7 +13,7 @@ import { Notif } from 'src/app/models/notification';
   templateUrl: './add-grade.component.html',
   styleUrls: ['./add-grade.component.scss']
 })
-export class AddGradeComponent{
+export class AddGradeComponent implements OnInit{
 
   @Input() studentId : string;
   @Input() courseId : string;
@@ -25,6 +25,7 @@ export class AddGradeComponent{
   newGrade:Grade;
   user: UserDetails;
   grade = new Grade();
+  isDisabled = true;
 
   gradesForm = new FormGroup({
     category: new FormControl('',Validators.required),
@@ -36,6 +37,13 @@ export class AddGradeComponent{
     private notificationService:NotificationService) {
     this.user = this.currentUser.getUser();
     this.grade.profId = this.user.id;
+  }
+
+  onChanges(): void {
+    this.gradesForm.valueChanges.subscribe(x=> {
+      console.log(this.isDisabled)
+    this.isDisabled = this.gradesForm.valid ? false :true;
+    })
   }
 
   addNotification(){
@@ -53,6 +61,10 @@ export class AddGradeComponent{
 
     this.newGrade = Object.assign({}, this.grade);
     this.gradesListChanged.emit(this.newGrade);
+  }
+
+  ngOnInit(): void {
+    this.onChanges();
   }
 
 }

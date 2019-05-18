@@ -1,8 +1,13 @@
 <form class="form" [formGroup]="signupForm">
   <h1>Sign up</h1>
   <input type="text" formControlName="code" placeholder="Code">
-  <input type="text" formControlName="email" placeholder="Email">
+  <div *ngIf="signupForm.get('code')?.errors && signupForm.get('code')?.touched" class="error-message">This field
+      is required!</div>
   <input type="password" formControlName="password" placeholder="Password">
+  <div *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.touched" class="error-message">This field
+      is required!</div>
   <input type="password" formControlName="cpassword" placeholder="Confirm Password">
-  <button type="submit" (click)="register(signupForm)">Signup</button>
+  <div *ngIf="signupForm.get('cpassword')?.errors && signupForm.get('cpassword')?.touched" class="error-message">This field
+      is required!</div>
+  <button [disabled] = "isDisabled" class="button" type="submit" (click)="register(signupForm)">Signup</button>
 </form>

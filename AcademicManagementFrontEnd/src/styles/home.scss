@@ -10,14 +10,33 @@ input[type=text],
   border-radius: 15px;
 }
 
-button {
+.button {
   background: #5C9EAD;
   @include size(4vh,22vw);
   border-radius: 15px;
   border: none;
   margin:20px 0 40px 0;
+  &:hover {
+    background-color: rgb(106, 178, 194);
+    box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 }
 
 p {
     margin-top : 10px;
+}
+
+.error-message {
+  font-size:13px;
+  margin-top:5px;
+  color: red;
+}
+
+input.ng-touched.ng-invalid {
+    border-color: red;
+}
+
+.disbled-button{
+    background: rgb(148, 219, 235);
+    cursor: none;
 }

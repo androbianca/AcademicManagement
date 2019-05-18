@@ -43,31 +43,34 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { NotificationCardComponent } from '../components/public/notification-card/notification-card.component';
 import { AddFeedbackComponent } from '../components/public/add-feedback/add-feedback.component';
 import { AddFeedbackModalContentComponent } from '../components/public/add-feedback-modal-content/add-feedback-modal-content.component';
+import { NewsfeedPageComponent } from './newsfeed-page/newsfeed-page.component';
+import { FeedCardComponent } from '../components/public/feed-card/feed-card.component';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 
 
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule],
   declarations: [
     StudGradesComponent,
     StudentCoursesComponent,
     HomePageComponent,
     CourseCardComponent,
     YearGroupedCoursesCardComponent,
-    LoginComponent, 
+    LoginComponent,
     SignupComponent,
     CourseGradesComponent,
     ProfGradesComponent,
     StudentCardComponent,
     AddGradeComponent,
     ProfessorsComponent,
-    ProfCardComponent, 
-    GradeCardComponent, 
-    GradesCardComponent, 
-    AddGradeModalContentComponent, 
-    ManageCoursesComponent, 
-    AddCoursesComponent, 
-    ManageProfessorsComponent, 
+    ProfCardComponent,
+    GradeCardComponent,
+    GradesCardComponent,
+    AddGradeModalContentComponent,
+    ManageCoursesComponent,
+    AddCoursesComponent,
+    ManageProfessorsComponent,
     AddProfComponent,
     ProfCoursesComponent,
     ManageStudComponent,
@@ -86,9 +89,11 @@ import { AddFeedbackModalContentComponent } from '../components/public/add-feedb
     NotificationPanelComponent,
     NotificationCardComponent,
     AddFeedbackComponent,
-    AddFeedbackModalContentComponent
+    AddFeedbackModalContentComponent,
+    NewsfeedPageComponent,
+    FeedCardComponent
   ],
-  entryComponents: [AddGradeModalContentComponent,AddFeedbackModalContentComponent],
+  entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent],
   exports: [
     StudGradesComponent,
     StudentCoursesComponent,
@@ -100,11 +105,11 @@ import { AddFeedbackModalContentComponent } from '../components/public/add-feedb
     SignupComponent,
     StudentCardComponent,
     AddGradeComponent,
-    ProfCardComponent, 
-    GradeCardComponent, 
-    GradesCardComponent, 
-    AddGradeModalContentComponent, 
-    AddCoursesComponent, 
+    ProfCardComponent,
+    GradeCardComponent,
+    GradesCardComponent,
+    AddGradeModalContentComponent,
+    AddCoursesComponent,
     AddProfComponent,
     AddStudComponent,
     AddGroupComponent,
@@ -118,13 +123,16 @@ import { AddFeedbackModalContentComponent } from '../components/public/add-feedb
     NotificationPanelComponent,
     NotificationCardComponent,
     AddFeedbackComponent,
-    AddFeedbackModalContentComponent
+    AddFeedbackModalContentComponent,
+    FeedCardComponent
 
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
-    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
+
   ]
 
 })

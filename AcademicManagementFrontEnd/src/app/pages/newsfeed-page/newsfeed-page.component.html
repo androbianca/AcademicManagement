@@ -1,0 +1,17 @@
+<h6>Feed</h6>
+
+<div class="card">
+  <div class="content">
+    <form [formGroup]="postForm">
+      <textarea formControlName="post">
+      
+      </textarea>
+    </form>
+  </div>
+  <div class="footer">
+    <button class="button" [disabled] = "isDisabled" (click)="addPost(postForm)">Post</button></div>
+</div>
+
+<ng-container *ngFor="let post of signalRService.posts">
+  <app-feed-card [post]="post"></app-feed-card>
+</ng-container>
