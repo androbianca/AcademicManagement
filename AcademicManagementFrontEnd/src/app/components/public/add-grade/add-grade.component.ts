@@ -13,7 +13,7 @@ import { Notif } from 'src/app/models/notification';
   templateUrl: './add-grade.component.html',
   styleUrls: ['./add-grade.component.scss']
 })
-export class AddGradeComponent{
+export class AddGradeComponent implements OnInit{
 
   @Input() studentId : string;
   @Input() courseId : string;
@@ -21,14 +21,17 @@ export class AddGradeComponent{
   @Output() gradesListChanged : EventEmitter<any> = new EventEmitter();
   @HostBinding('class') classes = 'add-grade-card';
 
+  numbersRegex = '^[0-9]*$';
   notification = new Notif();
   newGrade:Grade;
   user: UserDetails;
   grade = new Grade();
+  isDisabled = true;
+  errorMessage= 'This fied id required!';
 
   gradesForm = new FormGroup({
     category: new FormControl('',Validators.required),
-    value: new FormControl('',Validators.required)
+    value: new FormControl('',[Validators.required,Validators.pattern('^[0-9]*$')])
   });
 
   constructor(private currentUser: CurrentUserDetailsService, 
@@ -36,6 +39,14 @@ export class AddGradeComponent{
     private notificationService:NotificationService) {
     this.user = this.currentUser.getUser();
     this.grade.profId = this.user.id;
+  }
+
+  onChanges(): void {
+    this.gradesForm.valueChanges.subscribe(x=> {
+      var errors = this.gradesForm.get('value').hasError('pattern');
+      this.errorMessage = errors ? 'The input should be a number' : 'This fied is required!';
+      this.isDisabled = this.gradesForm.valid ? false :true;
+    })
   }
 
   addNotification(){
@@ -53,6 +64,10 @@ export class AddGradeComponent{
 
     this.newGrade = Object.assign({}, this.grade);
     this.gradesListChanged.emit(this.newGrade);
+  }
+
+  ngOnInit(): void {
+    this.onChanges();
   }
 
 }

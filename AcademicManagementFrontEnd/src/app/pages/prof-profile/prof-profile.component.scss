@@ -1,7 +1,7 @@
 @import "../../../styles/mixins.scss";
 @import "../../../styles/general.scss";
 
-.container {
+.cards-container {
   @include flex(row, center, center);
   flex-wrap: wrap;
  }

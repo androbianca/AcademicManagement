@@ -1,6 +1,6 @@
 export class UserDetails {
     id:string;
-    usercode: string;
+    userCode: string;
     lastName: string;
     firstName: string;
     userRole: string;

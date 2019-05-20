@@ -25,8 +25,8 @@ export class StudentService {
         return this.baseService.get<Student[]>(`students`);
     }
 
-    public getById(studId:string) {
-        return this.baseService.get<Student>(`students/${studId}`);
+    public getById(usercode:string) {
+        return this.baseService.get<Student>(`students/${usercode}`);
     }
 
 }
