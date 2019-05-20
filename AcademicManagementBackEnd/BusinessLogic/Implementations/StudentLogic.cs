@@ -54,9 +54,12 @@ namespace BusinessLogic.Implementations
             return studentDtos;
         }
 
-        public StudentDto GetById(Guid studId)
+        public StudentDto GetById(string userCode)
         {
-            var student = _repository.GetByFilter<Student>(x => x.Id == studId);
+
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userCode);
+
+            var student = _repository.GetByFilter<Student>(x => x.PotentialUserId == potentialUser.Id);
             var studentDto = new StudentDto
             {
                 Id = student.Id,

@@ -4,14 +4,16 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190518171230_PostTable&EntitiesConfig")]
+    partial class PostTableEntitiesConfig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,19 +185,19 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AccountId");
+                    b.Property<string>("AccountId");
 
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<Guid?>("AccountId1");
+
+                    b.Property<string>("Body");
 
                     b.Property<DateTime>("Time");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("AccountId1");
 
-                    b.ToTable("posts");
+                    b.ToTable("Post");
                 });
 
             modelBuilder.Entity("Entities.PotentialUser", b =>
@@ -379,8 +381,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Account", "Account")
                         .WithMany("Posts")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AccountId1");
                 });
 
             modelBuilder.Entity("Entities.Professor", b =>

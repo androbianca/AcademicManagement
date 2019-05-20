@@ -38,10 +38,10 @@ namespace Service.Controllers
             return Ok(students);
         }
 
-        [HttpGet("{studId:guid}")]
-        public ActionResult<StudentDto> GetById([FromRoute] Guid studId)
+        [HttpGet("{usercode}")]
+        public ActionResult<StudentDto> GetById([FromRoute] string usercode)
         {
-            var students = _studentLogic.GetById(studId);
+            var students = _studentLogic.GetById(usercode);
 
             return Ok(students);
         }

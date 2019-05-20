@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 namespace BusinessLogic.Abstractions
 {
-    public interface IStudCourseLogic
+    public interface IPostLogic
     {
-        IEnumerable<StudCourse> Add(IEnumerable<StudCourseDto> studCourseDto);
+        Post Add(PostDto postDto);
+        ICollection<PostDto> GetAll();
     }
 }

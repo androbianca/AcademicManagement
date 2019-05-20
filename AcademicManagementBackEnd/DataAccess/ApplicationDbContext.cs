@@ -26,6 +26,7 @@ namespace DataAccess
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<Feedback> Feedback {get; set;}
+        public DbSet<Post> posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,6 +45,8 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
             modelBuilder.ApplyConfiguration(new NotificationConfiguration());
             modelBuilder.ApplyConfiguration(new FeedbackConfiguration());
+            modelBuilder.ApplyConfiguration(new PostConfiguration());
+
 
         }
     }

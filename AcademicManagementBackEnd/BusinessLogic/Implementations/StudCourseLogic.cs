@@ -2,9 +2,7 @@
 using DataAccess.Abstractions;
 using Entities;
 using Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLogic.Implementations
 {

@@ -65,5 +65,14 @@ namespace Service.Controllers
             return Ok(result);
         }
 
+
+        [HttpGet("{usercode}")]
+        public ActionResult<ProfDto> GetById([FromRoute] string usercode)
+        {
+            var prof = _profLogic.GetById(usercode);
+
+            return Ok(prof);
+        }
+
     }
 }
