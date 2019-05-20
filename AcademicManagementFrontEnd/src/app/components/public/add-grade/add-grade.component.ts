@@ -21,15 +21,17 @@ export class AddGradeComponent implements OnInit{
   @Output() gradesListChanged : EventEmitter<any> = new EventEmitter();
   @HostBinding('class') classes = 'add-grade-card';
 
+  numbersRegex = '^[0-9]*$';
   notification = new Notif();
   newGrade:Grade;
   user: UserDetails;
   grade = new Grade();
   isDisabled = true;
+  errorMessage= 'This fied id required!';
 
   gradesForm = new FormGroup({
     category: new FormControl('',Validators.required),
-    value: new FormControl('',Validators.required)
+    value: new FormControl('',[Validators.required,Validators.pattern('^[0-9]*$')])
   });
 
   constructor(private currentUser: CurrentUserDetailsService, 
@@ -41,8 +43,9 @@ export class AddGradeComponent implements OnInit{
 
   onChanges(): void {
     this.gradesForm.valueChanges.subscribe(x=> {
-      console.log(this.isDisabled)
-    this.isDisabled = this.gradesForm.valid ? false :true;
+      var errors = this.gradesForm.get('value').hasError('pattern');
+      this.errorMessage = errors ? 'The input should be a number' : 'This fied is required!';
+      this.isDisabled = this.gradesForm.valid ? false :true;
     })
   }
 

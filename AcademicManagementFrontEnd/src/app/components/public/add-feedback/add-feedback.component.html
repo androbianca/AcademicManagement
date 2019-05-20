@@ -1,5 +1,5 @@
 <form [formGroup]="feedbackForm">
   <textarea formControlName="feedback" id="comments">
   </textarea>
-  <button [disabled] = "isDisabled" class="button2" (click)="addFeedback(feedbackForm)">Submit</button>
+  <button [class.button2-disabled]="isDisabled" (click)="addFeedback(feedbackForm)">Submit</button>
 </form>

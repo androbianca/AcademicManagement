@@ -9,7 +9,7 @@
     </form>
   </div>
   <div class="footer">
-    <button class="button" [disabled] = "isDisabled" (click)="addPost(postForm)">Post</button></div>
+    <button [class.button-disabled] = "isDisabled" (click)="addPost(postForm)">Post</button></div>
 </div>
 
 <ng-container *ngFor="let post of signalRService.posts">

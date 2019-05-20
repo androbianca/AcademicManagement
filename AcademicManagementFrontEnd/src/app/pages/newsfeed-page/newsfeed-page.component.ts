@@ -20,7 +20,8 @@ export class NewsfeedPageComponent implements OnInit {
   postForm = new FormGroup({
     post: new FormControl(null,[Validators.required]),
   });
-  isDisabled= false;
+
+  isDisabled = true;
   constructor(private userDetailsService: CurrentUserDetailsService,
     private postService: PostService,private signalRService: SignalRService) {
     this.user = this.userDetailsService.getUser();
@@ -28,6 +29,7 @@ export class NewsfeedPageComponent implements OnInit {
 
   ngOnInit() {
     this.getPosts();
+    this.onChanges();
   }
 
   getPosts() {
@@ -38,6 +40,7 @@ export class NewsfeedPageComponent implements OnInit {
 
   onChanges(): void {
     this.postForm.valueChanges.subscribe(x=> {
+      console.log(this.isDisabled)
     this.isDisabled = this.postForm.valid ? false :true;
     })
   }

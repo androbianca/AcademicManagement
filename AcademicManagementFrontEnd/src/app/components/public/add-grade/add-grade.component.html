@@ -4,7 +4,8 @@
     field
     is required!</div>
   <input type="text" formControlName="value" placeholder="Value">
-  <div *ngIf="gradesForm.get('value')?.errors && gradesForm.get('value')?.touched" class="error-message">This field
-    is required!</div>
-  <button class="button2" type="submit" (click)="save(gradesForm)" [disabled]="isDisabled">Save</button>
+  <div *ngIf="gradesForm.get('value')?.errors && gradesForm.get('value')?.touched" class="error-message">
+   {{ errorMessage }}
+  </div>
+  <button [class.button2-disabled]="isDisabled" type="submit" (click)="save(gradesForm)">Save</button>
 </form>
