@@ -46,6 +46,7 @@ import { AddFeedbackModalContentComponent } from '../components/public/add-feedb
 import { NewsfeedPageComponent } from './newsfeed-page/newsfeed-page.component';
 import { FeedCardComponent } from '../components/public/feed-card/feed-card.component';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { FileUploadComponent } from '../components/public/file-upload/file-upload.component';
 
 
 
@@ -91,7 +92,8 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
     AddFeedbackComponent,
     AddFeedbackModalContentComponent,
     NewsfeedPageComponent,
-    FeedCardComponent
+    FeedCardComponent,
+    FileUploadComponent
   ],
   entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent],
   exports: [
@@ -124,7 +126,9 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
     NotificationCardComponent,
     AddFeedbackComponent,
     AddFeedbackModalContentComponent,
-    FeedCardComponent
+    FeedCardComponent,
+    FileUploadComponent
+
 
   ],
   providers: [

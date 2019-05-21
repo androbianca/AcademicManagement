@@ -13,9 +13,18 @@ export class BaseService {
     const authToken = localStorage.getItem('jwt');
 
     const completeUrl: string = this.enviroment + url;
-    return this.http.post<T>(completeUrl, data,  { headers: {'Content-Type': 'application/json',
-    Authorization: authToken}});
+    return this.http.post<T>(completeUrl, data,  { headers: new HttpHeaders({
+    Authorization: authToken})})
   }
+
+  public put<T>(url: string, data: T): Observable<T> {
+    const authToken = localStorage.getItem('jwt');
+
+    const completeUrl: string = this.enviroment + url;
+    return this.http.post<T>(completeUrl, data,  { headers: new HttpHeaders({'Content-Type': 'application/json',
+    Authorization: authToken})})
+  }
+
 
   public get<T>(url: string): Observable<T> {
     const authToken = localStorage.getItem('jwt');
