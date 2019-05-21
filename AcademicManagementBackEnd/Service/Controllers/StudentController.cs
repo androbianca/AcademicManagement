@@ -38,12 +38,21 @@ namespace Service.Controllers
             return Ok(students);
         }
 
-        [HttpGet("{studId:guid}")]
-        public ActionResult<StudentDto> GetById([FromRoute] Guid studId)
+        [HttpGet("{usercode}")]
+        public ActionResult<StudentDto> GetByUserCode([FromRoute] string usercode)
         {
-            var students = _studentLogic.GetById(studId);
+            var student = _studentLogic.GetByUserCode(usercode);
 
-            return Ok(students);
+            return Ok(student);
+        }
+
+
+        [HttpGet("{id:guid}")]
+        public ActionResult<StudentDto> GetById([FromRoute] Guid id)
+        {
+            var student = _studentLogic.GetById(id);
+
+            return Ok(student);
         }
 
         [HttpDelete("{studentId:guid}")]

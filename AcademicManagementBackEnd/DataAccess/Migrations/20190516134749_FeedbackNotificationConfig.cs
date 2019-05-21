@@ -7,12 +7,6 @@ namespace DataAccess.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ProfCourse");
-
-            migrationBuilder.DropTable(
-                name: "ProfGroup");
-
 
             migrationBuilder.CreateTable(
                 name: "Feedback",

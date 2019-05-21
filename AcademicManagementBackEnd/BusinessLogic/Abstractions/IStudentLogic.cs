@@ -11,6 +11,8 @@ namespace BusinessLogic.Abstractions
         ICollection<StudentDto> GetAll();
         Student Add(StudentDto studentDto);
         Student Remove(Guid studentId);
-        StudentDto GetById(Guid studId);
+        StudentDto GetByUserCode(string userCode);
+        StudentDto GetById(Guid id);
+
     }
 }

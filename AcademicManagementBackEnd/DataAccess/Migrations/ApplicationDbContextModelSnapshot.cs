@@ -15,7 +15,7 @@ namespace DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -88,7 +88,9 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Body");
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<Guid?>("CourseId");
 
@@ -107,12 +109,32 @@ namespace DataAccess.Migrations
                     b.ToTable("Feedback");
                 });
 
+            modelBuilder.Entity("Entities.FileMetadata", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CourseId");
+
+                    b.Property<string>("FileName")
+                        .IsRequired();
+
+                    b.Property<string>("Path")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Files");
+                });
+
             modelBuilder.Entity("Entities.Grade", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Category");
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<Guid>("CourseId");
 
@@ -120,7 +142,8 @@ namespace DataAccess.Migrations
 
                     b.Property<Guid>("StudentId");
 
-                    b.Property<float>("Value");
+                    b.Property<float>("Value")
+                        .HasMaxLength(2);
 
                     b.HasKey("Id");
 
@@ -154,17 +177,43 @@ namespace DataAccess.Migrations
 
                     b.Property<Guid>("AccountId");
 
-                    b.Property<string>("Body");
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasMaxLength(100);
 
                     b.Property<bool>("IsRead");
 
-                    b.Property<string>("Title");
+                    b.Property<DateTime>("Time");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
 
                     b.ToTable("Notifications");
+                });
+
+            modelBuilder.Entity("Entities.Post", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("AccountId");
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("Time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("Entities.PotentialUser", b =>
@@ -340,6 +389,14 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Account", "Account")
                         .WithMany("Notifications")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entities.Post", b =>
+                {
+                    b.HasOne("Entities.Account", "Account")
+                        .WithMany("Posts")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Entities
 {
@@ -10,6 +9,8 @@ namespace Entities
         public bool IsRead { get; set; } = false;
         public Guid AccountId { get; set; }
         public Account Account { get; set; }
+        public DateTime Time { get; set; }
+
 
     }
 }

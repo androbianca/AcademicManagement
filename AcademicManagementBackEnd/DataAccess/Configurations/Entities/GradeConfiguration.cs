@@ -8,6 +8,14 @@ namespace DataAccess.Configurations.Entities
     {
         public void Configure(EntityTypeBuilder<Grade> builder)
         {
+            builder.Property(x => x.Category)
+                  .IsRequired()
+                  .HasMaxLength(20);
+
+            builder.Property(x => x.Value)
+                .IsRequired()
+                .HasMaxLength(2);
+           
             builder.HasOne(x => x.Student)
                 .WithMany(y => y.Grades)
                 .HasForeignKey(z => z.StudentId)

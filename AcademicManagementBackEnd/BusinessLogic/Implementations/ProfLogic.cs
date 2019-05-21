@@ -7,7 +7,7 @@ using Models;
 
 namespace BusinessLogic.Implementations
 {
-    public class ProfLogic :BaseLogic,IProfLogic
+    public class ProfLogic : BaseLogic, IProfLogic
     {
         public ProfLogic(IRepository repository) : base(repository)
         {
@@ -18,7 +18,7 @@ namespace BusinessLogic.Implementations
             var profDtos = new List<ProfDto>();
             var profs = _repository.GetAll<Professor>();
 
-            foreach(var prof in profs)
+            foreach (var prof in profs)
             {
                 var profDto = new ProfDto
                 {
@@ -45,7 +45,7 @@ namespace BusinessLogic.Implementations
         }
 
         public Professor Add(ProfDto profDto)
-        {        
+        {
             var prof = new Professor
             {
                 Id = Guid.NewGuid(),
@@ -60,12 +60,12 @@ namespace BusinessLogic.Implementations
             return prof;
         }
 
-       public ICollection<ProfDto> GetByCourseId(Guid courseId)
+        public ICollection<ProfDto> GetByCourseId(Guid courseId)
         {
             var profDtos = new List<ProfDto>();
             var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.CourseId == courseId);
 
-            foreach(var profStud in profStuds)
+            foreach (var profStud in profStuds)
             {
                 var prof = _repository.GetByFilter<Professor>(x => x.Id == profStud.ProfId);
 
@@ -83,5 +83,22 @@ namespace BusinessLogic.Implementations
 
         }
 
+
+
+        public ProfDto GetById(string userCode)
+        {
+
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userCode);
+
+            var professor = _repository.GetByFilter<Professor>(x => x.PotentialUserId == potentialUser.Id);
+            var profDto = new ProfDto
+            {
+                Id = professor.Id,
+                LastName = professor.LastName,
+                FirstName = professor.FirstName,
+            };
+
+            return profDto;
+        }
     }
 }

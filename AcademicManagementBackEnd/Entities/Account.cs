@@ -17,5 +17,8 @@ namespace Entities
 
         public IEnumerable<Notification> Notifications { get; set; }
 
+        public IEnumerable<Post> Posts { get; set; }
+
+
     }
 }
