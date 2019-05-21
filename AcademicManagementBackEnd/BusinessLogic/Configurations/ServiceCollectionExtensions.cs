@@ -22,6 +22,7 @@ namespace BusinessLogic.Configurations
             services.AddTransient<IStudCourseLogic, StudCourseLogic>();
             services.AddTransient<IFeedbackLogic, FeedbackLogic>();
             services.AddTransient<IPostLogic, PostLogic>();
+            services.AddTransient<IFileMetadataLogic, FileMetadataLogic>();
 
         }
     }
