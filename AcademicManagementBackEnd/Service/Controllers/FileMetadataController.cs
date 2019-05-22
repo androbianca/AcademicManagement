@@ -30,8 +30,9 @@ namespace Service.Controllers
         [HttpPost("{courseId:guid}/upload")]
         public async Task<IActionResult> UploadFilesTask([FromRoute] Guid courseId)
         {
-            var file = HttpContext.Request.Form;
-            var fileDto = await _fileMetadataLogic.UploadFiles(courseId, null);
+            var file = Request.Form.Files[0];
+
+            var fileDto = await _fileMetadataLogic.UploadFiles(courseId, file);
 
             if (fileDto == null)
                 return NotFound("Course not found!");

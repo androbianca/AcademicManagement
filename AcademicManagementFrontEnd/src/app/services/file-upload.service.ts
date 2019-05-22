@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base-service.service';
-import { CurrentUserDetailsService } from './current-user-details.service';
-import { UserDetails } from '../models/userDetails';
-import { CourseRead } from '../models/course-read';
+import { FileModel } from '../models/file';
+
 
 @Injectable({
     providedIn: 'root'
@@ -16,6 +15,10 @@ export class FileService {
         let formData: FormData = new FormData();
         formData.append('file', fileToUpload);
         return this.baseService.post(`files/${courseId}/upload`, formData);
+    }
+
+    getByCourseId(courseId: string){
+        return this.baseService.get<FileModel[]>(`files/${courseId}`);
     }
 
 }

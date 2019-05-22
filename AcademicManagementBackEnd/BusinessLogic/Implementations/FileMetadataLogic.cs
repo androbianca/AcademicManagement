@@ -47,12 +47,12 @@ namespace BusinessLogic.Implementations
                 if (CheckFileValid(filePath))
                 {
                     // create folder if it doesn't exists
-                    if (!Directory.Exists("../files/" + courseId.ToString() + "/"))
+                    if (!Directory.Exists("../../AcademicManagementFrontEnd/src/assets/files/" + courseId.ToString() + "/"))
                     {
-                        Directory.CreateDirectory("../files/" + courseId.ToString() + "/");
+                        Directory.CreateDirectory("../../AcademicManagementFrontEnd/src/assets/files/" + courseId.ToString() + "/");
                     }
 
-                    var path = "../files/" + courseId.ToString() + "/";
+                    var path = "../../AcademicManagementFrontEnd/src/assets/files/" + courseId.ToString() + "/";
                     // download files to server folder
                     using (var stream = new FileStream(path + file.FileName, FileMode.Create))
                     {
