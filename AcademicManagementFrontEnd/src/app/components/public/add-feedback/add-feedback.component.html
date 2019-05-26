@@ -1,5 +1,8 @@
 <form [formGroup]="feedbackForm">
   <textarea formControlName="feedback" id="comments">
   </textarea>
+  <label >Anonim
+    <input formControlName="anonim" type="checkbox" checked="checked">
+  </label>
   <button [class.button2-disabled]="isDisabled" (click)="addFeedback(feedbackForm)">Submit</button>
 </form>

@@ -41,6 +41,10 @@ namespace Service.Controllers
         [HttpGet("{usercode}")]
         public ActionResult<StudentDto> GetByUserCode([FromRoute] string usercode)
         {
+            if (usercode == null)
+            {
+                return null;
+            }
             var student = _studentLogic.GetByUserCode(usercode);
 
             return Ok(student);
@@ -50,6 +54,10 @@ namespace Service.Controllers
         [HttpGet("{id:guid}")]
         public ActionResult<StudentDto> GetById([FromRoute] Guid id)
         {
+            if(id == null)
+            {
+                return null;
+            }
             var student = _studentLogic.GetById(id);
 
             return Ok(student);

@@ -6,24 +6,29 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
+
 using System.Linq;
-using System.Text;
+using System.Data.OleDb;
 using System.Threading.Tasks;
+using Microsoft.Extensions.FileProviders;
+using OfficeOpenXml;
 
 namespace BusinessLogic.Implementations
 {
     public class FileMetadataLogic : BaseLogic, IFileMetadataLogic
     {
-        
+        private IGradeLogic _gradeLogic;
 
-        public FileMetadataLogic(IRepository repository)
+
+        public FileMetadataLogic(IRepository repository, IGradeLogic gradeLogic)
             : base(repository)
         {
-           
+            _gradeLogic = gradeLogic;
         }
 
-        public async Task<FileMetadataDto> UploadFiles(Guid courseId, IFormFile file)
+        public async Task<FileMetadataDto> UploadFiles(Guid courseId, IFormFile file, bool IsExcel, string id)
         {
             var course = _repository.GetByFilter<Course>(x => x.Id == courseId);
 
@@ -66,19 +71,77 @@ namespace BusinessLogic.Implementations
                         Path = path,
                         FileName = file.FileName
                     };
-
-
+                    if (IsExcel)
+                    {
+                        ImportDataFromExcel(path + file.FileName,courseId, id);
+                    }
 
                     // delete temp files after processing
                     if (File.Exists(filePath))
                     {
                         File.Delete(filePath);
                     }
+
                 }
+
             }
 
             return result;
         }
+
+        public async void ImportDataFromExcel(string path, Guid courseId, string id)
+        {
+
+
+            var existingfile = new FileInfo(path);
+            // open and read the xlsx file.
+            using (var package = new ExcelPackage(existingfile))
+            {
+                // get the work book in the file
+                var workbook = package.Workbook;
+                if (workbook != null)
+                {
+
+                    // get the first worksheet
+                    var currentworksheet = workbook.Worksheets.First();
+
+                    // read some data
+                    int colcount = currentworksheet.Dimension.End.Column;  //get column count
+                    int rowcount = currentworksheet.Dimension.End.Row;     //get row count
+
+
+                    for(var row=2; row< rowcount; row++)
+                    {
+                        for(var column=2; column<colcount; column++)
+                        {
+                            var usercode = currentworksheet.Cells[row,1].Value.ToString().Trim();
+                            var category = currentworksheet.Cells[1, column].Value.ToString().Trim();
+                            var value = currentworksheet.Cells[row, column].Value.ToString().Trim();
+
+                            var studPotentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == usercode);
+                            var profPotentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == id);
+
+                            var student = _repository.GetByFilter<Student>(x => x.PotentialUserId == studPotentialUser.Id);
+                            var prof = _repository.GetByFilter<Professor>(x => x.PotentialUserId == profPotentialUser.Id);
+
+                            var grade = new GradeDto
+                            {
+                                CourseId = courseId,
+                                StudentId = student.Id,
+                                ProfId = prof.Id,
+                                Category = category,
+                                Value = Int32.Parse(value)
+                            };
+
+                            _gradeLogic.Add(grade);
+                        }
+                    }
+                          
+                }
+            }
+        }
+
+
 
         public bool CheckFileValid(string filePath)
         {
@@ -151,7 +214,7 @@ namespace BusinessLogic.Implementations
         {
             var file = _repository.GetByFilter<FileMetadata>(c => c.Id == id);
 
-   
+
             if (file == null)
                 return null;
 

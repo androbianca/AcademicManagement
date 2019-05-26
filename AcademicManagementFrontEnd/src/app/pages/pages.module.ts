@@ -47,11 +47,13 @@ import { NewsfeedPageComponent } from './newsfeed-page/newsfeed-page.component';
 import { FeedCardComponent } from '../components/public/feed-card/feed-card.component';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { FileUploadComponent } from '../components/public/file-upload/file-upload.component';
+import { FileDownloadComponent } from '../components/public/file-download/file-download.component';
 
 
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule
+],
   declarations: [
     StudGradesComponent,
     StudentCoursesComponent,
@@ -93,7 +95,8 @@ import { FileUploadComponent } from '../components/public/file-upload/file-uploa
     AddFeedbackModalContentComponent,
     NewsfeedPageComponent,
     FeedCardComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    FileDownloadComponent,
   ],
   entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent],
   exports: [
@@ -127,9 +130,8 @@ import { FileUploadComponent } from '../components/public/file-upload/file-uploa
     AddFeedbackComponent,
     AddFeedbackModalContentComponent,
     FeedCardComponent,
-    FileUploadComponent
-
-
+    FileUploadComponent,
+    FileDownloadComponent,
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

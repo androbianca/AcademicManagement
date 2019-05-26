@@ -1,23 +1,12 @@
-<div class="container">
-  <a class="slides-prev" (click)="plusSlides(-1)">&#10094;</a>
-
-  <div class="test">
-    <div class="display_on fade">
-      <section class="initials">
-        <section class="profile-picture">Unknown</section>
-      </section>
-      <div class="txt">
-        <h2>User</h2>
-        <p>“I am impressed with it.“</p>
-      </div>
-    </div>
-
+<div class="slides-container">
+  <a class="slide-prev" (click)="plusSlides(-1)">&#10094;</a>
+  <div class="slide">
     <ng-container *ngFor="let feedback of feedbackStud">
-      <div class="display_off fade">
+      <div *ngIf="feedback.isActive">
         <section class="initials">
           <section class="profile-picture">{{feedback.Initials}}</section>
         </section>
-        <div class="txt fade">
+        <div class="txt">
           <h2>{{ feedback.UserName }}</h2>
           <p>{{ feedback.Body }}</p>
         </div>
@@ -25,12 +14,11 @@
     </ng-container>
 
     <div class="dot_container">
-      <span class="slides-dot" (click)="currentSlide(0)"></span>
-      <ng-container *ngFor="let person of feedbackStud">
-        <span class="slides-dot" (click)="currentSlide(person.slidenumber)"></span>
+      <ng-container *ngFor="let feedback of feedbackStud">
+        <span class="slide-dot" (click)="currentSlide(feedback.slideNumber)"></span>
       </ng-container>
     </div>
   </div>
-  <a class="slides-next" (click)="plusSlides(1)">&#10095;</a>
+  <a class="slide-next" (click)="plusSlides(1)">&#10095;</a>
 
 </div>

@@ -1,0 +1,20 @@
+<h6 *ngIf="resource.length>0">Resources</h6>
+
+<div class="container">
+
+  <ng-container *ngFor="let item of resource">
+
+    <a [href]="item.link" download class="card">
+      <h3 class="title">{{ item.file.fileName }} </h3>
+      <div class="bar">
+        <div class="emptybar"></div>
+        <div class="filledbar"></div>
+      </div>
+      <div class="circle">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <circle class="stroke" cx="60" cy="60" r="50" />
+        </svg>
+      </div>
+    </a>
+  </ng-container>
+</div>

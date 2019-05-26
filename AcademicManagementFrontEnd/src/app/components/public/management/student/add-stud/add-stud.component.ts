@@ -38,11 +38,6 @@ export class AddStudComponent implements OnInit {
     private studentService: StudentService,
     private StudCourseService: StudCourseService) { }
 
-  getOptionalCourses() {
-    this.courseSrvice.getOptionalCourses().subscribe(response => {
-      this.courses = response;
-    })
-  }
 
   getGroups() {
     this.groupService.getAll().subscribe(response => {
@@ -61,21 +56,9 @@ export class AddStudComponent implements OnInit {
   addStudent() {
     this.studentService.addStudent(this.student).subscribe(response => {
       this.studId = response.id;
-      this.addStudCourses();
     })
   }
 
-  addStudCourses() {
-    var studCourses = new Array<StudCourse>();
-    this.optionals = this.addStudForm.get('optionals').value;
-    this.optionals.forEach(element => {
-      var studCourse = Object.assign({}, new StudCourse());
-      studCourse.courseId = element.id;
-      studCourse.studId = this.studId;
-      studCourses.push( studCourse);
-    });
-    this.StudCourseService.addStudCourses(studCourses).subscribe(response => {})
-  }
 
   submit(form) {
     this.student.firstName = form.value.firstName;
@@ -86,7 +69,6 @@ export class AddStudComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getOptionalCourses();
     this.getGroups();
   }
 }

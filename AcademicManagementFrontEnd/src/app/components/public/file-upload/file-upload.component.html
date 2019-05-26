@@ -1,7 +1,4 @@
-    
-<input #file name="file" type="file" multiple (change)="upload(file.files)" />
+<h6>{{ title }}</h6>
 
-<ng-container *ngFor="let item of files">
-
- <a href=""> {{ item.fileName }} </a>
-</ng-container>
+<input #file name="file" type="file" multiple  />
+<button (click)="upload(file.files)">Submit</button>

@@ -72,14 +72,18 @@ export class ProfProfileComponent implements OnInit {
 
   getStudent(){
     this.feedbackList.forEach(item => {
-      console.log(item.studentId);
+      if(item.studentId){
       this.studentSevice.getById(item.studentId).subscribe(x=>{
-        console.log(x);
            var name = x.lastName + ' ' + x.firstName;
            var initials =  x.lastName[0] + ' ' + x.firstName[0];
            this.feedbackStud.push({'Body':item.body, 'UserName':name, 'Initials': initials})
       })
-    })
+      return;
+    }
+    this.feedbackStud.push({'Body':item.body, 'UserName':'Unknown', 'Initials': 'UNK'})
+
+  
+  })
 
   }
 

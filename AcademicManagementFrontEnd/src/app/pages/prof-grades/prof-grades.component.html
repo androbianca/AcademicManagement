@@ -1,3 +1,5 @@
 <ng-container *ngFor="let student of students">
   <app-student-card [student]="student" [courseId]="courseId" [profId]="user.id"></app-student-card>
 </ng-container>
+
+<app-file-upload [isExcel]="true" [courseId]="courseId" title="Import Excel"></app-file-upload>

@@ -49,7 +49,9 @@ export class SignalRService {
         this.notifications = x;
       });
       this.postService.getAll().subscribe(x => {
-        this.posts = x;
+        
+        this.posts = x.sort((val1, val2)=> {return new Date(val2.time).getTime() - new 
+          Date(val1.time).getTime()})
       })
     });
 }  

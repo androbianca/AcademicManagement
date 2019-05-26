@@ -24,9 +24,6 @@ namespace DataAccess.Configurations.Entities
             builder.Property(x => x.IsRead)
             .IsRequired();
 
-            builder.HasOne(a => a.Account)
-                .WithMany(b => b.Notifications)
-                .HasForeignKey(c => c.AccountId);
         }
     }
 }

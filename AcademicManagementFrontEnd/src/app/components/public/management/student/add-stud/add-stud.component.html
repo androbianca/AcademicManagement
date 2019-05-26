@@ -7,16 +7,9 @@
   <input type="text" formControlName="userCode" placeholder="UserCode">
 
   <mat-form-field>
-    <mat-label>Optional Courses</mat-label>
-    <mat-select formControlName="optionals" multiple>
-      <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
     <mat-label>Group</mat-label>
     <mat-select formControlName="group">
-      <mat-option *ngFor="let group of groups" [value]="group">{{group.name}}</mat-option>
+      <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} {{group.year}}</mat-option>
     </mat-select>
   </mat-form-field>
 

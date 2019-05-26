@@ -175,13 +175,17 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AccountId");
+                    b.Property<Guid?>("AccountId");
 
                     b.Property<string>("Body")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<bool>("IsRead");
+
+                    b.Property<Guid>("ReciverId");
+
+                    b.Property<Guid>("SenderId");
 
                     b.Property<DateTime>("Time");
 
@@ -389,8 +393,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("Entities.Account", "Account")
                         .WithMany("Notifications")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("AccountId");
                 });
 
             modelBuilder.Entity("Entities.Post", b =>

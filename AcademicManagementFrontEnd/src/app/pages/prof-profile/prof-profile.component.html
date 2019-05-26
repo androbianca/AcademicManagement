@@ -1,11 +1,11 @@
-<button class="button" (click)="openDialog()">Give feedback</button>
+<div class="upper-container">
+  <button class="button" (click)="openDialog()">Give feedback</button>
 
-<div class="container">
-  <ng-container *ngFor="let course of courses">
-    <app-course-card [route]="'studcourses/course/'" [message]="cardMessage" [course]="course"></app-course-card>
-  </ng-container>
+  <div class="cards-container">
+    <ng-container *ngFor="let course of courses">
+      <app-course-card [route]="'studcourses/course/'" [message]="cardMessage" [course]="course"></app-course-card>
+    </ng-container>
+  </div>
+
 </div>
-
-
-<app-display-feedback [feedbackStud]="feedbackStud"></app-display-feedback>
-
+<app-display-feedback [profId]="profId"></app-display-feedback>

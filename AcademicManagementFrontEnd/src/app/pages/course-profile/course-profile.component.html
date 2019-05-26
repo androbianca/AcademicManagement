@@ -2,4 +2,8 @@
   <app-prof-card [prof]="prof"></app-prof-card>
 </ng-container>
 
-<app-file-upload [courseId]="courseId"></app-file-upload>
+
+<ng-container *ngIf="user.userRole === 'Professor'">
+  <app-file-upload [courseId]="courseId" title="Upload a resource:"></app-file-upload>
+</ng-container>
+<app-file-download [courseId]="courseId"></app-file-download>

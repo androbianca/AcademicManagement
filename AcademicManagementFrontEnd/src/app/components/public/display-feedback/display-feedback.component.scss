@@ -17,16 +17,57 @@
   }
 }
 
-.test {
-  @include flex(column, center, center);
-  width: 100%;
-}
-
-.container {
+.slides-container {
   @include flex(row, center, center);
   padding: 15px 0 15px 0;
   height: 250px;
   background-color: #f7f7f7;
+
+  .slide {
+    @include flex(column, center, center);
+    width: 100%;
+    
+    &-prev,
+    &-next {
+      @include flex(none, center, center);
+      @include size(40px, 40px);
+      cursor: pointer;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+    }
+  
+    &-next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+  
+    &-prev:hover,
+    &-next:hover {
+      background-color: gray;
+    }
+  
+    &-dot {
+      cursor: pointer;
+      height: 10px;
+      width: 10px;
+      margin: 0 2px;
+      background-color: rgb(84, 82, 82);
+      border-radius: 50%;
+      display: inline-flex;
+      transition: background-color 0.6s ease;
+    }
+  
+    &-dot_container {
+      display: flex;
+      justify-content: center;
+    }
+  
+    &-active,
+    &-dot:hover {
+      background-color: #828080;
+    }
+  }
+  
 }
 
 .txt {
@@ -38,86 +79,5 @@
   }
 }
 
-.display_on {
-  display: block;
-}
-
-.display_off {
-  display: none;
-}
-
-.slides {
-  &-prev,
-  &-next {
-    @include flex(none, center, center);
-    @include size(40px, 40px);
-    cursor: pointer;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
-  }
-
-  &-next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-  }
-
-  &-prev:hover,
-  &-next:hover {
-    background-color: gray;
-  }
-
-  &-dot {
-    cursor: pointer;
-    height: 10px;
-    width: 10px;
-    margin: 0 2px;
-    background-color: rgb(84, 82, 82);
-    border-radius: 50%;
-    display: inline-flex;
-    transition: background-color 0.6s ease;
-  }
-
-  &-dot_container {
-    display: flex;
-    justify-content: center;
-  }
-
-  &-active,
-  &-dot:hover {
-    background-color: #828080;
-  }
-}
 
 
-
-.animated {
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.fadeIn {
-  -webkit-animation-name: fadeIn;
-  animation-name: fadeIn;
-}

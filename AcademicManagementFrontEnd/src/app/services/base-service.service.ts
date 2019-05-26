@@ -13,13 +13,12 @@ export class BaseService {
     const authToken = localStorage.getItem('jwt');
 
     const completeUrl: string = this.enviroment + url;
-    return this.http.post<T>(completeUrl, data,  { headers: new HttpHeaders({
+    return this.http.post<T>(completeUrl, data,  { headers: new HttpHeaders({'Content-Type': 'application/json',
     Authorization: authToken})})
   }
 
   public put<T>(url: string, data: T): Observable<T> {
     const authToken = localStorage.getItem('jwt');
-
     const completeUrl: string = this.enviroment + url;
     return this.http.post<T>(completeUrl, data,  { headers: new HttpHeaders({'Content-Type': 'application/json',
     Authorization: authToken})})
@@ -44,4 +43,13 @@ export class BaseService {
     const completeUrl: string = this.enviroment + url;
     return this.http.post<T>(completeUrl, data);
   }
+
+  public postFile<T>(url: string, data: T): Observable<T> {
+    const authToken = localStorage.getItem('jwt');
+
+    const completeUrl: string = this.enviroment + url;
+    return this.http.post<T>(completeUrl, data,  { headers: new HttpHeaders({
+    Authorization: authToken})})
+  }
+
 }

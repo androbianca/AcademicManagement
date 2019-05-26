@@ -1,7 +1,7 @@
 @import "../../../../styles/mixins.scss";
 
 :host(.student-card) {
-  margin: 40px;
+  margin: 0 20px 20px 0;
   @include flex(row, center, center);
   @include size(100px, 300px);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);

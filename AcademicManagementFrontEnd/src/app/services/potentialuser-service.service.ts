@@ -10,7 +10,8 @@ export class PotentialUserService {
     constructor(private baseService: BaseService) {}
 
      public addPotentialUser (userCode){
-        return this.baseService.post<string>('potentialusers',userCode);
+        console.log(userCode)
+        return this.baseService.post('potentialusers',userCode);
      }
 
      public remove (potentialUserId: string){

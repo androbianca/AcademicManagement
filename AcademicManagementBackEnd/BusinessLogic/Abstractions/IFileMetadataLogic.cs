@@ -11,7 +11,7 @@ namespace BusinessLogic.Abstractions
 {
     public interface IFileMetadataLogic
     {
-        Task<FileMetadataDto> UploadFiles(Guid courseId, IFormFile file);
+        Task<FileMetadataDto> UploadFiles(Guid courseId, IFormFile file, bool isExcel, string id);
 
         FileMetadata Create(FileMetadataDto fileMetadataDto);
 

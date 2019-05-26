@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProfService } from 'src/app/services/prof-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { Professor } from 'src/app/models/professor';
+import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
+import { UserDetails } from 'src/app/models/userDetails';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-course-profile',
@@ -12,7 +15,10 @@ export class CourseProfileComponent implements OnInit {
 
   profs:Professor[];
   courseId:string;
-  constructor(private profService:ProfService, private route:ActivatedRoute) { }
+  user:UserDetails;
+  constructor(private profService:ProfService, private route:ActivatedRoute, private currentUserService:CurrentUserDetailsService) {
+    this.user = this.currentUserService.getUser();
+   }
 
   ngOnInit() {
     this.getProfs();

@@ -90,7 +90,8 @@ namespace BusinessLogic.Implementations
                 Title = "New grade",
                 Body = prof.FirstName + " added a new grade for " + course.Name,
                 IsRead = false,
-                UserId = stud.PotentialUserId
+                ReciverId = stud.PotentialUserId,
+                SenderId = prof.PotentialUserId
             };
 
             return notification;

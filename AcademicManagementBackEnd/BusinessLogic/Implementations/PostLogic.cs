@@ -12,11 +12,13 @@ namespace BusinessLogic.Implementations
     public class PostLogic : BaseLogic, IPostLogic
     {
         private IHubContext<SignalServer> _hubContext;
+        private INotificationLogic _notificationLogic;
 
-        public PostLogic(IRepository repository, IHubContext<SignalServer> hubContext)
+        public PostLogic(IRepository repository, IHubContext<SignalServer> hubContext,INotificationLogic notificationLogic)
             : base(repository)
         {
             _hubContext = hubContext;
+            _notificationLogic = notificationLogic;
         }
 
         public Post Add(PostDto postDto)
@@ -34,8 +36,24 @@ namespace BusinessLogic.Implementations
             _repository.Save();
             _hubContext.Clients.All.SendAsync("ceva", "");
 
+
+            var notification = new NotificationDto
+            {
+                ReciverId = Guid.Empty,
+                Title = "New post on wall.",
+                Body = "New post on wall.",
+                IsRead = false,
+                SenderId = account.PotentialUserId,
+            };
+
+            _notificationLogic.Create(notification);
+
+
+
             return post;
         }
+
+
 
         public ICollection<PostDto> GetAll()
         {
@@ -51,7 +69,7 @@ namespace BusinessLogic.Implementations
                 {
                     Body = post.Body,
                     UserCode = account.UserCode,
-                    Time = DateTime.Now,
+                    Time = post.Time,
                     Role = role.Name
                 };
 

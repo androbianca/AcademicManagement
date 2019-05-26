@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,19 +28,24 @@ namespace Service.Controllers
             return File("~/UploadPage.html", "text/html");
         }
 
-        [HttpPost("{courseId:guid}/upload")]
-        public async Task<IActionResult> UploadFilesTask([FromRoute] Guid courseId)
+        [HttpPost("{courseId:guid}/{isExcel:bool}/upload")]
+        public async Task<IActionResult> UploadFilesTask([FromRoute] Guid courseId, [FromRoute] bool isExcel)
         {
             var file = Request.Form.Files[0];
 
-            var fileDto = await _fileMetadataLogic.UploadFiles(courseId, file);
+            var id = getCurrentUserId();
+
+            var fileDto = await _fileMetadataLogic.UploadFiles(courseId, file, isExcel, id);
 
             if (fileDto == null)
                 return NotFound("Course not found!");
+            if (!isExcel)
+            {
+                var newFile = _fileMetadataLogic.Create(fileDto);
+                return Ok(newFile);
+            }
 
-            var newFile = _fileMetadataLogic.Create(fileDto);
-
-            return CreatedAtAction(nameof(GetById), new { fileEntityId = newFile.Id }, fileDto);
+            return Ok(null);
         }
 
         [HttpPut("{fileId:guid}")]
@@ -100,6 +106,17 @@ namespace Service.Controllers
             var result = _fileMetadataLogic.GetAll();
 
             return result;
+        }
+
+        private string getCurrentUserId()
+        {
+            var headerValue = Request.Headers["Authorization"];
+            var handler = new JwtSecurityTokenHandler();
+            var token = handler.ReadToken(headerValue) as JwtSecurityToken;
+            var id = token.Claims.FirstOrDefault(c => c.Type == "Identifier").Value;
+
+            return id;
+
         }
     }
 }

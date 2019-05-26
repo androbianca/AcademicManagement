@@ -17,7 +17,7 @@ namespace Service.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] string userCode)
+        public ActionResult<string> Add([FromBody] string userCode)
         {
             if (!ModelState.IsValid)
             {

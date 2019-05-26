@@ -1,9 +1,14 @@
 @import '../../../styles/mixins.scss';
 
 :host(.page-wrapper){
-    @include flex(row, flex-start, none)
+    @include flex(column, flex-start, none);
+    margin:40px;
 }
 
 .grades-wrapper{
     @include flex(column, flex-start, none)
+}
+
+app-file-upload {
+    margin-bottom: 40px;
 }

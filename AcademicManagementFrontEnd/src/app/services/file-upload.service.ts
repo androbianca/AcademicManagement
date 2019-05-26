@@ -11,10 +11,10 @@ export class FileService {
     constructor(private baseService: BaseService) { }
 
 
-    postFile(fileToUpload: File, courseId: string) {
+    postFile(fileToUpload: File, courseId: string, isExcel:boolean) {
         let formData: FormData = new FormData();
         formData.append('file', fileToUpload);
-        return this.baseService.post(`files/${courseId}/upload`, formData);
+        return this.baseService.postFile(`files/${courseId}/${isExcel}/upload`, formData);
     }
 
     getByCourseId(courseId: string){

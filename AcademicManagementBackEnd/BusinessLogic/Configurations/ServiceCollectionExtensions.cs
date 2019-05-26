@@ -24,6 +24,7 @@ namespace BusinessLogic.Configurations
             services.AddTransient<IPostLogic, PostLogic>();
             services.AddTransient<IFileMetadataLogic, FileMetadataLogic>();
 
+
         }
     }
 }
