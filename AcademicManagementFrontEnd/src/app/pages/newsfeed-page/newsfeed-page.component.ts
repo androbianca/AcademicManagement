@@ -63,7 +63,6 @@ export class NewsfeedPageComponent implements OnInit {
       this.postService.add(this.post).subscribe(response => {
         this.snackBar.open("success")
       }, err => {
-        this.snackBar.open("fail")
       }
       )
     }

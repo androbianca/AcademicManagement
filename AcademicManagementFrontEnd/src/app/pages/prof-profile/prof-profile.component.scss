@@ -1,15 +1,17 @@
 @import "../../../styles/mixins.scss";
 @import "../../../styles/general.scss";
 
-.cards-container {
-  @include flex(row, center, center);
-  flex-wrap: wrap;
- }
-
   button {
     margin:30px !important;  
   }
+    .cards-container {
+      @include flex(row, center, center);
+      flex-wrap: wrap;
+     }
+    
+  
 
-  .upper-container {
-    height: calc(100% - 265px);
+  .container{
+    position: relative;
+
   }

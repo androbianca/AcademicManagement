@@ -48,11 +48,20 @@ import { FeedCardComponent } from '../components/public/feed-card/feed-card.comp
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { FileUploadComponent } from '../components/public/file-upload/file-upload.component';
 import { FileDownloadComponent } from '../components/public/file-download/file-download.component';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 
+import { BellCurveChartComponent } from '../components/public/bell-curve-chart/bell-curve-chart.component';
 
+import exporting from 'highcharts/modules/exporting.src';
+import windbarb from 'highcharts/modules/windbarb.src';
+ 
+export function highchartsModules() {
+  // apply Highcharts Modules to this array
+  return [ exporting,windbarb ];
+}
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule,ChartModule
 ],
   declarations: [
     StudGradesComponent,
@@ -97,6 +106,8 @@ import { FileDownloadComponent } from '../components/public/file-download/file-d
     FeedCardComponent,
     FileUploadComponent,
     FileDownloadComponent,
+    BellCurveChartComponent
+
   ],
   entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent],
   exports: [
@@ -132,14 +143,16 @@ import { FileDownloadComponent } from '../components/public/file-download/file-d
     FeedCardComponent,
     FileUploadComponent,
     FileDownloadComponent,
+    BellCurveChartComponent
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } // add as factory to your providers
 
-  ]
+]
 
 })
 export class PagesModule { }
