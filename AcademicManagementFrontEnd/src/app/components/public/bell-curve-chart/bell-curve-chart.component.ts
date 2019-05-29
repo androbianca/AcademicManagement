@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit } from '@angular/core';
-
+import Highcharts from 'highcharts';
+import  Bellcurve from 'highcharts/modules/histogram-bellcurve';
+Bellcurve(Highcharts);
 import { Chart } from 'angular-highcharts';
 
 @Component({
