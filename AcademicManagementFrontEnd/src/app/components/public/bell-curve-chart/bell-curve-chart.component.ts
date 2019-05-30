@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit } from '@angular/core';
-import Highcharts from 'highcharts';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit, Input } from '@angular/core';
+import * as Highcharts from 'highcharts';
 import  Bellcurve from 'highcharts/modules/histogram-bellcurve';
 Bellcurve(Highcharts);
 import { Chart } from 'angular-highcharts';
@@ -12,12 +12,11 @@ import { Chart } from 'angular-highcharts';
 
 export class BellCurveChartComponent implements OnInit {
 
-    data;chart;
+    @Input() data ;
+    chart : Chart;
   
 
      ngOnInit(): void {
-
-        this.data =[1,2,3.5,6,10,8,7,7,7,7,5.5,5,5]
         this.chart = new Chart({
         title: {
             text: 'Highcharts Histogram'

@@ -16,3 +16,17 @@
     font-size: 50px;
   }
 }
+
+.success {
+  ::ng-deep app-grade-card {
+    a{
+    background-color: rgb(76, 146, 76) !important;
+  }}
+}
+
+.fail {
+  ::ng-deep app-grade-card {
+    a{
+    background-color: rgb(209, 99, 99) !important;
+  }}
+}

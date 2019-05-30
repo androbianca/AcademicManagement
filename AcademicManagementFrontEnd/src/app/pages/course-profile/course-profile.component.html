@@ -7,5 +7,6 @@
   <app-file-upload [courseId]="courseId" title="Upload a resource:"></app-file-upload>
 </ng-container>
 <app-file-download [courseId]="courseId"></app-file-download>
+<button (click)= "openModal()">Add categories</button>
 
-<app-bell-curve-chart></app-bell-curve-chart>
+<app-bell-curve-chart [data]="data"></app-bell-curve-chart>

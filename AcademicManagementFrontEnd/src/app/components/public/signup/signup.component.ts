@@ -27,7 +27,6 @@ export class SignupComponent implements OnInit {
 
   onChanges(): void {
     this.signupForm.valueChanges.subscribe(x=> {
-      console.log(this.signupForm.valid)
     this.isDisabled = this.signupForm.valid ? false : true;
     })
   }

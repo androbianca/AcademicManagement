@@ -9,5 +9,6 @@ namespace Models
         public Guid StudentId { get; set; }
         public Guid CourseId { get; set; }
         public Guid ProfId { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }

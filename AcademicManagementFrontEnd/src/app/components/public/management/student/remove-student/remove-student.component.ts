@@ -30,7 +30,6 @@ export class RemoveStudentComponent implements OnInit {
 
   removeStudent(id:string){
    this.studService.removeStudent(id).subscribe(response => {
-     console.log(response);
    })
   }
 

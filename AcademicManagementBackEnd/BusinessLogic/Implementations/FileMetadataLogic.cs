@@ -123,13 +123,13 @@ namespace BusinessLogic.Implementations
 
                             var student = _repository.GetByFilter<Student>(x => x.PotentialUserId == studPotentialUser.Id);
                             var prof = _repository.GetByFilter<Professor>(x => x.PotentialUserId == profPotentialUser.Id);
-
+                            var categoryId = _repository.GetByFilter<GradeCategory>(x => x.Name.ToLower() == category.ToLower()).Id;
                             var grade = new GradeDto
                             {
                                 CourseId = courseId,
                                 StudentId = student.Id,
                                 ProfId = prof.Id,
-                                Category = category,
+                                CategoryId = categoryId,
                                 Value = Int32.Parse(value)
                             };
 

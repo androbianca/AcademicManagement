@@ -54,6 +54,8 @@ import { BellCurveChartComponent } from '../components/public/bell-curve-chart/b
 
 import exporting from 'highcharts/modules/exporting.src';
 import windbarb from 'highcharts/modules/windbarb.src';
+import { GradeCategoryComponent } from '../components/public/grade-category/grade-category.component';
+import { GradeCategoryModalComponentComponent } from '../components/public/grade-category-modal-component/grade-category-modal-component.component';
  
 export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -106,10 +108,11 @@ export function highchartsModules() {
     FeedCardComponent,
     FileUploadComponent,
     FileDownloadComponent,
-    BellCurveChartComponent
+    BellCurveChartComponent,
+    GradeCategoryComponent,GradeCategoryModalComponentComponent
 
   ],
-  entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent],
+  entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent,GradeCategoryModalComponentComponent],
   exports: [
     StudGradesComponent,
     StudentCoursesComponent,
@@ -143,7 +146,10 @@ export function highchartsModules() {
     FeedCardComponent,
     FileUploadComponent,
     FileDownloadComponent,
-    BellCurveChartComponent
+    BellCurveChartComponent,
+    GradeCategoryComponent,
+    GradeCategoryModalComponentComponent
+
   ],
   providers: [
     { provide: MatDialogRef, useValue: {} },

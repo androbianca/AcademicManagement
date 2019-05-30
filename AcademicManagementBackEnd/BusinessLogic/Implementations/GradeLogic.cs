@@ -16,50 +16,34 @@ namespace BusinessLogic.Implementations
         {
             _notificationLogic = notificationLogic; }
 
-        public ICollection<GradeDto> GetGradesByStud(Guid courseId,Guid studentId, Guid profId)
-        {
-            var gradeDtos = new List<GradeDto>();
-            var grades = _repository.GetAllByFilter<Grade>(x => x.CourseId == courseId && x.StudentId == studentId && x.ProfId == profId);
-           
-            foreach (var grade in grades)
-            {
-                var gradeDto = new GradeDto
-                {
-                    Value = grade.Value,
-                    Category = grade.Category,
-                    StudentId = grade.StudentId,
-                    ProfId = grade.ProfId,
-                    CourseId = grade.CourseId
-                  
-                };
-
-                gradeDtos.Add(gradeDto);
-            }
-
-            return gradeDtos;
-        }
-
-        public ICollection<GradeDto> GetGradesByProf(Guid courseId, Guid studentId)
+        public ICollection<GradeDto> GetGradesByStud(Guid courseId,Guid studentId)
         {
             var gradeDtos = new List<GradeDto>();
             var grades = _repository.GetAllByFilter<Grade>(x => x.CourseId == courseId && x.StudentId == studentId);
-
+           
             foreach (var grade in grades)
             {
+                var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId);
+
+
                 var gradeDto = new GradeDto
                 {
                     Value = grade.Value,
-                    Category = grade.Category,
                     StudentId = grade.StudentId,
                     ProfId = grade.ProfId,
-                    CourseId = grade.CourseId
+                    CourseId = grade.CourseId,
+                    CategoryId = grade.CategoryId,
+                    Category = category.Name
+
 
                 };
 
                 gradeDtos.Add(gradeDto);
             }
+
             return gradeDtos;
         }
+
         public void Add(GradeDto gradeDto)
         {
             var grade = new Grade()
@@ -68,8 +52,10 @@ namespace BusinessLogic.Implementations
                 ProfId = gradeDto.ProfId,
                 CourseId = gradeDto.CourseId,
                 Value = gradeDto.Value,
-                Category = gradeDto.Category
+                CategoryId = gradeDto.CategoryId
+
             };
+
             _repository.Insert(grade);
             _repository.Save();
 
@@ -78,6 +64,19 @@ namespace BusinessLogic.Implementations
             _notificationLogic.Create(notification);
 
 
+        }
+
+        public float ComputeLabFinalGrade(Guid courseId, Guid studentId)
+       {
+            float sum = 0;
+            var grades = this.GetGradesByStud(courseId, studentId);
+            foreach(var grade in grades){
+                var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId);
+                var number = category.Percentage;
+                sum += (number*grade.Value)/100;
+            }
+
+            return sum;
         }
 
         private NotificationDto CreateNotification(GradeDto gradeDto)

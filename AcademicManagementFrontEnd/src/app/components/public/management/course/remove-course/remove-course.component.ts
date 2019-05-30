@@ -30,7 +30,7 @@ export class RemoveCourseComponent implements OnInit {
 
   submit(form) {
     var course = form.value.course;
-    this.courseService.removeCourse(course.id).subscribe(() => console.log("user deleted"));
+    this.courseService.removeCourse(course.id).subscribe(() => {});
   }
 
 }

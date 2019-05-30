@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Add grades</h1>
+<div mat-dialog-content>
+  <app-grade-category [courseId]="data.courseId"></app-grade-category>
+</div>
+<mat-dialog-actions>
+  <button class="button3" mat-button mat-dialog-close>Close</button>
+  <button class="button3" mat-button [mat-dialog-close]="true">Save</button>
+</mat-dialog-actions>

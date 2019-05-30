@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Entities
 {
     public class Grade : BaseEntity
     {
         public float Value { get; set; }
-
-        public string Category { get; set; }
 
         public Guid StudentId { get; set; }
 
@@ -19,5 +18,8 @@ namespace Entities
         public Guid ProfId { get; set; }
 
         public Professor Professor { get; set; }
+
+        public Guid CategoryId { get; set; }
+
     }
 }

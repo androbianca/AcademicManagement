@@ -17,7 +17,6 @@ export class ProfessorsComponent implements OnInit {
   getProfs(){
     this.profService.getAll().subscribe(response => {
       this.profs = response;
-      console.log(response)
     })
   }
   ngOnInit() {

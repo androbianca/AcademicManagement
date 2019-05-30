@@ -7,6 +7,8 @@ import { GradeService } from 'src/app/services/grade-service.service';
 import { SignalRService } from 'src/app/services/signalR-service.service';
 import { NotificationService } from 'src/app/services/notification-service.service';
 import { Notif } from 'src/app/models/notification';
+import { GradeCategoryService } from 'src/app/services/grade-category.service';
+import { GradeCategory } from 'src/app/models/grade-category';
 
 @Component({
   selector: 'app-add-grade',
@@ -28,7 +30,7 @@ export class AddGradeComponent implements OnInit{
   grade = new Grade();
   isDisabled = true;
   errorMessage= 'This fied id required!';
-
+  categories:GradeCategory[];
   gradesForm = new FormGroup({
     category: new FormControl('',Validators.required),
     value: new FormControl('',[Validators.required,Validators.pattern('^[0-9]*$')])
@@ -36,7 +38,8 @@ export class AddGradeComponent implements OnInit{
 
   constructor(private currentUser: CurrentUserDetailsService, 
     private gradeService :GradeService, 
-    private notificationService:NotificationService) {
+    private notificationService:NotificationService,
+    private gradeCategoryService:GradeCategoryService) {
     this.user = this.currentUser.getUser();
     this.grade.profId = this.user.id;
   }
@@ -53,14 +56,16 @@ export class AddGradeComponent implements OnInit{
     this.notification.title = "aa";
     this.notification.body = "bb";
     this.notification.userId = this.studentId;
-    this.notificationService.add(this.notification).subscribe(response=>console.log(response))
+    this.notificationService.add(this.notification).subscribe(response=>
+      {})
   }
 
   save(gradesForm) {
     this.grade.courseId = this.courseId;
     this.grade.studentId = this.studentId;
     this.grade.value = gradesForm.value.value;
-    this.grade.category = gradesForm.value.category;
+    this.grade.categoryId = gradesForm.value.category.id;
+    this.grade.category = gradesForm.value.category.name;
 
     this.newGrade = Object.assign({}, this.grade);
     this.gradesListChanged.emit(this.newGrade);
@@ -68,6 +73,13 @@ export class AddGradeComponent implements OnInit{
 
   ngOnInit(): void {
     this.onChanges();
+    this.getCategories();
+  }
+
+  getCategories(){
+    this.gradeCategoryService.getByCourseId(this.courseId).subscribe(x=> {
+      this.categories =x;
+    })
   }
 
 }

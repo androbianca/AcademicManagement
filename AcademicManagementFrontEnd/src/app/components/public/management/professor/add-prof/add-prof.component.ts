@@ -52,7 +52,7 @@ export class AddProfComponent implements OnInit {
 
   getGroups() {
     this.groupService.getAll().subscribe(result =>
-      {console.log(result)
+      {
       this.groups = result}
     )
   }

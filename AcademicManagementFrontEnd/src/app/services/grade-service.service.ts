@@ -16,11 +16,11 @@ export class GradeService {
         return this.baseService.post<Grade>('grades',grade);
      }
 
-     public getGrades(courseId,studentId,profId){
-         return this.baseService.get<Grade[]>(`grades/${courseId}/${studentId}/${profId}`);
-     }
+     public getFinal(courseId,studentId){
+        return this.baseService.get<number>(`grades/${courseId}/${studentId}/final`);
+    }
 
-     public getGrades2(courseId,studentId){
+     public getGrades(courseId,studentId){
         return this.baseService.get<Grade[]>(`grades/${courseId}/${studentId}`);
     }
 }

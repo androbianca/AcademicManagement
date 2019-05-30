@@ -19,7 +19,7 @@ export class AddGradeModalContentComponent implements OnInit {
   private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.gradeService.getGrades(this.data.courseId,this.data.studentId,this.data.profId).subscribe(result => this.grades = result);
+    this.gradeService.getGrades(this.data.courseId,this.data.studentId).subscribe(result => this.grades = result);
   }
 
   onGradesListChanged(event:Grade){

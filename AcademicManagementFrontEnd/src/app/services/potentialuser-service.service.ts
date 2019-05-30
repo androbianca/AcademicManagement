@@ -10,7 +10,6 @@ export class PotentialUserService {
     constructor(private baseService: BaseService) {}
 
      public addPotentialUser (userCode){
-        console.log(userCode)
         return this.baseService.post('potentialusers',userCode);
      }
 

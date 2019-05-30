@@ -28,6 +28,8 @@ namespace DataAccess
         public DbSet<Feedback> Feedback {get; set;}
         public DbSet<Post> Posts { get; set; }
         public DbSet<FileMetadata> Files { get; set; }
+        public DbSet<GradeCategory> GradeCategories { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,9 +50,7 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new FeedbackConfiguration());
             modelBuilder.ApplyConfiguration(new PostConfiguration());
             modelBuilder.ApplyConfiguration(new FileMetadataConfiguration());
-
-
-
+            modelBuilder.ApplyConfiguration(new GradeCategoryConfiguration());
         }
     }
 }

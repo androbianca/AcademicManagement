@@ -32,7 +32,7 @@ p {
   color: red;
 }
 
-input.ng-touched.ng-invalid {
+input.ng-touched.ng-invalid,select.ng-touched.ng-invalid {
     border-color: red;
 }
 

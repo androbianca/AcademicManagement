@@ -1,0 +1,17 @@
+<form [formGroup]="gradesForm">
+  <input type="text" formControlName="category" placeholder="Category (ex: exam)">
+  <div *ngIf="gradesForm.get('category')?.errors && gradesForm.get('category')?.touched" class="error-message">This
+    field
+    is required!</div>
+  <input type="text" formControlName="percentage" placeholder="Percentage">
+  <div *ngIf="gradesForm.get('percentage')?.errors && gradesForm.get('percentage')?.touched" class="error-message">
+   {{ errorMessage }}
+  </div>
+  <label >Course
+    <input formControlName="type" type="checkbox" checked="checked">
+  </label>
+  <label >Laboratory
+    <input formControlName="type" type="checkbox" checked="checked">
+  </label>
+  <button type="submit" (click)="save(gradesForm)">Save</button>
+</form>

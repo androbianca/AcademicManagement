@@ -22,7 +22,6 @@ namespace DataAccess.Configurations.Entities
             builder.Property(p => p.Semester)
                 .IsRequired()
                 .HasMaxLength(1);
-
         }
     }
 }

@@ -23,6 +23,8 @@ namespace BusinessLogic.Configurations
             services.AddTransient<IFeedbackLogic, FeedbackLogic>();
             services.AddTransient<IPostLogic, PostLogic>();
             services.AddTransient<IFileMetadataLogic, FileMetadataLogic>();
+            services.AddTransient<IGradeCategoryLogic, GardeCategoryLogic>();
+
 
 
         }

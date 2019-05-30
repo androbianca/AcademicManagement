@@ -1,11 +1,13 @@
 <form [formGroup]="gradesForm">
-  <input type="text" formControlName="category" placeholder="Category (ex: exam)">
+  <select placeholder="Category(ex:exam)" formControlName="category">
+      <option *ngFor="let category of categories" class="option" [ngValue]="category">{{category.name}}</option>
+  </select>
   <div *ngIf="gradesForm.get('category')?.errors && gradesForm.get('category')?.touched" class="error-message">This
     field
     is required!</div>
   <input type="text" formControlName="value" placeholder="Value">
   <div *ngIf="gradesForm.get('value')?.errors && gradesForm.get('value')?.touched" class="error-message">
-   {{ errorMessage }}
+    {{ errorMessage }}
   </div>
   <button [class.button2-disabled]="isDisabled" type="submit" (click)="save(gradesForm)">Save</button>
 </form>

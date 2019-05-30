@@ -17,25 +17,26 @@ namespace Service.Controllers
             _gradeLogic = gradeLogic;
         }
 
-        [HttpGet("{courseId:guid}/{studentId:guid}/{profId:guid}")]
-        public ActionResult<ICollection<GradeDto>> GetGradesByStud([FromRoute] Guid courseId, [FromRoute] Guid studentId, [FromRoute] Guid profId)
-        {
-
-            var grades = _gradeLogic.GetGradesByStud(courseId, studentId, profId);
-
-            return Ok(grades);
-
-        }
-
         [HttpGet("{courseId:guid}/{studentId:guid}")]
-        public ActionResult<ICollection<GradeDto>> GetGradesByProf([FromRoute] Guid courseId, [FromRoute] Guid studentId)
+        public ActionResult<ICollection<GradeDto>> GetGradesByStud([FromRoute] Guid courseId, [FromRoute] Guid studentId)
         {
 
-            var grades = _gradeLogic.GetGradesByProf(courseId, studentId);
+            var grades = _gradeLogic.GetGradesByStud(courseId, studentId);
 
             return Ok(grades);
 
         }
+
+        [HttpGet("{courseId:guid}/{studentId:guid}/final")]
+        public ActionResult<ICollection<GradeDto>> GetFinalGrade([FromRoute] Guid courseId, [FromRoute] Guid studentId)
+        {
+
+            var finalGrade = _gradeLogic.ComputeLabFinalGrade(courseId, studentId);
+
+            return Ok(finalGrade);
+
+        }
+
 
         [HttpPost]
         public IActionResult Add([FromBody] GradeDto grade)

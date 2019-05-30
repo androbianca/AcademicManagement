@@ -18,5 +18,8 @@ namespace Entities
 
         public IEnumerable<Feedback> Feedback { get; set; }
 
+        public IEnumerable<GradeCategory> Categories { get; set; }
+
+
     }
 }
