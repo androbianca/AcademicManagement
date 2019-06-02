@@ -38,7 +38,8 @@ export class DisplayFeedbackComponent implements OnInit {
   getFeedback() {
     this.feedbackService.getByProfId(this.profId).subscribe(response => {
       this.feedbackList = response;
-      this.getStudent();
+      if(this.feedbackList.length>0){
+      this.getStudent();}
     })
   }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using DataAccess.Abstractions;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Implementations
 {
@@ -36,6 +37,8 @@ namespace DataAccess.Implementations
 
         public void Update<T>(T entity) where T : class
         {
+            var item = _context.Set<T>().AsNoTracking().ToList();
+
             _context.Set<T>().Update(entity);
         }
 

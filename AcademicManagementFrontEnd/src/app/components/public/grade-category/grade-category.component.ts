@@ -13,6 +13,7 @@ export class GradeCategoryComponent implements OnInit {
   @Input() courseId: string;
   gradesForm = new FormGroup({
     category: new FormControl('', Validators.required),
+    type: new FormControl('', Validators.required),
     percentage: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
   });
   gradeCategory = new GradeCategory();
@@ -35,6 +36,8 @@ export class GradeCategoryComponent implements OnInit {
     this.gradeCategory.courseId = this.courseId;
     this.gradeCategory.name = form.value.category;
     this.gradeCategory.percentage = form.value.percentage;
+    var value = form.value.type ? true : false;
+    this.gradeCategory.isCourseCategory = value;
 
     this.gradeCategoryService.addGradeCategory(this.gradeCategory).subscribe(x=> {});
   }

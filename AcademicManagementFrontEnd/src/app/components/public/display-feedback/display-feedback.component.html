@@ -1,8 +1,8 @@
-<div class="slides-container">
+<div *ngIf="feedbackList.length>0" class="slides-container">
   <a class="slide-prev" (click)="plusSlides(-1)">&#10094;</a>
   <div class="slide">
     <ng-container *ngFor="let feedback of feedbackStud">
-      <div *ngIf="feedback.isActive">
+      <ng-container *ngIf="feedback.isActive">
         <section class="initials">
           <section class="profile-picture">{{feedback.Initials}}</section>
         </section>
@@ -10,7 +10,7 @@
           <h2>{{ feedback.UserName }}</h2>
           <p>{{ feedback.Body }}</p>
         </div>
-      </div>
+      </ng-container>
     </ng-container>
 
     <div class="dot_container">

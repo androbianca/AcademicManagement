@@ -15,6 +15,7 @@ import { ManageGroupsComponent } from './pages/manage-groups/manage-groups.compo
 import { CourseProfileComponent } from './pages/course-profile/course-profile.component';
 import { ProfProfileComponent } from './pages/prof-profile/prof-profile.component';
 import { NewsfeedPageComponent } from './pages/newsfeed-page/newsfeed-page.component';
+import { ResourcesComponent } from './pages/resources/resources.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'courses/:courseId',
     component: ProfGradesComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'courses/resources/:courseId',
+    component: ResourcesComponent,
     canActivate: [UserGuard]
   },
   {

@@ -1,9 +1,12 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { StudentService } from 'src/app/services/student-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
 import { Student } from 'src/app/models/student';
+import { MatDialog } from '@angular/material/dialog';
+import { AddFeedbackModalContentComponent } from 'src/app/components/public/add-feedback-modal-content/add-feedback-modal-content.component';
+import { GradeCategoryModalComponentComponent } from 'src/app/components/public/grade-category-modal-component/grade-category-modal-component.component';
 
 @Component({
   selector: 'app-prof-grades',
@@ -18,7 +21,11 @@ export class ProfGradesComponent implements OnInit {
   user: UserDetails;
   students = new Array<Student>();
  
-  constructor(private studentService: StudentService, private route: ActivatedRoute, private userDetailsService: CurrentUserDetailsService) {
+  constructor(private studentService: StudentService, 
+    public dialog: MatDialog,
+    private route: ActivatedRoute, 
+    private router: Router,
+    private userDetailsService: CurrentUserDetailsService) {
     this.user = userDetailsService.getUser();
   }
 
@@ -31,4 +38,18 @@ export class ProfGradesComponent implements OnInit {
       this.students = result;
     });
   }
+
+  goTo() {
+    this.router.navigate([`courses/resources/${this.courseId}`]);
+  }
+  openModal(){   
+    const dialogRef = this.dialog.open(GradeCategoryModalComponentComponent, {
+      width: '390px',
+      height: '390px',
+      data: { courseId : this.courseId }
+    });
+   
+    dialogRef.afterClosed().subscribe(result => {
+    });
+   }
 }

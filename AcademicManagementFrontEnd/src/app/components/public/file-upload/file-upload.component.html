@@ -1,4 +1,4 @@
 <h6>{{ title }}</h6>
-
-<input #file name="file" type="file" multiple  />
-<button (click)="upload(file.files)">Submit</button>
+<input class="custom-file-input" name="file" type="file" title=" " multiple />
+Select a file
+<button class="button" (click)="upload(file.files)">Submit</button>

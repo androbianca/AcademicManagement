@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Models
 {
@@ -11,5 +9,7 @@ namespace Models
         public string Name { get; set; }
         public int Percentage { get; set; }
         public Guid CourseId { get; set; }
+        public bool IsCourseCategory { get; set; }
+
     }
 }

@@ -14,7 +14,7 @@ namespace BusinessLogic.Implementations
         private IHubContext<SignalServer> _hubContext;
         private INotificationLogic _notificationLogic;
 
-        public PostLogic(IRepository repository, IHubContext<SignalServer> hubContext,INotificationLogic notificationLogic)
+        public PostLogic(IRepository repository, IHubContext<SignalServer> hubContext, INotificationLogic notificationLogic)
             : base(repository)
         {
             _hubContext = hubContext;
@@ -36,17 +36,30 @@ namespace BusinessLogic.Implementations
             _repository.Save();
             _hubContext.Clients.All.SendAsync("ceva", "");
 
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == postDto.UserCode);
 
+            var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId).Name;
+            var sender = new BaseUser();
+            if(role == "Student")
+            {
+                sender = _repository.GetByFilter<Student>(x => x.PotentialUserId == potentialUser.Id);
+
+            }
+            if (role == "Professor")
+            {
+               sender = _repository.GetByFilter<Professor>(x => x.PotentialUserId == potentialUser.Id);
+            }
             var notification = new NotificationDto
             {
                 ReciverId = Guid.Empty,
                 Title = "New post on wall.",
-                Body = "New post on wall.",
+                Body =  sender.LastName + ' '+ sender.FirstName + " has posted on the wall.",
                 IsRead = false,
                 SenderId = account.PotentialUserId,
             };
 
             _notificationLogic.Create(notification);
+
 
 
 
@@ -60,7 +73,7 @@ namespace BusinessLogic.Implementations
             var postDtos = new List<PostDto>();
             var posts = _repository.GetAll<Post>();
 
-            foreach(var post in posts)
+            foreach (var post in posts)
             {
                 var account = _repository.GetByFilter<Account>(x => x.Id == post.AccountId);
                 var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == account.UserCode);
@@ -80,7 +93,7 @@ namespace BusinessLogic.Implementations
             return postDtos;
 
 
-        } 
+        }
 
 
 

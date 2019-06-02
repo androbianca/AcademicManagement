@@ -4,8 +4,6 @@ using Entities;
 using Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 
 namespace BusinessLogic.Implementations
 {
@@ -23,7 +21,8 @@ namespace BusinessLogic.Implementations
                 Id = Guid.NewGuid(),
                 Name = gradeCategoryDto.Name,
                 Percentage = gradeCategoryDto.Percentage,
-                CourseId = gradeCategoryDto.CourseId
+                CourseId = gradeCategoryDto.CourseId,
+                IsCourseCategory = gradeCategoryDto.IsCourseCategory
             };
 
             _repository.Insert(gradeCategory);

@@ -3,4 +3,5 @@ export class GradeCategory {
     percentage: number;
     courseId: string;
     id:string;
+    isCourseCategory: boolean;
 }

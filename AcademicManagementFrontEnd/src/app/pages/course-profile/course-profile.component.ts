@@ -7,6 +7,8 @@ import { UserDetails } from 'src/app/models/userDetails';
 import { User } from 'src/app/models/user';
 import { MatDialog } from '@angular/material/dialog';
 import { GradeCategoryModalComponentComponent } from 'src/app/components/public/grade-category-modal-component/grade-category-modal-component.component';
+import { FinalGradeService } from 'src/app/services/final-grade.service';
+import { FinalGrade } from 'src/app/models/final-grade';
 
 @Component({
   selector: 'app-course-profile',
@@ -15,17 +17,22 @@ import { GradeCategoryModalComponentComponent } from 'src/app/components/public/
 })
 export class CourseProfileComponent implements OnInit {
 
-  data = [1,2,3,4,4,4,4,4,4,8,9,1];
+  data : FinalGrade[];
   profs:Professor[];
   courseId:string;
   user:UserDetails;
-  constructor(public dialog: MatDialog,private profService:ProfService, private route:ActivatedRoute, private currentUserService:CurrentUserDetailsService) {
+
+  constructor(public dialog: MatDialog,
+    private profService:ProfService, 
+    private route:ActivatedRoute, 
+    private currentUserService:CurrentUserDetailsService) {
     this.user = this.currentUserService.getUser();
    }
 
   ngOnInit() {
     this.getProfs();
   }
+
 
   getProfs(){
     this.route.params.subscribe(params => {
@@ -35,17 +42,6 @@ export class CourseProfileComponent implements OnInit {
     this.profService.getByCourseId(this.courseId).subscribe(response => {
       this.profs = response})
   }
-
-  openModal(){   
-    const dialogRef = this.dialog.open(GradeCategoryModalComponentComponent, {
-      width: '390px',
-      height: '390px',
-      data: { courseId : this.courseId }
-    });
-   
-    dialogRef.afterClosed().subscribe(result => {
-    });
-   }
 
 }
 

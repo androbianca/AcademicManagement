@@ -20,9 +20,11 @@ namespace BusinessLogic.Implementations
         {
             var accountSender = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.SenderId);
             Guid accountReciver = Guid.Empty;
-
+            var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.ReciverId);
+ 
             if (notificationDto.ReciverId != Guid.Empty)
-            { 
+            {
+               
                 accountReciver = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.ReciverId).Id;
             }
 

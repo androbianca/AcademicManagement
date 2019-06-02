@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, AfterViewInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import  Bellcurve from 'highcharts/modules/histogram-bellcurve';
-Bellcurve(Highcharts);
+import Bellcurve from 'highcharts/modules/histogram-bellcurve';
 import { Chart } from 'angular-highcharts';
+import { FinalGradeService } from 'src/app/services/final-grade.service';
+
+Bellcurve(Highcharts);
 
 @Component({
     selector: 'app-bell-curve-chart',
@@ -12,49 +14,61 @@ import { Chart } from 'angular-highcharts';
 
 export class BellCurveChartComponent implements OnInit {
 
-    @Input() data ;
-    chart : Chart;
-  
+    @Input() courseId: string;
+    chart: Chart;
+    data = new Array<number>();
 
-     ngOnInit(): void {
+    constructor(private finalGradeService: FinalGradeService) { }
+
+    ngOnInit(): void {
+        this.getFinalGrades();
+
+    }
+
+    createChart(data) {
         this.chart = new Chart({
-        title: {
-            text: 'Highcharts Histogram'
-        },
-        xAxis: [{
-            title: { text: 'Data' },
-            alignTicks: false
-        }, {
-            title: { text: 'Histogram' },
-            alignTicks: false,
-            opposite: true
-        }],
-    
-        yAxis: [{
-            title: { text: 'Data' }
-        }, {
-            title: { text: 'Histogram' },
-            opposite: true
-        }],
-    
-        series: [{
-            name: 'Histogram',
-            type: 'bellcurve',
-            xAxis: 1,
-            yAxis: 1,
-            baseSeries: 's1',
-            zIndex: -1
-        }, {
-            name: 'Data',
-            type: 'scatter',
-            data: this.data,
-            visible: false,
-            id: 's1',
-            marker: {
-                radius: 1.5
-            }
-        }]
-        });}
+            title: {
+                text: 'BellCurve'
+            },
+            xAxis: [{
+                alignTicks: false
+            }, {
+                alignTicks: false,
+                opposite: true
+            }],
 
- 
+            yAxis: [{
+            }, {
+                opposite: true
+            }],
+
+            series: [{
+                name: 'BellCurve',
+                type: 'bellcurve',
+                xAxis: 1,
+                yAxis: 1,
+                baseSeries: 's1',
+                zIndex: -1
+            }, {
+                name: 'Data',
+                type: 'scatter',
+                data: data,
+                visible: false,
+                id: 's1',
+                marker: {
+                    radius: 1.5
+                }
+            }]
+        });
+    }
+
+    getFinalGrades() {
+        this.finalGradeService.getAllByCourse(this.courseId).subscribe(x => {
+            x.forEach(val => {
+                this.data.push(val.value);
+            })
+
+            this.createChart(this.data);
+        })
+    }
 }

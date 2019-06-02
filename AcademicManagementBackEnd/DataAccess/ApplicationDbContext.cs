@@ -29,6 +29,8 @@ namespace DataAccess
         public DbSet<Post> Posts { get; set; }
         public DbSet<FileMetadata> Files { get; set; }
         public DbSet<GradeCategory> GradeCategories { get; set; }
+        public DbSet<FinalGrade> FinalGrades { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -51,6 +53,8 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new PostConfiguration());
             modelBuilder.ApplyConfiguration(new FileMetadataConfiguration());
             modelBuilder.ApplyConfiguration(new GradeCategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new FinalGradeConfiguration());
+
         }
     }
 }

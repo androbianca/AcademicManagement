@@ -2,11 +2,4 @@
   <app-prof-card [prof]="prof"></app-prof-card>
 </ng-container>
 
-
-<ng-container *ngIf="user.userRole === 'Professor'">
-  <app-file-upload [courseId]="courseId" title="Upload a resource:"></app-file-upload>
-</ng-container>
-<app-file-download [courseId]="courseId"></app-file-download>
-<button (click)= "openModal()">Add categories</button>
-
-<app-bell-curve-chart [data]="data"></app-bell-curve-chart>
+<app-bell-curve-chart [courseId]="courseId"></app-bell-curve-chart>

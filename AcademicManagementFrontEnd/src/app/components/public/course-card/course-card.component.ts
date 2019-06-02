@@ -1,6 +1,8 @@
 import { Component, OnInit, HostBinding, Input, HostListener } from "@angular/core";
 import { Router } from '@angular/router';
 import { CourseRead } from 'src/app/models/course-read';
+import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
+import { UserDetails } from 'src/app/models/userDetails';
 
 @Component({
   selector: "app-course-card",
@@ -18,8 +20,11 @@ export class CourseCardComponent implements OnInit {
     this.goTo();
  }
   initials: string = "";
+  user:UserDetails;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private currentUserService:CurrentUserDetailsService) { 
+    this.user = this.currentUserService.getUser();
+  }
 
   ngOnInit() {
     let name = this.course.name.split(" ");

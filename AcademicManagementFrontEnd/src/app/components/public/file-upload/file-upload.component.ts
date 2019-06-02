@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 import { FileService } from 'src/app/services/file-upload.service';
 import { ExcelService } from 'src/app/services/excel.service';
 
@@ -15,6 +15,7 @@ export class FileUploadComponent {
   @Input() isExcel: boolean = false;
 
   @Input() title: string;
+  @HostBinding('class') classes = 'wrapper';
 
   fileToUpload: File = null;
 

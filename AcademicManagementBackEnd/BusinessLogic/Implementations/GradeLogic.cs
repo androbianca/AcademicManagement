@@ -7,20 +7,24 @@ using System.Collections.Generic;
 
 namespace BusinessLogic.Implementations
 {
-    public class GradeLogic :BaseLogic, IGradeLogic
+    public class GradeLogic : BaseLogic, IGradeLogic
     {
         private INotificationLogic _notificationLogic;
+        private IFinalGradeLogic _finalGradeLogic;
 
-        public GradeLogic(IRepository repository, INotificationLogic notificationLogic)
+
+        public GradeLogic(IRepository repository, INotificationLogic notificationLogic, IFinalGradeLogic finalGradeLogic)
             : base(repository)
         {
-            _notificationLogic = notificationLogic; }
+            _finalGradeLogic = finalGradeLogic;
+            _notificationLogic = notificationLogic;
+        }
 
-        public ICollection<GradeDto> GetGradesByStud(Guid courseId,Guid studentId)
+        public ICollection<GradeDto> GetGradesByStud(Guid courseId, Guid studentId)
         {
             var gradeDtos = new List<GradeDto>();
             var grades = _repository.GetAllByFilter<Grade>(x => x.CourseId == courseId && x.StudentId == studentId);
-           
+
             foreach (var grade in grades)
             {
                 var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId);
@@ -63,20 +67,55 @@ namespace BusinessLogic.Implementations
 
             _notificationLogic.Create(notification);
 
+            var final = ComputeLabFinalGrade(gradeDto.CourseId, gradeDto.StudentId);
+
+            var finalGrade = _repository.GetByFilter<FinalGrade>(x => x.StudentId == gradeDto.StudentId && x.CourseId == gradeDto.CourseId);
+            finalGrade.Value = final;
+            _finalGradeLogic.Update(finalGrade);
+
+
 
         }
 
         public float ComputeLabFinalGrade(Guid courseId, Guid studentId)
-       {
-            float sum = 0;
+        {
+            var finalGrades = _repository.GetAll<FinalGrade>();
+
+            if(finalGrades.Count == 0)
+            {
+                _finalGradeLogic.AddAll();
+            };
+
+            float lab = 0;
+            float final = 0;
+            var remainingPercentage = 0;
+            var percentage = 0;
+
             var grades = this.GetGradesByStud(courseId, studentId);
-            foreach(var grade in grades){
-                var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId);
-                var number = category.Percentage;
-                sum += (number*grade.Value)/100;
+            foreach (var grade in grades)
+            {
+                var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId && x.IsCourseCategory == false);
+                if (category != null)
+                {
+                    var number = category.Percentage;
+                    lab += (number * grade.Value) / 100;
+                }
             }
 
-            return sum;
+            foreach (var grade in grades)
+            {
+                var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId && x.IsCourseCategory == true);
+                if (category != null)
+                {
+                    var number = category.Percentage;
+                    percentage += number;
+                    final += (number * grade.Value) / 100;
+                }
+            }
+            remainingPercentage = 100 - percentage;
+            final += (remainingPercentage * lab) / 100;
+
+            return final;
         }
 
         private NotificationDto CreateNotification(GradeDto gradeDto)
@@ -87,7 +126,7 @@ namespace BusinessLogic.Implementations
             var notification = new NotificationDto
             {
                 Title = "New grade",
-                Body = prof.FirstName + " added a new grade for " + course.Name,
+                Body =prof.LastName + ' ' + prof.FirstName + " added a new grade for " + course.Name,
                 IsRead = false,
                 ReciverId = stud.PotentialUserId,
                 SenderId = prof.PotentialUserId

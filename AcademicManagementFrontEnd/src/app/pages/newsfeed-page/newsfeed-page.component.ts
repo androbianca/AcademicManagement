@@ -68,4 +68,7 @@ export class NewsfeedPageComponent implements OnInit {
     }
   }
 
+  onFileInsert(event){
+  }
+
 }

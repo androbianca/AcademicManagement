@@ -58,6 +58,11 @@ namespace BusinessLogic.Implementations
             var group = _repository.GetByFilter<Group>(x => x.Id == currentUser.GroupId);
 
             var studCourses = _repository.GetAllByFilter<StudCourse>(x => x.StudId == currentUser.Id);
+            if(studCourses == null)
+            {
+                return null;
+            }
+
             foreach (var studCourse in studCourses)
             {
                 var course = _repository.GetByFilter<Course>(x => x.Id == studCourse.CourseId);
@@ -77,6 +82,12 @@ namespace BusinessLogic.Implementations
             var courses = new List<Course>();
             var currentUser = _repository.GetByFilter<Professor>(x => x.Id == id);
             var profCourses = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == currentUser.Id);
+
+            if (profCourses == null)
+            {
+                return null;
+            }
+
             foreach (var profCourse in profCourses)
             {
                 var course = _repository.GetByFilter<Course>(x => x.Id == profCourse.CourseId);

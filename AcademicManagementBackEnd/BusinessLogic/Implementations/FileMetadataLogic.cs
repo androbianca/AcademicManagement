@@ -6,13 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.IO;
 
 using System.Linq;
-using System.Data.OleDb;
 using System.Threading.Tasks;
-using Microsoft.Extensions.FileProviders;
 using OfficeOpenXml;
 
 namespace BusinessLogic.Implementations
@@ -66,11 +63,12 @@ namespace BusinessLogic.Implementations
 
                     // create metadatas
                     result = new FileMetadataDto
-                    {
+                    { 
                         CourseId = courseId,
                         Path = path,
                         FileName = file.FileName
                     };
+
                     if (IsExcel)
                     {
                         ImportDataFromExcel(path + file.FileName,courseId, id);
@@ -199,6 +197,7 @@ namespace BusinessLogic.Implementations
         {
             var newFileMetadata = new FileMetadata
             {
+                Id = Guid.NewGuid(),
                 CourseId = fileMetadataDto.CourseId,
                 Path = fileMetadataDto.Path,
                 FileName = fileMetadataDto.FileName

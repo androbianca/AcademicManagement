@@ -1,14 +1,36 @@
 @import '../../../styles/mixins.scss';
+@import "../../../styles/general.scss";
 
-:host(.page-wrapper){
-    @include flex(column, flex-start, none);
-    margin:40px;
+.container {
+  @include flex(row, flex-start, none);
+
 }
 
-.grades-wrapper{
-    @include flex(column, flex-start, none)
+:host(.page-wrapper) {
+  @include flex(column, flex-start, none);
+  margin: 40px;
+  height: 100%;
+  width: 100%;
+}
+
+.grades-wrapper {
+  @include flex(column, flex-start, none)
 }
 
 app-file-upload {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
+}
+
+button {
+  margin-bottom: 30px !important;
+}
+
+.left,
+.right {
+  width: 50%;
+  height: 100%;
+}
+
+.resources {
+    width: 100%;
 }

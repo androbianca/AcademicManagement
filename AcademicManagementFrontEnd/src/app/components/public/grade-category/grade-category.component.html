@@ -5,13 +5,13 @@
     is required!</div>
   <input type="text" formControlName="percentage" placeholder="Percentage">
   <div *ngIf="gradesForm.get('percentage')?.errors && gradesForm.get('percentage')?.touched" class="error-message">
-   {{ errorMessage }}
+    {{ errorMessage }}
   </div>
-  <label >Course
-    <input formControlName="type" type="checkbox" checked="checked">
+  <label>Course
+    <input formControlName="type" name="type" value=1 type="radio">
   </label>
-  <label >Laboratory
-    <input formControlName="type" type="checkbox" checked="checked">
+  <label>Laboratory
+    <input formControlName="type" name="type" value=0 type="radio">
   </label>
   <button type="submit" (click)="save(gradesForm)">Save</button>
 </form>
