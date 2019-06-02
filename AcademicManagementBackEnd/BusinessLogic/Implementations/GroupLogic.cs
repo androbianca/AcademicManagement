@@ -54,5 +54,26 @@ namespace BusinessLogic.Implementations
 
             return groupDtos;
         }
+
+        public ICollection<GroupDto> getProfGroups(Guid ProfId)
+        {
+            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == ProfId);
+            var groupDtos = new List<GroupDto>();
+
+            foreach(var profStud in profStuds)
+            {
+                var group = _repository.GetByFilter<Group>(x => x.Id == profStud.GroupId);
+
+                var groupDto = new GroupDto
+                {
+                    Id = group.Id,
+                    Name = group.Name,
+                    Year = group.Year
+                };
+                groupDtos.Add(groupDto);       
+            }
+
+            return groupDtos;
+        }
     }
 }

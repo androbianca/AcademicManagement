@@ -33,5 +33,20 @@ export class FileUploadComponent {
       .subscribe(event => {
       });
   }
+
+  onFileChanged(event) {
+    var files = event.target.files;
+    if (files.length === 0) {
+      return;
+    }
+
+    let fileToUpload = <File>files[0];
+
+    this.fileService.postFile(fileToUpload, this.courseId, this.isExcel)
+      .subscribe(event => {
+      });
+}
+
+
 }
 

@@ -15,6 +15,10 @@ export class GroupService {
         return this.baseService.get<GroupRead[]>('groups');
      }
 
+     public getProfGroups (profId:string){
+      return this.baseService.get<GroupRead[]>(`groups/${profId}`);
+   }
+
      public addGroup(group:GroupWrite){
         return this.baseService.post<GroupWrite>('groups',group);
      }

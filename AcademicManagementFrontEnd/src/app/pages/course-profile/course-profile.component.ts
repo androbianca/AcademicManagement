@@ -17,7 +17,6 @@ import { FinalGrade } from 'src/app/models/final-grade';
 })
 export class CourseProfileComponent implements OnInit {
 
-  data : FinalGrade[];
   profs:Professor[];
   courseId:string;
   user:UserDetails;

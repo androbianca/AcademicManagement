@@ -7,6 +7,8 @@ import { Student } from 'src/app/models/student';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFeedbackModalContentComponent } from 'src/app/components/public/add-feedback-modal-content/add-feedback-modal-content.component';
 import { GradeCategoryModalComponentComponent } from 'src/app/components/public/grade-category-modal-component/grade-category-modal-component.component';
+import { GroupService } from 'src/app/services/group-service.service';
+import { GroupRead } from 'src/app/models/groupRead';
 
 @Component({
   selector: 'app-prof-grades',
@@ -20,11 +22,14 @@ export class ProfGradesComponent implements OnInit {
   courseId: string;
   user: UserDetails;
   students = new Array<Student>();
- 
-  constructor(private studentService: StudentService, 
+  groups: GroupRead[];
+  filteredStudents = new Array<Student>();
+
+  constructor(private studentService: StudentService,
     public dialog: MatDialog,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
+    private groupService: GroupService,
     private userDetailsService: CurrentUserDetailsService) {
     this.user = userDetailsService.getUser();
   }
@@ -37,19 +42,28 @@ export class ProfGradesComponent implements OnInit {
     this.studentService.getStudentsByProf(this.courseId).subscribe((result: Student[]) => {
       this.students = result;
     });
+    this.getGroups();
   }
 
-  goTo() {
-    this.router.navigate([`courses/resources/${this.courseId}`]);
+  goTo(route) {
+    this.router.navigate([`${route}/${this.courseId}`]);
   }
-  openModal(){   
+  openModal() {
     const dialogRef = this.dialog.open(GradeCategoryModalComponentComponent, {
       width: '390px',
       height: '390px',
-      data: { courseId : this.courseId }
+      data: { courseId: this.courseId }
     });
-   
+
     dialogRef.afterClosed().subscribe(result => {
     });
-   }
+  }
+
+  getGroups() {
+    this.groupService.getProfGroups(this.user.id).subscribe(x => this.groups = x)
+  }
+
+  filterStudents(group) {
+    this.filteredStudents = this.students.filter(x => x.groupId == group.id);
+  }
 }

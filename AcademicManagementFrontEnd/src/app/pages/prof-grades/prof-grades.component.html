@@ -1,16 +1,17 @@
+  <div class="left">
+    <section class="button-list">
+      <ng-container *ngFor="let group of groups">
+        <button (click)="filterStudents(group)" class="button">{{group.name}}</button>
+      </ng-container>
+    </section>
+    <ng-container *ngFor="let student of filteredStudents">
+      <app-student-card [student]="student" [courseId]="courseId" [profId]="user.id"></app-student-card>
+    </ng-container>
+  </div>
 
-<div class="container">
-<div class="left">
-  <button class="button" (click)="openModal()">Add categoriy</button>
-  <ng-container *ngFor="let student of students">
-    <app-student-card [student]="student" [courseId]="courseId" [profId]="user.id"></app-student-card>
-  </ng-container>
-</div>
-
-<div class="right">
-  <app-file-upload [isExcel]="true" [courseId]="courseId" title="Import Excel"></app-file-upload>
-</div>
-</div>
-
-
-<button (click)="goTo()">Check resources</button>
+  <div class="right">
+    <button class="button3" (click)="goTo('courses/bellcurve')">Check BellCurve</button>
+    <button class="button3" (click)="openModal()">Add categoriy</button>
+    <button class="button3" (click)="goTo('courses/resources')">Check resources</button>
+    <app-file-upload [isExcel]="true" [courseId]="courseId" title="Import Excel"></app-file-upload>
+  </div>

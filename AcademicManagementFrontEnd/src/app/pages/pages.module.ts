@@ -57,6 +57,7 @@ import windbarb from 'highcharts/modules/windbarb.src';
 import { GradeCategoryComponent } from '../components/public/grade-category/grade-category.component';
 import { GradeCategoryModalComponentComponent } from '../components/public/grade-category-modal-component/grade-category-modal-component.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { BellCurvePageComponent } from './bell-curve-page/bell-curve-page.component';
  
 export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -110,7 +111,7 @@ export function highchartsModules() {
     FileUploadComponent,
     FileDownloadComponent,
     BellCurveChartComponent,
-    GradeCategoryComponent,GradeCategoryModalComponentComponent, ResourcesComponent
+    GradeCategoryComponent,GradeCategoryModalComponentComponent, ResourcesComponent, BellCurvePageComponent
 
   ],
   entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent,GradeCategoryModalComponentComponent],

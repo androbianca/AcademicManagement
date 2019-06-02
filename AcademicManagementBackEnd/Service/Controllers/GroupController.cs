@@ -34,6 +34,13 @@ namespace Service.Controllers
             return Ok(group);
         }
 
+        [HttpGet("{profId:guid}")]
+        public ActionResult<IEnumerable<GroupDto>> Add([FromRoute] Guid profId)
+        {
+            var groups = _groupLogic.getProfGroups(profId);
+            return Ok(groups);
+        }
+
         [HttpDelete("{groupId:guid}")]
         public IActionResult Remove([FromRoute] Guid groupId)
         {
