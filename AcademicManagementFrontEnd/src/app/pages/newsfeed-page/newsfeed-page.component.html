@@ -1,18 +1,22 @@
 <h6>Feed</h6>
-
 <div class="card">
   <div class="content">
     <form [formGroup]="postForm">
       <textarea formControlName="post">
-      
       </textarea>
     </form>
     <app-file-upload></app-file-upload>
   </div>
   <div class="footer">
-    <button [class.button-disabled] = "isDisabled" (click)="addPost(postForm)">Post</button></div>
+    <button [class.button-disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
 </div>
 
-<ng-container *ngFor="let post of signalRService.posts">
-  <app-feed-card [post]="post"></app-feed-card>
-</ng-container>
+<ng-template [ngIf]="signalRService.posts.length == 0" [ngIfElse]="displayResults">
+  <app-no-results text='No posts yet'></app-no-results>
+</ng-template>
+
+<ng-template #displayResults>
+  <ng-container *ngFor="let post of signalRService.posts">
+    <app-feed-card [post]="post"></app-feed-card>
+  </ng-container>
+</ng-template>

@@ -9,11 +9,11 @@ import { SignalRService } from 'src/app/services/signalR-service.service';
 export class NotificationPanelComponent implements OnInit {
 
   notifications :Notification[];
+  
   constructor(private signalRService: SignalRService ) { }
 
   ngOnInit() {
     this.notifications = this.signalRService.notifications;
-
   }
 
 }

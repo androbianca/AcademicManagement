@@ -39,7 +39,6 @@ import { CourseProfileComponent } from './course-profile/course-profile.componen
 import { ProfProfileComponent } from './prof-profile/prof-profile.component';
 import { DisplayFeedbackComponent } from '../components/public/display-feedback/display-feedback.component';
 import { NotificationPanelComponent } from '../components/public/notification-panel/notification-panel.component';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { NotificationCardComponent } from '../components/public/notification-card/notification-card.component';
 import { AddFeedbackComponent } from '../components/public/add-feedback/add-feedback.component';
 import { AddFeedbackModalContentComponent } from '../components/public/add-feedback-modal-content/add-feedback-modal-content.component';
@@ -49,24 +48,22 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { FileUploadComponent } from '../components/public/file-upload/file-upload.component';
 import { FileDownloadComponent } from '../components/public/file-download/file-download.component';
 import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
-
 import { BellCurveChartComponent } from '../components/public/bell-curve-chart/bell-curve-chart.component';
-
 import exporting from 'highcharts/modules/exporting.src';
 import windbarb from 'highcharts/modules/windbarb.src';
 import { GradeCategoryComponent } from '../components/public/grade-category/grade-category.component';
 import { GradeCategoryModalComponentComponent } from '../components/public/grade-category-modal-component/grade-category-modal-component.component';
 import { ResourcesComponent } from './resources/resources.component';
 import { BellCurvePageComponent } from './bell-curve-page/bell-curve-page.component';
- 
+import { NoResultsComponent } from '../components/public/no-results/no-results.component';
+
 export function highchartsModules() {
-  // apply Highcharts Modules to this array
-  return [ exporting,windbarb ];
+  return [exporting, windbarb];
 }
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule,ChartModule
-],
+  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule, ChartModule
+  ],
   declarations: [
     StudGradesComponent,
     StudentCoursesComponent,
@@ -111,10 +108,18 @@ export function highchartsModules() {
     FileUploadComponent,
     FileDownloadComponent,
     BellCurveChartComponent,
-    GradeCategoryComponent,GradeCategoryModalComponentComponent, ResourcesComponent, BellCurvePageComponent
+    GradeCategoryComponent,
+    GradeCategoryModalComponentComponent,
+    ResourcesComponent,
+    BellCurvePageComponent,
+    NoResultsComponent
 
   ],
-  entryComponents: [AddGradeModalContentComponent, AddFeedbackModalContentComponent,SignupComponent,GradeCategoryModalComponentComponent],
+  entryComponents: [AddGradeModalContentComponent,
+    AddFeedbackModalContentComponent,
+    SignupComponent,
+    GradeCategoryModalComponentComponent
+  ],
   exports: [
     StudGradesComponent,
     StudentCoursesComponent,
@@ -150,7 +155,8 @@ export function highchartsModules() {
     FileDownloadComponent,
     BellCurveChartComponent,
     GradeCategoryComponent,
-    GradeCategoryModalComponentComponent
+    GradeCategoryModalComponentComponent,
+    NoResultsComponent
 
   ],
   providers: [
@@ -158,9 +164,8 @@ export function highchartsModules() {
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
-    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules } // add as factory to your providers
-
-]
-
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
+  ]
 })
+
 export class PagesModule { }

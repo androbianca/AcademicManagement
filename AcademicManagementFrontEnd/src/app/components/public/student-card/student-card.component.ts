@@ -10,36 +10,35 @@ import { MatDialog } from '@angular/material/dialog';
 
 export class StudentCardComponent implements OnInit {
 
-  @Input() student; 
+  @Input() student;
   @Input() courseId;
   @Input() profId;
 
-  public name: string;
-  public initials:string;
-  public isAddGradesOpen: boolean = false;
   @HostBinding('class') classes = 'student-card';
   @HostListener('click', ['$event.target'])
   onClick() {
     this.openModal();
- }
+  }
 
-  constructor(public dialog: MatDialog) {
+  public name: string;
+  public initials: string;
+  public isAddGradesOpen: boolean = false;
 
-   }
+  constructor(public dialog: MatDialog) { }
 
-  getName(){
+  getName() {
     this.name = this.student.lastName + ' ' + this.student.firstName;
   }
 
-  getInitials(){
+  getInitials() {
     this.initials = this.student.lastName[0] + ' ' + this.student.firstName[0];
   }
 
-  openModal(){   
+  openModal() {
     const dialogRef = this.dialog.open(AddGradeModalContentComponent, {
       width: '390px',
       height: '640px',
-      data: { studentId: this.student.id, profId : this.profId , courseId : this.courseId }
+      data: { studentId: this.student.id, profId: this.profId, courseId: this.courseId }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -50,5 +49,4 @@ export class StudentCardComponent implements OnInit {
     this.getName();
     this.getInitials();
   }
-
 }

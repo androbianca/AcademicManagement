@@ -3,9 +3,9 @@
 @import '../../../../../../styles/mixins.scss';
 
 mat-form-field {
-    margin:0 5px 0 5px;
+  margin: 0 5px 0 5px;
 }
 
 .pair {
-    @include flex(row,none,none);
+  @include flex(row, none, none);
 }

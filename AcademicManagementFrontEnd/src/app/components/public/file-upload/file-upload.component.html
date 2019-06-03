@@ -1,8 +1,7 @@
 <h6>{{ title }}</h6>
 <div class="input-container">
-
-<input #uploader name="file" (change)="onFileChanged($event)" type="file" multiple />
-<button (click)="uploader.click()" class="browse-btn">
+  <input #uploader name="file" (change)="onFileChanged($event)" type="file" multiple />
+  <button (click)="uploader.click()" class="browse-btn">
     Browse Files
   </button>
   <span class="file-info">Upload a file</span>

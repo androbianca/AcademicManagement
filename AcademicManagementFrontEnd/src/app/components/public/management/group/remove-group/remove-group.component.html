@@ -5,6 +5,5 @@
       <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} <span>{{group.year}}</span></mat-option>
     </mat-select>
   </mat-form-field>
-
   <input type="submit" value="Submit" (click)="submit(removeGroupForm)">
 </form>

@@ -5,16 +5,12 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   templateUrl: './manage-groups.component.html',
   styleUrls: ['./manage-groups.component.scss']
 })
-export class ManageGroupsComponent implements OnInit {
+export class ManageGroupsComponent {
 
   @HostBinding('class') classes = "manage-groups-container";
   remove:boolean;
   add: boolean = true;
   update:boolean;
-  constructor() { }
-
-  ngOnInit() {
-  }
 
   selectAction(number:string){
      this.add = number == '1';

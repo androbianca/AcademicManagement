@@ -1,6 +1,6 @@
 @import '../../../styles/general.scss';
 
-:host(.manage-groups-container){
-    @include flex(column,center,none);
-    height: 100%;
+:host(.manage-groups-container) {
+  @include flex(column, center, none);
+  height: 100%;
 }

@@ -1,12 +1,16 @@
-  <button class="button" (click)="openDialog()">Give feedback</button>
+  <button *ngIf='isStudent' class="button" (click)="openDialog()">Give feedback</button>
+  <ng-template [ngIf]="profs?.length == 0" [ngIfElse]="displayResults">
+    <app-no-results text='No courses found'></app-no-results>
+  </ng-template>
 
-  <div class="cards-container">
-    <ng-container *ngFor="let course of courses">
-      <app-course-card [route]="'studcourses/course/'" [message]="cardMessage" [course]="course"></app-course-card>
-    </ng-container>
+  <ng-template #displayResults>
+    <div class="cards-container">
+      <ng-container *ngFor="let course of courses">
+        <app-course-card [route]="route" [message]="cardMessage" [course]="course"></app-course-card>
+      </ng-container>
+    </div>
+  </ng-template>
+
+  <div class="container">
+    <app-display-feedback [profId]="profId"></app-display-feedback>
   </div>
-
-
-<div class="container">
-<app-display-feedback [profId]="profId"></app-display-feedback>
-</div>

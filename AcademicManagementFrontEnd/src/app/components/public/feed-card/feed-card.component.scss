@@ -10,11 +10,13 @@ $facebook: #3b5998;
   width: 60%;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 
-  &-header{
+  &-header {
     @include flex(row, center, flex-start);
+    color: darken(white, 30%);
   }
-  &-content{
-      padding: 10px;
+
+  &-content {
+    padding: 10px;
   }
 }
 
@@ -39,7 +41,8 @@ $facebook: #3b5998;
 
 .initials {
   @include flex(none, center, center);
-  margin :10px;
+  margin: 10px;
+
   .profile-picture {
     @include flex(none, center, center);
     @include size(60px, 60px);

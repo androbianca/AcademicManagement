@@ -7,13 +7,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./bell-curve-page.component.scss']
 })
 export class BellCurvePageComponent implements OnInit {
+
   @HostBinding('class') classes = 'page-wrapper';
 
   courseId: string;
-  constructor(private route: ActivatedRoute) { 
-    console.log('cplm')
 
-  }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

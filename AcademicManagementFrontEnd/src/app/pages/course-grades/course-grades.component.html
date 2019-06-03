@@ -1,14 +1,12 @@
-<ng-container *ngFor="let grade of grades">
-  <app-grade-card [grade]="grade"></app-grade-card>
-</ng-container>
-<ng-container *ngIf="grades?.length == 0">
+<ng-template [ngIf]="grades?.length == 0" [ngIfElse]="displayResults">
+  <app-no-results text='No grades found'></app-no-results>
+</ng-template>
 
-  <div class="noresults">
-    <img src="../../../assets/images/1178479.svg">
-    <h6>No results found</h6>
+<ng-template #displayResults>
+  <ng-container *ngFor="let grade of grades">
+    <app-grade-card [grade]="grade"></app-grade-card>
+  </ng-container>
+  <div *ngIf="finalGrade" [class.fail]="hasPassed===false" [class.success]="hasPassed===true">
+    <app-grade-card [grade]="grade"></app-grade-card>
   </div>
-</ng-container>
-
-<div [class.fail]="hasPassed===false"  [class.success]="hasPassed===true">
-<app-grade-card [grade]="grade"></app-grade-card>
-</div>
+</ng-template>

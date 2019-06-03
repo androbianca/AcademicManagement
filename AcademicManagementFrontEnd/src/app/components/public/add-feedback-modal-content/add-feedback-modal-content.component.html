@@ -1,7 +1,9 @@
 <h1 mat-dialog-title>Feedback</h1>
 <div mat-dialog-content>
- <app-add-feedback [reciverId]="data.reciverId"></app-add-feedback>
+  <app-add-feedback (formChanged)="onFormChange($event)"></app-add-feedback>
 </div>
 <mat-dialog-actions>
-  <button class ="button3" mat-button mat-dialog-close>Close</button>
+  <button class="button3" mat-button mat-dialog-close>Close</button>
+  <button class="button3" [class.button-disabled]="isDisabled" mat-button [mat-dialog-close]="true"
+    (click)="save()">Save</button>
 </mat-dialog-actions>

@@ -6,6 +6,5 @@
   <input type="password" formControlName="password" placeholder="Password">
   <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="error-message">This field
     is required!</div>
- <!-- // <p class="passwd__txt">Forgot password?</p> -->
-  <button [disabled] = "isDisabled" class="button" type="submit" (click)="login(loginForm)">Login</button>
+  <button [disabled]="isDisabled" class="button" type="submit" (click)="login(loginForm)">Login</button>
 </form>

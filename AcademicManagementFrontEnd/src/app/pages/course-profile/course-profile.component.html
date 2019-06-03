@@ -1,3 +1,16 @@
-<ng-container *ngFor="let prof of profs">
-  <app-prof-card [prof]="prof"></app-prof-card>
-</ng-container>
+<div class="left">
+  <ng-template [ngIf]="profs?.length == 0" [ngIfElse]="displayResults">
+    <app-no-results text='No professors found'></app-no-results>
+  </ng-template>
+
+  <ng-template #displayResults>
+    <ng-container *ngFor="let prof of profs">
+      <app-prof-card [prof]="prof"></app-prof-card>
+    </ng-container>
+  </ng-template>
+</div>
+
+<div class="right">
+  <button class="button3" (click)="goTo('courses/bellcurve')">Check BellCurve</button>
+  <button class="button3" (click)="goTo('courses/resources')">Check resources</button>
+</div>

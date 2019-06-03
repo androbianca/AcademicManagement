@@ -1,10 +1,7 @@
-import { Component, Input, AfterContentInit, ContentChildren, OnInit } from '@angular/core';
-import { FeedbackStud } from 'src/app/pages/prof-profile/prof-profile.component';
+import { Component, Input, OnInit } from '@angular/core';
 import { Feedback } from 'src/app/models/feedback';
 import { FeedbackService } from 'src/app/services/feedback-service.service';
-import { ActivatedRoute } from '@angular/router';
 import { StudentService } from 'src/app/services/student-service.service';
-import { Student } from 'src/app/models/student';
 
 export class SlideShow {
   isActive: boolean;
@@ -17,8 +14,8 @@ export class SlideShow {
   templateUrl: './display-feedback.component.html',
   styleUrls: ['./display-feedback.component.scss']
 })
-export class DisplayFeedbackComponent implements OnInit {
 
+export class DisplayFeedbackComponent implements OnInit {
 
   @Input() profId: string;
 
@@ -26,10 +23,9 @@ export class DisplayFeedbackComponent implements OnInit {
   slideIndex = 0;
   feedbackStud = new Array<any>();
   feedbackList = new Array<Feedback>();
-  x: any;
 
-  constructor(private feedbackService: FeedbackService, private studentService: StudentService) {
-  }
+  constructor(private feedbackService: FeedbackService,
+    private studentService: StudentService) { }
 
   ngOnInit(): void {
     this.getFeedback();
@@ -38,8 +34,9 @@ export class DisplayFeedbackComponent implements OnInit {
   getFeedback() {
     this.feedbackService.getByProfId(this.profId).subscribe(response => {
       this.feedbackList = response;
-      if(this.feedbackList.length>0){
-      this.getStudent();}
+      if (this.feedbackList.length > 0) {
+        this.getStudent();
+      }
     })
   }
 
@@ -65,20 +62,16 @@ export class DisplayFeedbackComponent implements OnInit {
           'slideNumber': index
         });
       }
-
     })
-
     this.feedbackStud[0].isActive = true;
   }
 
-
   plusSlides(n) {
     if ((this.slideIndex + n) < 0) {
-      this.slideIndex = this.feedbackStud.length
+      this.slideIndex = this.feedbackStud.length;
     }
-
     if ((this.slideIndex + n) >= this.feedbackStud.length) {
-      this.slideIndex = 0;
+      this.slideIndex = -1;
     }
     this.showSlides(this.slideIndex + n);
   }
@@ -86,7 +79,6 @@ export class DisplayFeedbackComponent implements OnInit {
   currentSlide(n) {
     this.showSlides(n);
   }
-
 
   showSlides(n) {
     this.feedbackStud.forEach(slide => {

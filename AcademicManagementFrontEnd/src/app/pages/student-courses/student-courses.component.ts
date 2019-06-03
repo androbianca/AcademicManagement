@@ -9,16 +9,19 @@ import { CourseRead } from 'src/app/models/course-read';
   templateUrl: './student-courses.component.html',
   styleUrls: ['./student-courses.component.scss']
 })
+
 export class StudentCoursesComponent {
+
   courses: CourseRead[];
   user: UserDetails;
   route: string;
   cardMessage: string;
+
   constructor(private courseService: CourseService, private currentUserDetailservice: CurrentUserDetailsService) {
     this.user = currentUserDetailservice.getUser();
     this.cardMessage = 'See more';
-      this.getAllCourses();
-      this.route = 'studcourses/course/'
+    this.getAllCourses();
+    this.route = 'studcourses/course/'
   }
 
   getAllCourses() {

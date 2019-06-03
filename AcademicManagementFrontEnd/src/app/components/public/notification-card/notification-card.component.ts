@@ -10,11 +10,12 @@ export class NotificationCardComponent implements OnInit {
 
   @Input() notification: Notif;
   @HostBinding('class') classes = "notification-card";
+
   initials:string;
+
   constructor() { }
 
   ngOnInit() {
     this.initials = this.notification.body.split(' ')[0][0] + ' ' + this.notification.body.split(' ')[1][0];
   }
-
 }

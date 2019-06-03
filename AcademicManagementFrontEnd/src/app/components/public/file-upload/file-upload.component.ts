@@ -11,10 +11,9 @@ import { ExcelService } from 'src/app/services/excel.service';
 export class FileUploadComponent {
 
   @Input() courseId: string;
-
   @Input() isExcel: boolean = false;
-
   @Input() title: string;
+
   @HostBinding('class') classes = 'wrapper';
 
   fileToUpload: File = null;
@@ -22,31 +21,15 @@ export class FileUploadComponent {
   constructor(private fileService: FileService, private excelService: ExcelService) {
   }
 
-  public upload = (files) => {
-    if (files.length === 0) {
-      return;
-    }
-
-    let fileToUpload = <File>files[0];
-
-    this.fileService.postFile(fileToUpload, this.courseId, this.isExcel)
-      .subscribe(event => {
-      });
-  }
-
   onFileChanged(event) {
     var files = event.target.files;
     if (files.length === 0) {
       return;
     }
-
     let fileToUpload = <File>files[0];
-
     this.fileService.postFile(fileToUpload, this.courseId, this.isExcel)
       .subscribe(event => {
       });
-}
-
-
+  }
 }
 

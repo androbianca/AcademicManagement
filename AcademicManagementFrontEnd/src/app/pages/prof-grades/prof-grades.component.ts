@@ -5,7 +5,6 @@ import { CurrentUserDetailsService } from 'src/app/services/current-user-details
 import { UserDetails } from 'src/app/models/userDetails';
 import { Student } from 'src/app/models/student';
 import { MatDialog } from '@angular/material/dialog';
-import { AddFeedbackModalContentComponent } from 'src/app/components/public/add-feedback-modal-content/add-feedback-modal-content.component';
 import { GradeCategoryModalComponentComponent } from 'src/app/components/public/grade-category-modal-component/grade-category-modal-component.component';
 import { GroupService } from 'src/app/services/group-service.service';
 import { GroupRead } from 'src/app/models/groupRead';
@@ -34,7 +33,6 @@ export class ProfGradesComponent implements OnInit {
     this.user = userDetailsService.getUser();
   }
 
-
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.courseId = params['courseId'];
@@ -48,6 +46,7 @@ export class ProfGradesComponent implements OnInit {
   goTo(route) {
     this.router.navigate([`${route}/${this.courseId}`]);
   }
+
   openModal() {
     const dialogRef = this.dialog.open(GradeCategoryModalComponentComponent, {
       width: '390px',

@@ -20,16 +20,12 @@ h6 {
   width: 60%;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 
-
   .content {
     height: 80%;
-
   }
 
   .footer {
     height: 20%;
-
-
   }
 }
 
@@ -40,14 +36,10 @@ textarea {
   border: none;
   overflow: auto;
   outline: none;
-
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
   box-shadow: none;
-
   resize: none;
-  /*remove the resize handle on the bottom right*/
 }
+
 button {
   display: inline-block;
   background: #FFFFFF;
@@ -66,7 +58,6 @@ button {
   transition: all 0.15s;
   cursor: pointer;
 }
-
 
 button:hover {
   background-color: rgb(5, 12, 73);

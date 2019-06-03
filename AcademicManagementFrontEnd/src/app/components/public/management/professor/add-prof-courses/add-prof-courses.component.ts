@@ -31,7 +31,7 @@ export class AddProfCoursesComponent implements OnInit {
   constructor(private profService: ProfService,
     private courseService: CourseService,
     private groupService: GroupService,
-    private profStudService: ProfStudService ) { }
+    private profStudService: ProfStudService) { }
 
   ngOnInit() {
     this.getProfs();
@@ -52,25 +52,20 @@ export class AddProfCoursesComponent implements OnInit {
 
   getGroups() {
     this.groupService.getAll().subscribe(result => {
-      this.groups = result
-    }
-    )
+      this.groups = result})
   }
 
   add() {
     var course = new FormControl('');
     var group = new FormControl('');
     this.count++;
-
     var cname = 'course' + this.count;
     var gname = 'group' + this.count;
-
     this.forms.push({ course: cname, group: gname })
 
     this.addCourses.addControl(cname, course);
     this.addCourses.addControl(gname, group);
   }
-
 
   submit(form) {
     var id = form.value.prof.id;
@@ -79,7 +74,6 @@ export class AddProfCoursesComponent implements OnInit {
 
   addProfStud(profId) {
     var profStuds = new Array<ProfStud>();
-
     this.forms.forEach(el => {
       var profStud = Object.assign({}, new ProfStud());
       profStud.courseId = this.addCourses.get(el.course).value.id;
@@ -87,7 +81,6 @@ export class AddProfCoursesComponent implements OnInit {
       profStud.profId = profId;
       profStuds.push(profStud);
     })
-    this.profStudService.addProfStuds(profStuds).subscribe(response =>{})
-
+    this.profStudService.addProfStuds(profStuds).subscribe(response => { })
   }
 }

@@ -26,7 +26,7 @@
   .slide {
     @include flex(column, center, center);
     width: 100%;
-    
+
     &-prev,
     &-next {
       @include flex(none, center, center);
@@ -35,17 +35,17 @@
       transition: 0.6s ease;
       border-radius: 0 3px 3px 0;
     }
-  
+
     &-next {
       right: 0;
       border-radius: 3px 0 0 3px;
     }
-  
+
     &-prev:hover,
     &-next:hover {
       background-color: gray;
     }
-  
+
     &-dot {
       cursor: pointer;
       height: 10px;
@@ -56,18 +56,18 @@
       display: inline-flex;
       transition: background-color 0.6s ease;
     }
-  
+
     &-dot_container {
       display: flex;
       justify-content: center;
     }
-  
+
     &-active,
     &-dot:hover {
       background-color: #828080;
     }
   }
-  
+
 }
 
 .txt {
@@ -78,6 +78,3 @@
     margin: 5px;
   }
 }
-
-
-

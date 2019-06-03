@@ -1,12 +1,10 @@
 <section class="page__wrapper">
   <section class="buttons">
-      <button *ngIf="hasCourses1" class="button" (click)="selectYear('1')">First Year</button>
-
-      <button *ngIf="hasCourses2" class="button" (click)="selectYear('2')">SecondYear</button>
-
-      <button *ngIf="hasCourses3" class="button" (click)="selectYear('3')">Third Year</button>
-
+    <button *ngIf="hasCourses1" class="button" (click)="selectYear('1')">First Year</button>
+    <button *ngIf="hasCourses2" class="button" (click)="selectYear('2')">SecondYear</button>
+    <button *ngIf="hasCourses3" class="button" (click)="selectYear('3')">Third Year</button>
   </section>
+
   <section class="cards">
     <app-year-grouped-courses-card *ngIf="firstYearCourses && firstYear" [title]="'First Year'"
       [courses]="firstYearCourses"></app-year-grouped-courses-card>
@@ -16,5 +14,3 @@
       [courses]="thirdYearCourses"></app-year-grouped-courses-card>
   </section>
 </section>
-
- 

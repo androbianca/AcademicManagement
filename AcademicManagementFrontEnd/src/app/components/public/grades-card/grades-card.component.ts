@@ -1,7 +1,5 @@
-import { Component, OnInit, Input, Inject, Injectable } from '@angular/core';
-import { GradeService } from 'src/app/services/grade-service.service';
+import { Component, Input } from '@angular/core';
 import { Grade } from 'src/app/models/grade';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-grades-card',
@@ -10,6 +8,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class GradesCardComponent {
 
-  @Input() grades:Grade[];
-  
+  @Input() grades: Grade[];
+
 }

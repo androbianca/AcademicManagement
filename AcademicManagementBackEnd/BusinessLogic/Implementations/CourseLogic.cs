@@ -39,6 +39,26 @@ namespace BusinessLogic.Implementations
 
         public Course Remove(Guid courseId)
         {
+            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.CourseId == courseId);
+            if (profStuds != null)
+            {
+                foreach (var profStud in profStuds)
+                {
+                    _repository.Delete(profStud);
+                }
+           
+            }
+
+            var studCourses = _repository.GetAllByFilter<StudCourse>(x => x.CourseId == courseId);
+            if (studCourses != null)
+            {
+                foreach (var studCourse in studCourses)
+                {
+                    _repository.Delete(studCourse);
+                }
+
+            }
+
             var course = _repository.GetByFilter<Course>(x => x.Id == courseId);
 
             _repository.Delete(course);
@@ -58,7 +78,7 @@ namespace BusinessLogic.Implementations
             var group = _repository.GetByFilter<Group>(x => x.Id == currentUser.GroupId);
 
             var studCourses = _repository.GetAllByFilter<StudCourse>(x => x.StudId == currentUser.Id);
-            if(studCourses == null)
+            if (studCourses == null)
             {
                 return null;
             }

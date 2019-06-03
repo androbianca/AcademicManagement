@@ -5,21 +5,17 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   templateUrl: './manage-courses.component.html',
   styleUrls: ['./manage-courses.component.scss']
 })
-export class ManageCoursesComponent implements OnInit {
+export class ManageCoursesComponent {
 
   @HostBinding('class') classes = 'manage-courses-container';
-  remove:boolean;
+  remove: boolean;
   add: boolean = true;
-  update:boolean;
-  constructor() { }
+  update: boolean;
 
-  ngOnInit() {
-  }
-
-  selectAction(number:string){
-     this.add = number == '1';
-     this.remove = number == '2';
-     this.update = number == '3';
+  selectAction(number: string) {
+    this.add = number == '1';
+    this.remove = number == '2';
+    this.update = number == '3';
   }
 
 }

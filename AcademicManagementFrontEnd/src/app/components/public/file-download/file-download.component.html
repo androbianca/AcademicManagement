@@ -1,9 +1,15 @@
-<h6 *ngIf="resource.length>0">Resources</h6>
-<div class="container">
-  <ng-container *ngFor="let item of resource; let i = index">
-    <a [href]="item.link" download class="card">
-      <div class="img">{{i+1}}</div>
-      <h3 class="title">{{ item.file.fileName }} </h3>
-    </a>
-  </ng-container>
-</div>
+<ng-template [ngIf]="resource.length == 0" [ngIfElse]=" displayResults">
+  <app-no-results text='No resources found'></app-no-results>
+</ng-template>
+
+<ng-template #displayResults>
+  <h6>Resources</h6>
+  <div class="container">
+    <ng-container *ngFor="let item of resource; let i = index">
+      <a [href]="item.link" download class="card">
+        <div class="img">{{i+1}}</div>
+        <h3 class="title">{{ item.file.fileName }} </h3>
+      </a>
+    </ng-container>
+  </div>
+</ng-template>

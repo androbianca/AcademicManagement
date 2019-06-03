@@ -10,15 +10,16 @@ import { Professor } from 'src/app/models/professor';
 export class ProfessorsComponent implements OnInit {
 
   @HostBinding('class') classes = "container";
-  profs : Professor[];
+  profs: Professor[];
 
-  constructor(private profService:ProfService) { }
+  constructor(private profService: ProfService) { }
 
-  getProfs(){
+  getProfs() {
     this.profService.getAll().subscribe(response => {
       this.profs = response;
     })
   }
+
   ngOnInit() {
     this.getProfs();
   }

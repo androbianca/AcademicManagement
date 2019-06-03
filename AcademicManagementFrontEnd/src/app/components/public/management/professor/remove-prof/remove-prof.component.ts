@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProfService } from 'src/app/services/prof-service.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PotentialUserService } from 'src/app/services/potentialuser-service.service';
@@ -11,7 +11,7 @@ import { Professor } from 'src/app/models/professor';
 })
 export class RemoveProfComponent implements OnInit {
 
-  profs:Professor[];
+  profs: Professor[];
   removeProfForm = new FormGroup({
     prof: new FormControl(''),
   });
@@ -23,16 +23,15 @@ export class RemoveProfComponent implements OnInit {
     this.getProfs();
   }
 
-  getProfs(){
-  this.profService.getAll().subscribe(response => {
-    this.profs = response;
-  })
+  getProfs() {
+    this.profService.getAll().subscribe(response => {
+      this.profs = response;
+    })
   }
 
   removePotentialUser() {
     var potentialUserId = this.removeProfForm.get('prof').value.potentialUserId;
-    this.potentialUserService.remove(potentialUserId).subscribe(reponse=> {
-      
+    this.potentialUserService.remove(potentialUserId).subscribe(reponse => {
     })
   }
 
@@ -40,5 +39,4 @@ export class RemoveProfComponent implements OnInit {
     var profId = form.value.prof.id
     this.profService.remove(profId).subscribe(() => console.log("user deleted"));
   }
-
 }

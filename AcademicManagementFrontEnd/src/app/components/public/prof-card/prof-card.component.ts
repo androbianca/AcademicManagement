@@ -9,15 +9,15 @@ import { Router } from '@angular/router';
 })
 export class ProfCardComponent implements OnInit {
 
-  @Input() prof : Professor;
+  @Input() prof: Professor;
   @HostBinding('class') classes = 'prof-card';
   @HostListener('click', ['$event.target'])
   onClick() {
     this.goTo();
- }
+  }
 
   name: string;
-  initials:string;
+  initials: string;
 
   constructor(private router: Router) { }
 
@@ -26,16 +26,15 @@ export class ProfCardComponent implements OnInit {
     this.getInitials();
   }
 
-  getName(){
+  getName() {
     this.name = this.prof.lastName + ' ' + this.prof.firstName;
   }
 
-  getInitials(){
+  getInitials() {
     this.initials = this.prof.lastName[0] + ' ' + this.prof.firstName[0];
   }
 
-  goTo(){
-     this.router.navigate([`professors/${this.prof.id}`]);
+  goTo() {
+    this.router.navigate([`professors/${this.prof.id}`]);
   }
-
 }

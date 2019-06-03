@@ -9,20 +9,15 @@ import { UserDetails } from 'src/app/models/userDetails';
   templateUrl: './prof-courses.component.html',
   styleUrls: ['./prof-courses.component.scss']
 })
-export class ProfCoursesComponent implements OnInit {
+export class ProfCoursesComponent {
 
   courses: CourseRead[];
   route: string;
   cardMessage: string;
-  user:UserDetails;
+  user: UserDetails;
 
-  ngOnInit() {
-  }
-
- 
-  constructor(private courseService: CourseService, private currentUserDetailsService:CurrentUserDetailsService) {
+  constructor(private courseService: CourseService, private currentUserDetailsService: CurrentUserDetailsService) {
     this.user = this.currentUserDetailsService.getUser();
-    
     this.cardMessage = 'See students';
     this.getProfCourses();
     this.route = 'courses/';

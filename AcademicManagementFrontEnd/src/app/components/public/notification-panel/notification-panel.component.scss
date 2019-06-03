@@ -1,10 +1,10 @@
-.container{
-    z-index: 999;
-    width:400px;
-    height: 500px;
-    border:1px solid black;
-    background: white;
-    display : flex;
-    flex-direction: column;
-    overflow:auto;
+.container {
+  z-index: 999;
+  width: 400px;
+  height: 500px;
+  border: 1px solid rgba(156, 151, 151, 0.623);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }

@@ -13,7 +13,7 @@ Bellcurve(Highcharts);
 })
 
 export class BellCurveChartComponent implements OnInit {
-
+    
     @Input() courseId: string;
     chart: Chart;
     data = new Array<number>();
@@ -22,7 +22,6 @@ export class BellCurveChartComponent implements OnInit {
 
     ngOnInit(): void {
         this.getFinalGrades();
-
     }
 
     createChart(data) {
@@ -67,7 +66,6 @@ export class BellCurveChartComponent implements OnInit {
             x.forEach(val => {
                 this.data.push(val.value);
             })
-
             this.createChart(this.data);
         })
     }

@@ -11,7 +11,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   templateUrl: './grade-category-modal-component.component.html',
   styleUrls: ['./grade-category-modal-component.component.scss']
 })
-export class GradeCategoryModalComponentComponent implements OnInit {
+export class GradeCategoryModalComponentComponent {
+
   gradeCategory = new GradeCategory();
   courseId: string;
   form: FormControl;
@@ -20,13 +21,10 @@ export class GradeCategoryModalComponentComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     private route: ActivatedRoute,
     public dialogRef: MatDialogRef<GradeCategoryModalComponentComponent>,
-    private gradeCategoryService: GradeCategoryService) { 
-    }
-
-  ngOnInit() {
+    private gradeCategoryService: GradeCategoryService) {
   }
 
-  getCourseId(event){
+  getCourseId(event) {
     this.courseId = event;
   }
 
@@ -44,8 +42,7 @@ export class GradeCategoryModalComponentComponent implements OnInit {
 
   save() {
     if (this.form.valid) {
-      this.gradeCategoryService.addGradeCategory(this.gradeCategory).subscribe(x => {console.log(x) });
+      this.gradeCategoryService.addGradeCategory(this.gradeCategory).subscribe(x => { console.log(x) });
     }
   }
-
 }

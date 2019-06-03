@@ -23,7 +23,6 @@ export class ManageProfessorsComponent implements OnInit {
     this.remove = number == '2';
     this.update = number == '3';
     this.courses = number == '4';
-
   }
 
 }

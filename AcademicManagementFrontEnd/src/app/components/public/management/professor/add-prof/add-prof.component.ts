@@ -34,10 +34,10 @@ export class AddProfComponent implements OnInit {
     group1: new FormControl('')
   });
 
-  constructor(private courseService: CourseService, 
-    private groupService: GroupService, 
-    private profService: ProfService, 
-    private potentialUserService: PotentialUserService, 
+  constructor(private courseService: CourseService,
+    private groupService: GroupService,
+    private profService: ProfService,
+    private potentialUserService: PotentialUserService,
     private profStudService: ProfStudService) { }
 
   ngOnInit() {
@@ -51,13 +51,13 @@ export class AddProfComponent implements OnInit {
   }
 
   getGroups() {
-    this.groupService.getAll().subscribe(result =>
-      {
-      this.groups = result}
+    this.groupService.getAll().subscribe(result => {
+      this.groups = result
+    }
     )
   }
 
-  filterGroups(course){
+  filterGroups(course) {
     //this.groups = this.allgroups.filter(x=>x.year === course.year)
   }
 
@@ -65,10 +65,8 @@ export class AddProfComponent implements OnInit {
     var course = new FormControl('');
     var group = new FormControl('');
     this.count++;
-
     var cname = 'course' + this.count;
     var gname = 'group' + this.count;
-
     this.forms.push({ course: cname, group: gname })
 
     this.addProfForm.addControl(cname, course);
@@ -77,20 +75,19 @@ export class AddProfComponent implements OnInit {
 
   addPotentialUser() {
     var usercode = this.addProfForm.get('userCode').value;
-    this.potentialUserService.addPotentialUser(usercode).subscribe(response =>
-        { 
-          this.prof.potentialUserId =  response
-          this.addProfessor();
-        });
+    this.potentialUserService.addPotentialUser(usercode).subscribe(response => {
+      this.prof.potentialUserId = response
+      this.addProfessor();
+    });
   }
 
-  addProfessor(){
-     this.profService.addProf(this.prof).subscribe((result: Professor) => {
-       this.addProfStud(result.id)
-     },
+  addProfessor() {
+    this.profService.addProf(this.prof).subscribe((result: Professor) => {
+      this.addProfStud(result.id)
+    },
       error => {
-      });}
-  
+      });
+  }
 
   submit(form) {
     this.prof.firstName = form.value.firstName;
@@ -101,7 +98,6 @@ export class AddProfComponent implements OnInit {
 
   addProfStud(profId) {
     var profStuds = new Array<ProfStud>();
- 
     this.forms.forEach(el => {
       var profStud = Object.assign({}, new ProfStud());
       profStud.courseId = this.addProfForm.get(el.course).value.id;
@@ -110,7 +106,7 @@ export class AddProfComponent implements OnInit {
       profStuds.push(profStud);
     })
 
-   this.profStudService.addProfStuds(profStuds).subscribe(response =>{})
+    this.profStudService.addProfStuds(profStuds).subscribe(response => { })
   }
 
 }

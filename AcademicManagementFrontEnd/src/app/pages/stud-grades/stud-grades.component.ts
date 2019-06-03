@@ -7,6 +7,7 @@ import { CourseRead } from 'src/app/models/course-read';
   templateUrl: "./stud-grades.component.html",
   styleUrls: ["./stud-grades.component.scss"]
 })
+
 export class StudGradesComponent {
   courses: CourseRead[];
   firstYearCourses: CourseRead[];
@@ -18,6 +19,7 @@ export class StudGradesComponent {
   hasCourses1 = false;
   hasCourses2 = false;
   hasCourses3 = false;
+  
   constructor(private courseService: CourseService) {
     this.getStudCourses();
   }

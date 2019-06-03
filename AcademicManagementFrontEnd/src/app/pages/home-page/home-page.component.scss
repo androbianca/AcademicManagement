@@ -8,14 +8,14 @@
 
   .auth__card {
     @include flex(row, center, center);
-    @include size(70vh,60vw);
+    @include size(70vh, 60vw);
     box-shadow: 6px 6px 18px #c2c2c4;
     border-radius: 12px;
     background-color: white;
 
     .buttons {
       @include flex(row, none, flex-end);
-      @include size(15%,100%);
+      @include size(15%, 100%);
 
       .login {
         border-top-left-radius: 12px;
@@ -28,8 +28,8 @@
       }
 
       button {
-        @include size(4vh,5vw);
-        font-size:1.5vh;
+        @include size(4vh, 5vw);
+        font-size: 1.5vh;
         border: none;
         padding: 5px;
         box-shadow: 6px 6px 18px #c2c2c4;
@@ -40,8 +40,9 @@
         }
       }
     }
+
     .form__container {
-      @include size(100%,100%);
+      @include size(100%, 100%);
       @include flex(column, center, none);
       padding: 5vh;
     }

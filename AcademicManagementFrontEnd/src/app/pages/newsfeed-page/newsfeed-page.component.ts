@@ -16,14 +16,14 @@ export class NewsfeedPageComponent implements OnInit {
 
   post = new Post();
   user: UserDetails;
+  postId: string;
+  isDisabled = true;
   posts = new Array<Post>();
-  // @HostBinding('class') classes = "page-wrapper";
+
   postForm = new FormGroup({
     post: new FormControl(null, [Validators.required]),
   });
-  postId: string;
 
-  isDisabled = true;
   constructor(private userDetailsService: CurrentUserDetailsService,
     private postService: PostService, private signalRService: SignalRService,
     private snackBar: MatSnackBar) {
@@ -67,8 +67,4 @@ export class NewsfeedPageComponent implements OnInit {
       )
     }
   }
-
-  onFileInsert(event){
-  }
-
 }

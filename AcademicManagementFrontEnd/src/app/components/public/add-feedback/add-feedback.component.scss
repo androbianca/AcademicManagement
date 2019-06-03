@@ -2,7 +2,6 @@
 @import "../../../../styles/colors.scss";
 @import "../../../../styles/general.scss";
 
-
 textarea {
   @include size(100px,200px);
   width: 100%;
@@ -29,4 +28,39 @@ button:hover {
   background-color: rgb(47, 75, 110);
   box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+#checkbox-wrapper {
+  @include flex (row, none, flex-start);
+  width: 80% !important;
+  height: 40px !important;
+  margin: 15px 20px 0px 0;
+}
+
+#checkbox-wrapper input[type="checkbox"] {
+  opacity: 0;
+}
+
+#checkbox-wrapper input[type="checkbox"] + label {
+  @include flex (row, none, none);
+  font-size: 16px;
+  line-height: 25px;
+  font-size: 12px;
+  margin:0 0 10px 0;
+}
+
+#checkbox-wrapper input[type="checkbox"] + label:before {
+  content: "";
+  display: block;
+  height: 14px;
+  width: 14px;
+  background: white;
+  border: 1px solid gray;
+  margin-right: 5px;
+  box-shadow: inset 0px 0px 0px 2px white;
+}
+
+#checkbox-wrapper input[type="checkbox"]:checked + label:before {
+  background: #ef8700;
+}
+
 

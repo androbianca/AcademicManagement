@@ -15,25 +15,25 @@ import { CourseRead } from 'src/app/models/course-read';
 })
 export class AddOptionalCoursesComponent implements OnInit {
 
-  studs:Student[];
-  courses:CourseRead[];
-  
+  studs: Student[];
+  courses: CourseRead[];
+
   addCoursesForm = new FormGroup({
     stud: new FormControl(''),
     optionals: new FormControl(''),
   });
 
-  constructor(private studService:StudentService, private courseService:CourseService, private studCourseService:StudCourseService) { }
+  constructor(private studService: StudentService, private courseService: CourseService, private studCourseService: StudCourseService) { }
 
   ngOnInit() {
     this.getStudents();
     this.getOptionalCourses();
   }
 
-  getStudents(){
-  this.studService.getAll().subscribe(response => {
-    this.studs = response;
-  })
+  getStudents() {
+    this.studService.getAll().subscribe(response => {
+      this.studs = response;
+    })
   }
 
   getOptionalCourses() {
@@ -51,10 +51,10 @@ export class AddOptionalCoursesComponent implements OnInit {
       studCourse.studId = id;
       studCourses.push(studCourse);
     });
-    this.studCourseService.addStudCourses(studCourses).subscribe(response => {})
+    this.studCourseService.addStudCourses(studCourses).subscribe(response => { })
   }
 
-  submit(form){
+  submit(form) {
     var id = form.value.stud.id;
     this.addStudCourses(id);
   }

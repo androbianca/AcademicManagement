@@ -10,30 +10,30 @@ import { StudentService } from 'src/app/services/student-service.service';
 })
 export class RemoveStudentComponent implements OnInit {
 
-  studs:Student[];
-  
+  studs: Student[];
+
   removeStudForm = new FormGroup({
     stud: new FormControl(''),
   });
 
-  constructor(private studService:StudentService) { }
+  constructor(private studService: StudentService) { }
 
   ngOnInit() {
     this.getStudents();
   }
 
-  getStudents(){
-  this.studService.getAll().subscribe(response => {
-    this.studs = response;
-  })
+  getStudents() {
+    this.studService.getAll().subscribe(response => {
+      this.studs = response;
+    })
   }
 
-  removeStudent(id:string){
-   this.studService.removeStudent(id).subscribe(response => {
-   })
+  removeStudent(id: string) {
+    this.studService.removeStudent(id).subscribe(response => {
+    })
   }
 
-  submit(form){
+  submit(form) {
     var id = form.value.stud.id;
     this.removeStudent(id);
   }

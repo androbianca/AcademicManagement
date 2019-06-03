@@ -4,7 +4,6 @@ import { Login } from "src/app/models/login";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "src/app/services/authentication.service";
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -12,10 +11,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"]
 })
+
 export class LoginComponent implements OnInit {
 
   public loginModel: Login = new Login();
-  isDisabled =  true;
+  isDisabled = true;
+  
   loginForm = new FormGroup({
     userCode: new FormControl(null, [Validators.required]),
     password: new FormControl(null, [Validators.required])
@@ -24,14 +25,15 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService, private currentUserService: CurrentUserDetailsService,
     private router: Router,
-    private snackBar:MatSnackBar) { }
+    private snackBar: MatSnackBar) { }
 
-  ngOnInit() {  this.onChanges();
+  ngOnInit() {
+    this.onChanges();
   }
 
-onChanges(): void {
-    this.loginForm.valueChanges.subscribe(x=> {
-    this.isDisabled = this.loginForm.valid ? false :true;
+  onChanges(): void {
+    this.loginForm.valueChanges.subscribe(x => {
+      this.isDisabled = this.loginForm.valid ? false : true;
     })
   }
 
@@ -64,9 +66,8 @@ onChanges(): void {
           }
           this.snackBar.open("succes");
         },
-        err => { 
+        err => {
           this.snackBar.open("fail");
-
         }
       );
     }

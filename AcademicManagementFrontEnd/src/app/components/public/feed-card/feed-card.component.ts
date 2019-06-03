@@ -2,9 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { StudentService } from 'src/app/services/student-service.service';
 import { ProfService } from 'src/app/services/prof-service.service';
-import { UserDetails } from 'src/app/models/userDetails';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { DatePipe } from '@angular/common';
+import { Role } from 'src/app/models/role-enum';
+import { UserDetails } from 'src/app/models/userDetails';
 
 @Component({
   selector: 'app-feed-card',
@@ -14,22 +15,25 @@ import { DatePipe } from '@angular/common';
 export class FeedCardComponent implements OnInit {
 
   @Input() post: Post;
-  user: any;
+  
+  currentUser: UserDetails;
+  user:any;
   fullName: string;
   initials:string;
   pipe = new DatePipe('en-US'); // Use your own locale
   date : any;
+  role : typeof Role = Role;
 
   constructor(private studentService: StudentService,
     private profService: ProfService,
     private currentUserDetailsService: CurrentUserDetailsService) {
-    this.user = this.currentUserDetailsService.getUser();
+    this.currentUser = this.currentUserDetailsService.getUser();
   }
 
   ngOnInit() {
-    this.post.role == "Student" ? this.getStudentDetails() : (this.user.userRole == "Professor" ? this.getProfDetails() : null)
-    this.fullName = this.user.lastName + ' ' + this.user.firstName;
-    this.initials = this.user.lastName[0] + ' ' + this.user.firstName[0];
+    this.post.role == this.role.student ? this.getStudentDetails() : (this.user.userRole == this.role.professor ? this.getProfDetails() : null)
+    this.fullName = this.currentUser.lastName + ' ' + this.currentUser.firstName;
+    this.initials = this.currentUser.lastName[0] + ' ' + this.currentUser.firstName[0];
     this.date = this.pipe.transform(this.post.time, 'short');
   }
 

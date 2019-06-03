@@ -8,7 +8,7 @@ import { GroupService } from 'src/app/services/group-service.service';
   templateUrl: './add-group.component.html',
   styleUrls: ['./add-group.component.scss']
 })
-export class AddGroupComponent implements OnInit {
+export class AddGroupComponent {
 
   addGroupForm = new FormGroup({
     name: new FormControl(''),
@@ -17,16 +17,11 @@ export class AddGroupComponent implements OnInit {
 
   constructor(private groupService: GroupService) { }
 
-  ngOnInit() {
-  }
-
   submit(form) {
-
     var group = new GroupWrite();
     group.name = form.value.name;
     group.year = form.value.year;
-
-    this.groupService.addGroup(group).subscribe(response => {});
+    this.groupService.addGroup(group).subscribe(response => { });
   }
 
 }

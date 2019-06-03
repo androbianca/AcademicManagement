@@ -38,7 +38,6 @@ export class AddStudComponent implements OnInit {
     private studentService: StudentService,
     private StudCourseService: StudCourseService) { }
 
-
   getGroups() {
     this.groupService.getAll().subscribe(response => {
       this.groups = response;
@@ -58,7 +57,6 @@ export class AddStudComponent implements OnInit {
       this.studId = response.id;
     })
   }
-
 
   submit(form) {
     this.student.firstName = form.value.firstName;
