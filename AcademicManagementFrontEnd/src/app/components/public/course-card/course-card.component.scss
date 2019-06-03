@@ -12,6 +12,10 @@
     box-shadow: 0 3px 8px rgba(126, 122, 122, 0.15);
   }
 
+  .disabled {
+    opacity: 0.3;
+  }
+
 
 .no-picture-background {
   @include flex (none,center,center);

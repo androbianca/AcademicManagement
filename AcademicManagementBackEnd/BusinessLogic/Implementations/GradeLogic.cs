@@ -115,7 +115,7 @@ namespace BusinessLogic.Implementations
             remainingPercentage = 100 - percentage;
             final += (remainingPercentage * lab) / 100;
 
-            return final;
+            return (float)System.Math.Round(final,2);
         }
 
         private NotificationDto CreateNotification(GradeDto gradeDto)

@@ -5,6 +5,9 @@ namespace Models
     public class CourseDto
     {
         public Guid Id { get; set; }
+
+        public bool isDeleted { get; set; }
+
         public string Name { get; set; }
 
         public int Year { get; set; }

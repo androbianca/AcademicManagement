@@ -5,13 +5,13 @@
       <textarea formControlName="post">
       </textarea>
     </form>
-    <app-file-upload></app-file-upload>
+    <app-file-upload (fileUploaded)="onFileUpload($event)"></app-file-upload>
   </div>
   <div class="footer">
     <button [class.button-disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
 </div>
 
-<ng-template [ngIf]="signalRService.posts.length == 0" [ngIfElse]="displayResults">
+<ng-template [ngIf]="signalRService.posts?.length == 0" [ngIfElse]="displayResults">
   <app-no-results text='No posts yet'></app-no-results>
 </ng-template>
 

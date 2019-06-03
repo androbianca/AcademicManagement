@@ -22,6 +22,7 @@ export class ProfGradesComponent implements OnInit {
   user: UserDetails;
   students = new Array<Student>();
   groups: GroupRead[];
+  studs : any;
   filteredStudents = new Array<Student>();
 
   constructor(private studentService: StudentService,
@@ -33,6 +34,13 @@ export class ProfGradesComponent implements OnInit {
     this.user = userDetailsService.getUser();
   }
 
+  test(group){
+    this.studs = this.students.find(x => x.groupId == group.id);
+    if(this.studs){
+      return true;
+    }
+    return false;
+  }
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.courseId = params['courseId'];

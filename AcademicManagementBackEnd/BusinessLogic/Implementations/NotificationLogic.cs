@@ -65,6 +65,7 @@ namespace BusinessLogic.Implementations
 
                     var notificationDto = new NotificationDto
                     {
+
                         Title = notification.Title,
                         Body = notification.Body,
                         IsRead = notification.IsRead,

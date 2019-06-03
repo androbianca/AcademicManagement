@@ -67,4 +67,8 @@ export class NewsfeedPageComponent implements OnInit {
       )
     }
   }
+
+  onFileUpload(event){
+    this.postId = event.courseId;
+  }
 }

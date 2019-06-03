@@ -16,7 +16,7 @@ export class FeedCardComponent implements OnInit {
 
   @Input() post: Post;
   
-  currentUser: UserDetails;
+  currentUser: any;
   user:any;
   fullName: string;
   initials:string;
@@ -31,7 +31,7 @@ export class FeedCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.post.role == this.role.student ? this.getStudentDetails() : (this.user.userRole == this.role.professor ? this.getProfDetails() : null)
+    this.post.role == this.role.student ? this.getStudentDetails() : (this.currentUser.userRole == this.role.professor ? this.getProfDetails() : null)
     this.fullName = this.currentUser.lastName + ' ' + this.currentUser.firstName;
     this.initials = this.currentUser.lastName[0] + ' ' + this.currentUser.firstName[0];
     this.date = this.pipe.transform(this.post.time, 'short');

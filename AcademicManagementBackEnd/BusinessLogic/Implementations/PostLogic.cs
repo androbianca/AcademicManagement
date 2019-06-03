@@ -25,10 +25,9 @@ namespace BusinessLogic.Implementations
         {
             var account = _repository.GetByFilter<Account>(x => x.UserCode == postDto.UserCode);
             var post = new Post
-            {
+            {   Id = Guid.NewGuid(),
                 Body = postDto.Body,
                 AccountId = account.Id,
-                Id = Guid.NewGuid(),
                 Time = DateTime.Now
             };
 

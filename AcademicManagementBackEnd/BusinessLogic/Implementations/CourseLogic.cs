@@ -26,6 +26,7 @@ namespace BusinessLogic.Implementations
             var course = new Course
             {
                 Id = Guid.NewGuid(),
+                isDeleted = false,
                 Name = courseDto.Name,
                 Package = courseDto.Package,
                 Year = courseDto.Year,
@@ -39,29 +40,10 @@ namespace BusinessLogic.Implementations
 
         public Course Remove(Guid courseId)
         {
-            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.CourseId == courseId);
-            if (profStuds != null)
-            {
-                foreach (var profStud in profStuds)
-                {
-                    _repository.Delete(profStud);
-                }
-           
-            }
-
-            var studCourses = _repository.GetAllByFilter<StudCourse>(x => x.CourseId == courseId);
-            if (studCourses != null)
-            {
-                foreach (var studCourse in studCourses)
-                {
-                    _repository.Delete(studCourse);
-                }
-
-            }
-
             var course = _repository.GetByFilter<Course>(x => x.Id == courseId);
+            course.isDeleted = true;
 
-            _repository.Delete(course);
+            _repository.Update(course);
             _repository.Save();
 
             return course;
@@ -159,6 +141,7 @@ namespace BusinessLogic.Implementations
                 var courseDto = new CourseDto
                 {
                     Id = course.Id,
+                    isDeleted = course.isDeleted,
                     Name = course.Name,
                     Year = course.Year,
                     Semester = course.Semester,

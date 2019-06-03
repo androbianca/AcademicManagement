@@ -1,0 +1,9 @@
+.error-message {
+    font-size:13px;
+    margin-top:5px;
+    color: red;
+  }
+  
+  input.ng-touched.ng-invalid,select.ng-touched.ng-invalid {
+      border-color: red;
+  }

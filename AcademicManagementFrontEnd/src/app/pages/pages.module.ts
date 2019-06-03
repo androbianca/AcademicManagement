@@ -164,7 +164,9 @@ export function highchartsModules() {
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
-    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
+    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules },
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+
   ]
 })
 

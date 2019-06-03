@@ -12,6 +12,8 @@ namespace Entities
 
         public string Package { get; set; }
 
+        public bool isDeleted { get; set; }
+
         public IEnumerable<StudCourse> Studs { get; set; }
 
         public IEnumerable<Grade> Grades { get; set; }

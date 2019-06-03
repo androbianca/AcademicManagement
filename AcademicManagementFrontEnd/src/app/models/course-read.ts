@@ -4,4 +4,5 @@ export class CourseRead {
     year: string;
     semester: string;
     package: string;
+    isDeleted:boolean;
 }

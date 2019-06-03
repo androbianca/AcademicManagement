@@ -58,7 +58,6 @@
 
 .form {
   @include flex(column, none, center);
-
   margin-top: 40px;
   min-width: 22vw;
   border: 1px solid rgb(209, 208, 208);
@@ -69,7 +68,7 @@ input[type=text],
 select {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 8px 0 0 0;
   display: block;
   border: 1px solid #ccc;
   border-radius: 4px;

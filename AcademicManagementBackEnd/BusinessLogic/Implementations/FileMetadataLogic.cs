@@ -27,10 +27,11 @@ namespace BusinessLogic.Implementations
 
         public async Task<FileMetadataDto> UploadFiles(Guid courseId, IFormFile file, bool IsExcel, string id)
         {
+            var isPost = false;
             var course = _repository.GetByFilter<Course>(x => x.Id == courseId);
 
             if (course == null)
-                return null;
+                isPost = true;
 
             // full path to file in temp location
             FileMetadataDto result = null;
@@ -61,10 +62,12 @@ namespace BusinessLogic.Implementations
                         await file.CopyToAsync(stream);
                     }
 
+                    var guid = isPost ? Guid.NewGuid() : courseId;
+
                     // create metadatas
                     result = new FileMetadataDto
                     { 
-                        CourseId = courseId,
+                        CourseId = guid,
                         Path = path,
                         FileName = file.FileName
                     };
