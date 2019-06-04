@@ -1,10 +1,15 @@
-<a id="notification.id">
+<div [class.unread]="!notification.isRead" class="card">
   <section class="initials">
     <section class="profile-picture">{{initials}}</section>
   </section>
 
-  <div class="content">
-    <h1>{{ notification.title }}</h1>
-    <span>{{ notification.body }}</span>
+  <div class="top">
+    <div class="content">
+      <h1 class="title">{{ notification.title }}</h1>
+
+      <span>{{ notification.body }}</span>
+    </div>
+    <p class="date">{{ date }}</p>
   </div>
-</a>
+
+</div>

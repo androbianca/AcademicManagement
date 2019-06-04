@@ -3,4 +3,7 @@ export class Notif {
     body: string;
     isRead: boolean;
     userId:string;
+    itemId:string;
+    id:string;
+    time:Date;
 }

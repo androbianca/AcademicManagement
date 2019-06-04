@@ -34,7 +34,6 @@ export class AddFeedbackModalContentComponent {
   }
 
   onFormChange(form) {
-    debugger
     if (form.valid) {
       this.isDisabled = false;
       this.feedback.body = form.value.feedback;

@@ -21,9 +21,9 @@
 }
 
 .profile {
-  @include flex(none, center, center);
-  @include size(14vh,7vw);
-  font-size:4vh;
+  @include flex(row, center, center);
+  @include size(7vw,7vw);
+  font-size:2vw;
   border-radius: 50%;
   padding: 3px;
   margin: 30% 0 20px 0;

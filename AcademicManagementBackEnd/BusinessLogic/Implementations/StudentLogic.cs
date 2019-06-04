@@ -116,6 +116,7 @@ namespace BusinessLogic.Implementations
             {
                 var studentDto = new StudentDto
                 {
+                    IsDeleted = student.IsDeleted,
                     FirstName = student.FirstName,
                     LastName = student.LastName,
                     Id = student.Id
@@ -130,7 +131,9 @@ namespace BusinessLogic.Implementations
         public Student Remove(Guid studentId)
         {
             var student = _repository.GetByFilter<Student>(x => x.Id == studentId);
-            _repository.Delete(student);
+            student.IsDeleted = true;
+            _repository.Update(student);
+            _repository.Save();
 
             return student;
 

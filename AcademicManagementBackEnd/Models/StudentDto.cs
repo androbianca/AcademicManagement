@@ -11,6 +11,8 @@ namespace Models
 
         public int Year { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public Guid GroupId { get; set; }
 
         public Guid PotentialUserId { get; set; }

@@ -29,6 +29,15 @@ namespace Service.Controllers
             return Ok(result);
         }
 
+        [HttpPost("update")]
+        public IActionResult UpdateNotification(NotificationDto notification)
+        {
+
+            _notificationLogic.ReadNotification(notification);
+
+            return Ok();
+        }
+
         [HttpGet]
         public ActionResult<ICollection<NotificationDto>> Get()
         {

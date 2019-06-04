@@ -1,7 +1,13 @@
 <form class="form" [formGroup]="addGroupForm">
   <label>Name</label>
   <input type="text" formControlName="name" placeholder="Name">
+  <div *ngIf="addGroupForm.get('name')?.errors && addGroupForm.get('name')?.touched" class="error-message">
+      {{ errorMessage }}
+    </div>
   <label>Year</label>
   <input type="text" formControlName="year" placeholder="Year">
-  <input type="submit" value="Submit" (click)="submit(addGroupForm)">
+  <div *ngIf="addGroupForm.get('year')?.errors && addGroupForm.get('year')?.touched" class="error-message">
+      {{ errorMessage }}
+    </div>
+  <input type="submit" [class.disabled]="isDisabled" value="Submit" (click)="submit(addGroupForm)">
 </form>

@@ -6,5 +6,5 @@
     </mat-select>
   </mat-form-field>
 
-  <input type="submit" value="Submit" (click)="submit(removeStudForm)">
+  <input type="submit" [class.disabled] = "isDisabled" value="Submit" (click)="submit(removeStudForm)">
 </form>

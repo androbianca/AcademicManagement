@@ -1,5 +1,10 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, HostListener } from '@angular/core';
 import { Notif } from 'src/app/models/notification';
+import { Router } from '@angular/router';
+import { GradeService } from 'src/app/services/grade-service.service';
+import { NotificationService } from 'src/app/services/notification-service.service';
+import { SignalRService } from 'src/app/services/signalR-service.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-notification-card',
@@ -10,12 +15,42 @@ export class NotificationCardComponent implements OnInit {
 
   @Input() notification: Notif;
   @HostBinding('class') classes = "notification-card";
+  pipe = new DatePipe('en-US'); // Use your own locale
+  date: any;
+  @HostListener('click', ['$event.target'])
+  onClick() {
+    this.updateNotification();
+    this.goTo();
+  }
+  text = "New grade";
+  route = "";
 
   initials:string;
 
-  constructor() { }
+  constructor(private router: Router, private gradeService:GradeService,
+    private notificationService:NotificationService,
+    private signalRService: SignalRService) { }
 
   ngOnInit() {
     this.initials = this.notification.body.split(' ')[0][0] + ' ' + this.notification.body.split(' ')[1][0];
+    this.date = this.pipe.transform(this.notification.time, 'short');
+
+    if(this.notification.title.toLowerCase().trim() == this.text.toLocaleLowerCase().trim()){
+      this.gradeService.getById(this.notification.itemId).subscribe(result => {
+        this.route = `grades/${result.courseId}`;
+      })
+      return;
+    }
+    this.route = "newsfeed"
   }
+
+  goTo() {
+    this.router.navigate([this.route]);
+  }
+
+  updateNotification(){
+     this.notificationService.read(this.notification).subscribe(x=> console.log(x))
+  }
+
+
 }

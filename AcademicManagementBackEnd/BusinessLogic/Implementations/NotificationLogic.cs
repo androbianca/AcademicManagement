@@ -40,7 +40,9 @@ namespace BusinessLogic.Implementations
                 IsRead = notificationDto.IsRead,
                 Id = Guid.NewGuid(),
                 SenderId = accountSender.Id,
-                ReciverId = accountReciver
+                ReciverId = accountReciver,
+                ItemId = notificationDto.ItemId,
+                Time = DateTime.Now
             };
 
             _repository.Insert(notification);
@@ -69,6 +71,9 @@ namespace BusinessLogic.Implementations
                         Title = notification.Title,
                         Body = notification.Body,
                         IsRead = notification.IsRead,
+                        ItemId = notification.ItemId,
+                        Id = notification.Id,
+                        Time = notification.Time
 
                     };
 
@@ -79,11 +84,13 @@ namespace BusinessLogic.Implementations
             return notificationDtos;
         }
 
-        public void ReadNotification(Guid notificationId)
+        public void ReadNotification(NotificationDto notificationDto)
         {
-            var notification = _repository.GetByFilter<Notification>(x => x.Id == notificationId);
+            var notification = _repository.GetByFilter<Notification>(x => x.Id == notificationDto.Id);
             notification.IsRead = true;
+            _hubContext.Clients.All.SendAsync("ceva", "");
             _repository.Update(notification);
+            _repository.Save();
         }
 
     }

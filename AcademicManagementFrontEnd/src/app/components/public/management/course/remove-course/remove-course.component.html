@@ -5,8 +5,9 @@
       <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-error *ngIf="removeCourseForm.hasError('required')">You must make a selection</mat-error>
-
+  <!-- <div *ngIf="removeCourseForm.get('course')?.errors && removeCourseForm.get('course')?.touched" class="error-message">
+      {{ errorMessage }}
+    </div> -->
 
   <input [class.disabled]="isDisabled" type="submit" value="Submit" (click)="submit(removeCourseForm)">
 </form>

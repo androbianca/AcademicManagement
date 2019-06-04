@@ -2,18 +2,17 @@
 @import '../../../../../../styles/general.scss';
 @import '../../../../../../styles/form.scss';
 
+
 .disabled {
-  opacity: 0.3;
-  pointer-events: none;
+    opacity:0.3;
+    pointer-events: none;
 }
 
-.error-message {
-  margin: 5px 0 5px 0 !important;
+.error-message{
+    margin:5px 0 5px 0 !important;
 }
 
 label {
-  margin: 5px 0 0 0;
+    margin: 5px 0 0 0;
 }
 
-
-  

@@ -3,6 +3,7 @@ import { HubConnectionBuilder, HubConnection, HttpTransportType, LogLevel } from
 import { NotificationService } from './notification-service.service';
 import { Post } from '../models/post';
 import { PostService } from './post-service.service';
+import { Notif } from '../models/notification';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class SignalRService {
 
   private connectionIsEstablished = false;
   private _hubConnection: HubConnection;
-  notifications: Notification[];
+  notifications: Notif[];
   posts: Post[];
+  notifNumber: number = 0;
 
   constructor(private notificatonSrvice: NotificationService,
     private postService: PostService) {
@@ -46,13 +48,26 @@ export class SignalRService {
   public registerOnServerEvents(): void {
     this._hubConnection.on('ceva', () => {
       this.notificatonSrvice.get().subscribe(x => {
+        this.notifNumber = 0;
         this.notifications = x;
+        this.notifications = x.sort((val1, val2) => {
+          return new Date(val2.time).getTime() - new
+            Date(val1.time).getTime()
+        })
+        this.notifications.forEach(notif => {
+          if (!notif.isRead) {
+            this.notifNumber+= 1;
+          }
+        })
       });
+
       this.postService.getAll().subscribe(x => {
-        
-        this.posts = x.sort((val1, val2)=> {return new Date(val2.time).getTime() - new 
-          Date(val1.time).getTime()})
+
+        this.posts = x.sort((val1, val2) => {
+          return new Date(val2.time).getTime() - new
+            Date(val1.time).getTime()
+        })
       })
     });
-}  
+  }
 }  

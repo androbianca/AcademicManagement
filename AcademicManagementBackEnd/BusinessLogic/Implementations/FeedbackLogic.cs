@@ -9,9 +9,12 @@ namespace BusinessLogic.Implementations
 {
     public class FeedbackLogic : BaseLogic, IFeedbackLogic
     {
-        public FeedbackLogic(IRepository repository)
+        private INotificationLogic _notificationLogic;
+
+        public FeedbackLogic(IRepository repository, INotificationLogic notificationLogic)
             : base(repository)
         {
+            _notificationLogic = notificationLogic;
         }
 
         public Feedback Add(FeedbackDto feedbackDto)
@@ -27,7 +30,38 @@ namespace BusinessLogic.Implementations
             _repository.Insert(feedback);
             _repository.Save();
 
+            var notification  = this.CreateNotification(feedback);
+            _notificationLogic.Create(notification);
+
             return feedback;
+        }
+
+        private NotificationDto CreateNotification(Feedback feedback)
+        {
+            var student = _repository.GetByFilter<Student>(x => x.Id == feedback.StudentId);
+            var prof = _repository.GetByFilter<Professor>(x => x.Id == feedback.ProfessorId);
+            var body = "";
+            if (student==null)
+            {
+                 body = "Anonymous Feedback";
+            }
+            else
+            {
+                 body = student.LastName + ' ' + student.FirstName + " left feedback for you";
+            }
+
+            var notification = new NotificationDto
+            {
+                Title = "New feedback",
+                Body = body,
+                IsRead = false,
+                ReciverId = prof.PotentialUserId,
+                SenderId = student.PotentialUserId,
+                ItemId = feedback.Id
+            };
+
+            return notification;
+
         }
 
         public List<FeedbackDto> GetByProfId(Guid profId)

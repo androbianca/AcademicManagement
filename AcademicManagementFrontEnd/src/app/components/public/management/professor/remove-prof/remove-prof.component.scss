@@ -1,2 +1,7 @@
 @import '../../../../../../styles/colors.scss';
 @import '../../../../../../styles/general.scss';
+
+.disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }

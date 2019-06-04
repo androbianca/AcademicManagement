@@ -1,15 +1,14 @@
 <section class="top__bar">
-  <div  #origin="cdkOverlayOrigin" cdkOverlayOrigin
-  (click)="toggle()">
+  <div #origin="cdkOverlayOrigin" cdkOverlayOrigin (click)="toggle()">
+
     <img src="../../../../assets/images/notification1.png">
+    <span class="badge">{{signalRService.notifNumber}}</span>
+
   </div>
 </section>
 
-<ng-template cdkConnectedOverlay
-[cdkConnectedOverlayOrigin]="origin"
-[cdkConnectedOverlayOpen]="panelOpen"
-cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-cdkConnectedOverlayHasBackdrop
-(backdropClick)="close()" >
-    <app-notification-panel></app-notification-panel>
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="origin" [cdkConnectedOverlayOpen]="panelOpen"
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop" cdkConnectedOverlayHasBackdrop
+  (backdropClick)="close()">
+  <app-notification-panel (notifChanged) = "onNotifChange($event)"></app-notification-panel>
 </ng-template>

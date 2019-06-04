@@ -5,4 +5,6 @@ export class Student {
     userCode: string;
     groupId: string;
     potentialUserId: string;
+    isDeleted:boolean;
+
 }

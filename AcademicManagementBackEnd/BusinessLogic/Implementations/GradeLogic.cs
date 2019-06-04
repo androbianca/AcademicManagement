@@ -48,6 +48,22 @@ namespace BusinessLogic.Implementations
             return gradeDtos;
         }
 
+        public GradeDto GetById(Guid gradeId)
+        {
+            var grade = _repository.GetByFilter<Grade>(x => x.Id == gradeId);
+            var gradeDto = new GradeDto()
+            {
+                StudentId = grade.StudentId,
+                ProfId = grade.ProfId,
+                CourseId = grade.CourseId,
+                Value = grade.Value,
+                CategoryId = grade.CategoryId
+            };
+
+            return gradeDto;
+
+        }
+
         public void Add(GradeDto gradeDto)
         {
             var grade = new Grade()
@@ -56,14 +72,15 @@ namespace BusinessLogic.Implementations
                 ProfId = gradeDto.ProfId,
                 CourseId = gradeDto.CourseId,
                 Value = gradeDto.Value,
-                CategoryId = gradeDto.CategoryId
+                CategoryId = gradeDto.CategoryId,
+                Id = Guid.NewGuid()
 
             };
 
             _repository.Insert(grade);
             _repository.Save();
 
-            var notification = CreateNotification(gradeDto);
+            var notification = CreateNotification(grade);
 
             _notificationLogic.Create(notification);
 
@@ -72,8 +89,6 @@ namespace BusinessLogic.Implementations
             var finalGrade = _repository.GetByFilter<FinalGrade>(x => x.StudentId == gradeDto.StudentId && x.CourseId == gradeDto.CourseId);
             finalGrade.Value = final;
             _finalGradeLogic.Update(finalGrade);
-
-
 
         }
 
@@ -118,18 +133,19 @@ namespace BusinessLogic.Implementations
             return (float)System.Math.Round(final,2);
         }
 
-        private NotificationDto CreateNotification(GradeDto gradeDto)
+        private NotificationDto CreateNotification(Grade grade)
         {
-            var prof = _repository.GetByFilter<Professor>(x => x.Id == gradeDto.ProfId);
-            var course = _repository.GetByFilter<Course>(x => x.Id == gradeDto.CourseId);
-            var stud = _repository.GetByFilter<Student>(x => x.Id == gradeDto.StudentId);
+            var prof = _repository.GetByFilter<Professor>(x => x.Id == grade.ProfId);
+            var course = _repository.GetByFilter<Course>(x => x.Id == grade.CourseId);
+            var stud = _repository.GetByFilter<Student>(x => x.Id == grade.StudentId);
             var notification = new NotificationDto
             {
                 Title = "New grade",
                 Body =prof.LastName + ' ' + prof.FirstName + " added a new grade for " + course.Name,
                 IsRead = false,
                 ReciverId = stud.PotentialUserId,
-                SenderId = prof.PotentialUserId
+                SenderId = prof.PotentialUserId,
+                ItemId = grade.Id
             };
 
             return notification;

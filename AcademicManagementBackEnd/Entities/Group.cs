@@ -6,6 +6,7 @@ namespace Entities
     {
         public string Name { get; set; }
         public int Year { get; set; }
+        public bool IsDeleted { get; set; }
         public IEnumerable<Student> Students { get; set; }
     }
 }

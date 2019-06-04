@@ -73,10 +73,23 @@ namespace Service.Controllers
             }
 
             return Ok(result);
-
         }
-    
-  
+
+        //[HttpPut]
+        //public IActionResult Update([FromBody] CourseDto courseDto)
+        //{
+        //    var result = _courseLogic.Update(courseDto);
+
+        //    if (result == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(result);
+
+        //}
+
+
         private string getCurrentUserId()
         {
             var headerValue = Request.Headers["Authorization"];

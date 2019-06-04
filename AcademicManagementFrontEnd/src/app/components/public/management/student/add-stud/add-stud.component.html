@@ -1,10 +1,19 @@
 <form class="form" [formGroup]="addStudForm">
   <label>LastName</label>
   <input type="text" formControlName="lastName" placeholder="LastName">
+  <div *ngIf="addStudForm.get('lastName')?.errors && addStudForm.get('lastName')?.touched" class="error-message">
+      {{ errorMessage }}
+    </div>
   <label>FirstName</label>
   <input type="text" formControlName="firstName" placeholder="FirstName">
+  <div *ngIf="addStudForm.get('firstName')?.errors && addStudForm.get('firstName')?.touched" class="error-message">
+      {{ errorMessage }}
+    </div>
   <label>UserCode</label>
   <input type="text" formControlName="userCode" placeholder="UserCode">
+  <div *ngIf="addStudForm.get('userCode')?.errors && addStudForm.get('userCode')?.touched" class="error-message">
+      {{ errorMessage }}
+    </div>
 
   <mat-form-field>
     <mat-label>Group</mat-label>
@@ -12,6 +21,9 @@
       <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} {{group.year}}</mat-option>
     </mat-select>
   </mat-form-field>
+  <div *ngIf="addStudForm.get('group')?.errors && addStudForm.get('group')?.touched" class="error-message">
+      {{ errorMessage }}
+    </div>
 
-  <input type="submit" value="Submit" (click)="submit(addStudForm)">
+  <input type="submit" [class.disabled]="isDisabled" value="Submit" (click)="submit(addStudForm)">
 </form>

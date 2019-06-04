@@ -4,4 +4,6 @@ export class Professor {
     lastName: string;
     userCode: string;
     potentialUserId:string;
+    isDeleted:boolean;
+
 }

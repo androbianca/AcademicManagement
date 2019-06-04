@@ -11,5 +11,5 @@
       <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <input type="submit" value="Submit" (click)="submit(addCoursesForm)">
+  <input type="submit" [class.disabled]="isDisabled" value="Submit" (click)="submit(addCoursesForm)">
 </form>

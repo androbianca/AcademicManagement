@@ -40,6 +40,7 @@ export class RemoveCourseComponent implements OnInit {
   getCourses() {
     this.courseService.getAll().subscribe(response => {
       this.courses = response;
+      this.courses = this.courses.filter(x=> x.isDeleted==false);
     })
   }
   ngOnInit() {

@@ -22,6 +22,7 @@ namespace BusinessLogic.Implementations
             {
                 var profDto = new ProfDto
                 {
+                    IsDeleted = prof.IsDeleted,
                     FirstName = prof.FirstName,
                     LastName = prof.LastName,
                     PotentialUserId = prof.PotentialUserId,
@@ -37,8 +38,8 @@ namespace BusinessLogic.Implementations
         public Professor Remove(Guid id)
         {
             var prof = _repository.GetByFilter<Professor>(x => x.Id == id);
-
-            _repository.Delete(prof);
+            prof.IsDeleted = true;
+            _repository.Update(prof);
             _repository.Save();
 
             return prof;

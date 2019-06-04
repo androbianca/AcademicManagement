@@ -1,7 +1,9 @@
-  <section class="initials">
-    <section class="profile-picture">{{ initials }}</section>
-  </section>
+  <section  class ="prof-card" [class.disabled]="prof.isDeleted">
+    <section class="initials">
+      <section class="profile-picture">{{ initials }}</section>
+    </section>
 
-  <section class="name">
-    <h4> {{ name }}</h4>
+    <section class="name">
+      <h4> {{ name }}</h4>
+    </section>
   </section>

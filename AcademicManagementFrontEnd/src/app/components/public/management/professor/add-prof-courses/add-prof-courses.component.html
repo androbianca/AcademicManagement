@@ -26,5 +26,5 @@
   </ng-container>
 
   <button (click)="add()">Add more</button>
-  <input type="submit" value="Submit" (click)="submit(addCourses)">
+  <input type="submit" [class.disabled]="isDisabled" value="Submit" (click)="submit(addCourses)">
 </form>

@@ -37,6 +37,16 @@ namespace Service.Controllers
 
         }
 
+        [HttpGet("{gradeId:guid}")]
+        public IActionResult GetById([FromRoute] Guid gradeId)
+        {
+
+            var grade = _gradeLogic.GetById(gradeId);
+
+            return Ok(grade);
+
+        }
+
 
         [HttpPost]
         public IActionResult Add([FromBody] GradeDto grade)

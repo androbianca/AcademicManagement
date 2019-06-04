@@ -13,6 +13,8 @@ namespace Entities
 
         public Group Group { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public IEnumerable<StudCourse> Courses { get; set; }
 
         public IEnumerable<Grade> Grades { get; set; }

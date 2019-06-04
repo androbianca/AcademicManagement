@@ -32,7 +32,9 @@ namespace BusinessLogic.Implementations
         {
 
             var group = _repository.GetByFilter<Group>(x => x.Id == groupId);
-            _repository.Delete(group);
+
+            group.IsDeleted = true;
+            _repository.Update(group);
             _repository.Save();
 
             return group;
@@ -45,6 +47,7 @@ namespace BusinessLogic.Implementations
             {
                 var groupDto = new GroupDto()
                 {
+                    IsDeleted = group.IsDeleted,
                     Year = group.Year,
                     Id = group.Id,
                     Name = group.Name

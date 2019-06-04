@@ -10,18 +10,22 @@ import { Grade } from '../models/grade';
 export class GradeService {
 
     constructor(private baseService: BaseService) {
-     }
+    }
 
-     public addGrade(grade:Grade){
-        return this.baseService.post<Grade>('grades',grade);
-     }
+    public addGrade(grade: Grade) {
+        return this.baseService.post<Grade>('grades', grade);
+    }
 
-     public getFinal(courseId,studentId){
+    public getFinal(courseId, studentId) {
         return this.baseService.get<number>(`grades/${courseId}/${studentId}/final`);
     }
 
-     public getGrades(courseId,studentId){
+    public getGrades(courseId, studentId) {
         return this.baseService.get<Grade[]>(`grades/${courseId}/${studentId}`);
     }
+
+
+    public getById(gradeId) {
+        return this.baseService.get<Grade>(`grades/${gradeId}`);
+    }
 }
- 

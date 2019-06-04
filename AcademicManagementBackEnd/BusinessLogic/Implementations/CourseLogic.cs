@@ -38,6 +38,21 @@ namespace BusinessLogic.Implementations
             return course;
         }
 
+        //public Course Update(CourseDto courseDto)
+        //{
+        //    var course = _repository.GetByFilter<Course>(x => x.Id == courseDto.Id);
+
+        //    course.isDeleted = courseDto.isDeleted;
+        //    course.Name = courseDto.Name;
+        //    course.Package = courseDto.Package;
+        //    course.Year = courseDto.Year;
+        //    course.Semester = courseDto.Semester;
+          
+        //    _repository.Update(course);
+        //    _repository.Save();
+        //    return course;
+        //}
+
         public Course Remove(Guid courseId)
         {
             var course = _repository.GetByFilter<Course>(x => x.Id == courseId);

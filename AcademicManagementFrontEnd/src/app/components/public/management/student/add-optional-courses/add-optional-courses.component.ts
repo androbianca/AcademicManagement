@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from 'src/app/models/student';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StudentService } from 'src/app/services/student-service.service';
 import { CourseService } from 'src/app/services/course-service.service';
 import { CourseWrite } from 'src/app/models/course-write';
 import { StudCourseService } from 'src/app/services/stud-course-service.service';
 import { StudCourse } from 'src/app/models/stud-course';
 import { CourseRead } from 'src/app/models/course-read';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-optional-courses',
@@ -17,28 +18,48 @@ export class AddOptionalCoursesComponent implements OnInit {
 
   studs: Student[];
   courses: CourseRead[];
+  isDisabled= true;
 
   addCoursesForm = new FormGroup({
-    stud: new FormControl(''),
-    optionals: new FormControl(''),
+    stud: new FormControl('',Validators.required),
+    optionals: new FormControl('',Validators.required),
   });
 
-  constructor(private studService: StudentService, private courseService: CourseService, private studCourseService: StudCourseService) { }
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 1000,
+    });
+  }
+
+  onChanges() {
+    this.addCoursesForm.valueChanges.subscribe(() => {
+      if (this.addCoursesForm.valid) {
+        this.isDisabled = false;
+      }
+    })
+  }
+
+  constructor(private snackBar: MatSnackBar,
+    private studService: StudentService, 
+    private courseService: CourseService, 
+    private studCourseService: StudCourseService) { }
 
   ngOnInit() {
     this.getStudents();
     this.getOptionalCourses();
+    this.onChanges();
+
   }
 
   getStudents() {
     this.studService.getAll().subscribe(response => {
-      this.studs = response;
+      this.studs = response.filter(x => x.isDeleted == false);
     })
   }
 
   getOptionalCourses() {
     this.courseService.getOptionalCourses().subscribe(response => {
-      this.courses = response;
+      this.courses = response.filter(x=> x.isDeleted == false);
     })
   }
 
@@ -51,7 +72,11 @@ export class AddOptionalCoursesComponent implements OnInit {
       studCourse.studId = id;
       studCourses.push(studCourse);
     });
-    this.studCourseService.addStudCourses(studCourses).subscribe(response => { })
+    this.studCourseService.addStudCourses(studCourses).subscribe(response => {
+      this.snackBar.open('success')
+    }, err => {
+      this.snackBar.open('fail')
+    });
   }
 
   submit(form) {

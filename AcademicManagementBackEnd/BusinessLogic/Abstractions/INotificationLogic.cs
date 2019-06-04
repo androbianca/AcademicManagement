@@ -9,6 +9,6 @@ namespace BusinessLogic.Abstractions
     {
         List<NotificationDto> GetUserNotifications(string userId);
         Notification Create(NotificationDto notificationDto);
-        void ReadNotification(Guid notificationId);
+        void ReadNotification(NotificationDto notificationDto);
     }
 }

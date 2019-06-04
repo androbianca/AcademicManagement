@@ -1,14 +1,35 @@
 @import "../../../../styles/mixins.scss";
 
 .top__bar {
-  @include flex (row,center,flex-end);
+  @include flex (row, center, flex-end);
   background-color: white;
   height: 100%;
   border-bottom: 3px solid #5C9EAD;
   box-shadow: 21px 3px 19px 0px rgba(166, 166, 166, 1);
 
   img {
-    @include size(25px,25px);
+    @include size(25px, 25px);
     margin-right: 50px;
+    position: relative;
   }
+}
+
+
+img:hover {
+  background: red;
+  cursor: pointer;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  padding: 2px 4px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+
+span {
+  font-size: 7px;
 }

@@ -1,0 +1,26 @@
+<form class="form" [formGroup]="addCourseForm">
+  <mat-form-field>
+    <mat-label>Select Course</mat-label>
+    <mat-select formControlName="course">
+      <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <label>Name</label>
+  <input type="text" formControlName="name" placeholder="Name">
+  <div *ngIf="addCourseForm.get('name')?.errors && addCourseForm.get('name')?.touched" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <label>Year</label>
+  <input type="text" formControlName="year" placeholder="Year">
+  <div *ngIf="addCourseForm.get('year')?.errors && addCourseForm.get('year')?.touched" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <label>Semester</label>
+  <input type="text" formControlName="semester" placeholder="Semester">
+  <div *ngIf="addCourseForm.get('semester')?.errors && addCourseForm.get('semester')?.touched" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <label>Package</label>
+  <input type="text" formControlName="package" placeholder="Package">
+  <input [class.disabled]="isDisabled" type="submit" value="Submit" (click)="submit(addCourseForm)">
+</form>
