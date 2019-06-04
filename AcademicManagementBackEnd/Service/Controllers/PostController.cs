@@ -22,7 +22,7 @@ namespace Service.Controllers
 
             var result = _postLogic.Add(postDto);
 
-            return Ok(result);
+            return Ok();
         }
 
         [HttpGet]

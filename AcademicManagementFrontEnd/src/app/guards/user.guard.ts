@@ -14,9 +14,9 @@ export class UserGuard implements CanActivate {
 
   canActivate(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      if (this.currentUserDetailsService.isSet) {
-        resolve(true);
-      } else {
+      // if (this.currentUserDetailsService.isSet) {
+      //   resolve(true);
+      // } else {
         this.currentUserDetailsService.getCurrentUserService().subscribe(
           (data: UserDetails) => {
             this.currentUserDetailsService.setCurrentUser(data);
@@ -26,7 +26,7 @@ export class UserGuard implements CanActivate {
             reject();
           }
         );
-      }
+      
     });
   }
 }

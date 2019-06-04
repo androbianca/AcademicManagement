@@ -26,7 +26,7 @@ namespace Service.Controllers
 
             var result = _feedbackLogic.Add(feedbackDto);
 
-            return Ok(result);
+            return Ok();
         }
 
         [HttpGet("{profId:guid}")]

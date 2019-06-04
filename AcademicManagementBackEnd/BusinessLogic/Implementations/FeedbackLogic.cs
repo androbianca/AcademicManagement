@@ -30,15 +30,14 @@ namespace BusinessLogic.Implementations
             _repository.Insert(feedback);
             _repository.Save();
 
-            var notification  = this.CreateNotification(feedback);
-            _notificationLogic.Create(notification);
+            CreateNotification(feedback);
 
             return feedback;
         }
 
-        private NotificationDto CreateNotification(Feedback feedback)
+        private void CreateNotification(Feedback feedback)
         {
-            var student = _repository.GetByFilter<Student>(x => x.Id == feedback.StudentId);
+            var student      = _repository.GetByFilter<Student>(x => x.Id == feedback.StudentId);
             var prof = _repository.GetByFilter<Professor>(x => x.Id == feedback.ProfessorId);
             var body = "";
             if (student==null)
@@ -60,7 +59,7 @@ namespace BusinessLogic.Implementations
                 ItemId = feedback.Id
             };
 
-            return notification;
+             _notificationLogic.Create(notification);
 
         }
 
