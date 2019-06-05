@@ -56,5 +56,14 @@ namespace Service.Controllers
             return Ok(grade);
 
         }
+
+        [HttpPost("update")]
+        public IActionResult Update([FromBody] GradeDto grade)
+        {
+            _gradeLogic.Update(grade);
+
+            return Ok(grade);
+
+        }
     }
 }

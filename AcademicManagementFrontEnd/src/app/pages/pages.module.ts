@@ -57,6 +57,7 @@ import { ResourcesComponent } from './resources/resources.component';
 import { BellCurvePageComponent } from './bell-curve-page/bell-curve-page.component';
 import { NoResultsComponent } from '../components/public/no-results/no-results.component';
 import { UpdateCourseComponent } from '../components/public/management/course/update-course/update-course.component';
+import { EditGradeComponent } from '../components/public/edit-grade/edit-grade.component';
 
 export function highchartsModules() {
   return [exporting, windbarb];
@@ -114,7 +115,8 @@ export function highchartsModules() {
     ResourcesComponent,
     BellCurvePageComponent,
     NoResultsComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    EditGradeComponent
 
   ],
   entryComponents: [AddGradeModalContentComponent,
@@ -159,7 +161,8 @@ export function highchartsModules() {
     GradeCategoryComponent,
     GradeCategoryModalComponentComponent,
     NoResultsComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    EditGradeComponent
 
 
   ],

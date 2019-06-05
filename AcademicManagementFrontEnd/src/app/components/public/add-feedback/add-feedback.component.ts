@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ɵConsole } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserDetails } from 'src/app/models/userDetails';
 import { Feedback } from 'src/app/models/feedback';
@@ -18,11 +18,12 @@ export class AddFeedbackComponent implements OnInit {
 
   feedbackForm = new FormGroup({
     feedback: new FormControl('', [Validators.required]),
-    anonim: new FormControl('')
+    anonim: new FormControl(false)
   });
 
   onChanges(): void {
     this.feedbackForm.valueChanges.subscribe(x => {
+      console.log(this.feedbackForm);
       this.isDisabled = this.feedbackForm.valid ? false : true;
       this.formChanged.emit(this.feedbackForm);
     })

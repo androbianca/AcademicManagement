@@ -42,13 +42,15 @@ export class DisplayFeedbackComponent implements OnInit {
 
   getStudent() {
     this.feedbackList.forEach((item, index) => {
+      var active =  index > 0 ? false : true;
+
       if (item.studentId) {
         this.studentService.getById(item.studentId).subscribe(x => {
           this.feedbackStud.push({
             'Body': item.body,
             'UserName': x.lastName + ' ' + x.firstName,
             'Initials': x.lastName[0] + ' ' + x.firstName[0],
-            'isActive': false,
+            'isActive': active,
             'slideNumber': index
           });
         })
@@ -58,12 +60,11 @@ export class DisplayFeedbackComponent implements OnInit {
           'Body': item.body,
           'UserName': 'Unknown',
           'Initials': 'U',
-          'isActive': false,
+          'isActive': active,
           'slideNumber': index
         });
       }
-    })
-    this.feedbackStud[0].isActive = true;
+    })   
   }
 
   plusSlides(n) {

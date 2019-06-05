@@ -6,4 +6,11 @@
     <h1>{{ grade.value }}</h1>
     <span>{{ grade.category }}</span>
   </div>
+  <div (click)="toggle()" class="edit">
+    <span>Edit</span>
+    <img src="https://img.icons8.com/dusk/80/000000/edit.png">  </div>
 </a>
+
+<ng-container *ngIf="open">
+  <app-edit-grade [grade]="grade"></app-edit-grade>
+</ng-container>

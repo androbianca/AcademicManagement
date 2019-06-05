@@ -41,6 +41,9 @@ export class AddFeedbackModalContentComponent {
       if (!form.value.anonim) {
         this.feedback.studentId = this.user.id;
       }
+      else {
+        this.feedback.studentId = null;
+      }
     }
   }
 

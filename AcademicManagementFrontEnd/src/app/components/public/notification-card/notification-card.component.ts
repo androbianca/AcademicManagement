@@ -40,7 +40,7 @@ export class NotificationCardComponent implements OnInit {
   ngOnInit() {
     this.initials = this.notification.body.split(' ')[0][0] + ' ' + this.notification.body.split(' ')[1][0];
     this.date = this.pipe.transform(this.notification.time, 'short');
-
+    
     if (this.notification.title.toLowerCase().trim() == this.text.toLocaleLowerCase().trim()) {
       this.gradeService.getById(this.notification.itemId).subscribe(result => {
         this.route = `grades/${result.courseId}`;

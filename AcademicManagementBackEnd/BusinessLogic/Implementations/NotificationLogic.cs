@@ -18,10 +18,13 @@ namespace BusinessLogic.Implementations
 
         public Notification Create(NotificationDto notificationDto)
         {
-            var accountSender = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.SenderId);
             Guid accountReciver = Guid.Empty;
-            var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.ReciverId);
- 
+            Guid accountSender = Guid.Empty;
+
+            if (notificationDto.SenderId != Guid.Empty)
+            {
+                 accountSender = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.SenderId).Id;
+            }
             if (notificationDto.ReciverId != Guid.Empty)
             {
                
@@ -39,7 +42,7 @@ namespace BusinessLogic.Implementations
                 Title = notificationDto.Title,
                 IsRead = notificationDto.IsRead,
                 Id = Guid.NewGuid(),
-                SenderId = accountSender.Id,
+                SenderId = accountSender,
                 ReciverId = accountReciver,
                 ItemId = notificationDto.ItemId,
                 Time = DateTime.Now

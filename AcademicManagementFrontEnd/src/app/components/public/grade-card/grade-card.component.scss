@@ -10,6 +10,7 @@ a {
   border-radius: 5px;
   text-decoration: none;
   height: 70px;
+  padding:5px;
 
   &:hover {
     background-color: #c4c2c2c7;
@@ -23,9 +24,15 @@ a {
   border-radius: 50%;
   overflow: hidden;
   margin-right: 20px;
+
+  img {
+    @include size(30px, 30px);
+  }
 }
 
 .content {
+  width: 50%;
+
   h1 {
     font-size: 20px;
     font-weight: 400;
@@ -42,6 +49,18 @@ a {
   }
 }
 
-img {
-  @include size(30px, 30px);
+.edit {
+  width: 20%;
+  color: darken(white, 30%);
+  font-size: 14px;
+  cursor:pointer;
+
+
+  @include flex(row, center, center);
+  img {
+    @include size(20px, 20px);
+    margin-left: 5px;
+  }
+
+
 }

@@ -12,4 +12,9 @@ export class GradeCardComponent {
 
   @HostBinding('class') classes = 'grade-card';
 
+  open = false;
+
+  toggle(){
+   this.open = !this.open;
+  }
 }

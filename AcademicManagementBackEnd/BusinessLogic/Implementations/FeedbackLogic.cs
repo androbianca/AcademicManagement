@@ -37,16 +37,19 @@ namespace BusinessLogic.Implementations
 
         private void CreateNotification(Feedback feedback)
         {
-            var student      = _repository.GetByFilter<Student>(x => x.Id == feedback.StudentId);
+            var student = _repository.GetByFilter<Student>(x => x.Id == feedback.StudentId);
             var prof = _repository.GetByFilter<Professor>(x => x.Id == feedback.ProfessorId);
             var body = "";
+            var sender = Guid.Empty;
             if (student==null)
             {
                  body = "Anonymous Feedback";
+                 sender = Guid.Empty;
             }
             else
             {
                  body = student.LastName + ' ' + student.FirstName + " left feedback for you";
+                 sender = student.PotentialUserId;
             }
 
             var notification = new NotificationDto
@@ -55,7 +58,7 @@ namespace BusinessLogic.Implementations
                 Body = body,
                 IsRead = false,
                 ReciverId = prof.PotentialUserId,
-                SenderId = student.PotentialUserId,
+                SenderId = sender,
                 ItemId = feedback.Id
             };
 

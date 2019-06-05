@@ -15,6 +15,9 @@ export class GradeService {
     public addGrade(grade: Grade) {
         return this.baseService.post<Grade>('grades', grade);
     }
+    public updateGrade(grade: Grade) {
+        return this.baseService.post<Grade>('grades/update', grade);
+    }
 
     public getFinal(courseId, studentId) {
         return this.baseService.get<number>(`grades/${courseId}/${studentId}/final`);

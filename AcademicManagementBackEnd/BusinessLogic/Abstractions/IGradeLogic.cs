@@ -10,5 +10,7 @@ namespace BusinessLogic.Abstractions
         float ComputeLabFinalGrade(Guid courseId, Guid studentId);
         void Add(GradeDto grade);
         GradeDto GetById(Guid gradeId);
+        void Update(GradeDto gradeDto);
+
     }
 }

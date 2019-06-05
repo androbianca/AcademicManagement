@@ -32,6 +32,7 @@ namespace BusinessLogic.Implementations
 
                 var gradeDto = new GradeDto
                 {
+                    Id = grade.Id,
                     Value = grade.Value,
                     StudentId = grade.StudentId,
                     ProfId = grade.ProfId,
@@ -62,6 +63,15 @@ namespace BusinessLogic.Implementations
 
             return gradeDto;
 
+        }
+
+        public void Update(GradeDto gradeDto)
+        {
+            var grade = _repository.GetByFilter<Grade>(x => x.Id == gradeDto.Id);
+            grade.Value = gradeDto.Value;
+ 
+            _repository.Update(grade);
+            _repository.Save();
         }
 
         public void Add(GradeDto gradeDto)
