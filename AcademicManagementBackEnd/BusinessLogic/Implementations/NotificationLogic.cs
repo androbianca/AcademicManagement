@@ -12,9 +12,12 @@ namespace BusinessLogic.Implementations
     public class NotificationLogic : BaseLogic, INotificationLogic
     {
         private IHubContext<SignalServer> _hubContext;
+
         public NotificationLogic(IRepository repository, IHubContext<SignalServer> hubContext)
             : base(repository)
-        { _hubContext = hubContext; }
+        {
+            _hubContext = hubContext;
+        }
 
         public Notification Create(NotificationDto notificationDto)
         {
@@ -23,11 +26,11 @@ namespace BusinessLogic.Implementations
 
             if (notificationDto.SenderId != Guid.Empty)
             {
-                 accountSender = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.SenderId).Id;
+                accountSender = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.SenderId).Id;
             }
             if (notificationDto.ReciverId != Guid.Empty)
             {
-               
+
                 accountReciver = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.ReciverId).Id;
             }
 

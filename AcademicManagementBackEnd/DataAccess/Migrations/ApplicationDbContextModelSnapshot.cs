@@ -60,6 +60,20 @@ namespace DataAccess.Migrations
                     b.ToTable("Admins");
                 });
 
+            modelBuilder.Entity("Entities.Alert", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Alerts");
+                });
+
             modelBuilder.Entity("Entities.Course", b =>
                 {
                     b.Property<Guid>("Id")
@@ -83,6 +97,27 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("Entities.Email", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body")
+                        .IsRequired()
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Receiver")
+                        .IsRequired();
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Emails");
                 });
 
             modelBuilder.Entity("Entities.Feedback", b =>
@@ -153,6 +188,8 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("CategoryId");
 
                     b.Property<Guid>("CourseId");
+
+                    b.Property<DateTime>("Date");
 
                     b.Property<Guid>("ProfId");
 
@@ -264,6 +301,8 @@ namespace DataAccess.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
 
                     b.Property<string>("UserCode")
                         .IsRequired();

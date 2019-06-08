@@ -4,6 +4,7 @@ import { NotificationService } from './notification-service.service';
 import { Post } from '../models/post';
 import { PostService } from './post-service.service';
 import { Notif } from '../models/notification';
+import { AlertService } from './alert.sevice';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,9 @@ export class SignalRService {
   notifNumber: number = 0;
 
   constructor(private notificatonSrvice: NotificationService,
-    private postService: PostService) {
+    private postService: PostService,
+    private alertService: AlertService
+    ) {
     this.createConnection();
     this.registerOnServerEvents();
     this.startConnection();
@@ -60,6 +63,8 @@ export class SignalRService {
           }
         })
       });
+
+      this.alertService.getAlert().subscribe(x => console.log(x));
 
       this.postService.getAll().subscribe(x => {
 

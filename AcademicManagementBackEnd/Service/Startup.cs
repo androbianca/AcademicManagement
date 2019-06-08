@@ -1,7 +1,13 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using System.Threading.Tasks;
+using BusinessLogic.Abstractions;
 using BusinessLogic.Configurations;
 using BusinessLogic.HubConfig;
+using BusinessLogic.Implementations;
+using BusinessLogic.TaskScheduler;
+using BusinessLogic.Timer;
 using Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +18,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Service
@@ -40,6 +50,7 @@ namespace Service
                 });
             });
 
+ 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -78,6 +89,7 @@ namespace Service
 
         }
 
+       
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -101,6 +113,12 @@ namespace Service
             app.UseMvc();
 
             app.UseSignalR(routes => { routes.MapHub<SignalServer>("/notify"); });
+            app.UseQuartz();
+
+
+
         }
+
+
     }
 }

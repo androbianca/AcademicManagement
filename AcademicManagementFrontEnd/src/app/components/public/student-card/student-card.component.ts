@@ -13,8 +13,6 @@ export class StudentCardComponent implements OnInit {
   @Input() student;
   @Input() courseId;
   @Input() profId;
-
-  @HostBinding('class') classes = 'student-card';
   @HostListener('click', ['$event.target'])
   onClick() {
     this.openModal();

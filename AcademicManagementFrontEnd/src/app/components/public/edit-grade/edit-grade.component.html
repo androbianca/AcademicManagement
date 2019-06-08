@@ -1,7 +1,10 @@
 <form [formGroup]="gradesForm">
-    <input type="text" formControlName="value" placeholder="Value">
-    <div *ngIf="gradesForm.get('value')?.errors && gradesForm.get('value')?.touched" class="error-message">
-      {{ errorMessage }}
-    </div>
+  <input type="text" formControlName="value" placeholder="Value">
+  <div *ngIf="gradesForm.get('value')?.errors && gradesForm.get('value')?.touched" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div class="buttons">
+    <button type="submit" (click)="closeForm()">Close</button>
     <button [class.button2-disabled]="isDisabled" type="submit" (click)="save(gradesForm)">Save</button>
-  </form>
+  </div>
+</form>

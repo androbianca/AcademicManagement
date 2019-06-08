@@ -39,5 +39,6 @@ export class AppComponent implements OnInit  {
   startHttpRequest() {
    // this.notififactionService.get().subscribe(x=>console.log(x))
   }
+
  
 }

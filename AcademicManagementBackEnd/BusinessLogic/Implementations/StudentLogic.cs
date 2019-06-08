@@ -45,7 +45,8 @@ namespace BusinessLogic.Implementations
                     LastName = student.LastName,
                     FirstName = student.FirstName,
                     Year = student.Group.Year,
-                    GroupId = student.GroupId
+                    GroupId = student.GroupId,
+                    IsDeleted = student.IsDeleted
                 };
 
                 studentDtos.Add(studentDto);
@@ -66,6 +67,7 @@ namespace BusinessLogic.Implementations
                 LastName = student.LastName,
                 FirstName = student.FirstName,
                 GroupId = student.GroupId
+             
             };
 
             return studentDto;

@@ -13,30 +13,28 @@
     border-radius: 12px;
     background-color: white;
 
+
+
     .buttons {
       @include flex(row, none, flex-end);
       @include size(15%, 100%);
+      margin-bottom: 30px;
 
-      .login {
-        border-top-left-radius: 12px;
-        border-bottom-left-radius: 12px;
+      .isActive {
+        button {
+          background-color: #5C9EAD;
+        }
       }
-
-      .signup {
-        border-top-right-radius: 12px;
-        border-bottom-right-radius: 12px;
-      }
-
       button {
-        @include size(4vh, 5vw);
-        font-size: 1.5vh;
+        background-color: #aaa;
+        @include size(4vh, 50%);
+        border-radius: 4px;
         border: none;
-        padding: 5px;
-        box-shadow: 6px 6px 18px #c2c2c4;
+        margin: 20px 0 40px 0;
 
-        &:focus,
         &:hover {
-          background-color: #45C2BA;
+          background-color: rgb(106, 178, 194);
+          box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
         }
       }
     }

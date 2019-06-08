@@ -1,6 +1,6 @@
 @import "../../../../styles/mixins.scss";
 
-:host(.student-card) {
+.student-card {
   margin: 0 20px 20px 0;
   @include flex(row, center, center);
   @include size(100px, 300px);
@@ -40,4 +40,8 @@
     @include size(100%, 70%);
     color: rgb(58, 56, 56);
   }
+}
+
+.disabled {
+  opacity: 0.3;
 }

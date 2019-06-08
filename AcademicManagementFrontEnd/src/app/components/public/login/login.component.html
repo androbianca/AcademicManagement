@@ -1,10 +1,22 @@
 <h1>Sign in</h1>
 <form class="form" [formGroup]="loginForm">
-  <input type="text" formControlName="userCode" placeholder="Code">
+
+  <div class="inputWithIcon">
+    <input type="text" formControlName="userCode" placeholder="Code">
+    <i class="fas fa-fingerprint"></i>
+  </div>
   <div *ngIf="loginForm.get('userCode')?.errors && loginForm.get('userCode')?.touched" class="error-message">This field
     is required!</div>
-  <input type="password" formControlName="password" placeholder="Password">
+
+  <div class="inputWithIcon">
+    <input type="password" formControlName="password" placeholder="Password">
+    <i class="fas fa-unlock-alt"></i>
+  </div>
   <div *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="error-message">This field
     is required!</div>
   <button [disabled]="isDisabled" class="button" type="submit" (click)="login(loginForm)">Login</button>
+  
 </form>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+  integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">

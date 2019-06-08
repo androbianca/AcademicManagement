@@ -9,7 +9,6 @@ import { TopBarComponent } from './components/shared/top-bar/top-bar.component';
 import { PagesModule } from './pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +22,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     HttpClientModule,
     PagesModule,
     BrowserAnimationsModule,
-    OverlayModule
+    OverlayModule,
 
   ],
   bootstrap: [AppComponent]

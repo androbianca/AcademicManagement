@@ -25,6 +25,8 @@ namespace BusinessLogic.Configurations
             services.AddTransient<IFileMetadataLogic, FileMetadataLogic>();
             services.AddTransient<IGradeCategoryLogic, GardeCategoryLogic>();
             services.AddTransient<IFinalGradeLogic, FinalGradeLogic>();
+            services.AddTransient<IEmailLogic, EmailLogic>();
+            services.AddTransient<IAlertLogic, AlertLogic>();
 
 
 

@@ -16,5 +16,7 @@ namespace Entities
 
         public Account Account { get; set; }
 
+        public string Email { get; set; }
+
     }
 }

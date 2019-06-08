@@ -30,6 +30,10 @@ namespace DataAccess
         public DbSet<FileMetadata> Files { get; set; }
         public DbSet<GradeCategory> GradeCategories { get; set; }
         public DbSet<FinalGrade> FinalGrades { get; set; }
+        public DbSet<Email> Emails { get; set; }
+        public DbSet<Alert> Alerts { get; set; }
+
+
 
 
 
@@ -54,6 +58,8 @@ namespace DataAccess
             modelBuilder.ApplyConfiguration(new FileMetadataConfiguration());
             modelBuilder.ApplyConfiguration(new GradeCategoryConfiguration());
             modelBuilder.ApplyConfiguration(new FinalGradeConfiguration());
+            modelBuilder.ApplyConfiguration(new EmailConfiguration());
+
 
         }
     }
