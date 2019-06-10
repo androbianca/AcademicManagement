@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { GradeCategoryModalComponentComponent } from 'src/app/components/public/grade-category-modal-component/grade-category-modal-component.component';
 import { GroupService } from 'src/app/services/group-service.service';
 import { GroupRead } from 'src/app/models/groupRead';
+import { CategoriesModalComponent } from 'src/app/components/public/categories-modal/categories-modal.component';
 
 @Component({
   selector: 'app-prof-grades',
@@ -72,5 +73,17 @@ export class ProfGradesComponent implements OnInit {
 
   filterStudents(group) {
     this.filteredStudents = this.students.filter(x => x.groupId == group.id);
+  }
+
+    
+  openCategoryDialog(): void {
+    const dialogRef = this.dialog.open(CategoriesModalComponent, {
+      width: '400px',
+      height: '450px',
+      data: { courseId: this.courseId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }

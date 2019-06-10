@@ -1,5 +1,4 @@
 @import '../../../styles/mixins.scss';
-@import "../../../styles/general.scss";
 
 :host(.page-wrapper) {
   @include flex(row, flex-start, none);
@@ -33,3 +32,19 @@ button {
 .button3 {
   margin: 20px 0 20px 0;
 }
+.button {
+  @include flex (none, center, center);
+  background: #5C9EAD;
+  @include size(4vh, 80%);
+  border-radius: 4px;
+  border: none;
+  margin: 0 10px 0 10px;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+
+
+  &:hover {
+    background-color: rgb(106, 178, 194);
+    box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+  }}

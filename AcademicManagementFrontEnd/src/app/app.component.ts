@@ -5,26 +5,22 @@ import { CurrentUserDetailsService } from './services/current-user-details.servi
 import { UserDetails } from './models/userDetails';
 import { NotificationService } from './services/notification-service.service';
 import { SignalRService } from './services/signalR-service.service';
+import { Notif } from './models/notification';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit  {
-  ngOnInit(): void {
-   // this.signalRService.startConnection();
-   // this.signalRService.registerOnServerEvents();   
-    //this.startHttpRequest();
-  }
-  
+export class AppComponent {
+
   title = 'AcademicManagementFrontEnd';
   home = false;
   route: string;
-  user:UserDetails;
-  constructor(private router: Router, private currentUserDetailsService:CurrentUserDetailsService, 
-    private notififactionService:NotificationService,
-     public signalRService: SignalRService) {
+  user: UserDetails;
+
+  constructor(private router: Router, private currentUserDetailsService: CurrentUserDetailsService) {
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
@@ -33,11 +29,7 @@ export class AppComponent implements OnInit  {
     });
     this.currentUserDetailsService.getUserObservable().subscribe(result => {
       this.user = result;
-   });
-  }
-
-  startHttpRequest() {
-   // this.notififactionService.get().subscribe(x=>console.log(x))
+    });
   }
 
  

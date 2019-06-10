@@ -5,6 +5,7 @@ import { UserDetails } from 'src/app/models/userDetails';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeedbackService } from 'src/app/services/feedback-service.service';
+import { SignalRService } from 'src/app/services/signalR-service.service';
 
 @Component({
   selector: 'app-add-feedback-modal-content',
@@ -19,6 +20,7 @@ export class AddFeedbackModalContentComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AddFeedbackModalContentComponent>,
     private userDetailsService: CurrentUserDetailsService,
+    private signalRService: SignalRService,
     private feedbackSvice: FeedbackService, private snackBar: MatSnackBar) {
     this.user = this.userDetailsService.getUser();
   }
@@ -46,10 +48,15 @@ export class AddFeedbackModalContentComponent {
       }
     }
   }
-
+  public sendMessage(): void {
+    this.signalRService._hubConnection.invoke("NewMessage");
+  }
+  
   save() {
     this.feedbackSvice.addFeedback(this.feedback).subscribe(response => {
       this.snackBar.open("succes");
+      this.sendMessage();
+
     }, err => {
       this.snackBar.open("fail");
     });

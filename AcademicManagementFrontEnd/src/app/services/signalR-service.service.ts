@@ -13,17 +13,13 @@ export class SignalRService {
   connectionEstablished = new EventEmitter<Boolean>();
 
   private connectionIsEstablished = false;
-  private _hubConnection: HubConnection;
-  notifications: Notif[];
-  posts: Post[];
-  notifNumber: number = 0;
+   _hubConnection: HubConnection;
 
-  constructor(private notificatonSrvice: NotificationService,
+  constructor(
     private postService: PostService,
     private alertService: AlertService
-    ) {
+  ) {
     this.createConnection();
-    this.registerOnServerEvents();
     this.startConnection();
   }
 
@@ -48,31 +44,4 @@ export class SignalRService {
       });
   }
 
-  public registerOnServerEvents(): void {
-    this._hubConnection.on('ceva', () => {
-      this.notificatonSrvice.get().subscribe(x => {
-        this.notifNumber = 0;
-        this.notifications = x;
-        this.notifications = x.sort((val1, val2) => {
-          return new Date(val2.time).getTime() - new
-            Date(val1.time).getTime()
-        })
-        this.notifications.forEach(notif => {
-          if (!notif.isRead) {
-            this.notifNumber+= 1;
-          }
-        })
-      });
-
-      this.alertService.getAlert().subscribe(x => console.log(x));
-
-      this.postService.getAll().subscribe(x => {
-
-        this.posts = x.sort((val1, val2) => {
-          return new Date(val2.time).getTime() - new
-            Date(val1.time).getTime()
-        })
-      })
-    });
-  }
 }  

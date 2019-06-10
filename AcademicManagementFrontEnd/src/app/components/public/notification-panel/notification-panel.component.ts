@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input } from '@angular/core';
 import { SignalRService } from 'src/app/services/signalR-service.service';
 import { Notif } from 'src/app/models/notification';
+import { NotificationService } from 'src/app/services/notification-service.service';
 
 @Component({
   selector: 'app-notification-panel',
@@ -9,11 +10,15 @@ import { Notif } from 'src/app/models/notification';
 })
 export class NotificationPanelComponent implements OnInit {
 
-  notifications :Notif[];
-  constructor(private signalRService: SignalRService ) { }
+  @Input() notifications;
+
+  constructor(private signalRService: SignalRService,
+    private notificatonService: NotificationService, ) { }
+
+  
+
 
   ngOnInit() {
-    this.notifications = this.signalRService.notifications;
 
   }
 

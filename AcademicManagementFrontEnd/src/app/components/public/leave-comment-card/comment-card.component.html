@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-content">
+    <section class="initials">
+      <section class="profile-picture">AA</section>
+    </section>
+
+    <div class="body">
+      <form [formGroup]="commentForm">
+        <textarea (keyup)="submit($event)" #textarea formControlName="comment" placeholder="Leave a comment...">
+            </textarea>
+      </form>
+    </div>
+  </div>
+
+</div>

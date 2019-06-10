@@ -84,6 +84,10 @@ C:\Users\Bandro\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\Bu
 C:\Users\Bandro\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.csproj.CopyComplete
 C:\Users\Bandro\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.dll
 C:\Users\Bandro\Documents\GitHub\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.pdb
+C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.AssemblyInfo.cs
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\bin\Debug\netcoreapp2.1\BusinessLogic.deps.json
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\bin\Debug\netcoreapp2.1\BusinessLogic.runtimeconfig.json
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\bin\Debug\netcoreapp2.1\BusinessLogic.runtimeconfig.dev.json
@@ -95,10 +99,6 @@ C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Busine
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\bin\Debug\netcoreapp2.1\DataAccess.pdb
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\bin\Debug\netcoreapp2.1\Models.pdb
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\bin\Debug\netcoreapp2.1\Entities.pdb
-C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.csprojAssemblyReference.cache
-C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.csproj.CoreCompileInputs.cache
-C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.AssemblyInfoInputs.cache
-C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.AssemblyInfo.cs
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.csproj.CopyComplete
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.dll
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\BusinessLogic\obj\Debug\netcoreapp2.1\BusinessLogic.pdb

@@ -6,6 +6,7 @@ import { UserDetails } from 'src/app/models/userDetails';
 import { PostService } from 'src/app/services/post-service.service';
 import { SignalRService } from 'src/app/services/signalR-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-newsfeed-page',
@@ -14,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class NewsfeedPageComponent implements OnInit {
 
+  @HostBinding('class') classes = "page-wrapper";
   post = new Post();
   user: UserDetails;
   postId: string;
@@ -21,19 +23,21 @@ export class NewsfeedPageComponent implements OnInit {
   posts = new Array<Post>();
 
   postForm = new FormGroup({
-    post: new FormControl(null, [Validators.required]),
+    post: new FormControl("", [Validators.required]),
   });
+  _hubConnection: any;
 
   constructor(private userDetailsService: CurrentUserDetailsService,
     private postService: PostService, private signalRService: SignalRService,
+    private router:Router,
     private snackBar: MatSnackBar) {
     this.user = this.userDetailsService.getUser();
-    this.posts = this.signalRService.posts;
   }
 
   ngOnInit() {
     this.getPosts();
     this.onChanges();
+    this.registerOnServerEvents();
   }
 
   openSnackBar(message: string, action: string) {
@@ -43,10 +47,11 @@ export class NewsfeedPageComponent implements OnInit {
   }
 
   getPosts() {
-    this.postService.getAll().subscribe(response => {
-      this.posts = response;
-      this.posts = this.posts.sort((x, y) => (new Date(x.time).getHours() - new Date(y.time).getHours())
-      );
+    this.postService.getAll().subscribe(x => {
+      this.posts = x.sort((val1, val2) => {
+        return new Date(val2.time).getTime() - new
+          Date(val1.time).getTime()
+      })
     })
   }
 
@@ -56,12 +61,25 @@ export class NewsfeedPageComponent implements OnInit {
     })
   }
 
+  
+  public registerOnServerEvents(): void {
+    this.signalRService._hubConnection.on('message', () => {
+      this.getPosts();
+    });
+  }
+
+  public sendMessage(): void {
+    this.signalRService._hubConnection.invoke("NewMessage");
+  }
+
+
   addPost(postForm) {
     if (this.postForm.valid) {
       this.post.body = postForm.value.post;
       this.post.userCode = this.user.userCode;
       this.postService.add(this.post).subscribe(response => {
         this.snackBar.open("success")
+        this.sendMessage();
       }, err => {
       }
       )
@@ -70,5 +88,9 @@ export class NewsfeedPageComponent implements OnInit {
 
   onFileUpload(event){
     this.postId = event.courseId;
+  }
+
+  goTo(){
+    this.router.navigate([`optionals`]);
   }
 }

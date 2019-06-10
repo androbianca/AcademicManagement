@@ -18,6 +18,8 @@ import { NewsfeedPageComponent } from './pages/newsfeed-page/newsfeed-page.compo
 import { ResourcesComponent } from './pages/resources/resources.component';
 import { BellCurveChartComponent } from './components/public/bell-curve-chart/bell-curve-chart.component';
 import { BellCurvePageComponent } from './pages/bell-curve-page/bell-curve-page.component';
+import { OptionalsComponent } from './components/public/optionals/optionals.component';
+import { ChooseOptionalsComponent } from './pages/choose-optionals/choose-optionals.component';
 
 const routes: Routes = [
   {
@@ -67,6 +69,16 @@ const routes: Routes = [
   {
     path: 'manage/courses',
     component: ManageCoursesComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'manage/courses/optionals',
+    component: OptionalsComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'optionals',
+    component: ChooseOptionalsComponent,
     canActivate: [UserGuard]
   },
   {

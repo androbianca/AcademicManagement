@@ -1,0 +1,28 @@
+<div class="wrapper">
+<div class="container">
+  <div class="input-container">
+    <input #uploader name="file" (change)="onFileChanged($event)" type="file" multiple />
+    <button (click)="uploader.click()" class="browse-btn">
+      Browse Files
+    </button>
+    
+    <span class="file-info">Upload a file</span>
+  </div>
+  <form [formGroup]="optionals">
+    <div class="inputWithIcon">
+      <input type="text" formControlName="year" placeholder="Insert year">
+    </div>
+    <div *ngIf="optionals.get('year')?.errors && optionals.get('year')?.touched" class="error-message">This field
+        is required!</div>
+    <div class="inputWithIcon">
+      <input type="text" formControlName="form" placeholder="Insert Google Form link">
+    </div><div *ngIf="optionals.get('form')?.errors && optionals.get('form')?.touched" class="error-message">This field
+        is required!</div>
+  </form>
+
+  <button class="button" (click)="submit()">Submit</button>
+</div>
+
+
+<button class="button" (click)="goTo()">Check list of optionals to be choosen from</button>
+</div>

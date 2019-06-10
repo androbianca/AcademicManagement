@@ -1,5 +1,5 @@
 <div class="container">
-  <ng-container *ngFor="let notification of signalRService.notifications">
+  <ng-container *ngFor="let notification of notifications">
     <app-notification-card [notification]="notification"></app-notification-card>
   </ng-container>
 </div>

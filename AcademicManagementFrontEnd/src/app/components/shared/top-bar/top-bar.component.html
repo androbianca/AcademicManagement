@@ -2,7 +2,7 @@
   <div #origin="cdkOverlayOrigin" cdkOverlayOrigin (click)="toggle()">
 
     <img src="../../../../assets/images/notification1.png">
-    <span class="badge">{{signalRService.notifNumber}}</span>
+    <span class="badge">{{notifNumber}}</span>
 
   </div>
 </section>
@@ -10,5 +10,5 @@
 <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="origin" [cdkConnectedOverlayOpen]="panelOpen"
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop" cdkConnectedOverlayHasBackdrop
   (backdropClick)="close()">
-  <app-notification-panel (notifChanged) = "onNotifChange($event)"></app-notification-panel>
+  <app-notification-panel [notifications]="notifications" (notifChanged) = "onNotifChange($event)"></app-notification-panel>
 </ng-template>

@@ -3,6 +3,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { GradeService } from 'src/app/services/grade-service.service';
 import { Grade } from 'src/app/models/grade';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SignalRService } from 'src/app/services/signalR-service.service';
 
 @Component({
   selector: 'app-add-grade-modal-content',
@@ -18,6 +19,7 @@ export class AddGradeModalContentComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AddGradeModalContentComponent>,
     private gradeService: GradeService,
+    private signalRService:SignalRService,
     private snackBar: MatSnackBar) { }
 
   ngOnInit() {
@@ -34,10 +36,19 @@ export class AddGradeModalContentComponent implements OnInit {
       duration: 1000,
     });
   }
+  
+  public sendMessage(): void {
+    this.signalRService._hubConnection.invoke("NewMessage");
+  }
 
   addGrade() {
     this.newGrades.forEach(element => {
-      this.gradeService.addGrade(element).subscribe(result => { this.snackBar.open('success') }, err => {
+      this.gradeService.addGrade(element).subscribe(result => {
+        { this.snackBar.open('success')
+        this.sendMessage();
+      
+      }
+     }, err => {
         this.snackBar.open('fail')
       })
     })

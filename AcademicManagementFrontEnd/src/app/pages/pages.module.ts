@@ -21,7 +21,7 @@ import { ManageCoursesComponent } from './manage-courses/manage-courses.componen
 import { AddCoursesComponent } from '../components/public/management/course/add-courses/add-courses.component';
 import { ManageProfessorsComponent } from './manage-professors/manage-professors.component';
 import { MatSelectModule } from '@angular/material/select';
-import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatNativeDateModule } from '@angular/material/core';
 import { ProfCoursesComponent } from './prof-courses/prof-courses.component';
 import { StudentCoursesComponent } from './student-courses/student-courses.component';
 import { AddStudComponent } from '../components/public/management/student/add-stud/add-stud.component';
@@ -58,13 +58,31 @@ import { BellCurvePageComponent } from './bell-curve-page/bell-curve-page.compon
 import { NoResultsComponent } from '../components/public/no-results/no-results.component';
 import { UpdateCourseComponent } from '../components/public/management/course/update-course/update-course.component';
 import { EditGradeComponent } from '../components/public/edit-grade/edit-grade.component';
+import { CommentCardComponent } from '../components/public/leave-comment-card/comment-card.component';
+import { DisplayCommentCardComponent } from '../components/public/display-comment-card/display-comment-card.component';
+import { OptionalService } from '../services/optional.service';
+import { OptionalsPageComponent } from './optionals-page/optionals-page.component';
+import { OptionalsComponent } from '../components/public/optionals/optionals.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ChooseOptionalsComponent } from './choose-optionals/choose-optionals.component';
+import { CategoriesModalComponent } from '../components/public/categories-modal/categories-modal.component';
+import { DisplayCategoriesComponent } from '../components/public/display-categories/display-categories.component';
+import { CategoryCardComponent } from '../components/public/category-card/category-card.component';
+import { EditCategoryComponent } from '../components/public/edit-category/edit-category.component';
 
 export function highchartsModules() {
   return [exporting, windbarb];
 }
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, MatDialogModule, MatSelectModule, MatSnackBarModule, ChartModule
+  imports: [CommonModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    ChartModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   declarations: [
     StudGradesComponent,
@@ -116,13 +134,24 @@ export function highchartsModules() {
     BellCurvePageComponent,
     NoResultsComponent,
     UpdateCourseComponent,
-    EditGradeComponent
+    EditGradeComponent,
+    CommentCardComponent,
+    DisplayCommentCardComponent,
+    OptionalsComponent,
+    OptionalsPageComponent,
+    ChooseOptionalsComponent,
+    CategoriesModalComponent,
+    DisplayCategoriesComponent,
+    CategoryCardComponent,
+    EditCategoryComponent
+
 
   ],
   entryComponents: [AddGradeModalContentComponent,
     AddFeedbackModalContentComponent,
     SignupComponent,
-    GradeCategoryModalComponentComponent
+    GradeCategoryModalComponentComponent,
+    CategoriesModalComponent
   ],
   exports: [
     StudGradesComponent,
@@ -162,11 +191,18 @@ export function highchartsModules() {
     GradeCategoryModalComponentComponent,
     NoResultsComponent,
     UpdateCourseComponent,
-    EditGradeComponent
-
-
+    EditGradeComponent,
+    CommentCardComponent,
+    DisplayCommentCardComponent,
+    OptionalsComponent,
+    OptionalsPageComponent,
+    CategoriesModalComponent,
+    DisplayCategoriesComponent,
+    CategoryCardComponent,
+    EditCategoryComponent
   ],
-  providers: [
+
+  providers: [MatDatepickerModule,MatNativeDateModule,
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },

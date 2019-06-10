@@ -11,12 +11,10 @@ namespace BusinessLogic.Implementations
 {
     public class NotificationLogic : BaseLogic, INotificationLogic
     {
-        private IHubContext<SignalServer> _hubContext;
 
-        public NotificationLogic(IRepository repository, IHubContext<SignalServer> hubContext)
+        public NotificationLogic(IRepository repository)
             : base(repository)
         {
-            _hubContext = hubContext;
         }
 
         public Notification Create(NotificationDto notificationDto)
@@ -54,8 +52,6 @@ namespace BusinessLogic.Implementations
             _repository.Insert(notification);
             _repository.Save();
 
-            _hubContext.Clients.All.SendAsync("ceva", "");
-
             return notification;
 
         }
@@ -64,7 +60,7 @@ namespace BusinessLogic.Implementations
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userId);
             var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == potentialUser.Id);
-            var notifications = _repository.GetAllByFilter<Notification>(x => x.ReciverId == account.Id || x.ReciverId == Guid.Empty);
+            ; var notifications = _repository.GetAllByFilter<Notification>(x => x.ReciverId == account.Id || x.ReciverId == Guid.Empty);
             var notificationDtos = new List<NotificationDto>();
             foreach (var notification in notifications)
             {
@@ -94,7 +90,6 @@ namespace BusinessLogic.Implementations
         {
             var notification = _repository.GetByFilter<Notification>(x => x.Id == notificationDto.Id);
             notification.IsRead = true;
-            _hubContext.Clients.All.SendAsync("ceva", "");
             _repository.Update(notification);
             _repository.Save();
         }

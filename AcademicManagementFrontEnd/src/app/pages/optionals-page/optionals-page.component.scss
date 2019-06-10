@@ -1,0 +1,7 @@
+@import "../../../styles/mixins.scss";
+
+.wrapper {
+  @include flex(none, center, center);
+  width: 100%;
+  height: 100%;
+}

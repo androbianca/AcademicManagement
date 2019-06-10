@@ -1,28 +1,22 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using System.Threading.Tasks;
-using BusinessLogic.Abstractions;
 using BusinessLogic.Configurations;
 using BusinessLogic.HubConfig;
-using BusinessLogic.Implementations;
-using BusinessLogic.TaskScheduler;
 using BusinessLogic.Timer;
 using Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using OfficeOpenXml.FormulaParsing.LexicalAnalysis;
-using Quartz;
-using Quartz.Impl;
-using Quartz.Spi;
 using Swashbuckle.AspNetCore.Swagger;
+
+
 
 namespace Service
 {
@@ -38,6 +32,9 @@ namespace Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
@@ -86,10 +83,11 @@ namespace Service
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddBusinessLogic(Configuration.GetConnectionString("AcademicManagement"));
             services.AddSignalR();
+          
 
         }
 
-       
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -112,8 +110,11 @@ namespace Service
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            app.UseSignalR(routes => { routes.MapHub<SignalServer>("/notify"); });
+            app.UseSignalR(routes => { routes.MapHub<NotificationsServer>("/notify"); });
+
             app.UseQuartz();
+
+
 
 
 

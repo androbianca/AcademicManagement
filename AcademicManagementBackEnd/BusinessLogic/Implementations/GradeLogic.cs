@@ -4,6 +4,10 @@ using Entities;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Http;
+using System.Web.Http;
+using System.Threading.Tasks;
 
 namespace BusinessLogic.Implementations
 {
@@ -11,13 +15,17 @@ namespace BusinessLogic.Implementations
     {
         private INotificationLogic _notificationLogic;
         private IFinalGradeLogic _finalGradeLogic;
+        private IHttpContextAccessor _httpContextAccessor;
+        private HttpContext context;
 
-
-        public GradeLogic(IRepository repository, INotificationLogic notificationLogic, IFinalGradeLogic finalGradeLogic)
+        public GradeLogic(IRepository repository, INotificationLogic notificationLogic, IFinalGradeLogic finalGradeLogic, IHttpContextAccessor httpContextAccessor)
             : base(repository)
         {
             _finalGradeLogic = finalGradeLogic;
             _notificationLogic = notificationLogic;
+            _httpContextAccessor = httpContextAccessor;
+            context = httpContextAccessor.HttpContext;
+
         }
 
         public ICollection<GradeDto> GetGradesByStud(Guid courseId, Guid studentId)
@@ -100,6 +108,18 @@ namespace BusinessLogic.Implementations
             finalGrade.Value = final;
             _finalGradeLogic.Update(finalGrade);
 
+        }
+
+        public async Task<bool> SendAlert()
+        {
+            // var t = _httpContextAccessor.HttpContext;
+            //.Request.Headers["Authorization"];
+
+            var handler = new JwtSecurityTokenHandler();
+            //  var token = handler.ReadToken(headerValue) as JwtSecurityToken;
+            // var id = token.Claims.FirstOrDefault(c => c.Type == "Identifier").Value;
+
+            return true;
         }
 
         public float ComputeLabFinalGrade(Guid courseId, Guid studentId)

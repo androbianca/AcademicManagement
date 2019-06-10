@@ -26,6 +26,15 @@ namespace Service.Controllers
             return Ok(gadeCategoryDto);
         }
 
+        [HttpPost("{edit}")]
+        public IActionResult Edit([FromBody] GradeCategoryDto gadeCategoryDto)
+        {
+
+            var gadeCategory = _gradeCategoryLogic.Edit(gadeCategoryDto);
+
+            return Ok(gadeCategoryDto);
+        }
+
         [HttpGet("{courseId:guid}")]
         public ActionResult<ICollection<GradeCategoryDto>> GetByCourseId([FromRoute] Guid courseId)
         {

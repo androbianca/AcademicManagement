@@ -1,22 +1,20 @@
 ﻿using BusinessLogic.Abstractions;
-using BusinessLogic.HubConfig;
 using BusinessLogic.Implementations;
 using BusinessLogic.TaskScheduler;
+using DataAccess;
 using DataAccess.Abstractions;
 using DataAccess.Implementations;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Ninject;
 using Quartz;
 using Quartz.Impl;
 using Quartz.Spi;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLogic.Timer
 {
-   public static class QartzExtenstion
+    public static class QartzExtenstion
     {
         public static void UseQuartz(this IApplicationBuilder app)
         {
@@ -27,8 +25,7 @@ namespace BusinessLogic.Timer
         {
             var kernel = InitializeNinjectKernel();
             var scheduler = kernel.Get<IScheduler>();
-         //   scheduler.ScheduleJob(JobBuilder.Create<SendUserEmailsJob>().Build(),
-           ///     TriggerBuilder.Create().StartNow().WithSimpleSchedule(x => x.WithIntervalInSeconds(30).RepeatForever().Build());
+         
 
             IJobDetail job = JobBuilder.Create<SendUserEmailsJob>()
                     .WithIdentity("job1", "group1")
@@ -61,14 +58,16 @@ namespace BusinessLogic.Timer
 
             // add our bindings as we normally would (these are the bindings that our jobs require)
             kernel.Bind<IEmailLogic>().To<EmailLogic>();
-            kernel.Bind<IAlertLogic>().To<AlertLogic>();
+            kernel.Bind<INotificationLogic>().To<NotificationLogic>();
+            kernel.Bind<IFinalGradeLogic>().To<FinalGradeLogic>();
 
             kernel.Bind<IRepository>().To<Repository>();
+            kernel.Bind<IAlertLogic>().To<AlertLogic>();
+            kernel.Bind<IPotentialUserLogic>().To<PotentialUserLogic>();
+
+            kernel.Bind<IHttpContextAccessor>().To<HttpContextAccessor>();    
 
             kernel.Bind<IJob>().To<SendUserEmailsJob>();
-
-            // etc.
-
             return kernel;
         }
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, HostBinding, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, EventEmitter, Output } from '@angular/core';
 import { Grade } from 'src/app/models/grade';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GradeService } from 'src/app/services/grade-service.service';
@@ -13,9 +13,10 @@ export class EditGradeComponent implements OnInit {
 
   @Input() grade: Grade;
   @HostBinding('class') classes = 'add-grade-card';
+  @Output() formClose = new EventEmitter<any>();
+
   isDisabled = true;
   errorMessage = 'This fied id required!';
-  formClose = new EventEmitter<any>();
 
   gradesForm = new FormGroup({
     value: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')])
@@ -37,7 +38,7 @@ export class EditGradeComponent implements OnInit {
 
   save(gradesForm) {
     this.grade.value = gradesForm.value.value;
-    this.gradeService.updateGrade(this.grade).subscribe(x => console.log(x))
+    this.gradeService.updateGrade(this.grade).subscribe(x =>{})
   }
 
   closeForm() {

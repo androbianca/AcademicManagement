@@ -7,6 +7,8 @@ import { SignalRService } from 'src/app/services/signalR-service.service';
 import { DatePipe } from '@angular/common';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
+import * as moment from 'moment'
+let myMoment: moment.Moment = moment("someDate");
 
 @Component({
   selector: 'app-notification-card',
@@ -28,26 +30,30 @@ export class NotificationCardComponent implements OnInit {
   route = "";
   profId: string;
   initials: string;
-  user:UserDetails;
+  user: UserDetails;
 
   constructor(private router: Router, private gradeService: GradeService,
     private notificationService: NotificationService,
-    private currentUser:CurrentUserDetailsService,
+    private currentUser: CurrentUserDetailsService,
     private signalRService: SignalRService) {
-      this.user = this.currentUser.getUser();
-     }
+    this.user = this.currentUser.getUser();
+  }
+
+  public sendMessage(): void {
+    this.signalRService._hubConnection.invoke("NewMessage");
+  }
 
   ngOnInit() {
     this.initials = this.notification.body.split(' ')[0][0] + ' ' + this.notification.body.split(' ')[1][0];
-    this.date = this.pipe.transform(this.notification.time, 'short');
-    
+    this.date = moment(this.notification.time, "YYYYMMDD hh:mm").fromNow();
+
     if (this.notification.title.toLowerCase().trim() == this.text.toLocaleLowerCase().trim()) {
       this.gradeService.getById(this.notification.itemId).subscribe(result => {
         this.route = `grades/${result.courseId}`;
       })
       return;
     }
-    this.route = this.notification.title.toLowerCase().trim() == "New post on wall.".toLowerCase().trim() ? 'newsfeed' : `professors/${this.user.id}`
+    this.route = this.notification.title.toLowerCase().trim() == "New grade".toLowerCase().trim() ? `professors/${this.user.id}` :'newsfeed'; 
   }
 
   goTo() {
@@ -55,7 +61,8 @@ export class NotificationCardComponent implements OnInit {
   }
 
   updateNotification() {
-    this.notificationService.read(this.notification).subscribe(x => console.log(x))
+    this.notificationService.read(this.notification).subscribe(x =>{this.sendMessage();
+    })
   }
 
 

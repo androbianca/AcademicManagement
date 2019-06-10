@@ -1,22 +1,29 @@
-<h6>Feed</h6>
-<div class="card">
-  <div class="content">
-    <form [formGroup]="postForm">
-      <textarea formControlName="post">
-      </textarea>
-    </form>
-    <!-- <app-file-upload (fileUploaded)="onFileUpload($event)"></app-file-upload> -->
+<div class="left">
+  <h6>Feed</h6>
+  <div class="card">
+    <div class="content">
+      <form [formGroup]="postForm">
+        <textarea formControlName="post" placeholder="Write something...">
+        </textarea>
+      </form>
+    </div>
+    <div class="footer">
+      <button [class.disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
   </div>
-  <div class="footer">
-    <button [class.button-disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
+
+  <ng-template [ngIf]="signalRService.posts?.length == 0" [ngIfElse]="displayResults">
+    <app-no-results text='No posts yet'></app-no-results>
+  </ng-template>
+
+  <ng-template #displayResults>
+    <ng-container *ngFor="let post of posts">
+      <app-feed-card [post]="post"></app-feed-card>
+    </ng-container>
+  </ng-template>
 </div>
 
-<ng-template [ngIf]="signalRService.posts?.length == 0" [ngIfElse]="displayResults">
-  <app-no-results text='No posts yet'></app-no-results>
-</ng-template>
 
-<ng-template #displayResults>
-  <ng-container *ngFor="let post of signalRService.posts">
-    <app-feed-card [post]="post"></app-feed-card>
-  </ng-container>
-</ng-template>
+<div class="right">
+  <h1>Choose your optionals</h1>
+  <div class="mini-card"> <button (click)="goTo()">Choose your optional courses</button></div>
+</div>

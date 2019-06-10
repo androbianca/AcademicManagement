@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BusinessLogic.Abstractions
 {
@@ -11,6 +12,6 @@ namespace BusinessLogic.Abstractions
         void Add(GradeDto grade);
         GradeDto GetById(Guid gradeId);
         void Update(GradeDto gradeDto);
-
+        Task<bool> SendAlert();
     }
 }

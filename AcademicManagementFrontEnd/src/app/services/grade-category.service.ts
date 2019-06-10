@@ -15,6 +15,10 @@ export class GradeCategoryService {
         return this.baseService.post<GradeCategory>('gradecategories', gradeCategory);
     }
 
+    public edit(gradeCategory: GradeCategory) {
+        return this.baseService.post<GradeCategory>('gradecategories/edit', gradeCategory);
+    }
+
     public getByCourseId(courseId) {
         return this.baseService.get<GradeCategory[]>(`gradecategories/${courseId}`);
     }

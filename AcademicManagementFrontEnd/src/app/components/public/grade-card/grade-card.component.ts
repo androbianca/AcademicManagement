@@ -14,6 +14,8 @@ export class GradeCardComponent {
   role: typeof Role = Role;
   isStudent: boolean;
   user: UserDetails;
+  open = false;
+
   constructor(private currentUser: CurrentUserDetailsService) {
     this.user = this.currentUser.getUser();
     this.isStudent = this.user.userRole == this.role.student ? true : false;
@@ -23,14 +25,12 @@ export class GradeCardComponent {
 
   @HostBinding('class') classes = 'grade-card';
 
-  open = false;
 
-  toggle() {
-    this.open = !this.open;
+  openForm() {
+    this.open = true;
   }
 
   onformClose(event) {
-    console.log(event);
     this.open = false;
   }
 }

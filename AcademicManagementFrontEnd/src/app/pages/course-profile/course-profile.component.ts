@@ -5,6 +5,7 @@ import { Professor } from 'src/app/models/professor';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
 import { MatDialog } from '@angular/material/dialog';
+import { CategoriesModalComponent } from 'src/app/components/public/categories-modal/categories-modal.component';
 
 @Component({
   selector: 'app-course-profile',
@@ -41,6 +42,18 @@ export class CourseProfileComponent implements OnInit {
     this.profService.getByCourseId(this.courseId).subscribe(response => {
       this.profs = response
     })
+  }
+
+  
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CategoriesModalComponent, {
+      width: '400px',
+      height: '450px',
+      data: { courseId: this.courseId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 }
 

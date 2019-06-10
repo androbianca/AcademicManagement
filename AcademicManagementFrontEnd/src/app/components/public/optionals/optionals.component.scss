@@ -1,0 +1,63 @@
+@import "../../../../styles/home.scss";
+@import "../../../../styles/mixins.scss";
+
+
+h6 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  width: 15vw;
+  background-color: #EDEDED;
+  border: 1px solid #DFDFDF;
+  border-radius: 5px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.file-info {
+  font-size: 0.9em;
+}
+
+.browse-btn {
+  background: #5C9EAD;
+  color: #fff;
+  min-height: 35px;
+  padding: 10px;
+  border: none;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-right: 10px;
+}
+
+.browse-btn:hover {
+  background: #4ec0b4;
+}
+
+.container {
+  width: 30%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  padding:30px;
+};
+
+@media (max-width: 300px) {
+  button {
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0;
+  }
+
+  .file-info {
+    display: block;
+    margin: 10px 5px;
+  }
+
+}
+  .wrapper {
+    @include flex(column, center, center);
+    width: 100%;
+    height: 100%;
+  }

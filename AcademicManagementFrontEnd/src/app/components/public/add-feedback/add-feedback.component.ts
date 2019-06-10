@@ -23,7 +23,6 @@ export class AddFeedbackComponent implements OnInit {
 
   onChanges(): void {
     this.feedbackForm.valueChanges.subscribe(x => {
-      console.log(this.feedbackForm);
       this.isDisabled = this.feedbackForm.valid ? false : true;
       this.formChanged.emit(this.feedbackForm);
     })

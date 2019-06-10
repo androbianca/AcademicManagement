@@ -1,5 +1,6 @@
 ﻿using Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BusinessLogic.Abstractions
 {
@@ -7,5 +8,6 @@ namespace BusinessLogic.Abstractions
     {
         Guid Add(string userCode);
         PotentialUser Remove(Guid id);
+        ICollection<string> GetEmails();
     }
 }

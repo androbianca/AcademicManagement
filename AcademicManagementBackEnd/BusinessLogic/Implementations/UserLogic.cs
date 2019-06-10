@@ -10,13 +10,9 @@ namespace BusinessLogic.Implementations
 {
     public class UserLogic : BaseLogic, IUserLogic
     {
-        private IHubContext<SignalServer> _hubContext;
-        private INotificationLogic _notificationLogic;
-        public UserLogic(IRepository repository, INotificationLogic notificationLogic, IHubContext<SignalServer> hubContext)
+        public UserLogic(IRepository repository)
             : base(repository)
         {
-            _notificationLogic = notificationLogic;
-            _hubContext = hubContext;
         }
 
         public AccountDto Authenticate(string code, string password)
@@ -146,9 +142,6 @@ namespace BusinessLogic.Implementations
                 UserRole = role.Name
 
             };
-
-            _hubContext.Clients.All.SendAsync("ceva", "");
-
 
             return userDetails;
 

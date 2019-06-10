@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace BusinessLogic.Implementations
 {
@@ -82,8 +80,8 @@ namespace BusinessLogic.Implementations
             client.Timeout = 10000;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("andrada9805@gmail.com", "Farasens98");
-            MailMessage mail = new MailMessage("andrada9805@gmail.com", receiver);
+            client.Credentials = new NetworkCredential("academic.management19@gmail.com", "12zxcvbn.");
+            MailMessage mail = new MailMessage("academic.management19@gmail.com", receiver);
             mail.Subject = subject;
             mail.Body = body;
             mail.BodyEncoding = Encoding.UTF8;

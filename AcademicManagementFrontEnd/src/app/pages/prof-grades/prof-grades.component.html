@@ -1,7 +1,7 @@
   <div class="left">
     <section class="button-list">
       <ng-container *ngFor="let group of groups">
-        <button *ngIf="test(group)" (click)="filterStudents(group)" class="button">{{group.name}}</button>
+        <button *ngIf="test(group)" (click)="filterStudents(group)" class="button3">{{group.name}}</button>
       </ng-container>
     </section>
     <ng-container *ngFor="let student of filteredStudents">
@@ -10,8 +10,10 @@
   </div>
 
   <div class="right">
-    <button class="button3" (click)="goTo('courses/bellcurve')">Check BellCurve</button>
-    <button class="button3" (click)="openModal()">Add categoriy</button>
-    <button class="button3" (click)="goTo('courses/resources')">Check resources</button>
+    <button (click)="goTo('courses/bellcurve')">Check BellCurve</button>
+    <button (click)="openModal()">Add categoriy</button>
+    <button (click)="goTo('courses/resources')">Check resources</button>
+    <button (click)="openCategoryDialog()">See grades categories</button>
+
     <app-file-upload [isExcel]="true" [courseId]="courseId" title="Import Excel"></app-file-upload>
   </div>

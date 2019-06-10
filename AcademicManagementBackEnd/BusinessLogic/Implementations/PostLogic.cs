@@ -11,13 +11,11 @@ namespace BusinessLogic.Implementations
 {
     public class PostLogic : BaseLogic, IPostLogic
     {
-        private IHubContext<SignalServer> _hubContext;
         private INotificationLogic _notificationLogic;
 
-        public PostLogic(IRepository repository, IHubContext<SignalServer> hubContext, INotificationLogic notificationLogic)
+        public PostLogic(IRepository repository, INotificationLogic notificationLogic)
             : base(repository)
         {
-            _hubContext = hubContext;
             _notificationLogic = notificationLogic;
         }
 
@@ -33,7 +31,6 @@ namespace BusinessLogic.Implementations
 
             _repository.Insert(post);
             _repository.Save();
-            _hubContext.Clients.All.SendAsync("ceva", "");
 
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == postDto.UserCode);
 
@@ -79,6 +76,7 @@ namespace BusinessLogic.Implementations
                 var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId);
                 var postDto = new PostDto
                 {
+                    Id = post.Id,
                     Body = post.Body,
                     UserCode = account.UserCode,
                     Time = post.Time,

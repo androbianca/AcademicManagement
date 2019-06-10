@@ -74,6 +74,26 @@ namespace DataAccess.Migrations
                     b.ToTable("Alerts");
                 });
 
+            modelBuilder.Entity("Entities.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Body");
+
+                    b.Property<Guid>("PostId");
+
+                    b.Property<Guid>("SenderId");
+
+                    b.Property<DateTime>("Time");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Entities.Course", b =>
                 {
                     b.Property<Guid>("Id")
@@ -277,6 +297,24 @@ namespace DataAccess.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("Entities.Optional", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FileName");
+
+                    b.Property<string>("GoogleForm");
+
+                    b.Property<string>("Path");
+
+                    b.Property<int>("Year");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Optionals");
+                });
+
             modelBuilder.Entity("Entities.Post", b =>
                 {
                     b.Property<Guid>("Id")
@@ -432,6 +470,14 @@ namespace DataAccess.Migrations
                         .WithOne("Admin")
                         .HasForeignKey("Entities.Admin", "PotentialUserId")
                         .HasConstraintName("ForeignKey_Admin_PotentialUser")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entities.Comment", b =>
+                {
+                    b.HasOne("Entities.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

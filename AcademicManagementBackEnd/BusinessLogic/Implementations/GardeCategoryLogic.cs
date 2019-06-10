@@ -31,6 +31,20 @@ namespace BusinessLogic.Implementations
             return gradeCategory;
         }
 
+        public GradeCategory Edit(GradeCategoryDto gradeCategoryDto)
+        {
+            var category = _repository.GetByFilter<GradeCategory>(x => x.Id == gradeCategoryDto.Id);
+
+            category.Name = gradeCategoryDto.Name;
+            category.Percentage = gradeCategoryDto.Percentage;
+
+
+            _repository.Update(category);
+            _repository.Save();
+
+            return category;
+        }
+
         public IEnumerable<GradeCategoryDto> GetByCourseId(Guid courseId)
         {
             var gradeCategoryDtos = new List<GradeCategoryDto>();

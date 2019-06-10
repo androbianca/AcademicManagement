@@ -60,8 +60,9 @@
   @include flex(column, none, center);
   margin-top: 40px;
   min-width: 22vw;
-  border: 1px solid rgb(209, 208, 208);
   padding: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+
 }
 
 input[type=text],

@@ -2,6 +2,7 @@
 using DataAccess.Abstractions;
 using Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BusinessLogic.Implementations
 {
@@ -37,5 +38,21 @@ namespace BusinessLogic.Implementations
             return potentialUser.Id;
         }
 
+        public ICollection<string> GetEmails()
+        {
+            var emails = new List<string>();
+            //    var role = _repository.GetByFilter<UserRole>(x => x.Name == "Professor");
+
+            //    var users = _repository.GetAllByFilter<PotentialUser>(x => x.UserRoleId == role.Id);
+            //    foreach(var user in users)
+            //    {
+            //        emails.Add(user.Email);
+            //    }
+
+            return emails;
+
+            //}
+
+        }
     }
 }

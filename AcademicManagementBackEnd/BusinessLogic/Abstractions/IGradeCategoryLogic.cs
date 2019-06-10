@@ -7,8 +7,8 @@ namespace BusinessLogic.Abstractions
 {
     public interface IGradeCategoryLogic
     {
-         GradeCategory Add(GradeCategoryDto gradeCategoryDto);
+        GradeCategory Add(GradeCategoryDto gradeCategoryDto);
         IEnumerable<GradeCategoryDto> GetByCourseId(Guid courseId);
-
+        GradeCategory Edit(GradeCategoryDto gradeCategoryDto);
     }
 }

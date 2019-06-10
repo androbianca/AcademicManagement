@@ -2,6 +2,20 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "DependencyResolver/1.0.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Main": "2.1.30214"
+        },
+        "compile": {
+          "lib/net40/DependencyResolver.AppDomainHelper.dll": {},
+          "lib/net40/DependencyResolver.dll": {}
+        },
+        "runtime": {
+          "lib/net40/DependencyResolver.AppDomainHelper.dll": {},
+          "lib/net40/DependencyResolver.dll": {}
+        }
+      },
       "EPPlus/4.5.2.1": {
         "type": "package",
         "dependencies": {
@@ -24,7 +38,7 @@
           "lib/netstandard2.0/EPPlus.dll": {}
         }
       },
-      "Microsoft.AspNet.WebApi.Client/5.2.6": {
+      "Microsoft.AspNet.WebApi.Client/5.2.7": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "10.0.1",
@@ -35,6 +49,18 @@
         },
         "runtime": {
           "lib/netstandard2.0/System.Net.Http.Formatting.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebApi.Core/5.2.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebApi.Client": "5.2.7"
+        },
+        "compile": {
+          "lib/net45/System.Web.Http.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Http.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.1.1": {
@@ -2942,6 +2968,71 @@
           }
         }
       },
+      "Rx-Core/2.1.30214": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Interfaces": "2.1.30214"
+        },
+        "compile": {
+          "lib/Net45/System.Reactive.Core.dll": {}
+        },
+        "runtime": {
+          "lib/Net45/System.Reactive.Core.dll": {}
+        }
+      },
+      "Rx-Interfaces/2.1.30214": {
+        "type": "package",
+        "compile": {
+          "lib/Net45/System.Reactive.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/Net45/System.Reactive.Interfaces.dll": {}
+        }
+      },
+      "Rx-Linq/2.1.30214": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.1.30214",
+          "Rx-Interfaces": "2.1.30214"
+        },
+        "compile": {
+          "lib/Net45/System.Reactive.Linq.dll": {}
+        },
+        "runtime": {
+          "lib/Net45/System.Reactive.Linq.dll": {}
+        }
+      },
+      "Rx-Main/2.1.30214": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.1.30214",
+          "Rx-Interfaces": "2.1.30214",
+          "Rx-Linq": "2.1.30214",
+          "Rx-PlatformServices": "2.1.30214"
+        }
+      },
+      "Rx-PlatformServices/2.1.30214": {
+        "type": "package",
+        "dependencies": {
+          "Rx-Core": "2.1.30214",
+          "Rx-Interfaces": "2.1.30214"
+        },
+        "compile": {
+          "lib/Net45/System.Reactive.PlatformServices.dll": {}
+        },
+        "runtime": {
+          "lib/Net45/System.Reactive.PlatformServices.dll": {}
+        }
+      },
+      "SharpRepository.Ioc.Ninject/1.5.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net452/SharpRepository.Ioc.Ninject.dll": {}
+        },
+        "runtime": {
+          "lib/net452/SharpRepository.Ioc.Ninject.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -4656,6 +4747,7 @@
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "DataAccess": "1.0.0",
+          "DependencyResolver": "1.0.0.3",
           "EPPlus": "4.5.2.1",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.EntityFrameworkCore": "2.1.1",
@@ -4674,6 +4766,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "DependencyResolver": "1.0.0.3",
           "Entities": "1.0.0",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.EntityFrameworkCore": "2.1.1",
@@ -4693,6 +4786,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "DependencyResolver": "1.0.0.3",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.EntityFrameworkCore": "2.1.1",
           "Ninject": "3.3.4",
@@ -4709,6 +4803,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "DependencyResolver": "1.0.0.3",
           "Entities": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.1.1",
           "Ninject": "3.3.4",
@@ -4725,6 +4820,19 @@
     }
   },
   "libraries": {
+    "DependencyResolver/1.0.0.3": {
+      "sha512": "HZBWVSgsDB0vp0GtBXa/7dwHfflT6Tx4YUiDcK4HDIhL47Uxf6mJT4Yggu20AFjsvXJWDIAdI34r7DI9HN/EbA==",
+      "type": "package",
+      "path": "dependencyresolver/1.0.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dependencyresolver.1.0.0.3.nupkg.sha512",
+        "dependencyresolver.nuspec",
+        "lib/net40/DependencyResolver.AppDomainHelper.dll",
+        "lib/net40/DependencyResolver.dll"
+      ]
+    },
     "EPPlus/4.5.2.1": {
       "sha512": "/OzYn/n982Ozu+ARWISjn9REIb3PA5KN8qPfp3JKOoSnBezN3loGCQ2k0nLNL5K8+b+3boinsNiRbm5ovEfeog==",
       "type": "package",
@@ -4743,10 +4851,10 @@
         "readme.txt"
       ]
     },
-    "Microsoft.AspNet.WebApi.Client/5.2.6": {
-      "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
+    "Microsoft.AspNet.WebApi.Client/5.2.7": {
+      "sha512": "/76fAHknzvFqbznS6Uj2sOyE9rJB3PltY+f53TH8dX9RiGhk02EhuFCWljSj5nnqKaTsmma8DFR50OGyQ4yJ1g==",
       "type": "package",
-      "path": "microsoft.aspnet.webapi.client/5.2.6",
+      "path": "microsoft.aspnet.webapi.client/5.2.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4756,8 +4864,22 @@
         "lib/netstandard2.0/System.Net.Http.Formatting.xml",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.dll",
         "lib/portable-wp8+netcore45+net45+wp81+wpa81/System.Net.Http.Formatting.xml",
-        "microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
+        "microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
         "microsoft.aspnet.webapi.client.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.WebApi.Core/5.2.7": {
+      "sha512": "gM2QzApnHdy1FbKUJ/ROGJSm69P2G+HMoVd/t5Vq1O/zZ5TI4IKC9PX6nUfRt/NHgebZOIWHpB4/4K4inuy4yQ==",
+      "type": "package",
+      "path": "microsoft.aspnet.webapi.core/5.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/web.config.transform",
+        "lib/net45/System.Web.Http.dll",
+        "lib/net45/System.Web.Http.xml",
+        "microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
+        "microsoft.aspnet.webapi.core.nuspec"
       ]
     },
     "Microsoft.AspNetCore/2.1.1": {
@@ -7842,6 +7964,140 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Rx-Core/2.1.30214": {
+      "sha512": "UXykaqUPOt4fyWwuG326/ymEzJe/genv8/wXgJqhs65JJbdUXtaB7bdI1lsszq5wPqc1ilZJg6ZXwgKLQs50rg==",
+      "type": "package",
+      "path": "rx-core/2.1.30214",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/Net40/System.Reactive.Core.XML",
+        "lib/Net40/System.Reactive.Core.dll",
+        "lib/Net45/System.Reactive.Core.XML",
+        "lib/Net45/System.Reactive.Core.dll",
+        "lib/NetCore45/System.Reactive.Core.XML",
+        "lib/NetCore45/System.Reactive.Core.dll",
+        "lib/Portable-Net45+WinRT45+WP8/System.Reactive.Core.XML",
+        "lib/Portable-Net45+WinRT45+WP8/System.Reactive.Core.dll",
+        "lib/SL4-WindowsPhone71/System.Reactive.Core.XML",
+        "lib/SL4-WindowsPhone71/System.Reactive.Core.dll",
+        "lib/SL4/_._",
+        "lib/SL5/System.Reactive.Core.XML",
+        "lib/SL5/System.Reactive.Core.dll",
+        "lib/WP8/System.Reactive.Core.XML",
+        "lib/WP8/System.Reactive.Core.dll",
+        "rx-core.2.1.30214.nupkg.sha512",
+        "rx-core.nuspec"
+      ]
+    },
+    "Rx-Interfaces/2.1.30214": {
+      "sha512": "kDt5UWayWxaixhMEpaJa7Ur6/htcWtlI61kj+Zff0K3/PxTv5vig493ngnq4dotUseaTCtpq+0JOyNSLKSJZXQ==",
+      "type": "package",
+      "path": "rx-interfaces/2.1.30214",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/Net40/System.Reactive.Interfaces.XML",
+        "lib/Net40/System.Reactive.Interfaces.dll",
+        "lib/Net45/System.Reactive.Interfaces.XML",
+        "lib/Net45/System.Reactive.Interfaces.dll",
+        "lib/NetCore45/System.Reactive.Interfaces.XML",
+        "lib/NetCore45/System.Reactive.Interfaces.dll",
+        "lib/Portable-Net45+WinRT45+WP8/System.Reactive.Interfaces.XML",
+        "lib/Portable-Net45+WinRT45+WP8/System.Reactive.Interfaces.dll",
+        "lib/SL4-WindowsPhone71/System.Reactive.Interfaces.XML",
+        "lib/SL4-WindowsPhone71/System.Reactive.Interfaces.dll",
+        "lib/SL4/_._",
+        "lib/SL5/System.Reactive.Interfaces.XML",
+        "lib/SL5/System.Reactive.Interfaces.dll",
+        "lib/WP8/System.Reactive.Interfaces.XML",
+        "lib/WP8/System.Reactive.Interfaces.dll",
+        "rx-interfaces.2.1.30214.nupkg.sha512",
+        "rx-interfaces.nuspec"
+      ]
+    },
+    "Rx-Linq/2.1.30214": {
+      "sha512": "jRiNIpj7DYgPF8x4QIMjQ1/qvYp5LwcEshXkaAo30/Qy46ZoEV8cAryQXt61/IlP/IK7zRK12SMY00rp1N/tfg==",
+      "type": "package",
+      "path": "rx-linq/2.1.30214",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/Net40/System.Reactive.Linq.XML",
+        "lib/Net40/System.Reactive.Linq.dll",
+        "lib/Net45/System.Reactive.Linq.XML",
+        "lib/Net45/System.Reactive.Linq.dll",
+        "lib/NetCore45/System.Reactive.Linq.XML",
+        "lib/NetCore45/System.Reactive.Linq.dll",
+        "lib/Portable-Net45+WinRT45+WP8/System.Reactive.Linq.XML",
+        "lib/Portable-Net45+WinRT45+WP8/System.Reactive.Linq.dll",
+        "lib/SL4-WindowsPhone71/System.Reactive.Linq.XML",
+        "lib/SL4-WindowsPhone71/System.Reactive.Linq.dll",
+        "lib/SL4/_._",
+        "lib/SL5/System.Reactive.Linq.XML",
+        "lib/SL5/System.Reactive.Linq.dll",
+        "lib/WP8/System.Reactive.Linq.XML",
+        "lib/WP8/System.Reactive.Linq.dll",
+        "rx-linq.2.1.30214.nupkg.sha512",
+        "rx-linq.nuspec"
+      ]
+    },
+    "Rx-Main/2.1.30214": {
+      "sha512": "E4eLq5KFCulQ5xLXy4nRLUCUkgaJ9U08Anb9U44ExrEi3+6AbfAPN4NvRUW/J0kJ2OM3lgASg9g/ZogILrktSw==",
+      "type": "package",
+      "path": "rx-main/2.1.30214",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "rx-main.2.1.30214.nupkg.sha512",
+        "rx-main.nuspec"
+      ]
+    },
+    "Rx-PlatformServices/2.1.30214": {
+      "sha512": "78pj+O3nZiw3nHhvU5YO7I+tqxESRWxzfNzPvKsLNDWxYadKs6EqEe0uwAjYEGbtfEYBx2RO828I/dsPNR25jQ==",
+      "type": "package",
+      "path": "rx-platformservices/2.1.30214",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/Net40/_._",
+        "content/Net45/_._",
+        "content/NetCore45/_._",
+        "content/Portable-Net45+WinRT45+WP8/Readme.txt",
+        "content/SL4-WindowsPhone71/_._",
+        "content/SL4/_._",
+        "content/SL5/_._",
+        "content/WP8/_._",
+        "lib/Net40/System.Reactive.PlatformServices.XML",
+        "lib/Net40/System.Reactive.PlatformServices.dll",
+        "lib/Net45/System.Reactive.PlatformServices.XML",
+        "lib/Net45/System.Reactive.PlatformServices.dll",
+        "lib/NetCore45/System.Reactive.PlatformServices.XML",
+        "lib/NetCore45/System.Reactive.PlatformServices.dll",
+        "lib/Portable-Net45+WinRT45+WP8/_._",
+        "lib/SL4-WindowsPhone71/System.Reactive.PlatformServices.XML",
+        "lib/SL4-WindowsPhone71/System.Reactive.PlatformServices.dll",
+        "lib/SL4/_._",
+        "lib/SL5/System.Reactive.PlatformServices.XML",
+        "lib/SL5/System.Reactive.PlatformServices.dll",
+        "lib/WP8/System.Reactive.PlatformServices.XML",
+        "lib/WP8/System.Reactive.PlatformServices.dll",
+        "rx-platformservices.2.1.30214.nupkg.sha512",
+        "rx-platformservices.nuspec"
+      ]
+    },
+    "SharpRepository.Ioc.Ninject/1.5.0.2": {
+      "sha512": "TtV3TZPANH/IYt7z36mCBwZCyMEIhJSE0bugszs2avyDcZNPztaS9R3SNEgnnV4JJO5cFRBBSFSb5jmudDawwQ==",
+      "type": "package",
+      "path": "sharprepository.ioc.ninject/1.5.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/SharpRepository.Ioc.Ninject.dll",
+        "sharprepository.ioc.ninject.1.5.0.2.nupkg.sha512",
+        "sharprepository.ioc.ninject.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/4.0.1": {
@@ -12672,12 +12928,15 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "BusinessLogic >= 1.0.0",
+      "DependencyResolver >= 1.0.0.3",
+      "Microsoft.AspNet.WebApi.Core >= 5.2.7",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.EntityFrameworkCore >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "Models >= 1.0.0",
       "Ninject >= 3.3.4",
-      "Quartz >= 3.0.7"
+      "Quartz >= 3.0.7",
+      "SharpRepository.Ioc.Ninject >= 1.5.0.2"
     ]
   },
   "packageFolders": {
@@ -12728,6 +12987,14 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "DependencyResolver": {
+            "target": "Package",
+            "version": "[1.0.0.3, )"
+          },
+          "Microsoft.AspNet.WebApi.Core": {
+            "target": "Package",
+            "version": "[5.2.7, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -12750,6 +13017,10 @@
           "Quartz": {
             "target": "Package",
             "version": "[3.0.7, )"
+          },
+          "SharpRepository.Ioc.Ninject": {
+            "target": "Package",
+            "version": "[1.5.0.2, )"
           }
         },
         "imports": [
@@ -12761,6 +13032,76 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'DependencyResolver 1.0.0.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "DependencyResolver",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.WebApi.Core 5.2.7' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.WebApi.Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Rx-Core 2.1.30214' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Rx-Core",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Rx-Interfaces 2.1.30214' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Rx-Interfaces",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Rx-Linq 2.1.30214' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Rx-Linq",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Rx-PlatformServices 2.1.30214' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Rx-PlatformServices",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'SharpRepository.Ioc.Ninject 1.5.0.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "SharpRepository.Ioc.Ninject",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
     {
       "code": "NU1701",
       "level": "Warning",
