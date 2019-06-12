@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Abstractions;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using System;
 
 namespace Service.Controllers
@@ -17,16 +18,29 @@ namespace Service.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> Add([FromBody] string userCode)
+        public ActionResult<string> Add([FromBody] PotentialUserDto potentialUserDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var potentialUserId = _potentialUserLogic.Add(userCode);
+            var potentialUser = _potentialUserLogic.Add(potentialUserDto);
 
-            return Ok(potentialUserId);
+            return Ok(potentialUser);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetByUserCode([FromRoute] string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var potentialUser = _potentialUserLogic.GetByUserCode(id);
+
+            return Ok(potentialUser);
         }
 
         [HttpDelete("potentialUserId:guid")]

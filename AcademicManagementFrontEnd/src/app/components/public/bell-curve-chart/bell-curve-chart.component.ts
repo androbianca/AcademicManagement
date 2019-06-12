@@ -64,7 +64,7 @@ export class BellCurveChartComponent implements OnInit {
     getFinalGrades() {
         this.finalGradeService.getAllByCourse(this.courseId).subscribe(x => {
             x.forEach(val => {
-                this.data.push(val.value);
+                this.data.push( + val.value);
             })
             this.createChart(this.data);
         })

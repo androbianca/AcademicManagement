@@ -1,14 +1,14 @@
 <section class="top__bar">
   <div #origin="cdkOverlayOrigin" cdkOverlayOrigin (click)="toggle()">
 
-    <img src="../../../../assets/images/notification1.png">
-    <span class="badge">{{notifNumber}}</span>
-
+    <img src="https://img.icons8.com/office/40/000000/appointment-reminders--v2.png">
+    <span *ngIf="notifNumber >0" class="badge">{{notifNumber}}</span>
   </div>
 </section>
 
 <ng-template cdkConnectedOverlay [cdkConnectedOverlayOrigin]="origin" [cdkConnectedOverlayOpen]="panelOpen"
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop" cdkConnectedOverlayHasBackdrop
   (backdropClick)="close()">
-  <app-notification-panel [notifications]="notifications" (notifChanged) = "onNotifChange($event)"></app-notification-panel>
+  <app-notification-panel [notifications]="notifications" (notifChanged)="onNotifChange($event)">
+  </app-notification-panel>
 </ng-template>

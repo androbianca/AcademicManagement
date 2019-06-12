@@ -20,9 +20,9 @@ namespace BusinessLogic.Implementations
             {
                 Id = Guid.NewGuid(),
                 Name = gradeCategoryDto.Name,
-                Percentage = gradeCategoryDto.Percentage,
+             //   Percentage = gradeCategoryDto.Percentage,
                 CourseId = gradeCategoryDto.CourseId,
-                IsCourseCategory = gradeCategoryDto.IsCourseCategory
+             //   IsCourseCategory = gradeCategoryDto.IsCourseCategory
             };
 
             _repository.Insert(gradeCategory);
@@ -36,7 +36,7 @@ namespace BusinessLogic.Implementations
             var category = _repository.GetByFilter<GradeCategory>(x => x.Id == gradeCategoryDto.Id);
 
             category.Name = gradeCategoryDto.Name;
-            category.Percentage = gradeCategoryDto.Percentage;
+          //  category.Percentage = gradeCategoryDto.Percentage;
 
 
             _repository.Update(category);
@@ -56,7 +56,7 @@ namespace BusinessLogic.Implementations
                 {
                     Id = gradeCategory.Id,
                     Name = gradeCategory.Name,
-                    Percentage = gradeCategory.Percentage,
+              //      Percentage = gradeCategory.Percentage,
                     CourseId = gradeCategory.CourseId
                 };
 

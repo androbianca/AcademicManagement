@@ -15,7 +15,7 @@ export class TopBarComponent implements OnInit {
   notifications: Notif[];
   notifNumber: number = 0
 
-  constructor(protected overlay: Overlay,private signalRService: SignalRService,
+  constructor(protected overlay: Overlay, private signalRService: SignalRService,
     private notificatonService: NotificationService) { }
 
   ngOnInit(): void {

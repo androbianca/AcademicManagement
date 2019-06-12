@@ -29,6 +29,8 @@ namespace BusinessLogic.Configurations
             services.AddTransient<ICommentLogic, CommentLogic>();
             services.AddTransient<IAlertLogic, AlertLogic>();
             services.AddTransient<IOptionalLogic, OptionalLogic>();
+            services.AddTransient<ICourseFormulaLogic, CourseFormulaLogic>();
+            services.AddTransient<IUserRoleLogic,UserRoleLogic>();
 
 
         }

@@ -31,7 +31,7 @@ namespace Service.Controllers
         public ActionResult<ICollection<GradeDto>> GetFinalGrade([FromRoute] Guid courseId, [FromRoute] Guid studentId)
         {
 
-            var finalGrade = _gradeLogic.ComputeLabFinalGrade(courseId, studentId);
+            var finalGrade = _gradeLogic.ComputeFinalGrade(courseId, studentId);
 
             return Ok(finalGrade);
 
@@ -57,6 +57,7 @@ namespace Service.Controllers
 
         }
 
+   
         [HttpPost("update")]
         public IActionResult Update([FromBody] GradeDto grade)
         {

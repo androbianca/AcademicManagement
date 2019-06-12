@@ -2,7 +2,7 @@
 
 :host(.page-wrapper) {
   @include flex(row, flex-start, none);
-  margin: 40px;
+  padding: 40px;
   height: 100%;
   width: 100%;
 }
@@ -13,38 +13,33 @@ button {
 
 .left {
   @include flex(none, none, center);
-
   width: 70%;
-  height: 100%;
 }
 
 .right {
+  @include flex(column, center, none);
   width: 30%;
   height: 100%;
   border-left: 0.5px solid rgb(187, 183, 183);
-  padding-left: 40px;
+  padding: 40px;
 }
 
 .resources {
   width: 100%;
 }
 
-.button3 {
-  margin: 20px 0 20px 0;
-}
-.button {
-  @include flex (none, center, center);
+
+button {
   background: #5C9EAD;
-  @include size(4vh, 80%);
+  @include size(4vh, 100%);
   border-radius: 4px;
   border: none;
-  margin: 0 10px 0 10px;
-  padding: 10px;
   cursor: pointer;
   color: white;
-
 
   &:hover {
     background-color: rgb(106, 178, 194);
     box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
-  }}
+  }
+
+}

@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Models
 {
-   public class OptionalDto
+    public class OptionalDto
     {
         public string GoogleForm { get; set; }
         public string Path { get; set; }

@@ -79,11 +79,11 @@ namespace DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid>("AccountId");
+
                     b.Property<string>("Body");
 
                     b.Property<Guid>("PostId");
-
-                    b.Property<Guid>("SenderId");
 
                     b.Property<DateTime>("Time");
 
@@ -117,6 +117,23 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("Entities.CourseFormula", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CourseId");
+
+                    b.Property<string>("Formula");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId")
+                        .IsUnique();
+
+                    b.ToTable("CourseFormulas");
                 });
 
             modelBuilder.Entity("Entities.Email", b =>
@@ -193,7 +210,7 @@ namespace DataAccess.Migrations
 
                     b.Property<Guid>("StudentId");
 
-                    b.Property<float>("Value");
+                    b.Property<double>("Value");
 
                     b.HasKey("Id");
 
@@ -236,11 +253,7 @@ namespace DataAccess.Migrations
 
                     b.Property<Guid>("CourseId");
 
-                    b.Property<bool>("IsCourseCategory");
-
                     b.Property<string>("Name");
-
-                    b.Property<int>("Percentage");
 
                     b.HasKey("Id");
 
@@ -341,6 +354,10 @@ namespace DataAccess.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<string>("UserCode")
                         .IsRequired();
@@ -478,6 +495,14 @@ namespace DataAccess.Migrations
                     b.HasOne("Entities.Post", "Post")
                         .WithMany()
                         .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Entities.CourseFormula", b =>
+                {
+                    b.HasOne("Entities.Course", "Course")
+                        .WithOne("CourseFormula")
+                        .HasForeignKey("Entities.CourseFormula", "CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

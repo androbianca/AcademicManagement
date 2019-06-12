@@ -42,9 +42,9 @@ export class GradeCategoryModalComponentComponent {
       this.isDisabled = false;
       this.gradeCategory.courseId = this.courseId;
       this.gradeCategory.name = event.value.category;
-      this.gradeCategory.percentage = event.value.percentage;
+    //is.gradeCategory.percentage = event.value.percentage;
       var value = event.value.type ? true : false;
-      this.gradeCategory.isCourseCategory = value;
+     // this.gradeCategory.isCourseCategory = value;
     }
   }
 

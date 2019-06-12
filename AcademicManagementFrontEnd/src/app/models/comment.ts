@@ -1,5 +1,6 @@
 export class Comm {
-    body:string;
-    postId:string;
-    senderId:string;
+    body: string;
+    postId: string;
+    userCode: string;
+    time: Date;
 }

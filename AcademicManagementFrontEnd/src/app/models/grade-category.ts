@@ -1,7 +1,7 @@
 export class GradeCategory {
     name: string;
-    percentage: number;
+  //  percentage: number;
     courseId: string;
     id:string;
-    isCourseCategory: boolean;
+  //  isCourseCategory: boolean;
 }

@@ -52,6 +52,8 @@ namespace BusinessLogic.Implementations
                     Id = group.Id,
                     Name = group.Name
                 };
+
+
                 groupDtos.Add(groupDto);
             }
 
@@ -63,7 +65,7 @@ namespace BusinessLogic.Implementations
             var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == ProfId);
             var groupDtos = new List<GroupDto>();
 
-            foreach(var profStud in profStuds)
+            foreach (var profStud in profStuds)
             {
                 var group = _repository.GetByFilter<Group>(x => x.Id == profStud.GroupId);
 
@@ -73,10 +75,16 @@ namespace BusinessLogic.Implementations
                     Name = group.Name,
                     Year = group.Year
                 };
-                groupDtos.Add(groupDto);       
+
+                var item = groupDtos.Find(x => x.Id == groupDto.Id);
+                if (item == null)
+                {
+                    groupDtos.Add(groupDto);
+
+                }
             }
 
-            return groupDtos;
-        }
+                return groupDtos;
+            }
     }
 }

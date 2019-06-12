@@ -8,7 +8,7 @@
       </form>
     </div>
     <div class="footer">
-      <button [class.disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
+      <button class = "btn" [class.disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
   </div>
 
   <ng-template [ngIf]="signalRService.posts?.length == 0" [ngIfElse]="displayResults">

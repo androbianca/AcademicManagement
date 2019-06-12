@@ -14,6 +14,8 @@ namespace Entities
 
         public bool isDeleted { get; set; }
 
+        public CourseFormula CourseFormula { get; set; }
+
         public IEnumerable<StudCourse> Studs { get; set; }
 
         public IEnumerable<Grade> Grades { get; set; }

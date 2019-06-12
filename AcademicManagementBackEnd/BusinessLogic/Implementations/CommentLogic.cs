@@ -20,52 +20,64 @@ namespace BusinessLogic.Implementations
 
         public Comment AddComment(CommentDto commentDto)
         {
+            var account = _repository.GetByFilter<Account>(x => x.UserCode == commentDto.UserCode);
+
             var comment = new Comment
             {
+                Id = Guid.NewGuid(),
                 Body = commentDto.Body,
                 PostId = commentDto.PostId,
-                SenderId = commentDto.SenderId,
+                AccountId = account.Id,
                 Time = DateTime.Now
             };
 
             _repository.Insert(comment);
             _repository.Save();
 
-           var notif = this.CreateNotification(comment);
-            this._notificationLogic.Create(notif);
+            CreateNotification(commentDto, comment.Id);
 
             return comment;
          }
 
-        private NotificationDto CreateNotification(Comment comment)
+        private NotificationDto CreateNotification(CommentDto commentDto, Guid id)
         {
-            var prof = _repository.GetByFilter<Professor>(x => x.Id == comment.SenderId);
-            var stud = _repository.GetByFilter<Student>(x => x.Id == comment.SenderId);
             var sender = new BaseUser();
-            var post = _repository.GetByFilter<Post>(x => x.Id == comment.PostId);
-            var reciver = new BaseUser();
-            var account = _repository.GetByFilter<Account>(x => x.Id == post.AccountId);
 
-            if (stud != null)
-            
+            var account = _repository.GetByFilter<Account>(x => x.UserCode == commentDto.UserCode);
+
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == commentDto.UserCode);
+
+            var post = _repository.GetByFilter<Post>(x => x.Id == commentDto.PostId);
+
+            var reciver = _repository.GetByFilter<Account>(x => x.Id == post.AccountId);
+
+            var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId).Name;
+
+            if (role == "Student")
             {
-                sender = stud;
+                sender = _repository.GetByFilter<Student>(x => x.PotentialUserId == potentialUser.Id);
+
             }
-            else
+            if (role == "Professor")
             {
-                sender = prof;
+                sender = _repository.GetByFilter<Professor>(x => x.PotentialUserId == potentialUser.Id);
             }
 
             var notification = new NotificationDto
             {
                 Title = "New comment",
-                Body = sender.LastName + ' ' + sender.FirstName + " added a comment at your post" ,
+                Body = sender.LastName + ' ' + sender.FirstName + " added a comment at your post",
                 IsRead = false,
-                ReciverId = stud.PotentialUserId,
+                ReciverId = reciver.PotentialUserId,
                 SenderId = account.PotentialUserId,
-                ItemId = comment.Id
+                ItemId = id
             };
 
+
+            _notificationLogic.Create(notification);
+          
+
+          
             return notification;
 
         }
@@ -74,13 +86,14 @@ namespace BusinessLogic.Implementations
         {
             var commentDtos = new List<CommentDto>();
             var comments = _repository.GetAllByFilter<Comment>(x => x.PostId == postId);
-
             foreach(var comment in comments)
             {
+                var account = _repository.GetByFilter<Account>(x => x.Id == comment.AccountId);
+
                 var commentDto = new CommentDto
                 {
                     Body = comment.Body,
-                    SenderId = comment.SenderId,
+                    UserCode = account.UserCode,
                     Time = comment.Time
                 };
 

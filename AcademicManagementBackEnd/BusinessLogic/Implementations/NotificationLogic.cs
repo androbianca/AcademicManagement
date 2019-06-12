@@ -11,14 +11,17 @@ namespace BusinessLogic.Implementations
 {
     public class NotificationLogic : BaseLogic, INotificationLogic
     {
+        private IHubContext<NotificationsServer> _hubContext;
 
-        public NotificationLogic(IRepository repository)
+        public NotificationLogic(IRepository repository, IHubContext<NotificationsServer> hubContext)
             : base(repository)
         {
+            _hubContext = hubContext;
         }
 
         public Notification Create(NotificationDto notificationDto)
         {
+
             Guid accountReciver = Guid.Empty;
             Guid accountSender = Guid.Empty;
 
@@ -52,6 +55,9 @@ namespace BusinessLogic.Implementations
             _repository.Insert(notification);
             _repository.Save();
 
+            _hubContext.Clients.All.SendAsync("message");
+
+
             return notification;
 
         }
@@ -59,31 +65,40 @@ namespace BusinessLogic.Implementations
         public List<NotificationDto> GetUserNotifications(string userId)
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userId);
-            var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == potentialUser.Id);
-            ; var notifications = _repository.GetAllByFilter<Notification>(x => x.ReciverId == account.Id || x.ReciverId == Guid.Empty);
-            var notificationDtos = new List<NotificationDto>();
-            foreach (var notification in notifications)
-            {
-                if (notification.SenderId != account.Id)
-                {
 
-                    var notificationDto = new NotificationDto
+
+            var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId);
+
+            if (role.Name != "Admin")
+            {
+                var account = _repository.GetByFilter<Account>(x => x.PotentialUserId == potentialUser.Id);
+                ; var notifications = _repository.GetAllByFilter<Notification>(x => x.ReciverId == account.Id || x.ReciverId == Guid.Empty);
+                var notificationDtos = new List<NotificationDto>();
+                foreach (var notification in notifications)
+                {
+                    if (notification.SenderId != account.Id)
                     {
 
-                        Title = notification.Title,
-                        Body = notification.Body,
-                        IsRead = notification.IsRead,
-                        ItemId = notification.ItemId,
-                        Id = notification.Id,
-                        Time = notification.Time
+                        var notificationDto = new NotificationDto
+                        {
 
-                    };
+                            Title = notification.Title,
+                            Body = notification.Body,
+                            IsRead = notification.IsRead,
+                            ItemId = notification.ItemId,
+                            Id = notification.Id,
+                            Time = notification.Time
 
-                    notificationDtos.Add(notificationDto);
+                        };
+
+                        notificationDtos.Add(notificationDto);
+                    }
                 }
+
+                return notificationDtos;
             }
 
-            return notificationDtos;
+            return null;
         }
 
         public void ReadNotification(NotificationDto notificationDto)

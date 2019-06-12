@@ -6,6 +6,10 @@ namespace Models
     {
         public string UserCode { get; set; }
 
-        public Guid UserRoleId { get; set; }
+        public Guid RoleId { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
     }
 }

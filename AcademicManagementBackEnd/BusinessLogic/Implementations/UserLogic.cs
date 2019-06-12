@@ -1,9 +1,7 @@
 ﻿using System;
 using BusinessLogic.Abstractions;
-using BusinessLogic.HubConfig;
 using DataAccess.Abstractions;
 using Entities;
-using Microsoft.AspNetCore.SignalR;
 using Models;
 
 namespace BusinessLogic.Implementations
@@ -18,7 +16,7 @@ namespace BusinessLogic.Implementations
         public AccountDto Authenticate(string code, string password)
         {
             Account user = _repository.GetByFilter<Account>(x => x.UserCode == code);
-             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == code);
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == code);
             var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId);
             if (user == null)
                 return null;
@@ -64,8 +62,30 @@ namespace BusinessLogic.Implementations
             _repository.Insert(newRegistration);
             _repository.Save();
 
+            InsertAdmin(potentialUser);
+
             return newRegistration;
 
+        }
+
+        private void InsertAdmin(PotentialUser potentialUser)
+        {
+            var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId);
+
+            if (role.Name == "Admin")
+            {
+                var admin = new Admin
+                {
+                    Id = Guid.NewGuid(),
+                    LastName = potentialUser.LastName,
+                    FirstName = potentialUser.LastName,
+                    PotentialUserId = potentialUser.Id
+
+                };
+
+                _repository.Insert(admin);
+                _repository.Save();
+            }
         }
 
 
@@ -117,7 +137,7 @@ namespace BusinessLogic.Implementations
             var user = new BaseUser();
 
             var account = _repository.GetByFilter<Account>(x => x.UserCode == id);
-     
+
             var currentPotentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == id);
             var role = _repository.GetByFilter<UserRole>(x => x.Id == currentPotentialUser.UserRoleId);
             if (role.Name == "Student")

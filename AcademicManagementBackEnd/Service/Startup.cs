@@ -34,7 +34,7 @@ namespace Service
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddHttpContextAccessor();
-
+          
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
@@ -80,10 +80,11 @@ namespace Service
                 options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
 
             });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddBusinessLogic(Configuration.GetConnectionString("AcademicManagement"));
             services.AddSignalR();
-          
+ 
 
         }
 
@@ -101,6 +102,7 @@ namespace Service
             }
             app.UseAuthentication();
             app.UseCors("SiteCorsPolicy");
+      
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -111,7 +113,6 @@ namespace Service
             app.UseMvc();
 
             app.UseSignalR(routes => { routes.MapHub<NotificationsServer>("/notify"); });
-
             app.UseQuartz();
 
 

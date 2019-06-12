@@ -10,6 +10,8 @@ import { ProfStudService } from 'src/app/services/prof-stud-service.service';
 import { ProfStud } from 'src/app/models/prof-studs';
 import { GroupRead } from 'src/app/models/groupRead';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserRoleService } from 'src/app/services/user-role.service';
+import { PotentialUser } from 'src/app/models/potential-user';
 
 @Component({
   selector: 'app-add-prof',
@@ -25,6 +27,8 @@ export class AddProfComponent implements OnInit {
   allgroups: GroupRead[];
   prof = new Professor();
   isDisabled: boolean = true;
+  roleId: string;
+  potentialUser = new PotentialUser();
   count = 1;
   errorMessage = "This field is required!";
   forms = [{ course: 'course1', group: 'group1' }];
@@ -41,6 +45,7 @@ export class AddProfComponent implements OnInit {
     private groupService: GroupService,
     private profService: ProfService,
     private snackBar: MatSnackBar,
+    private userRoleService: UserRoleService,
     private potentialUserService: PotentialUserService,
     private profStudService: ProfStudService) { }
 
@@ -79,7 +84,7 @@ export class AddProfComponent implements OnInit {
   }
 
   filterGroups(course) {
-    this.groups = this.allgroups.filter(x=>x.year === course.year)
+    this.groups = this.allgroups.filter(x => x.year === course.year)
   }
 
   add() {
@@ -94,10 +99,21 @@ export class AddProfComponent implements OnInit {
     this.addProfForm.addControl(gname, group);
   }
 
+  getRoleId() {
+    this.userRoleService.getProfRoleId().subscribe(result => {
+      this.roleId = result.id;
+      this.addPotentialUser();
+
+    })
+  }
+
   addPotentialUser() {
-    var usercode = this.addProfForm.get('userCode').value;
-    this.potentialUserService.addPotentialUser(usercode).subscribe(response => {
-      this.prof.potentialUserId = response
+    this.potentialUser.userCode = this.addProfForm.value.userCode;
+    this.potentialUser.firstName = this.addProfForm.value.firstName;
+    this.potentialUser.lastName = this.addProfForm.value.lastName;
+    this.potentialUser.roleId = this.roleId;
+    this.potentialUserService.addPotentialUser(this.potentialUser).subscribe(response => {
+      this.prof.potentialUserId = response.id
       this.addProfessor();
     });
   }
@@ -112,10 +128,12 @@ export class AddProfComponent implements OnInit {
 
   submit(form) {
     if (form.valid) {
+      debugger
+
       this.prof.firstName = form.value.firstName;
       this.prof.lastName = form.value.lastName;
       this.prof.userCode = form.value.userCode;
-      this.addPotentialUser();
+      this.getRoleId();
     }
   }
 

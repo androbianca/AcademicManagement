@@ -10,6 +10,9 @@ import * as moment from 'moment'
 import { CommService } from 'src/app/services/comment.service';
 import { Comm } from 'src/app/models/comment';
 import { SignalRService } from 'src/app/services/signalR-service.service';
+import { PotentialUserService } from 'src/app/services/potentialuser-service.service';
+import { UserRoleService } from 'src/app/services/user-role.service';
+import { UserRole } from 'src/app/models/user-role';
 let myMoment: moment.Moment = moment("someDate");
 
 @Component({
@@ -23,36 +26,43 @@ export class FeedCardComponent implements OnInit {
   
   currentUser: any;
   user:any;
-  fullName: string;
+  fullName: string = " ";
   initials:string;
   comments :Comm[];
   date : any;
-  role : typeof Role = Role;
+  role : string;
+  
 
   constructor(private studentService: StudentService,
     private profService: ProfService,
+    private potentialUserService: PotentialUserService,
+    private userRoleService: UserRoleService,
     private commService: CommService,
     private signalRService: SignalRService,
     private currentUserDetailsService: CurrentUserDetailsService) {
     this.currentUser = this.currentUserDetailsService.getUser();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getUser();
     this.registerOnServerEvents();
     this.getComments();
-    this.post.role == this.role.student ? this.getStudentDetails() : (this.currentUser.userRole == this.role.professor ? this.getProfDetails() : null)
-    this.fullName = this.currentUser.lastName + ' ' + this.currentUser.firstName;
-    this.initials = this.currentUser.lastName[0] + ' ' + this.currentUser.firstName[0];
-    this.date =  moment(this.post.time, "YYYYMMDD hh:mm").fromNow(); 
-
+    this.date = moment(this.post.time, "YYYYMMDD hh:mm").fromNow();
   }
 
-  getStudentDetails() {
-    this.studentService.getById(this.post.userCode).subscribe(x => this.user = x);
+  getUser() {
+    this.potentialUserService.getByUserCode(this.post.userCode).subscribe(x => {
+      console.log(x);
+      this.fullName = x.lastName + ' ' + x.firstName;
+      this.initials = x.lastName[0] + ' ' + x.firstName[0];
+      this.getRole(x.roleId);
+    });
   }
 
-  getProfDetails() {
-    this.profService.getById(this.post.userCode).subscribe(x => this.user = x);
+  getRole(id) {
+    this.userRoleService.getById(id).subscribe(result => {
+      this.role = result.name
+    })
   }
 
   public registerOnServerEvents(): void {
@@ -63,7 +73,10 @@ export class FeedCardComponent implements OnInit {
 
   getComments(){
     this.commService.getByPostId(this.post.id).subscribe(x=>{
-      this.comments = x;
+      this.comments = x.sort((val1, val2) => {
+        return new Date(val1.time).getTime() - new
+          Date(val2.time).getTime()
+      })
     })
   }
 

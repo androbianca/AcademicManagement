@@ -1,19 +1,15 @@
 ﻿using DataAccess.Configurations;
 using DataAccess.Configurations.Entities;
 using Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IHttpContextAccessor httpContextAccessor)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public DbSet<PotentialUser> PotentialUsers { get; set; }
@@ -38,6 +34,8 @@ namespace DataAccess
         public DbSet<Alert> Alerts { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Optional> Optionals { get; set; }
+        public DbSet<CourseFormula> CourseFormulas { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

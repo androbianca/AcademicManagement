@@ -22,7 +22,7 @@ export class EditCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.categoryForm = new FormGroup({
       name: new FormControl(this.category.name),
-      percentage: new FormControl(this.category.percentage, Validators.pattern('^[0-9]*$'))
+      // percentage: new FormControl(this.category.percentage, Validators.pattern('^[0-9]*$'))
     });
 
     this.onChanges();
@@ -37,15 +37,14 @@ export class EditCategoryComponent implements OnInit {
   }
 
   save(form) {
-    if (!form.get('percentage').hasErrors) {
-      this.category.percentage = form.value.percentage;
-      this.category.name = form.value.name;
-      this.gradeCategoryService.edit(this.category).subscribe(() => { })
-    }
+    // if (!form.get('percentage').hasErrors) {
+    // this.category.percentage = form.value.percentage;
+    this.category.name = form.value.name;
+    this.gradeCategoryService.edit(this.category).subscribe(() => { })
+    //  }
   }
 
   close() {
-    console.log("aa");
     this.formClosed.emit(false);
   }
 }

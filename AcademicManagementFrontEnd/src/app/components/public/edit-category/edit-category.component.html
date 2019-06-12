@@ -1,9 +1,9 @@
 <form [formGroup]="categoryForm">
     <input type="text" formControlName="name" [placeholder]="category.name">
-    <input type="text" formControlName="percentage" [placeholder]="category.percentage">
+    <!-- <input type="text" formControlName="percentage" [placeholder]="category.percentage">
     <div *ngIf="categoryForm.get('percentage')?.errors && categoryForm.get('percentage')?.touched" class="error-message">
       {{ errorMessage }}
-    </div>
+    </div> -->
     <div class="buttons">
       <button type="submit" (click)="close()">Close</button>
       <button (click)="save(categoryForm)" [class.button2-disabled]="isDisabled" type="submit">Save</button>

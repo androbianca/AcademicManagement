@@ -22,7 +22,6 @@ namespace Service.Controllers
        [HttpPost]
        public IActionResult AddNotification(NotificationDto notification)
         {
-            var id = getCurrentUserId();
 
             var result =  _notificationLogic.Create(notification);
 

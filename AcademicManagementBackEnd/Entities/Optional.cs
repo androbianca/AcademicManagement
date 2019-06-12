@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Entities
+﻿namespace Entities
 {
-   public class Optional : BaseEntity
+    public class Optional : BaseEntity
     {
         public string GoogleForm { get; set; }
         public string FileName { get; set; }

@@ -10,6 +10,8 @@ import { StudCourse } from 'src/app/models/stud-course';
 import { StudCourseService } from 'src/app/services/stud-course-service.service';
 import { GroupRead } from 'src/app/models/groupRead';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserRoleService } from 'src/app/services/user-role.service';
+import { PotentialUser } from 'src/app/models/potential-user';
 
 
 @Component({
@@ -25,7 +27,9 @@ export class AddStudComponent implements OnInit {
   optionals: any;
   student = new Student();
   studId: string;
-  isDisabled: boolean = true;;
+  isDisabled: boolean = true;
+  roleId:string;
+  potentialUser= new PotentialUser();
 
   addStudForm = new FormGroup({
     firstName: new FormControl('',Validators.required),
@@ -39,6 +43,7 @@ export class AddStudComponent implements OnInit {
     private potentialUserService: PotentialUserService,
     private studentService: StudentService,
     private snackBar: MatSnackBar,
+    private userRoleService:UserRoleService,
     private StudCourseService: StudCourseService) { }
 
 
@@ -64,9 +69,12 @@ export class AddStudComponent implements OnInit {
   }
 
   addPotentialUser() {
-    var usercode = this.addStudForm.get('userCode').value;
-    this.potentialUserService.addPotentialUser(usercode).subscribe(response => {
-      this.student.potentialUserId = response
+    this.potentialUser.userCode = this.addStudForm.value.userCode;
+    this.potentialUser.firstName = this.addStudForm.value.firstName;
+    this.potentialUser.lastName = this.addStudForm.value.lastName;
+
+    this.potentialUserService.addPotentialUser(this.potentialUser).subscribe(response => {
+      this.student.potentialUserId = response.id
       this.addStudent();
     });
   }
@@ -81,14 +89,22 @@ export class AddStudComponent implements OnInit {
     
   }
 
+  getRoleId() {
+    this.userRoleService.getStudentRoleId().subscribe(result => {
+      console.log(result);
+      this.potentialUser.roleId = result.id;
+      this.addPotentialUser();
+    })
+  }
+
   submit(form) {
     if(form.valid){
     this.student.firstName = form.value.firstName;
     this.student.lastName = form.value.lastName;
     this.student.userCode = form.value.userCode;
     this.student.groupId = form.value.group.id;
-    this.addPotentialUser();}
-  }
+    this.getRoleId();
+  }}
 
   ngOnInit() {
     this.getGroups();

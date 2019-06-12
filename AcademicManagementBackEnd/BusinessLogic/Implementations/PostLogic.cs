@@ -1,8 +1,6 @@
 ﻿using BusinessLogic.Abstractions;
-using BusinessLogic.HubConfig;
 using DataAccess.Abstractions;
 using Entities;
-using Microsoft.AspNetCore.SignalR;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -21,9 +19,17 @@ namespace BusinessLogic.Implementations
 
         public Post Add(PostDto postDto)
         {
+            var sender = new BaseUser();
             var account = _repository.GetByFilter<Account>(x => x.UserCode == postDto.UserCode);
+
+            if (account == null)
+            {
+                return null;
+            }
+
             var post = new Post
-            {   Id = Guid.NewGuid(),
+            {
+                Id = Guid.NewGuid(),
                 Body = postDto.Body,
                 AccountId = account.Id,
                 Time = DateTime.Now
@@ -32,34 +38,43 @@ namespace BusinessLogic.Implementations
             _repository.Insert(post);
             _repository.Save();
 
-            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == postDto.UserCode);
+            CreateNotif(account, postDto.UserCode);
+            return post;
+        }
 
-            var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId).Name;
+
+        private NotificationDto CreateNotif(Account account, string userCode)
+        {
             var sender = new BaseUser();
-            if(role == "Student")
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == userCode);
+            var role = _repository.GetByFilter<UserRole>(x => x.Id == potentialUser.UserRoleId).Name;
+
+            if(potentialUser == null || role == null)
+            {
+                return null;
+            }
+
+            if (role == "Student")
             {
                 sender = _repository.GetByFilter<Student>(x => x.PotentialUserId == potentialUser.Id);
 
             }
             if (role == "Professor")
             {
-               sender = _repository.GetByFilter<Professor>(x => x.PotentialUserId == potentialUser.Id);
+                sender = _repository.GetByFilter<Professor>(x => x.PotentialUserId == potentialUser.Id);
             }
             var notification = new NotificationDto
             {
                 ReciverId = Guid.Empty,
                 Title = "New post on wall.",
-                Body =  sender.LastName + ' '+ sender.FirstName + " has posted on the wall.",
+                Body = sender.LastName + ' ' + sender.FirstName + " has posted on the wall.",
                 IsRead = false,
                 SenderId = account.PotentialUserId,
             };
 
             _notificationLogic.Create(notification);
 
-
-
-
-            return post;
+            return notification;
         }
 
 
@@ -80,7 +95,6 @@ namespace BusinessLogic.Implementations
                     Body = post.Body,
                     UserCode = account.UserCode,
                     Time = post.Time,
-                    Role = role.Name
                 };
 
                 postDtos.Add(postDto);
@@ -89,9 +103,7 @@ namespace BusinessLogic.Implementations
 
             return postDtos;
 
-
         }
-
 
 
     }

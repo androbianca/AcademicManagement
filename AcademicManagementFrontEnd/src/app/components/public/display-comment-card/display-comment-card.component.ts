@@ -8,6 +8,9 @@ import { Role } from 'src/app/models/role-enum';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
 import { SignalRService } from 'src/app/services/signalR-service.service';
+import { PotentialUserService } from 'src/app/services/potentialuser-service.service';
+import { UserRole } from 'src/app/models/user-role';
+import { UserRoleService } from 'src/app/services/user-role.service';
 let myMoment: moment.Moment = moment("someDate");
 
 @Component({
@@ -23,39 +26,31 @@ export class DisplayCommentCardComponent implements OnInit {
   date: any;
   fullName: string;
   initials: string;
-  role: typeof Role = Role;
-  currentUser: UserDetails;
-  user: any;
+  role: string;
 
 
-  constructor(private studentService: StudentService,
-    private profService: ProfService,
-    private signalRService: SignalRService,
-    private currentUserDetailsService: CurrentUserDetailsService) {
-    this.currentUser = this.currentUserDetailsService.getUser();
+
+  constructor(private potentialUserService: PotentialUserService,
+    private userRoleService: UserRoleService
+  ) {
   }
 
   ngOnInit(): void {
-    this.post.role == this.role.student ? this.getStudentDetails() : (this.currentUser.userRole == this.role.professor ? this.getProfDetails() : null)
-
-    this.date = moment(this.post.time, "YYYYMMDD hh:mm").fromNow();
+    this.getUser();
+    this.date = moment(this.comment.time, "YYYYMMDD hh:mm").fromNow();
   }
 
-  getStudentDetails() {
-    this.studentService.getById(this.post.userCode).subscribe(x => {
-      this.user = x;
-      this.fullName = this.user.lastName + ' ' + this.user.firstName;
-      this.initials = this.user.lastName[0] + ' ' + this.user.firstName[0];
-
+  getUser() {
+    this.potentialUserService.getByUserCode(this.comment.userCode).subscribe(x => {
+      this.fullName = x.lastName + ' ' + x.firstName;
+      this.initials = x.lastName[0] + ' ' + x.firstName[0];
+      this.getRole(x.roleId);
     });
   }
 
-  getProfDetails() {
-    this.profService.getById(this.post.userCode).subscribe(x => {
-      this.user = x;
-      this.fullName = this.user.lastName + ' ' + this.user.firstName;
-      this.initials = this.user.lastName[0] + ' ' + this.user.firstName[0];
-
-    });
+  getRole(id) {
+    this.userRoleService.getById(id).subscribe(result => {
+      this.role = result.name
+    })
   }
 }

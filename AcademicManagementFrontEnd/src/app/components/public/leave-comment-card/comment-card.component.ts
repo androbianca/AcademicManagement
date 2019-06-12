@@ -12,10 +12,12 @@ import { SignalRService } from 'src/app/services/signalR-service.service';
   templateUrl: './comment-card.component.html',
   styleUrls: ['./comment-card.component.scss']
 })
-export class CommentCardComponent implements OnInit {
+export class CommentCardComponent {
 
   @Input() postId: string;
+
   user: UserDetails;
+  initials:string;
   comment = new Comm();
   commentForm = new FormGroup({
     comment: new FormControl("", [Validators.required]),
@@ -25,22 +27,19 @@ export class CommentCardComponent implements OnInit {
     private signalRService: SignalRService,
     private currentUserDetailsService: CurrentUserDetailsService) {
     this.user = this.currentUserDetailsService.getUser();
-    this.comment.senderId = this.user.id;
+    this.initials = this.user.lastName[0] + ' ' + this.user.firstName[0];
+    this.comment.userCode = this.user.userCode;
   }
-
-  ngOnInit() {
-  }
-
 
   public sendMessage(): void {
     this.signalRService._hubConnection.invoke("NewMessage");
   }
 
   submit(event) {
+    event.preventDefault();
     if (event.code == "Enter" && this.commentForm.valid) {
       this.comment.body = this.commentForm.value.comment;
       this.comment.postId = this.postId;
-      
       this.commentService.postComment(this.comment).subscribe(x => this.sendMessage());
     }
   }

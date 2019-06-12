@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Entities;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,10 +9,10 @@ namespace BusinessLogic.Abstractions
     public interface IGradeLogic
     {
         ICollection<GradeDto> GetGradesByStud(Guid studentId, Guid courseId);
-        float ComputeLabFinalGrade(Guid courseId, Guid studentId);
-        void Add(GradeDto grade);
+        double ComputeFinalGrade(Guid courseId, Guid studentId);
+        Grade Add(GradeDto grade);
         GradeDto GetById(Guid gradeId);
-        void Update(GradeDto gradeDto);
+        Grade Update(GradeDto gradeDto);
         Task<bool> SendAlert();
     }
 }

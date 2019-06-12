@@ -1,5 +1,21 @@
 <h1 mat-dialog-title>Grade Categories</h1>
 <div mat-dialog-content>
+
+  <ng-container *ngFor="let formula of formulaArray">
+    <a>
+      <div class="content">
+        <h1>{{ formula }}</h1>
+      </div>
+    </a>
+  </ng-container>
+
+  <ng-container *ngIf="formulaArray?.length == 0">
+    <form [formGroup]="gradeFormulaForm">
+      <label>Insert your formula for final grade: </label>
+      <input name="formula" formControlName="formula">
+      <button class="button" (click)="submit(gradeFormulaForm)">Submit</button>
+    </form>
+  </ng-container>
   <app-display-categories [courseId]="data.courseId"></app-display-categories>
 </div>
 <mat-dialog-actions>
