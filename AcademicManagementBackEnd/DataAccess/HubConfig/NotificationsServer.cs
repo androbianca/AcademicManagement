@@ -6,9 +6,9 @@ namespace BusinessLogic.HubConfig
 
     public class NotificationsServer : Hub
     {
-        public async Task NewMessage()
+        public async Task NewNotification()
         {
-            await Clients.All.SendAsync("message");
+            await Clients.All.SendAsync("notification");
         }
 
     }

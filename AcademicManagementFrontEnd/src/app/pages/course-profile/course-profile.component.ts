@@ -5,7 +5,7 @@ import { Professor } from 'src/app/models/professor';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
 import { MatDialog } from '@angular/material/dialog';
-import { CategoriesModalComponent } from 'src/app/components/public/categories-modal/categories-modal.component';
+import { CategoriesModalComponent } from 'src/app/components/public/grade-categories/categories-modal/categories-modal.component';
 
 @Component({
   selector: 'app-course-profile',

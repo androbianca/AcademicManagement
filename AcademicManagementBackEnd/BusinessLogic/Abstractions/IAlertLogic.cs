@@ -5,7 +5,7 @@ namespace BusinessLogic.Abstractions
 {
     public interface IAlertLogic
     {
-        AlertDto GetAlert();
+        AlertDto GetAlert(string userCode);
         void AddAlert(Alert alert);
 
     }

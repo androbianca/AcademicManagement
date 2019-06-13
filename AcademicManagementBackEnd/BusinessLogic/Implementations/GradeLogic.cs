@@ -4,9 +4,7 @@ using Entities;
 using Models;
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
 using System.Data;
 
 namespace BusinessLogic.Implementations
@@ -129,17 +127,7 @@ namespace BusinessLogic.Implementations
 
         }
 
-        public async Task<bool> SendAlert()
-        {
-            // var t = _httpContextAccessor.HttpContext;
-            //.Request.Headers["Authorization"];
-
-            var handler = new JwtSecurityTokenHandler();
-            //  var token = handler.ReadToken(headerValue) as JwtSecurityToken;
-            // var id = token.Claims.FirstOrDefault(c => c.Type == "Identifier").Value;
-
-            return true;
-        }
+       
 
         public double ComputeFinalGrade(Guid courseId, Guid studentId)
         {

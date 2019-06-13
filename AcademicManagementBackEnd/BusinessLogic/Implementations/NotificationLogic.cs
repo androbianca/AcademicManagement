@@ -55,7 +55,7 @@ namespace BusinessLogic.Implementations
             _repository.Insert(notification);
             _repository.Save();
 
-            _hubContext.Clients.All.SendAsync("message");
+            _hubContext.Clients.All.SendAsync("notification");
 
 
             return notification;

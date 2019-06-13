@@ -2,8 +2,9 @@
 using System.Text;
 using BusinessLogic.Configurations;
 using BusinessLogic.HubConfig;
-using BusinessLogic.Timer;
+using DataAccess.HubConfig;
 using Entities;
+using Hangfire;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
@@ -83,8 +84,9 @@ namespace Service
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddBusinessLogic(Configuration.GetConnectionString("AcademicManagement"));
+            services.AddHangfire(config =>
+                config.UseSqlServerStorage(Configuration.GetConnectionString("AcademicManagement")));
             services.AddSignalR();
- 
 
         }
 
@@ -112,12 +114,16 @@ namespace Service
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            app.UseSignalR(routes => { routes.MapHub<NotificationsServer>("/notify"); });
-            app.UseQuartz();
+            app.UseSignalR(routes => {
+                routes.MapHub<NotificationsServer>("/notifications");
+                routes.MapHub<AlertServer>("/alerts");
+                routes.MapHub<CommentServer>("/comments");
+                routes.MapHub<FeedServer>("/feed");
+            });
 
-
-
-
+            app.UseHangfireDashboard();
+            app.UseHangfireServer();
+         
 
         }
 

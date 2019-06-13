@@ -11,8 +11,8 @@ export class AlertService {
     constructor(private baseService: BaseService) { }
 
 
-    getAlert() {
-        return this.baseService.get(`alerts`);
+    getAlert(userCode:string) {
+        return this.baseService.get(`alerts/${userCode}`);
     }
 
 }

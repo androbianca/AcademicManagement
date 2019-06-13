@@ -11,7 +11,7 @@
       <button class = "btn" [class.disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
   </div>
 
-  <ng-template [ngIf]="signalRService.posts?.length == 0" [ngIfElse]="displayResults">
+  <ng-template [ngIf]="posts?.length == 0" [ngIfElse]="displayResults">
     <app-no-results text='No posts yet'></app-no-results>
   </ng-template>
 

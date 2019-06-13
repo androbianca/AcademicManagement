@@ -14,11 +14,11 @@ namespace Service.Controllers
             _alertLogic = alertLogic;
         }
 
-        [HttpGet]
-        public IActionResult GetAlert()
+        [HttpGet("{userCode}")]
+        public IActionResult GetAlert([FromRoute] string userCode)
         {
 
-            var alert = _alertLogic.GetAlert();
+            var alert = _alertLogic.GetAlert(userCode);
 
             return Ok(alert);
 

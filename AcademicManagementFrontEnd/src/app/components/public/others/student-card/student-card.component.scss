@@ -1,0 +1,47 @@
+@import "../../../../../styles/mixins.scss";
+
+.student-card {
+  margin: 0 20px 20px 0;
+  @include flex(row, center, center);
+  @include size(100px, 300px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  background-color: #ffffff;
+  cursor:pointer;
+
+  &:hover {
+    box-shadow: 0 3px 8px rgba(126, 122, 122, 0.15);
+  }
+
+  img {
+    @include size(20px, 20px);
+    margin: 8px;
+    cursor: pointer;
+  }
+
+  .initials {
+    @include flex(none, center, center);
+    @include size(100%, 30%);
+
+    .profile-picture {
+      @include flex(none, center, center);
+      @include size(60px, 60px);
+      font-size: 2vh;
+      border-radius: 50%;
+      padding: 3px;
+      border: 3px solid rgba(255, 255, 255, 0.719);
+      background: rgb(196, 199, 218);
+      color: white;
+    }
+  }
+
+  .name {
+    @include flex(none, center, flex-start);
+    @include size(100%, 70%);
+    color: rgb(58, 56, 56);
+  }
+}
+
+.disabled {
+  opacity: 0.3;
+}

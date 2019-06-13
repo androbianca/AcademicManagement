@@ -1,0 +1,43 @@
+@import "../../../../../styles/mixins.scss";
+@import "../../../../../styles/colors.scss";
+
+h6 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.container {
+  @include flex(column, flex-start, center);
+}
+
+.card {
+  height: 90px;
+  width: 600px;
+  @include flex(row, none, none);
+  margin-bottom: 10px;
+  color: #5C9EAD;
+  border-radius: 11px;
+  padding: 10px;
+  font-size: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+  opacity: 0.5;
+}
+
+.img {
+  @include size(60px, 60px);
+  @include flex(none, center, center);
+  font-weight: 400;
+  background-color: #e7e2e2c7;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+a {
+  text-decoration: none;
+}

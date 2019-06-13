@@ -2,7 +2,7 @@
   <mat-form-field>
     <mat-label>Select Student</mat-label>
     <mat-select formControlName="stud">
-      <mat-option *ngFor="let stud of studs" [value]="stud">{{stud.firstName}}</mat-option>
+      <mat-option *ngFor="let stud of studs" [value]="stud">{{stud.firstName}} {{stud.lastName}}</mat-option>
     </mat-select>
   </mat-form-field>
 

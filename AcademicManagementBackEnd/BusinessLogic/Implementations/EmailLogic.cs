@@ -12,11 +12,13 @@ namespace BusinessLogic.Implementations
 {
     public class EmailLogic : BaseLogic, IEmailLogic
     {
+        private IGradeLogic _gradeLogic;
 
 
-        public EmailLogic(IRepository repository)
+        public EmailLogic(IRepository repository, IGradeLogic gradeLogic)
             : base(repository)
         {
+            _gradeLogic = gradeLogic;
         }
 
         public Email Create(EmailDto emailDto)
@@ -35,6 +37,7 @@ namespace BusinessLogic.Implementations
 
             return newEmail;
         }
+
 
         public EmailDto GetById(Guid emailId)
         {
@@ -71,6 +74,8 @@ namespace BusinessLogic.Implementations
             return emailDtos;
         }
 
+
+
         public void SendEmail(string receiver, string subject, string body)
         {
             SmtpClient client = new SmtpClient();
@@ -86,8 +91,13 @@ namespace BusinessLogic.Implementations
             mail.Body = body;
             mail.BodyEncoding = Encoding.UTF8;
             mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-            client.Send(mail);
+          //  client.Send(mail);
             mail.Dispose();
+
+        }
+
+        public void Send()
+        {
 
         }
 

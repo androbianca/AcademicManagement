@@ -1,7 +1,0 @@
-@import "../../../../styles/mixins.scss";
-@import "../../../../styles/colors.scss";
-
-.year__container {
-  @include flex(row, center, center);
-  flex-wrap: wrap;
-}

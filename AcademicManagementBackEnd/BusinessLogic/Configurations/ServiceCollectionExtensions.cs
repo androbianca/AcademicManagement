@@ -31,6 +31,8 @@ namespace BusinessLogic.Configurations
             services.AddTransient<IOptionalLogic, OptionalLogic>();
             services.AddTransient<ICourseFormulaLogic, CourseFormulaLogic>();
             services.AddTransient<IUserRoleLogic,UserRoleLogic>();
+            services.AddTransient<ISchedulerLogic, SchedulerLogic>();
+
 
 
         }

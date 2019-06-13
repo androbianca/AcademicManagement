@@ -5,10 +5,10 @@ import { CurrentUserDetailsService } from 'src/app/services/current-user-details
 import { UserDetails } from 'src/app/models/userDetails';
 import { Student } from 'src/app/models/student';
 import { MatDialog } from '@angular/material/dialog';
-import { GradeCategoryModalComponentComponent } from 'src/app/components/public/grade-category-modal-component/grade-category-modal-component.component';
+import { GradeCategoryModalComponentComponent } from 'src/app/components/public/grade-categories/grade-category-modal-component/grade-category-modal-component.component';
 import { GroupService } from 'src/app/services/group-service.service';
 import { GroupRead } from 'src/app/models/groupRead';
-import { CategoriesModalComponent } from 'src/app/components/public/categories-modal/categories-modal.component';
+import { CategoriesModalComponent } from 'src/app/components/public/grade-categories/categories-modal/categories-modal.component';
 
 @Component({
   selector: 'app-prof-grades',

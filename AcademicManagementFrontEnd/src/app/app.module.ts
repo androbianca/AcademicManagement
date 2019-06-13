@@ -9,12 +9,17 @@ import { TopBarComponent } from './components/shared/top-bar/top-bar.component';
 import { PagesModule } from './pages/pages.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { AlertModalComponent } from './components/public/others/alert-modal/alert-modal.component';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideBarComponent,
     TopBarComponent,
+    AlertModalComponent,
+  ],
+  exports: [    AlertModalComponent
   ],
   imports: [
     BrowserModule,
@@ -24,8 +29,17 @@ import { OverlayModule } from '@angular/cdk/overlay';
     PagesModule,
     BrowserAnimationsModule,
     OverlayModule,
+    MatDialogModule
    
   ],
-  bootstrap: [AppComponent]
+
+  entryComponents: [AlertModalComponent],
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+   
+
+  ]
 })
 export class AppModule { }

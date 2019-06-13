@@ -1,0 +1,59 @@
+@import "../../../../../styles/colors.scss";
+@import '../../../../../styles/mixins.scss';
+@import "../../../../../styles/home.scss";
+
+
+button {
+    transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+    display: block;
+    max-width: 180px;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 6px 25px;
+    color: rgba(30, 22, 54, 0.6);
+    border: none;
+    background-color: #FFFFFF;
+    box-shadow: $deep-turquoize 0 0px 0px 2px inset;
+    margin: 5px;
+  
+    &:hover {
+      color: rgba(255, 255, 255, 0.85);
+      box-shadow: $deep-turquoize 0 0px 0px 40px inset;
+    }
+  }
+
+$facebook: #3b5998;
+
+a {
+  @include flex(row, center, none);
+  @include size(40px, 100%);
+  background-color: #f7f7f7c7;
+  margin-top: 1px;
+  font-size: 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  height: 70px;
+  padding:5px;
+
+  &:hover {
+    background-color: #c4c2c2c7;
+  }
+}
+
+
+.content {
+  width: 100%;
+  @include flex(row, center, center);
+
+
+  h1 {
+    font-size: 100%;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: .4px;
+    color: $facebook;
+  }
+
+}
+
+

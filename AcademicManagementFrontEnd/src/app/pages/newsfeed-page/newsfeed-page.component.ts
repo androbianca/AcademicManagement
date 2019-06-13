@@ -4,9 +4,10 @@ import { Post } from 'src/app/models/post';
 import { CurrentUserDetailsService } from 'src/app/services/current-user-details.service';
 import { UserDetails } from 'src/app/models/userDetails';
 import { PostService } from 'src/app/services/post-service.service';
-import { SignalRService } from 'src/app/services/signalR-service.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { NotificationHub } from 'src/app/services/SignalR/notifications-hub.service';
+import { FeedHub } from 'src/app/services/SignalR/feed-hub.service';
 
 @Component({
   selector: 'app-newsfeed-page',
@@ -25,11 +26,13 @@ export class NewsfeedPageComponent implements OnInit {
   postForm = new FormGroup({
     post: new FormControl("", [Validators.required]),
   });
-  _hubConnection: any;
+  _hubConnection1: any;
 
   constructor(private userDetailsService: CurrentUserDetailsService,
-    private postService: PostService, private signalRService: SignalRService,
+    private postService: PostService,
     private router:Router,
+    private feedHub:FeedHub,
+    private notificationHub:NotificationHub,
     private snackBar: MatSnackBar) {
     this.user = this.userDetailsService.getUser();
   }
@@ -63,13 +66,14 @@ export class NewsfeedPageComponent implements OnInit {
 
   
   public registerOnServerEvents(): void {
-    this.signalRService._hubConnection.on('message', () => {
+    this.feedHub._hubConnection.on('post', () => {
       this.getPosts();
     });
   }
 
   public sendMessage(): void {
-    this.signalRService._hubConnection.invoke("NewMessage");
+    this.feedHub._hubConnection.invoke("NewPost");
+    this.notificationHub._hubConnection.invoke("NewNotification");
   }
 
 

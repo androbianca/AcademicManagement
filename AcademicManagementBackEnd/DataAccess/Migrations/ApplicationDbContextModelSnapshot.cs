@@ -69,6 +69,8 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("Title");
 
+                    b.Property<string>("UserCode");
+
                     b.HasKey("Id");
 
                     b.ToTable("Alerts");

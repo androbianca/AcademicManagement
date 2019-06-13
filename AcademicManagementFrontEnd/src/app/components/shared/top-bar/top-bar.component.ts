@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { CdkConnectedOverlay, Overlay, ScrollStrategy, CdkOverlayOrigin } from '@angular/cdk/overlay';
-import { SignalRService } from 'src/app/services/signalR-service.service';
 import { NotificationService } from 'src/app/services/notification-service.service';
 import { Notif } from 'src/app/models/notification';
+import { NotificationHub } from 'src/app/services/SignalR/notifications-hub.service';
 
 @Component({
   selector: "app-top-bar",
@@ -15,7 +15,8 @@ export class TopBarComponent implements OnInit {
   notifications: Notif[];
   notifNumber: number = 0
 
-  constructor(protected overlay: Overlay, private signalRService: SignalRService,
+  constructor(protected overlay: Overlay,
+    private notificationHub:NotificationHub,
     private notificatonService: NotificationService) { }
 
   ngOnInit(): void {
@@ -24,11 +25,11 @@ export class TopBarComponent implements OnInit {
 
   }
 
-  public registerOnServerEvents(): void {
-    this.signalRService._hubConnection.on('message', () => {
-      this.getNotifications();
+   public registerOnServerEvents(): void {
+   this.notificationHub._hubConnection.on('notification', () => {
+     this.getNotifications();
     });
-  }
+ }
 
   getNotifications() {
     this.notificatonService.get().subscribe(x => {

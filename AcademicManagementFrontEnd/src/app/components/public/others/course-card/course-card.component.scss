@@ -1,0 +1,49 @@
+@import "../../../../../styles/mixins.scss";
+
+:host(.card) {
+  margin:40px;
+  @include size(none,20vw);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover{
+    box-shadow: 0 3px 8px rgba(126, 122, 122, 0.15);
+  }
+
+  .disabled {
+    opacity: 0.3;
+  }
+
+
+.no-picture-background {
+  @include flex (none,center,center);
+  @include size(10vh,100%);
+  border-radius: 6px 6px 0 0;
+  background-color: #C0E0DE;
+
+  .text-initials {
+    font-size: 6vh;
+    color: white;}
+}
+
+.content{
+  padding:10px;
+  @include size(8vh,100%);
+}
+ .card-bottom {
+  font-size:15px;
+  @include flex (none,center,flex-end);
+  @include size(10%,100%);
+  width: 100%;
+  height: 40px;
+  background-color: #f7f7f7;
+  border-radius: 0 0 6px 6px;
+  cursor:pointer;
+
+  img{
+    margin:5px;
+    @include size(25px,25px);
+  }
+}}

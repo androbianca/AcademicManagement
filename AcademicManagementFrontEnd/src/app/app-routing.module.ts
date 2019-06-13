@@ -16,9 +16,9 @@ import { CourseProfileComponent } from './pages/course-profile/course-profile.co
 import { ProfProfileComponent } from './pages/prof-profile/prof-profile.component';
 import { NewsfeedPageComponent } from './pages/newsfeed-page/newsfeed-page.component';
 import { ResourcesComponent } from './pages/resources/resources.component';
-import { BellCurveChartComponent } from './components/public/bell-curve-chart/bell-curve-chart.component';
+import { BellCurveChartComponent } from './components/public/others/bell-curve-chart/bell-curve-chart.component';
 import { BellCurvePageComponent } from './pages/bell-curve-page/bell-curve-page.component';
-import { OptionalsComponent } from './components/public/optionals/optionals.component';
+import { OptionalsComponent } from './components/public/others/optionals/optionals.component';
 import { ChooseOptionalsComponent } from './pages/choose-optionals/choose-optionals.component';
 
 const routes: Routes = [
