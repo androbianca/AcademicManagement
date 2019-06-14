@@ -1,0 +1,27 @@
+<ng-container *ngFor="let formula of formulaArray">
+  <div class="formula-card">
+    <div class="icon">
+      <img src="https://img.icons8.com/bubbles/100/000000/calculator.png"> </div>
+    <div class="content">
+      {{ formula.formula }}
+    </div>
+    <div (click)="openForm()" class="edit">
+      <span>Edit</span>
+      <img src="https://img.icons8.com/dusk/80/000000/edit.png"> </div></div>
+
+    <ng-container *ngIf="open">
+      <app-edit-formula (formClosed)="onFormClose($event)" [formula]="formula"></app-edit-formula>
+    </ng-container>
+</ng-container>
+
+
+<ng-container *ngIf="formulaArray?.length == 0">
+  <form [formGroup]="gradeFormulaForm">
+    <label>Insert your formula for final grade: </label>
+    <input name="formula" formControlName="formula">
+    <div *ngIf="gradeFormulaForm.get('formula')?.errors && gradeFormulaForm.get('formula')?.touched"
+      class="error-message">
+      Invalid characters!</div>
+    <button class="button" (click)="submit(gradeFormulaForm)">Submit</button>
+  </form>
+</ng-container>

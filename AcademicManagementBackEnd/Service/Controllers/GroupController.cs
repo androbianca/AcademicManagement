@@ -34,10 +34,10 @@ namespace Service.Controllers
             return Ok(group);
         }
 
-        [HttpGet("{profId:guid}")]
-        public ActionResult<IEnumerable<GroupDto>> Add([FromRoute] Guid profId)
+        [HttpGet("{profId:guid}/{courseId:guid}")]
+        public ActionResult<IEnumerable<GroupDto>> Add([FromRoute] Guid profId, [FromRoute] Guid courseId)
         {
-            var groups = _groupLogic.getProfGroups(profId);
+            var groups = _groupLogic.getProfGroups(profId, courseId);
             return Ok(groups);
         }
 

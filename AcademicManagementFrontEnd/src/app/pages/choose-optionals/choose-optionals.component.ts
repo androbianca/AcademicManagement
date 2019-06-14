@@ -32,7 +32,6 @@ export class ChooseOptionalsComponent implements OnInit {
   loadFiles() {
     this.http.getAll().subscribe(response => {
       this.files = response;
-      console.log(response)
       this.files.forEach(element => {
         this.resource.push({id:element.id, year: element.year, googleForm:element.googleForm,filename: element.filename, link: `../../../../assets/files/${element.id}/${element.filename}` })
       })

@@ -101,12 +101,19 @@ namespace BusinessLogic.Implementations
             return null;
         }
 
-        public void ReadNotification(NotificationDto notificationDto)
+        public Notification ReadNotification(NotificationDto notificationDto)
         {
             var notification = _repository.GetByFilter<Notification>(x => x.Id == notificationDto.Id);
+
+            if(notification == null)
+            {
+                return null;
+            }
             notification.IsRead = true;
             _repository.Update(notification);
             _repository.Save();
+
+            return notification;
         }
 
     }

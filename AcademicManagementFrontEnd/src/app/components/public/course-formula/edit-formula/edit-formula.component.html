@@ -1,0 +1,8 @@
+<form [formGroup]="formulaForm">
+    <input type="text" formControlName="formula" [placeholder]="formula.formula">
+
+    <div class="buttons">
+      <button type="submit" (click)="close()">Close</button>
+      <button (click)="save(formulaForm)" type="submit">Save</button>
+    </div>
+  </form>

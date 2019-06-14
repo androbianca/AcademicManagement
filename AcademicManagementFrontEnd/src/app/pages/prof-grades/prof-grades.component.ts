@@ -10,6 +10,9 @@ import { GroupService } from 'src/app/services/group-service.service';
 import { GroupRead } from 'src/app/models/groupRead';
 import { CategoriesModalComponent } from 'src/app/components/public/grade-categories/categories-modal/categories-modal.component';
 
+import { CoureFormulaService } from 'src/app/services/course-formula.service';
+import { FormulaModalComponentComponent } from 'src/app/components/public/course-formula/formula-modal-component/formula-modal-component.component';
+
 @Component({
   selector: 'app-prof-grades',
   templateUrl: './prof-grades.component.html',
@@ -23,33 +26,32 @@ export class ProfGradesComponent implements OnInit {
   user: UserDetails;
   students = new Array<Student>();
   groups: GroupRead[];
-  studs : any;
+  studs: any;
   filteredStudents = new Array<Student>();
+
 
   constructor(private studentService: StudentService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private router: Router,
     private groupService: GroupService,
+    private courseFormulaService: CoureFormulaService,
     private userDetailsService: CurrentUserDetailsService) {
     this.user = userDetailsService.getUser();
   }
 
-  test(group){
-    this.studs = this.students.find(x => x.groupId == group.id);
-    if(this.studs){
-      return true;
-    }
-    return false;
-  }
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.courseId = params['courseId'];
     });
+    this.getGroups();
+  }
+
+  getStudents(){
     this.studentService.getStudentsByProf(this.courseId).subscribe((result: Student[]) => {
       this.students = result;
+      this.filteredStudents = this.students.filter(x => x.groupId == this.groups[0].id);
     });
-    this.getGroups();
   }
 
   goTo(route) {
@@ -59,7 +61,6 @@ export class ProfGradesComponent implements OnInit {
   openModal() {
     const dialogRef = this.dialog.open(GradeCategoryModalComponentComponent, {
       width: '390px',
-      height: '390px',
       data: { courseId: this.courseId }
     });
 
@@ -68,18 +69,30 @@ export class ProfGradesComponent implements OnInit {
   }
 
   getGroups() {
-    this.groupService.getProfGroups(this.user.id).subscribe(x => this.groups = x)
+    this.groupService.getProfGroups(this.user.id, this.courseId).subscribe(x => {
+    this.groups = x
+    this.getStudents();
+    })
   }
 
   filterStudents(group) {
     this.filteredStudents = this.students.filter(x => x.groupId == group.id);
   }
 
-    
+
   openCategoryDialog(): void {
     const dialogRef = this.dialog.open(CategoriesModalComponent, {
       width: '400px',
-      height: '450px',
+      data: { courseId: this.courseId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  openFormulaDialog(): void {
+    const dialogRef = this.dialog.open(FormulaModalComponentComponent, {
+      width: '600px',
       data: { courseId: this.courseId }
     });
 

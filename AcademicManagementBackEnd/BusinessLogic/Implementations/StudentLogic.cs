@@ -10,10 +10,13 @@ namespace BusinessLogic.Implementations
     public class StudentLogic : BaseLogic, IStudentLogic
     {
         private ICourseLogic _courseLogic;
-        public StudentLogic(IRepository repository, ICourseLogic courseLogic)
+        private IFinalGradeLogic _finalGradeLogic;
+
+        public StudentLogic(IRepository repository, ICourseLogic courseLogic, IFinalGradeLogic finalGradeLogic)
             : base(repository)
         {
             _courseLogic = courseLogic;
+            _finalGradeLogic = finalGradeLogic;
         }
 
         public ICollection<StudentDto> GetByProfId(string userCode, Guid courseId)
@@ -27,6 +30,7 @@ namespace BusinessLogic.Implementations
             foreach (var profStud in profStuds)
             {
                 var group = _repository.GetByFilter<Group>(x => x.Id == profStud.GroupId);
+
                 groups.Add(group);
             }
 
@@ -105,6 +109,8 @@ namespace BusinessLogic.Implementations
 
             _repository.Insert(student);
             _repository.Save();
+
+            _finalGradeLogic.AddFinalGradeToMandatoryCourses(student.Id);
 
             return student;
         }

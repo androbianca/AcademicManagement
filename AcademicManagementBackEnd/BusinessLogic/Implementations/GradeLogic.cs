@@ -13,16 +13,12 @@ namespace BusinessLogic.Implementations
     {
         private INotificationLogic _notificationLogic;
         private IFinalGradeLogic _finalGradeLogic;
-        private IHttpContextAccessor _httpContextAccessor;
-        private HttpContext context;
 
-        public GradeLogic(IRepository repository, INotificationLogic notificationLogic, IFinalGradeLogic finalGradeLogic, IHttpContextAccessor httpContextAccessor)
+        public GradeLogic(IRepository repository, INotificationLogic notificationLogic, IFinalGradeLogic finalGradeLogic)
             : base(repository)
         {
             _finalGradeLogic = finalGradeLogic;
             _notificationLogic = notificationLogic;
-            _httpContextAccessor = httpContextAccessor;
-            context = httpContextAccessor.HttpContext;
 
         }
 
@@ -86,9 +82,11 @@ namespace BusinessLogic.Implementations
             }
 
             grade.Value = gradeDto.Value;
- 
+
             _repository.Update(grade);
             _repository.Save();
+
+            ComputeFinalGrade(gradeDto.CourseId, gradeDto.StudentId);
 
             return grade;
         }
@@ -102,7 +100,8 @@ namespace BusinessLogic.Implementations
                 CourseId = gradeDto.CourseId,
                 Value = gradeDto.Value,
                 CategoryId = gradeDto.CategoryId,
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                Date = DateTime.Now
 
             };
 
@@ -115,19 +114,23 @@ namespace BusinessLogic.Implementations
 
             var final = ComputeFinalGrade(gradeDto.CourseId, gradeDto.StudentId);
 
-            var finalGrade = _repository.GetByFilter<FinalGrade>(x => x.StudentId == gradeDto.StudentId && x.CourseId == gradeDto.CourseId);
-            if (finalGrade == null)
-            {
-                return null;
-            }
-            finalGrade.Value = final;
-            _finalGradeLogic.Update(finalGrade);
-
             return grade;
 
         }
 
-       
+        private void UpdateFinalGrade(Guid courseId, Guid studentId, double value)
+        {
+            var finalGradeDto = new FinalGradeDto
+            {
+                CourseId = courseId,
+                StudentId = studentId,
+                Value = value
+
+            };
+
+            _finalGradeLogic.Update(finalGradeDto);
+        }
+
 
         public double ComputeFinalGrade(Guid courseId, Guid studentId)
         {
@@ -141,7 +144,7 @@ namespace BusinessLogic.Implementations
 
             var courseFormula = _repository.GetByFilter<CourseFormula>(x => x.CourseId == courseId);
 
-            if(courseFormula == null)
+            if (courseFormula == null)
             {
                 return 0;
             }
@@ -150,7 +153,8 @@ namespace BusinessLogic.Implementations
 
             Dictionary<string, string> categoryGrade = new Dictionary<string, string>();
 
-            foreach(var courseCategory in courseGradeCategories){
+            foreach (var courseCategory in courseGradeCategories)
+            {
                 categoryGrade.Add(courseCategory.Name, "0");
             }
             foreach (var grade in grades)
@@ -166,9 +170,12 @@ namespace BusinessLogic.Implementations
             }
 
             DataTable dt = new DataTable();
-            var result = dt.Compute(formula,"").ToString();
+            var result = dt.Compute(formula, "").ToString();
+            var finalGrade = Math.Round(Convert.ToDouble(result), 2);
 
-            return Math.Round(Convert.ToDouble(result), 2);
+            UpdateFinalGrade(courseId, studentId, finalGrade);
+
+            return finalGrade;
         }
 
         //public float ComputeLabFinalGrade(Guid courseId, Guid studentId)
@@ -214,7 +221,7 @@ namespace BusinessLogic.Implementations
 
         private NotificationDto CreateNotification(Grade grade)
         {
-            var prof = _repository.GetByFilter<Professor>(x => x.Id == grade.ProfId);     
+            var prof = _repository.GetByFilter<Professor>(x => x.Id == grade.ProfId);
             var course = _repository.GetByFilter<Course>(x => x.Id == grade.CourseId);
             var stud = _repository.GetByFilter<Student>(x => x.Id == grade.StudentId);
             if (prof == null || course == null || stud == null)
@@ -224,7 +231,7 @@ namespace BusinessLogic.Implementations
             var notification = new NotificationDto
             {
                 Title = "New grade",
-                Body =prof.LastName + ' ' + prof.FirstName + " added a new grade for " + course.Name,
+                Body = prof.LastName + ' ' + prof.FirstName + " added a new grade for " + course.Name,
                 IsRead = false,
                 ReciverId = stud.PotentialUserId,
                 SenderId = prof.PotentialUserId,

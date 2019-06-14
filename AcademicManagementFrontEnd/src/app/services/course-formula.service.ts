@@ -19,4 +19,8 @@ export class CoureFormulaService {
         return this.baseService.get<CourseFormula>(`formulas/${id}`);
     }
 
+    public edit(courseFormula: CourseFormula) {
+        return this.baseService.post<CourseFormula>('formulas/edit', courseFormula);
+    }
+
 }

@@ -60,9 +60,9 @@ namespace BusinessLogic.Implementations
             return groupDtos;
         }
 
-        public ICollection<GroupDto> getProfGroups(Guid ProfId)
+        public ICollection<GroupDto> getProfGroups(Guid profId, Guid courseId)
         {
-            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == ProfId);
+            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == profId && x.CourseId == courseId);
             var groupDtos = new List<GroupDto>();
 
             foreach (var profStud in profStuds)

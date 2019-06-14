@@ -27,7 +27,6 @@ export class CategoryCardComponent {
   }
 
   onFormClose(event){
-    console.log(event);
     this.open= false;
   }
 

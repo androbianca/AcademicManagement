@@ -108,7 +108,13 @@ namespace BusinessLogic.Implementations
             foreach (var profCourse in profCourses)
             {
                 var course = _repository.GetByFilter<Course>(x => x.Id == profCourse.CourseId);
-                courses.Add(course);
+
+                var addCourse = courses.Find(X => X.Id == course.Id);
+
+                if (addCourse == null)
+                {
+                    courses.Add(course);
+                }
             }
 
             return mapCourses(courses);

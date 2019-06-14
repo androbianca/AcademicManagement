@@ -50,7 +50,6 @@ export class ProfProfileComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddFeedbackModalContentComponent, {
       width: '400px',
-      height: '350px',
       data: { reciverId: this.profId }
     });
 

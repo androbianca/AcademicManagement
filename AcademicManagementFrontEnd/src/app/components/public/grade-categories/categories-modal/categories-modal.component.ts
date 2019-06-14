@@ -10,44 +10,11 @@ import { CoureFormulaService } from 'src/app/services/course-formula.service';
   templateUrl: './categories-modal.component.html',
   styleUrls: ['./categories-modal.component.scss']
 })
-export class CategoriesModalComponent implements OnInit {
+export class CategoriesModalComponent {
 
-  courseFormula = new CourseFormula();
-  formula : CourseFormula;
-  formulaArray= new Array<string>();
-  addForm = true;
-  gradeFormulaForm = new FormGroup({
-    formula: new FormControl(''),
-  });
+ 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DisplayCategoriesComponent>,
-    private courseFormulaService: CoureFormulaService,
-  ) { 
-
-  }
-
-  ngOnInit(): void {
-    this.getFormula(this.data.courseId);
-  }
-
-  submit(form) {
-    this.courseFormula.courseId = this.data.courseId;
-    this.courseFormula.formula = form.value.formula;
-    this.addFormula();
-  }
-
-  addFormula() {
-    this.courseFormulaService.add(this.courseFormula).subscribe(x =>{
-      this.formulaArray.push(this.courseFormula.formula);
-    })
-  }
-
-  getFormula(id) {
-    this.courseFormulaService.getByCourseId(id).subscribe(x => {
-      this.formula = x
-      this.formulaArray.push(this.formula.formula);
-    })
-  
-  }
+  ){}
 
 }

@@ -52,7 +52,6 @@ export class FeedCardComponent implements OnInit {
 
   getUser() {
     this.potentialUserService.getByUserCode(this.post.userCode).subscribe(x => {
-      console.log(x);
       this.fullName = x.lastName + ' ' + x.firstName;
       this.initials = x.lastName[0] + ' ' + x.firstName[0];
       this.getRole(x.roleId);

@@ -51,6 +51,7 @@ export class AppComponent implements OnInit {
     const dialogRef = this.dialog.open(AlertModalComponent, {
       width: '300px',
       height: '200px',
+      panelClass: 'my-dialog-container-class'
     });
 
     dialogRef.afterClosed().subscribe(result => {

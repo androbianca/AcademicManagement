@@ -14,21 +14,62 @@ namespace BusinessLogic.Implementations
         {
         }
 
-        public void Add(Guid studentId, Guid courseId)
-        {
-            var finalGrade = new FinalGrade
-            {
-                CourseId = courseId,
-                StudentId = studentId,
-                Value = 0
-            };
+ 
 
-            _repository.Insert(finalGrade);
+        public FinalGrade Update (FinalGradeDto finalGradeDto)
+        {
+            var finalGrade = _repository.GetByFilter<FinalGrade>(x => x.StudentId == finalGradeDto.StudentId && x.CourseId == finalGradeDto.CourseId);
+
+            if(finalGrade == null)
+            {
+                return null;
+            }
+
+            finalGrade.Value = finalGradeDto.Value;
+            _repository.Update(finalGrade);
             _repository.Save();
+
+            return finalGrade;
+        }
+
+
+       public void AddFinalGradeToMandatoryCourses(Guid studentId)
+        {
+            var stud = _repository.GetByFilter<Student>(x => x.Id == studentId);
+            var group = _repository.GetByFilter<Group>(x => x.Id == stud.GroupId);
+            var courses = _repository.GetAllByFilter<Course>(x => x.Package == null && x.Year == group.Year);
+  
+                foreach (var course in courses)
+                {
+                    var finalGrade = new FinalGrade
+                    {
+                        CourseId = course.Id,
+                        StudentId = studentId,
+                        Value = 0
+                    };
+
+                    _repository.Insert(finalGrade);
+                    _repository.Save();
+                }
+          
+        }
+
+        public void AddFinalGradeToOptionalCourses(Guid studentId, Guid courseId)
+        {
+            {
+                var finalGrade = new FinalGrade
+                {
+                    CourseId = courseId,
+                    StudentId = studentId,
+                    Value = 0
+                };
+
+                _repository.Insert(finalGrade);
+                _repository.Save();
+            }
 
         }
 
-        
 
         public void AddAll()
         {
@@ -52,15 +93,7 @@ namespace BusinessLogic.Implementations
             }
         }
 
-        public void Update(FinalGrade grade)
-        {
-
-
-            _repository.Update(grade);
-            _repository.Save();
-
-        }
-
+       
         public IEnumerable<FinalGradeDto> GetAllByCourseId(Guid courseId)
         {
             var gradeDtos = new List<FinalGradeDto>();

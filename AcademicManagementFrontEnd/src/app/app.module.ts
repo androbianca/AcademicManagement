@@ -19,8 +19,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
     TopBarComponent,
     AlertModalComponent,
   ],
-  exports: [    AlertModalComponent
-  ],
+  exports: [AlertModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,7 +29,6 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
     BrowserAnimationsModule,
     OverlayModule,
     MatDialogModule
-   
   ],
 
   entryComponents: [AlertModalComponent],
@@ -38,8 +36,6 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
   providers: [
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
-   
-
   ]
 })
 export class AppModule { }

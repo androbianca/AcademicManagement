@@ -91,7 +91,6 @@ export class AddStudComponent implements OnInit {
 
   getRoleId() {
     this.userRoleService.getStudentRoleId().subscribe(result => {
-      console.log(result);
       this.potentialUser.roleId = result.id;
       this.addPotentialUser();
     })

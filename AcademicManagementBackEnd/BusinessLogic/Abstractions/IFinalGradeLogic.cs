@@ -7,9 +7,10 @@ namespace BusinessLogic.Abstractions
 {
     public interface IFinalGradeLogic
     {
-        void Add(Guid studentId, Guid courseId);
+        void AddFinalGradeToMandatoryCourses(Guid studentId);
+        void AddFinalGradeToOptionalCourses(Guid studentId, Guid courseId);
         void AddAll();
-        void Update(FinalGrade grade);
+        FinalGrade Update(FinalGradeDto finalGradeDto);
         IEnumerable<FinalGradeDto> GetAllByCourseId(Guid courseId);
     }
 }

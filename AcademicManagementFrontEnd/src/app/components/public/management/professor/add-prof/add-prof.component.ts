@@ -128,7 +128,6 @@ export class AddProfComponent implements OnInit {
 
   submit(form) {
     if (form.valid) {
-      debugger
 
       this.prof.firstName = form.value.firstName;
       this.prof.lastName = form.value.lastName;

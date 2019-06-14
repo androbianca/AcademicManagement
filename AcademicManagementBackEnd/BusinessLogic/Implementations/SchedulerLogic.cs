@@ -26,31 +26,30 @@ namespace BusinessLogic.Implementations
 
         public void SendAlert(string id)
         {
-            var profsDto = new List<Guid>();
-            var grades = _repository.GetAll<Grade>();
 
-            foreach (var grade in grades)
+            var send = true;
+            var profs = _repository.GetAll<Professor>();
+
+            foreach (var prof in profs)
             {
-                if (DateTime.Now > grade.Date.AddDays(7))
-                {
-                    var ceva = profsDto.Find(x => x == grade.ProfId);
+                var grades = _repository.GetAllByFilter<Grade>(x => x.ProfId == prof.Id);
 
-                    if (ceva == Guid.Empty)
+                foreach (var grade in grades)
+                {
+                    if (DateTime.Now < grade.Date.AddDays(7))
                     {
-                        profsDto.Add(grade.ProfId);
+                        send = false;
                     }
                 }
-            }
 
-            foreach (var prof in profsDto)
-            {
-                var user = _repository.GetByFilter<Professor>(x => x.Id == prof);
-                var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == user.PotentialUserId);
-               
-                _emailLogic.SendEmail(potentialUser.Email, "Note", "Note");
-                AddAlert(potentialUser.UserCode);
-                
-                
+                if (send)
+                {
+                    var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == prof.PotentialUserId);
+
+                    _emailLogic.SendEmail(potentialUser.Email, "Note", "Note");
+
+                    AddAlert(potentialUser.UserCode);
+                }
             }
 
         }

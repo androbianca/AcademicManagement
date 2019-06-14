@@ -69,6 +69,9 @@ import { DisplayCategoriesComponent } from '../components/public/grade-categorie
 import { CategoryCardComponent } from '../components/public/grade-categories/category-card/category-card.component';
 import { EditCategoryComponent } from '../components/public/grade-categories/edit-category/edit-category.component';
 import { AddFeedbackModalContentComponent } from '../components/public/feedback/add-feedback-modal-content/add-feedback-modal-content.component';
+import { AddFormulaComponent } from '../components/public/course-formula/add-formula/add-formula.component';
+import { EditFormulaComponent } from '../components/public/course-formula/edit-formula/edit-formula.component';
+import { FormulaModalComponentComponent } from '../components/public/course-formula/formula-modal-component/formula-modal-component.component';
 
 export function highchartsModules() {
   return [exporting, windbarb];
@@ -143,7 +146,10 @@ export function highchartsModules() {
     CategoriesModalComponent,
     DisplayCategoriesComponent,
     CategoryCardComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    AddFormulaComponent,
+    EditFormulaComponent,
+    FormulaModalComponentComponent
 
 
   ],
@@ -151,7 +157,8 @@ export function highchartsModules() {
     AddFeedbackModalContentComponent,
     SignupComponent,
     GradeCategoryModalComponentComponent,
-    CategoriesModalComponent
+    CategoriesModalComponent,
+    FormulaModalComponentComponent
   ],
   exports: [
     StudGradesComponent,
@@ -199,7 +206,10 @@ export function highchartsModules() {
     CategoriesModalComponent,
     DisplayCategoriesComponent,
     CategoryCardComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    AddFormulaComponent,
+    EditFormulaComponent,
+    FormulaModalComponentComponent
   ],
 
   providers: [MatDatepickerModule,MatNativeDateModule,
