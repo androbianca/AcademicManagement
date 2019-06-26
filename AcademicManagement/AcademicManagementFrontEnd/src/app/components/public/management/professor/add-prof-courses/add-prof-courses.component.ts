@@ -79,7 +79,7 @@ export class AddProfCoursesComponent implements OnInit {
   }
 
   filterGroups(course) {
-    this.groups = this.allgroups.filter(x=>x.year === course.year)
+    //this.groups = this.allgroups.filter(x=>x.year === course.year)
   }
 
   add() {

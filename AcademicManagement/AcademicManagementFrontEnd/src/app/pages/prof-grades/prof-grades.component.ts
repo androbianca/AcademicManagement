@@ -58,6 +58,10 @@ export class ProfGradesComponent implements OnInit {
     this.router.navigate([`${route}/${this.courseId}`]);
   }
 
+  goToGrades(route){
+    this.router.navigate([`${route}/${this.courseId}/${this.user.id}`]);
+  }
+
   openModal() {
     const dialogRef = this.dialog.open(GradeCategoryModalComponentComponent, {
       width: '390px',

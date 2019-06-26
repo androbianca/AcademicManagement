@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { AlertModalComponent } from './components/public/others/alert-modal/alert-modal.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { SeeGradesComponent } from './components/public/grades/see-grades/see-grades.component';
+import { AllGradesCardComponent } from './components/public/grades/all-grades-card/all-grades-card.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DEFAULT_OPTIONS } from '@angu
     SideBarComponent,
     TopBarComponent,
     AlertModalComponent,
+    SeeGradesComponent,
+    AllGradesCardComponent,
   ],
   exports: [AlertModalComponent],
   imports: [

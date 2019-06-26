@@ -15,11 +15,13 @@
   </div>
 
   <div class="right">
-    <button (click)="openFormulaDialog()">Add course formula</button>
+    <button (click)="openFormulaDialog()">Check course formula</button>
     <button (click)="openModal()">Add category</button>
     <button (click)="openCategoryDialog()">See grades categories</button>
     <button (click)="goTo('courses/bellcurve')">Check BellCurve</button>
     <button (click)="goTo('courses/resources')">Check resources</button>
+    <button (click)="goToGrades('courses/grades')">Check Grades</button>
+
 
     <app-file-upload [isExcel]="true" [courseId]="courseId" title="Import Excel"></app-file-upload>
   </div>

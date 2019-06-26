@@ -20,6 +20,7 @@ import { BellCurveChartComponent } from './components/public/others/bell-curve-c
 import { BellCurvePageComponent } from './pages/bell-curve-page/bell-curve-page.component';
 import { OptionalsComponent } from './components/public/others/optionals/optionals.component';
 import { ChooseOptionalsComponent } from './pages/choose-optionals/choose-optionals.component';
+import { SeeGradesComponent } from './components/public/grades/see-grades/see-grades.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,11 @@ const routes: Routes = [
   {
     path: 'courses/resources/:courseId',
     component: ResourcesComponent,
+    canActivate: [UserGuard]
+  },
+  {
+    path: 'courses/grades/:courseId/:profId',
+    component: SeeGradesComponent,
     canActivate: [UserGuard]
   },
   {

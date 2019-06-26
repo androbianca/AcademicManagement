@@ -58,7 +58,8 @@ a {
   border-radius: 5px;
   text-decoration: none;
   height: 70px;
-  padding:5px;
+  padding: 20px;
+  cursor: pointer;
 
   &:hover {
     background-color: #c4c2c2c7;
@@ -82,4 +83,15 @@ a {
 .update-form{
     margin:0;
     width: 100%;
+}
+
+img {
+  height: 20px;
+}
+
+
+.right {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
 }
