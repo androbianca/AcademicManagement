@@ -21,7 +21,7 @@ export class EditCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryForm = new FormGroup({
-      name: new FormControl(this.category.name),
+      name: new FormControl(this.category.name,Validators.required)
       // percentage: new FormControl(this.category.percentage, Validators.pattern('^[0-9]*$'))
     });
 
@@ -30,8 +30,6 @@ export class EditCategoryComponent implements OnInit {
 
   onChanges(): void {
     this.categoryForm.valueChanges.subscribe(x => {
-      var errors = this.categoryForm.get('percentage').hasError('pattern');
-      this.errorMessage = errors ? 'The input should be a number' : 'This fied is required!';
       this.isDisabled = this.categoryForm.valid ? false : true;
     })
   }

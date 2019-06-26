@@ -1,5 +1,8 @@
 @import "../../../../../styles/home.scss";
 
+form{
+  @include flex(column, flex-start, center);
+}
 $facebook: #3b5998;
 
 .formula-card {

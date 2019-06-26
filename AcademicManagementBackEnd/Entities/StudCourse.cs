@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-   public class StudCourse
+   public class StudCourse : BaseEntity
     {
         public Guid CourseId { get; set; }
 

@@ -134,10 +134,18 @@ namespace BusinessLogic.Implementations
 
         public double ComputeFinalGrade(Guid courseId, Guid studentId)
         {
-            var grades = this.GetGradesByStud(courseId, studentId);
+
+            var finalGrades = _repository.GetAll<FinalGrade>();
+
+            if (finalGrades.Count == 0)
+            {
+                _finalGradeLogic.AddAll();
+            };
+
+            var grades = GetGradesByStud(courseId, studentId);
             var courseGradeCategories = _repository.GetAllByFilter<GradeCategory>(x => x.CourseId == courseId);
 
-            if (courseGradeCategories == null)
+            if (courseGradeCategories.Count == 0)
             {
                 return 0;
             }
@@ -155,12 +163,12 @@ namespace BusinessLogic.Implementations
 
             foreach (var courseCategory in courseGradeCategories)
             {
-                categoryGrade.Add(courseCategory.Name, "0");
+                categoryGrade.Add(courseCategory.Name.ToLower(), "0");
             }
             foreach (var grade in grades)
             {
                 var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId);
-                categoryGrade[category.Name] = grade.Value.ToString();
+                categoryGrade[category.Name.ToLower()] = grade.Value.ToString();
 
             }
 

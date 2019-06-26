@@ -52,3 +52,4 @@ C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Entiti
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.AssemblyInfo.cs
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.dll
 C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.pdb
+C:\Users\bianca\source\repos\AcademicManagement\AcademicManagementBackEnd\Entities\obj\Debug\netcoreapp2.1\Entities.csprojAssemblyReference.cache

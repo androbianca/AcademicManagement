@@ -13,6 +13,7 @@ namespace BusinessLogic.Abstractions
         Student Remove(Guid studentId);
         StudentDto GetByUserCode(string userCode);
         StudentDto GetById(Guid id);
+        Student Update(StudentDto studentDto);
 
     }
 }

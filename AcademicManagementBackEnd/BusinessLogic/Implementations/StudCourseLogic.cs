@@ -2,6 +2,7 @@
 using DataAccess.Abstractions;
 using Entities;
 using Models;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessLogic.Implementations
@@ -21,7 +22,7 @@ namespace BusinessLogic.Implementations
             foreach (var studCourseDto in studCourseDtos)
             {
                 var studCourse = new StudCourse
-                {
+                {   Id = Guid.NewGuid(),
                     CourseId = studCourseDto.CourseId,
                     StudId = studCourseDto.StudId
                 };
@@ -33,6 +34,35 @@ namespace BusinessLogic.Implementations
             }
 
             return studCourses;
+        }
+
+        public IEnumerable<StudCourseDto> GetByStudentId(Guid studId)
+        {
+            var studCourses = _repository.GetAllByFilter<StudCourse>(X => X.StudId == studId);
+            var studCourseDtos = new List<StudCourseDto>();
+
+            foreach (var studCourse in studCourses)
+            {
+                var studCourseDto = new StudCourseDto
+                {
+                    CourseId = studCourse.CourseId,
+                    StudId = studCourse.StudId,
+                    Id = studCourse.Id
+                };
+
+                studCourseDtos.Add(studCourseDto);
+            }
+
+            return studCourseDtos;
+        }
+
+        public StudCourse Delete(Guid studCourseId)
+        {
+            var studCourse = _repository.GetByFilter<StudCourse>(X => X.Id == studCourseId);
+            _repository.Delete(studCourse);
+            _repository.Save();
+
+            return studCourse;
         }
 
     }

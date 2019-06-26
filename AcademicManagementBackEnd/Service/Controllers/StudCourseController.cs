@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using System;
 using System.Collections.Generic;
 
 namespace Service.Controllers
@@ -26,6 +27,31 @@ namespace Service.Controllers
 
             var studCourses = _studCourseLogic.Add(studCourseDtos);
 
+            return Ok(studCourses);
+        }
+
+        [HttpDelete("{studCourseId:guid}")]
+        public IActionResult Delete([FromRoute] Guid studCourseId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var studCourses = _studCourseLogic.Delete(studCourseId);
+
+            return Ok(studCourses);
+        }
+
+        [HttpGet("{studId:guid}")]
+        public IActionResult GetByStudentId([FromRoute] Guid studId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var studCourses = _studCourseLogic.GetByStudentId(studId);
             return Ok(studCourses);
         }
 

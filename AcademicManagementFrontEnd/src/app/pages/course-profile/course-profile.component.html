@@ -1,6 +1,6 @@
 <div class="left">
   <ng-template [ngIf]="profs?.length == 0" [ngIfElse]="displayResults">
-    <app-no-results text='No professors found'></app-no-results>
+    <app-no-results text="There aren't any professors added yet for this course"></app-no-results>
   </ng-template>
 
   <ng-template #displayResults>

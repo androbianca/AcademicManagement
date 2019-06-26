@@ -37,5 +37,38 @@ namespace BusinessLogic.Implementations
             return profStuds;
             
         }
+
+        public IEnumerable<ProfStudDto> GetByProfId(Guid profId)
+        {
+            var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == profId);
+            var profStudDtos = new List<ProfStudDto>();
+
+            foreach (var profStud in profStuds)
+            {
+                var profStudDto = new ProfStudDto
+                {
+                    Id = profStud.Id,
+                    CourseId = profStud.CourseId,
+                    ProfId = profStud.ProfId,
+                    GroupId = profStud.GroupId
+                };
+
+
+                profStudDtos.Add(profStudDto);
+            }
+
+            return profStudDtos;
+
+        }
+
+
+        public void Delete(Guid profStudDtoId)
+        {
+
+                var profStud =_repository.GetByFilter<ProfStuds>(x =>x.Id == profStudDtoId);   
+                _repository.Delete(profStud);
+                _repository.Save();         
+
+        }
     }
 }

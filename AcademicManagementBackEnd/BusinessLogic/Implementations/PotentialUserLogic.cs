@@ -23,6 +23,19 @@ namespace BusinessLogic.Implementations
             return potentialUser;
         }
 
+
+        public PotentialUser Edit(Guid userId, string lastName, string firstName)
+        {
+            var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == userId);
+
+            potentialUser.LastName = lastName;
+            potentialUser.FirstName = firstName;
+            _repository.Update(potentialUser);
+            _repository.Save();
+
+            return potentialUser;
+        }
+
         public PotentialUserDto GetByUserCode(string id)
         {
             var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.UserCode == id);
@@ -57,17 +70,17 @@ namespace BusinessLogic.Implementations
         public ICollection<string> GetEmails()
         {
             var emails = new List<string>();
-              var role = _repository.GetByFilter<UserRole>(x => x.Name == "Professor");
+            var role = _repository.GetByFilter<UserRole>(x => x.Name == "Professor");
 
-              var users = _repository.GetAllByFilter<PotentialUser>(x => x.UserRoleId == role.Id);
-              foreach(var user in users)
-              {
-                  emails.Add(user.Email);
-              }
+            var users = _repository.GetAllByFilter<PotentialUser>(x => x.UserRoleId == role.Id);
+            foreach (var user in users)
+            {
+                emails.Add(user.Email);
+            }
 
             return emails;
 
-           }
-
         }
+
     }
+}

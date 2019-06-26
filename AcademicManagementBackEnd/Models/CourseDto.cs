@@ -6,7 +6,7 @@ namespace Models
     {
         public Guid Id { get; set; }
 
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         public string Name { get; set; }
 

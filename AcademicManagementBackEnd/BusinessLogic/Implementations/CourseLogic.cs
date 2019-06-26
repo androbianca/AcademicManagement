@@ -26,7 +26,7 @@ namespace BusinessLogic.Implementations
             var course = new Course
             {
                 Id = Guid.NewGuid(),
-                isDeleted = false,
+                IsDeleted = false,
                 Name = courseDto.Name,
                 Package = courseDto.Package,
                 Year = courseDto.Year,
@@ -38,25 +38,29 @@ namespace BusinessLogic.Implementations
             return course;
         }
 
-        //public Course Update(CourseDto courseDto)
-        //{
-        //    var course = _repository.GetByFilter<Course>(x => x.Id == courseDto.Id);
+        public CourseDto GetById(Guid courseId)
+        {
+            var course = _repository.GetByFilter<Course>(x => x.Id == courseId);
 
-        //    course.isDeleted = courseDto.isDeleted;
-        //    course.Name = courseDto.Name;
-        //    course.Package = courseDto.Package;
-        //    course.Year = courseDto.Year;
-        //    course.Semester = courseDto.Semester;
-          
-        //    _repository.Update(course);
-        //    _repository.Save();
-        //    return course;
-        //}
+            var courseDto = new CourseDto
+            {
+                Id = Guid.NewGuid(),
+                IsDeleted = false,
+                Name = course.Name,
+                Package = course.Package,
+                Year = course.Year,
+                Semester = course.Semester
+
+            };
+
+            return courseDto;
+        }
+
 
         public Course Remove(Guid courseId)
         {
             var course = _repository.GetByFilter<Course>(x => x.Id == courseId);
-            course.isDeleted = true;
+            course.IsDeleted = true;
 
             _repository.Update(course);
             _repository.Save();
@@ -162,7 +166,7 @@ namespace BusinessLogic.Implementations
                 var courseDto = new CourseDto
                 {
                     Id = course.Id,
-                    isDeleted = course.isDeleted,
+                    IsDeleted = course.IsDeleted,
                     Name = course.Name,
                     Year = course.Year,
                     Semester = course.Semester,
@@ -173,6 +177,21 @@ namespace BusinessLogic.Implementations
             }
 
             return courseDtos;
+        }
+
+        public Course Update(CourseDto courseDto)
+        {
+            var course = _repository.GetByFilter<Course>(X => X.Id == courseDto.Id);
+
+            course.Name = courseDto.Name;
+            course.Year = courseDto.Year;
+            course.Semester = courseDto.Semester;
+            course.Package = courseDto.Package;
+
+            _repository.Update(course);
+            _repository.Save();
+
+            return course;
         }
     }
 }

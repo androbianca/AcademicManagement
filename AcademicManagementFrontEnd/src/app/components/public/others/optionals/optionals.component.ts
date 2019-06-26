@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class OptionalsComponent  {
 
-  @HostBinding('class') classes = 'wrapper';
+  //@HostBinding('class') classes = 'wrapper';
 
   fileToUpload: File = null;
   optional = new Opt();

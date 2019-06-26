@@ -115,6 +115,20 @@ namespace BusinessLogic.Implementations
             return student;
         }
 
+        public Student Update(StudentDto studentDto)
+        {
+            var student = _repository.GetByFilter<Student>(x => x.Id == studentDto.Id);
+
+            student.GroupId = studentDto.GroupId;
+            student.FirstName = studentDto.FirstName;
+            student.LastName = studentDto.LastName;
+
+            _repository.Update(student);
+            _repository.Save();
+
+            return student;
+        }
+
         public ICollection<StudentDto> GetAll()
         {
             var students = _repository.GetAll<Student>();
@@ -127,7 +141,8 @@ namespace BusinessLogic.Implementations
                     IsDeleted = student.IsDeleted,
                     FirstName = student.FirstName,
                     LastName = student.LastName,
-                    Id = student.Id
+                    Id = student.Id,
+                    GroupId = student.GroupId
                 };
 
                 studentDtos.Add(studentDto);

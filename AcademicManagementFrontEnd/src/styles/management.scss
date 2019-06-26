@@ -1,0 +1,85 @@
+@import './home.scss';
+@import "./mixins.scss";
+
+form {
+  @include flex(column, none, center);
+  margin-top: 40px;
+  width: 26vw;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.error-message {
+  margin: 5px 0 5px 0 !important;
+}
+
+label {
+  margin: 5px 0 0 0;
+}
+
+::ng-deep mat-form-field.ng-touched.ng-invalid {
+  color: red;
+}
+
+.button,
+input[type="submit"] {
+  width: 100%;
+}
+
+input[type="submit"] {
+  background: #5C9EAD;
+  @include size(4vh,100%);
+  border-radius: 4px;
+  border: none;
+  margin: 20px 0 40px 0;
+  color: white;
+
+  &:hover {
+    background-color: rgb(106, 178, 194);
+    box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+$facebook: #3b5998;
+
+a {
+  @include flex(row, center, none);
+  @include size(40px, 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  background-color: #f7f7f7c7;
+  margin-top: 1px;
+  font-size: 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  height: 70px;
+  padding:5px;
+
+  &:hover {
+    background-color: #c4c2c2c7;
+  }
+}
+
+
+.content {
+  width: 70%;
+
+  h1 {
+    font-size: 100%;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: .4px;
+    color: $facebook;
+  }
+
+}
+
+.update-form{
+    margin:0;
+    width: 100%;
+}

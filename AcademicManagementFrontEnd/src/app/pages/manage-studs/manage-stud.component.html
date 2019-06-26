@@ -1,8 +1,8 @@
 <section class="buttons">
-  <button class="button" (click)="selectAction('1')">Add professor</button>
-  <button class="button" (click)="selectAction('2')">Remove professor</button>
-  <button class="button" (click)="selectAction('3')">Update professor</button>
-  <button class="button" (click)="selectAction('4')">Add courses to professor</button>
+  <button class="button" (click)="selectAction('1')">Add student</button>
+  <button class="button" (click)="selectAction('2')">Remove student</button>
+  <button class="button" (click)="selectAction('3')">Update student</button>
+  <button class="button" (click)="selectAction('4')">Add optional courses to student</button>
 </section>
 
 <ng-container *ngIf="add">
@@ -14,6 +14,7 @@
 </ng-container>
 
 <ng-container *ngIf="update">
+  <app-update-stud></app-update-stud>
 </ng-container>
 
 <ng-container *ngIf="courses">

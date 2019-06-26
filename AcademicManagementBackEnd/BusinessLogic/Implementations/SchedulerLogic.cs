@@ -24,7 +24,7 @@ namespace BusinessLogic.Implementations
         }
 
 
-        public void SendAlert(string id)
+        public void SendAlert()
         {
 
             var send = true;
@@ -46,7 +46,7 @@ namespace BusinessLogic.Implementations
                 {
                     var potentialUser = _repository.GetByFilter<PotentialUser>(x => x.Id == prof.PotentialUserId);
 
-                    _emailLogic.SendEmail(potentialUser.Email, "Note", "Note");
+                    _emailLogic.SendEmail(potentialUser.Email, "Note", "Nu a existat activitate recenta la partea de adaugare a notelor!");
 
                     AddAlert(potentialUser.UserCode);
                 }

@@ -8,11 +8,11 @@
       </form>
     </div>
     <div class="footer">
-      <button class = "btn" [class.disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
+      <button class="btn" [class.disabled]="isDisabled" (click)="addPost(postForm)">Post</button></div>
   </div>
 
   <ng-template [ngIf]="posts?.length == 0" [ngIfElse]="displayResults">
-    <app-no-results text='No posts yet'></app-no-results>
+    <app-no-results text='No posts were added yet'></app-no-results>
   </ng-template>
 
   <ng-template #displayResults>
@@ -23,7 +23,9 @@
 </div>
 
 
-<div class="right">
-  <h1>Choose your optionals</h1>
-  <div class="mini-card"> <button (click)="goTo()">Choose your optional courses</button></div>
-</div>
+<ng-container *ngIf="isStudent">
+  <div class="right">
+    <h1>Choose your optionals</h1>
+    <div class="mini-card"> <button (click)="goTo()">Choose your optional courses</button></div>
+  </div>
+</ng-container>

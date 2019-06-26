@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FinalGradeService } from 'src/app/services/final-grade.service';
 
 @Component({
   selector: 'app-bell-curve-page',
@@ -11,13 +12,24 @@ export class BellCurvePageComponent implements OnInit {
   @HostBinding('class') classes = 'page-wrapper';
 
   courseId: string;
-
-  constructor(private route: ActivatedRoute) { }
+  data : number[] =[];
+  
+  constructor(private route: ActivatedRoute,private finalGradeService: FinalGradeService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.courseId = params['courseId'];
+      this.getFinalGrades();
+
     });
   }
+
+  getFinalGrades() {
+    this.finalGradeService.getAllByCourse(this.courseId).subscribe(x => {
+        x.forEach(val => {
+            this.data.push( + val.value);
+        })
+    })
+}
 
 }

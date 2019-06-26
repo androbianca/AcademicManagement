@@ -1,6 +1,30 @@
-@import '../../../styles/general.scss';
+@import '../../../styles/mixins.scss';
 
 :host(.manage-profs-container) {
   @include flex(column, center, none);
   height: 100%;
+}
+
+.buttons {
+  @include flex(row, center, none);
+  width: 60%;
+  margin-top:40px;
+}
+
+button {
+  @include flex (none, center, center);
+  background: #24344D;
+  text-align: center;
+  @include size(4vh, 80%);
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  margin: 5px;
+  margin-bottom: 40px;
+
+  &:hover {
+    background: rgb(75, 99, 138);
+    box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
+  }
 }

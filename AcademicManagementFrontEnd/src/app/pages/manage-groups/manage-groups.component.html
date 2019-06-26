@@ -1,7 +1,6 @@
 <section class="buttons">
   <button class="button" (click)="selectAction('1')">Add group</button>
   <button class="button" (click)="selectAction('2')">Remove group</button>
-  <button class="button" (click)="selectAction('3')">Update group</button>
 </section>
 
 <ng-container *ngIf="add">
@@ -12,5 +11,4 @@
   <app-remove-group></app-remove-group>
 </ng-container>
 
-<ng-container *ngIf="update">
-</ng-container>
+

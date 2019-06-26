@@ -2,6 +2,6 @@
 {
     public interface ISchedulerLogic
     {
-        void SendAlert(string id);
+        void SendAlert();
     }
 }

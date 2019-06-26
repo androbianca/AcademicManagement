@@ -8,11 +8,17 @@ import { StudCourse } from '../models/stud-course';
 
 export class StudCourseService {
 
-    constructor(private baseService: BaseService) {}
+    constructor(private baseService: BaseService) { }
 
-     public addStudCourses (studCourse:StudCourse[]){
+    public addStudCourses(studCourse: StudCourse[]) {
         return this.baseService.post<StudCourse[]>('studcourses', studCourse);
-     }
+    }
 
+    public delete(studCourseId: string) {
+        return this.baseService.delete<StudCourse>(`studcourses/${studCourseId}`);
+    }
+
+    public getByStudentId(studId: string) {
+        return this.baseService.get<StudCourse[]>(`studcourses/${studId}`);
+    }
 }
- 

@@ -11,5 +11,6 @@ namespace BusinessLogic.Abstractions
         PotentialUser Remove(Guid id);
         ICollection<string> GetEmails();
         PotentialUserDto GetByUserCode(string id);
+        PotentialUser Edit(Guid userId, string lastName, string firstName);
     }
 }

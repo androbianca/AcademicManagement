@@ -12,7 +12,7 @@ namespace Entities
 
         public string Package { get; set; }
 
-        public bool isDeleted { get; set; }
+        public bool IsDeleted { get; set; }
 
         public CourseFormula CourseFormula { get; set; }
 
@@ -23,7 +23,5 @@ namespace Entities
         public IEnumerable<Feedback> Feedback { get; set; }
 
         public IEnumerable<GradeCategory> Categories { get; set; }
-
-
     }
 }

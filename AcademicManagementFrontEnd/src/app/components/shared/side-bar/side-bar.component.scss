@@ -1,12 +1,18 @@
 @import "../../../../styles/sizes.scss";
 @import "../../../../styles/mixins.scss";
 
+@font-face {
+  font-family: myFirstFont;
+  src:"../../../../assets/Cassandra\ Personal\ Use.ttf";
+}
+
+
 .container {
   @include flex(column, center, flex-start);
   @include size(100%,15vw);
   background: #24344D;
   color: white;
-  box-shadow: 9px 3px 19px 0px rgba(166, 166, 166, 1);
+//  box-shadow: 9px 3px 19px 0px rgba(166, 166, 166, 1);
 
   .user__details {
     @include flex(column, center, center);
@@ -16,8 +22,17 @@
 
 .logo {
   height: 60px;
+  font-size: 25px;
+  @include flex(row, center, flex-start);
   background-color: white;
-  border-bottom: 3px solid #45C2BA;
+  border-bottom: 3px solid #5C9EAD;
+  color: #091C33;
+  padding:10px;
+  font-family: myFirstFont;
+
+  img{
+    height: 40px;
+  }
 }
 
 .profile {

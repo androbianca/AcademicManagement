@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using BusinessLogic.Abstractions;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 
@@ -76,6 +77,16 @@ namespace Service.Controllers
         {
 
             var student = _studentLogic.Add(studentDto);
+
+            return Ok(student);
+        }
+
+
+        [HttpPost("edit")]
+        public ActionResult<Student> Edit([FromBody] StudentDto studentDto)
+        {
+
+            var student = _studentLogic.Update(studentDto);
 
             return Ok(student);
         }

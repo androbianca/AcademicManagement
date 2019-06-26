@@ -1,3 +1,9 @@
+<ng-template [ngIf]="categories?.length == 0" [ngIfElse]="displayResults">
+  <app-no-results text='No categories added yet'></app-no-results>
+</ng-template>
+
+<ng-template #displayResults>
 <ng-container *ngFor="let category of categories">
   <app-category-card [category]="category"></app-category-card>
 </ng-container>
+</ng-template>

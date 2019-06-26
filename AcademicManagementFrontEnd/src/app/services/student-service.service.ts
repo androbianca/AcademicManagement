@@ -17,6 +17,10 @@ export class StudentService {
         return this.baseService.post<Student>(`students`,student);
     }
 
+    public update(student) {
+        return this.baseService.post<Student>(`students/edit`,student);
+    }
+
     public removeStudent(studentId) {
         return this.baseService.delete(`students/${studentId}`);
     }

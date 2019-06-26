@@ -16,5 +16,5 @@
   </div>
   <label>Package</label>
   <input type="text" formControlName="package" placeholder="Package">
-  <input [class.disabled]="isDisabled" type="submit" value="Submit" (click)="submit(addCourseForm)">
+  <button class="button" [class.disabled]="isDisabled" (click)="submit(addCourseForm)"> Submit </button>
 </form>

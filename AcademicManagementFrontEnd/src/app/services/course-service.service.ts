@@ -20,6 +20,10 @@ export class CourseService {
         return this.baseService.get<CourseRead[]>('courses');
     }
 
+    public getById(courseId:string) {
+        return this.baseService.get<CourseRead>(`courses/course/${courseId}`);
+    }
+
     public getStudCourses() {
         return this.baseService.get<CourseRead[]>(`courses/current/stud`);
     }
@@ -30,6 +34,10 @@ export class CourseService {
 
     public addCourse(course) {
         return this.baseService.post<CourseRead[]>('courses', course);
+    }
+
+    public editCourse(course) {
+        return this.baseService.post<CourseRead>('courses/edit', course);
     }
 
     public getOptionalCourses(){

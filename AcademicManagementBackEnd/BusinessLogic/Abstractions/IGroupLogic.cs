@@ -11,7 +11,7 @@ namespace BusinessLogic.Abstractions
         Group Add(GroupDto group);
         Group Remove(Guid groupId);
         ICollection<GroupDto> getProfGroups(Guid profId, Guid courseId);
-
+        GroupDto GetById(Guid groupId);
 
 
     }

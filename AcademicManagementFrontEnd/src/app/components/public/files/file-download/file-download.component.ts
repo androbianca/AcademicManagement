@@ -16,30 +16,15 @@ export interface Resource {
 export class FileDownloadComponent implements OnInit {
 
   @Input() courseId: string;
-  @Output() noResources = new EventEmitter<boolean>();
+  @Input() resources;
   
-  hasResources: boolean;
-  files: FileModel[];
-  link: string;
-  resource = new Array<Resource>();
-
-  constructor(private http: FileService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.loadFiles();
   }
 
-  loadFiles() {
-    this.http.getByCourseId(this.courseId).subscribe(response => {
-      this.files = response;
-      this.hasResources = this.files.length <= 0 ? false : true;
-      this.noResources.emit(this.hasResources);
-      this.files.forEach(element => {
-        this.resource.push({ file: element, link: `../../../../assets/files/${this.courseId}/${element.fileName}` })
-      })
-    });
-  }
+ 
 
 }
 

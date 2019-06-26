@@ -8,11 +8,18 @@ import { ProfStud } from '../models/prof-studs';
 
 export class ProfStudService {
 
-    constructor(private baseService: BaseService) {}
+    constructor(private baseService: BaseService) { }
 
-     public addProfStuds (profStud:ProfStud[]){
+    public addProfStuds(profStud: ProfStud[]) {
         return this.baseService.post<ProfStud[]>('profstuds', profStud);
-     }
+    }
+
+    public delete(profStudId: string) {
+        return this.baseService.delete(`profstuds/${profStudId}`);
+    }
+
+    public getByProfId(profId: string) {
+        return this.baseService.get<ProfStud[]>(`profstuds/${profId}`);
+    }
 
 }
- 

@@ -59,10 +59,9 @@ import { UpdateCourseComponent } from '../components/public/management/course/up
 import { EditGradeComponent } from '../components/public/grades/edit-grade/edit-grade.component';
 import { CommentCardComponent } from '../components/public/feed/leave-comment-card/comment-card.component';
 import { DisplayCommentCardComponent } from '../components/public/feed/display-comment-card/display-comment-card.component';
-import { OptionalService } from '../services/optional.service';
 import { OptionalsPageComponent } from './optionals-page/optionals-page.component';
 import { OptionalsComponent } from '../components/public/others/optionals/optionals.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ChooseOptionalsComponent } from './choose-optionals/choose-optionals.component';
 import { CategoriesModalComponent } from '../components/public/grade-categories/categories-modal/categories-modal.component';
 import { DisplayCategoriesComponent } from '../components/public/grade-categories/display-categories/display-categories.component';
@@ -72,6 +71,11 @@ import { AddFeedbackModalContentComponent } from '../components/public/feedback/
 import { AddFormulaComponent } from '../components/public/course-formula/add-formula/add-formula.component';
 import { EditFormulaComponent } from '../components/public/course-formula/edit-formula/edit-formula.component';
 import { FormulaModalComponentComponent } from '../components/public/course-formula/formula-modal-component/formula-modal-component.component';
+import { ManageCourseCardComponent } from '../components/public/management/course/course-card/course-card.component';
+import { ManageProfCardComponent } from '../components/public/management/professor/manage-prof-card/manage-prof-card.component';
+import { UpdateProfComponent } from '../components/public/management/professor/update-prof/update-prof.component';
+import { UpdateStudComponent } from '../components/public/management/student/update-stud/update-stud.component';
+import { ManageStudCardComponent } from '../components/public/management/student/manage-stud-card/manage-stud-card.component';
 
 export function highchartsModules() {
   return [exporting, windbarb];
@@ -149,7 +153,12 @@ export function highchartsModules() {
     EditCategoryComponent,
     AddFormulaComponent,
     EditFormulaComponent,
-    FormulaModalComponentComponent
+    FormulaModalComponentComponent,
+    ManageCourseCardComponent,
+    ManageProfCardComponent,
+    UpdateProfComponent,
+    UpdateStudComponent,
+    ManageStudCardComponent
 
 
   ],
@@ -209,10 +218,15 @@ export function highchartsModules() {
     EditCategoryComponent,
     AddFormulaComponent,
     EditFormulaComponent,
-    FormulaModalComponentComponent
+    FormulaModalComponentComponent,
+    ManageCourseCardComponent,
+    ManageProfCardComponent,
+    UpdateProfComponent,
+    UpdateStudComponent,
+    ManageStudCardComponent
   ],
 
-  providers: [MatDatepickerModule,MatNativeDateModule,
+  providers: [MatDatepickerModule, MatNativeDateModule,
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },

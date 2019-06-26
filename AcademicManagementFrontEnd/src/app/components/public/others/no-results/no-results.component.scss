@@ -1,15 +1,22 @@
 @import '../../../../../styles/mixins.scss';
+@import '../../../../../styles/colors.scss';
+
 
 .no-results {
-  @include flex(none, center, center);
+  @include flex(column, center, center);
   height: 100%;
 
   img {
-    @include size(100px, 100px);
+    @include size(30vh, 15vw);
   }
 
   h6 {
     font-size: 40px;
-    margin-left: 10px;
+    margin: 20px 0 10px 0;
+    color : $deep-blue;
+  }
+
+  p{
+    font-size: 13px;
   }
 }

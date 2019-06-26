@@ -14,13 +14,13 @@ namespace BusinessLogic.Implementations
         {
         }
 
- 
 
-        public FinalGrade Update (FinalGradeDto finalGradeDto)
+
+        public FinalGrade Update(FinalGradeDto finalGradeDto)
         {
             var finalGrade = _repository.GetByFilter<FinalGrade>(x => x.StudentId == finalGradeDto.StudentId && x.CourseId == finalGradeDto.CourseId);
 
-            if(finalGrade == null)
+            if (finalGrade == null)
             {
                 return null;
             }
@@ -33,25 +33,25 @@ namespace BusinessLogic.Implementations
         }
 
 
-       public void AddFinalGradeToMandatoryCourses(Guid studentId)
+        public void AddFinalGradeToMandatoryCourses(Guid studentId)
         {
             var stud = _repository.GetByFilter<Student>(x => x.Id == studentId);
             var group = _repository.GetByFilter<Group>(x => x.Id == stud.GroupId);
             var courses = _repository.GetAllByFilter<Course>(x => x.Package == null && x.Year == group.Year);
-  
-                foreach (var course in courses)
-                {
-                    var finalGrade = new FinalGrade
-                    {
-                        CourseId = course.Id,
-                        StudentId = studentId,
-                        Value = 0
-                    };
 
-                    _repository.Insert(finalGrade);
-                    _repository.Save();
-                }
-          
+            foreach (var course in courses)
+            {
+                var finalGrade = new FinalGrade
+                {
+                    CourseId = course.Id,
+                    StudentId = studentId,
+                    Value = 0
+                };
+
+                _repository.Insert(finalGrade);
+                _repository.Save();
+            }
+
         }
 
         public void AddFinalGradeToOptionalCourses(Guid studentId, Guid courseId)
@@ -76,8 +76,24 @@ namespace BusinessLogic.Implementations
             var students = _repository.GetAll<Student>();
             var courses = _repository.GetAllByFilter<Course>(x => x.Package == null);
 
-            foreach(var student in students){
-                foreach(var course in courses)
+            foreach (var student in students)
+            {
+                var optionals = _repository.GetAllByFilter<StudCourse>(x => x.StudId == student.Id);
+
+                foreach (var optional in optionals)
+                {
+                    var finalGrade = new FinalGrade
+                    {
+                        CourseId = optional.CourseId,
+                        StudentId = student.Id,
+                        Value = 0
+                    };
+
+                    _repository.Insert(finalGrade);
+                    _repository.Save();
+                }
+
+                foreach (var course in courses)
                 {
                     var finalGrade = new FinalGrade
                     {
@@ -93,20 +109,23 @@ namespace BusinessLogic.Implementations
             }
         }
 
-       
+
         public IEnumerable<FinalGradeDto> GetAllByCourseId(Guid courseId)
         {
             var gradeDtos = new List<FinalGradeDto>();
             var grades = _repository.GetAllByFilter<FinalGrade>(x => x.CourseId == courseId);
 
-            foreach(var grade in grades)
+            foreach (var grade in grades)
             {
                 var finalGrade = new FinalGradeDto
                 {
                     Value = grade.Value
                 };
 
-                gradeDtos.Add(finalGrade);
+                if (finalGrade.Value > 0)
+                {
+                    gradeDtos.Add(finalGrade);
+                }
 
             }
 

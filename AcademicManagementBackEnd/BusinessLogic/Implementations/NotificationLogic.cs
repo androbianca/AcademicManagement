@@ -22,23 +22,30 @@ namespace BusinessLogic.Implementations
         public Notification Create(NotificationDto notificationDto)
         {
 
-            Guid accountReciver = Guid.Empty;
-            Guid accountSender = Guid.Empty;
+            Guid accountReciverId = Guid.Empty;
+            Guid accountSenderId = Guid.Empty;
 
             if (notificationDto.SenderId != Guid.Empty)
             {
-                accountSender = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.SenderId).Id;
+                var accountSender = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.SenderId);
+                    if (accountSender == null)
+                {
+                    return null;
+                }
+                accountSenderId = accountSender.Id;
+
             }
             if (notificationDto.ReciverId != Guid.Empty)
             {
 
-                accountReciver = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.ReciverId).Id;
+                var accountReciver = _repository.GetByFilter<Account>(x => x.PotentialUserId == notificationDto.ReciverId);
+                if (accountReciver == null)
+                {
+                    return null;
+                }
+                accountReciverId = accountReciver.Id;
             }
 
-            if (accountReciver == null && accountSender == null)
-            {
-                return null;
-            }
 
             var notification = new Notification
             {
@@ -46,8 +53,8 @@ namespace BusinessLogic.Implementations
                 Title = notificationDto.Title,
                 IsRead = notificationDto.IsRead,
                 Id = Guid.NewGuid(),
-                SenderId = accountSender,
-                ReciverId = accountReciver,
+                SenderId = accountSenderId,
+                ReciverId = accountReciverId,
                 ItemId = notificationDto.ItemId,
                 Time = DateTime.Now
             };
@@ -105,7 +112,7 @@ namespace BusinessLogic.Implementations
         {
             var notification = _repository.GetByFilter<Notification>(x => x.Id == notificationDto.Id);
 
-            if(notification == null)
+            if (notification == null)
             {
                 return null;
             }

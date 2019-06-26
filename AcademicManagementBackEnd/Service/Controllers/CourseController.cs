@@ -53,6 +53,22 @@ namespace Service.Controllers
             return Ok(courses);
         }
 
+        [HttpGet("course/{courseId:guid}")]
+        public ActionResult<CourseDto> GetById([FromRoute] Guid courseId)
+        {
+            var course = _courseLogic.GetById(courseId);
+
+            return Ok(course);
+        }
+
+        [HttpPost("edit")]
+        public IActionResult Edit([FromBody] CourseDto courseDto)
+        {
+            var course = _courseLogic.Update(courseDto);
+
+            return Ok(course);
+        }
+
         [HttpPost]
         public IActionResult Add([FromBody] CourseDto courseDto)
         {

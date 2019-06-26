@@ -1,1 +1,6 @@
-<app-bell-curve-chart [courseId]="courseId"></app-bell-curve-chart>
+
+<ng-template [ngIf]="data?.length <= 1" [ngIfElse]="displayResults">
+    <app-no-results text="There aren't enough final grades for the chart"></app-no-results>
+  </ng-template>
+  <ng-template #displayResults>
+<app-bell-curve-chart [courseId]="courseId" [data]="data"></app-bell-curve-chart></ng-template>

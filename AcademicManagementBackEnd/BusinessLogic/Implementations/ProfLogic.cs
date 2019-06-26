@@ -61,6 +61,20 @@ namespace BusinessLogic.Implementations
             return prof;
         }
 
+        public Professor Edit(ProfDto profDto)
+        {
+
+            var prof = _repository.GetByFilter<Professor>(x => x.Id == profDto.Id);
+
+            prof.FirstName = profDto.FirstName;
+            prof.LastName = profDto.LastName;
+            
+            _repository.Update(prof);
+            _repository.Save();
+
+            return prof;
+        }
+
         public ICollection<ProfDto> GetByCourseId(Guid courseId)
         {
             var profDtos = new List<ProfDto>();
@@ -69,6 +83,10 @@ namespace BusinessLogic.Implementations
             foreach (var profStud in profStuds)
             {
                 var prof = _repository.GetByFilter<Professor>(x => x.Id == profStud.ProfId);
+                if(prof == null)
+                {
+                    return null;
+                }
 
                 var profDto = new ProfDto
                 {

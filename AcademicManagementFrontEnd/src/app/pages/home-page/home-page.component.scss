@@ -13,28 +13,21 @@
     border-radius: 12px;
     background-color: white;
 
-
-
     .buttons {
-      @include flex(row, none, flex-end);
-      @include size(15%, 100%);
-      margin-bottom: 30px;
+      @include flex(row, flex-start, flex-end);
+      @include size(10%, 100%);
+      margin-bottom: 70px;
 
-      .isActive {
-        button {
-          background-color: #5C9EAD;
-        }
-      }
       button {
-        background-color: #aaa;
-        @include size(4vh, 50%);
-        border-radius: 4px;
+        background-color: white;
+        @include size(100%, 50%);
+        cursor: pointer;
+        //border-radius: 4px;
         border: none;
-        margin: 20px 0 40px 0;
+        color: black;
+
 
         &:hover {
-          background-color: rgb(106, 178, 194);
-          box-shadow: 0 12px 16px 0 rgba(88, 87, 87, 0.171), 0 1px 20px 0 rgba(0, 0, 0, 0.19);
         }
       }
     }
@@ -42,8 +35,12 @@
     .form__container {
       @include size(100%, 100%);
       @include flex(column, center, none);
-      padding: 5vh;
+
     }
+  }
+
+  .container {
+    padding: 0 5vh 5vh 5vh;
   }
 
   img {
@@ -57,4 +54,9 @@
     margin-bottom: 20px;
     font-size: 35px;
   }
+}
+
+.isActive {
+  background-color: #5C9EAD !important;
+  color: white !important;
 }

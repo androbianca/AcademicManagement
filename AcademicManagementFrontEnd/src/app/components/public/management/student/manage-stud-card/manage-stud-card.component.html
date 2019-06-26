@@ -1,0 +1,33 @@
+<a (click)="toggle()">
+  <div class="content">
+    <h1>{{ item.stud.lastName }}</h1>
+  </div>
+</a>
+<ng-container *ngIf="open">
+  <form class="update-form" [formGroup]="updateStudForm">
+    <label>LastName</label>
+    <input type="text" formControlName="firstName">
+
+    <label>FirstName</label>
+    <input type="text" formControlName="lastName">
+    <mat-form-field>
+      <mat-label>Group</mat-label>
+      <mat-select formControlName="group">
+        <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} {{group.year}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <ng-container *ngFor="let course of courses">
+      <a (click)="select(course)" [class.selected]="course.selected">
+        <div class="content">
+          <h1>{{ course.course.name }} </h1>
+        </div>
+      </a>
+    </ng-container>
+
+    <input [class.disabled]="isDisabled" type="submit" value="Submit" (click)="submit(updateStudForm)">
+
+
+  </form>
+
+</ng-container>

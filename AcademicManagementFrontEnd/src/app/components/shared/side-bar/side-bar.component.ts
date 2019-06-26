@@ -31,5 +31,9 @@ export class SideBarComponent implements OnInit {
   ngOnInit() {
     this.route = `professors/${this.user.id}`;
   }
+
+  logOut(){
+    localStorage.removeItem("jwt");
+  }
 }
 

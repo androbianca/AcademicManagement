@@ -60,6 +60,22 @@ namespace BusinessLogic.Implementations
             return groupDtos;
         }
 
+        public GroupDto GetById(Guid groupId)
+        {
+            var group = _repository.GetByFilter<Group>(x=> x.Id == groupId);
+          
+                var groupDto = new GroupDto()
+                {
+                    IsDeleted = group.IsDeleted,
+                    Year = group.Year,
+                    Id = group.Id,
+                    Name = group.Name
+                };
+
+      
+            return groupDto;
+        }
+
         public ICollection<GroupDto> getProfGroups(Guid profId, Guid courseId)
         {
             var profStuds = _repository.GetAllByFilter<ProfStuds>(x => x.ProfId == profId && x.CourseId == courseId);

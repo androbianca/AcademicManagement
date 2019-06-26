@@ -1,7 +1,4 @@
-@import '../../../../../../styles/colors.scss';
-@import '../../../../../../styles/general.scss';
-@import '../../../../../../styles/mixins.scss';
-@import '../../../../../../styles/form.scss';
+@import '../../../../../../styles/management.scss';
 
 
 mat-form-field {
@@ -12,15 +9,4 @@ mat-form-field {
   @include flex(row, none, none);
 }
 
-.disabled {
-  opacity: 0.3;
-  pointer-events: none;
-}
 
-.error-message {
-  margin: 5px 0 5px 0 !important;
-}
-
-label {
-  margin: 5px 0 0 0;
-}

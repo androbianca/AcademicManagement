@@ -15,6 +15,10 @@ export class GroupService {
         return this.baseService.get<GroupRead[]>('groups');
      }
 
+     public getById (groupId:string){
+      return this.baseService.get<GroupRead>(`groups/${groupId}`);
+   }
+
      public getProfGroups (profId:string, courseId:string){
       return this.baseService.get<GroupRead[]>(`groups/${profId}/${courseId}`);
    }

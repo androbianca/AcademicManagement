@@ -1,4 +1,6 @@
-<section class="logo">Logo</section>
+<section class="logo">
+    <img src="../../../../assets/images/logo-fii.png">
+</section>
 <div class="container">
   <p class="profile">{{ initials }}</p>
   <section class="user__details">
@@ -24,5 +26,7 @@
     <section class="menu__option"><a routerLink="/manage/students">Students</a></section>
     <section class="menu__option"><a routerLink="/manage/groups">Groups</a></section>
   </ng-container>
+  <section class="menu__option" ><a routerLink='' (click)="logOut()">Log Out</a></section>
+
 </div>
 

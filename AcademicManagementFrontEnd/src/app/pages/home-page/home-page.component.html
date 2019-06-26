@@ -11,6 +11,7 @@
         <button class="button" [class.isActive]="isSignIn" (click)="changeToSignIn()">Sign In</button>
         <button class="button" [class.isActive]="!isSignIn" (click)="changeToSignUp()">Sign Up</button>
       </section>
+      <section class="cpntainer">
       <ng-template [ngIf]="isSignIn" [ngIfElse]="isSignup">
         <app-login></app-login>
       </ng-template>
@@ -18,5 +19,6 @@
       <ng-template #isSignup>
         <app-signup></app-signup>
       </ng-template>
+    </section>
     </div>
   </div>

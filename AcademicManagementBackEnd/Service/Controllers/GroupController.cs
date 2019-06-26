@@ -26,6 +26,16 @@ namespace Service.Controllers
             return Ok(groups);
         }
 
+
+        [HttpGet("{groupId}")]
+        public ActionResult<GroupDto> GetById([FromRoute] Guid groupId)
+        {
+
+            var group = _groupLogic.GetById(groupId);
+
+            return Ok(group);
+        }
+
         [HttpPost]
         public ActionResult Add(GroupDto groupDto)
         {

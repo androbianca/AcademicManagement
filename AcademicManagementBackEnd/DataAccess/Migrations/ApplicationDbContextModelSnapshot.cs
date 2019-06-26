@@ -428,6 +428,8 @@ namespace DataAccess.Migrations
 
                     b.Property<Guid>("StudId");
 
+                    b.Property<Guid>("Id");
+
                     b.HasKey("CourseId", "StudId");
 
                     b.HasIndex("StudId");

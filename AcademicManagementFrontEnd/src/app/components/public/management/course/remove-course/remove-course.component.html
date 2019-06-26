@@ -5,9 +5,5 @@
       <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}</mat-option>
     </mat-select>
   </mat-form-field>
-  <!-- <div *ngIf="removeCourseForm.get('course')?.errors && removeCourseForm.get('course')?.touched" class="error-message">
-      {{ errorMessage }}
-    </div> -->
-
-  <input [class.disabled]="isDisabled" type="submit" value="Submit" (click)="submit(removeCourseForm)">
+  <button class="button" [class.disabled]="isDisabled" (click)="submit(removeCourseForm)">Submit</button>
 </form>

@@ -22,6 +22,9 @@ export class ProfService {
       return this.baseService.post<Professor>('profs', prof);
    }
 
+   public update(prof: Professor) {
+      return this.baseService.post<Professor>('profs/edit', prof);
+   }
    public remove(profId: string) {
       return this.baseService.delete(`profs/${profId}`);
    }

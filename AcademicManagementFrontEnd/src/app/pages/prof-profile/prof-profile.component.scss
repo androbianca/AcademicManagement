@@ -1,6 +1,6 @@
 @import "../../../styles/mixins.scss";
 @import "../../../styles/general.scss";
-
+@import "../../../styles/sizes.scss";
 button {
   margin: 30px !important;
 }
@@ -8,8 +8,16 @@ button {
 .cards-container {
   @include flex(row, center, center);
   flex-wrap: wrap;
+  height: calc(100vh - 310px);
 }
 
 .container {
   position: relative;
+  justify-self: flex-end;
+}
+
+.wrapper {
+  @include flex(column, none, none);
+
+  height: $height-wo-tb;
 }

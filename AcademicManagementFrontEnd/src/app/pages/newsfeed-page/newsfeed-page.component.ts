@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NotificationHub } from 'src/app/services/SignalR/notifications-hub.service';
 import { FeedHub } from 'src/app/services/SignalR/feed-hub.service';
+import { Role } from 'src/app/models/role-enum';
 
 @Component({
   selector: 'app-newsfeed-page',
@@ -22,6 +23,8 @@ export class NewsfeedPageComponent implements OnInit {
   postId: string;
   isDisabled = true;
   posts = new Array<Post>();
+  role: typeof Role = Role;
+  isStudent = false;
 
   postForm = new FormGroup({
     post: new FormControl("", [Validators.required]),
@@ -35,6 +38,8 @@ export class NewsfeedPageComponent implements OnInit {
     private notificationHub:NotificationHub,
     private snackBar: MatSnackBar) {
     this.user = this.userDetailsService.getUser();
+    this.isStudent = this.user.userRole == this.role.student ? true : false;
+
   }
 
   ngOnInit() {

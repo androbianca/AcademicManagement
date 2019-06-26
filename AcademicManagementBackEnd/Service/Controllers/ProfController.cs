@@ -39,6 +39,19 @@ namespace Service.Controllers
             return Ok(prof);
         }
 
+        [HttpPost("edit")]
+        public IActionResult Edit([FromBody] ProfDto profDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var prof = _profLogic.Edit(profDto);
+
+            return Ok(prof);
+        }
+
         [HttpDelete("{profId:guid}")]
         public IActionResult Remove([FromRoute] Guid profId)
         {

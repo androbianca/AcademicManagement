@@ -13,6 +13,8 @@ namespace BusinessLogic.Abstractions
         ICollection<CourseDto> GetStudCourses(string id);
         ICollection<CourseDto> GetProfCourses(Guid id);
         Course Remove(Guid courseId);
+        Course Update(CourseDto courseDto);
+        CourseDto GetById(Guid courseId);
 
     }
 }

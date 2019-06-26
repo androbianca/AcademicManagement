@@ -13,8 +13,7 @@ namespace Service.Controllers
         public IActionResult SendMailHourly()
         {
 
-            var id = GetCurrentUser();
-            RecurringJob.AddOrUpdate<ISchedulerLogic>(service => service.SendAlert(id), Cron.MinuteInterval(2));
+            RecurringJob.AddOrUpdate<ISchedulerLogic>(service => service.SendAlert(), Cron.Hourly);
             return Ok();
         }
 

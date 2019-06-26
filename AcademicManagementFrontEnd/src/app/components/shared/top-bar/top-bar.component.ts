@@ -32,8 +32,9 @@ export class TopBarComponent implements OnInit {
  }
 
   getNotifications() {
-    this.notificatonService.get().subscribe(x => {
+    this.notificatonService.get().subscribe(x =>{
       this.notifNumber = 0;
+      if(x){
       this.notifications = x;
       this.notifications = x.sort((val1, val2) => {
         return new Date(val2.time).getTime() - new
@@ -44,7 +45,7 @@ export class TopBarComponent implements OnInit {
           this.notifNumber += 1;
         }
       })
-    });
+     } });
   }
 
   toggle() {
