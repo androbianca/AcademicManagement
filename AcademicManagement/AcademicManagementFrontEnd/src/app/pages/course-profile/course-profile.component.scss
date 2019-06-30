@@ -14,6 +14,8 @@ button {
 .left {
   @include flex(none, none, center);
   width: 70%;
+  flex-wrap: wrap;
+
 }
 
 .right {
@@ -22,6 +24,7 @@ button {
   height: 100%;
   border-left: 0.5px solid rgb(187, 183, 183);
   padding: 40px;
+
 }
 
 .resources {

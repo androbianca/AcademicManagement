@@ -32,10 +32,14 @@ export class AddProfComponent implements OnInit {
   count = 1;
   errorMessage = "This field is required!";
   forms = [{ course: 'course1', group: 'group1' }];
+  groups1: GroupRead[];
+  groups2: GroupRead[];
+  groups3: GroupRead[];
 
   addProfForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
     userCode: new FormControl('', Validators.required),
     course1: new FormControl('', Validators.required),
     group1: new FormControl('', Validators.required)
@@ -71,8 +75,12 @@ export class AddProfComponent implements OnInit {
   }
 
   getCourses() {
-    this.courseService.getAll().subscribe(result =>
-      this.courses = result.filter(x => x.isDeleted == false))
+    this.courseService.getAll().subscribe(result => {
+    this.courses = result.filter(x => x.isDeleted == false)
+
+    }
+
+    )
   }
 
   getGroups() {
@@ -83,8 +91,22 @@ export class AddProfComponent implements OnInit {
     )
   }
 
-  filterGroups(course) {
-    this.groups = this.allgroups.filter(x => x.year === course.year)
+  filterGroups(courseFiled) {
+    if (this.groups) {
+      this.groups1 = this.groups.filter(x => x.year == 1);
+      this.groups2 = this.groups.filter(x => x.year == 2);
+      this.groups3 = this.groups.filter(x => x.year == 3);
+      var course = this.addProfForm.get(courseFiled);
+      if (course.value.year == 1) {
+        return this.groups1;
+      }
+      if (course.value.year == 2) {
+        return this.groups2;
+      }
+      if (course.value.year == 3) {
+        return this.groups3;
+      }
+    }
   }
 
   add() {
@@ -111,6 +133,8 @@ export class AddProfComponent implements OnInit {
     this.potentialUser.userCode = this.addProfForm.value.userCode;
     this.potentialUser.firstName = this.addProfForm.value.firstName;
     this.potentialUser.lastName = this.addProfForm.value.lastName;
+    this.potentialUser.email = this.addProfForm.value.email;
+
     this.potentialUser.roleId = this.roleId;
     this.potentialUserService.addPotentialUser(this.potentialUser).subscribe(response => {
       this.prof.potentialUserId = response.id

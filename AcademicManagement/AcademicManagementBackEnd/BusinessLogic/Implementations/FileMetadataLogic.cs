@@ -111,7 +111,7 @@ namespace BusinessLogic.Implementations
                     int rowcount = currentworksheet.Dimension.End.Row;     //get row count
 
 
-                    for(var row=2; row< rowcount; row++)
+                    for(var row=2; row< rowcount-1; row++)
                     {
                         for(var column=2; column<colcount; column++)
                         {

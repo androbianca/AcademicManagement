@@ -14,11 +14,14 @@ export class SignupComponent implements OnInit {
   public user = new User();
   isDisabled = true;
   durationInSeconds = 5;
+  errorMessage1 = "This field is required";
+  errorMessage2 = "This field is required";
+
 
   signupForm = new FormGroup({
     code: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    cpassword: new FormControl('', [Validators.required])
+    password: new FormControl('', [Validators.required,Validators.minLength(8)]),
+    cpassword: new FormControl('', [Validators.required,Validators.minLength(8)])
   });
 
   constructor(private autenticationService: AuthenticationService, private snackBar: MatSnackBar) { }
@@ -29,6 +32,12 @@ export class SignupComponent implements OnInit {
 
   onChanges(): void {
     this.signupForm.valueChanges.subscribe(x => {
+      var error1 =  this.signupForm.get('password').hasError('minlength');
+      var error2 =  this.signupForm.get('cpassword').hasError('minlength');
+
+      this.errorMessage1 = error1 ? "The password needs to have at least 8 characters" : "This field is required";
+      this.errorMessage2 = error2 ? "The password needs to have at least 8 characters" : "This field is required";
+
       this.isDisabled = this.signupForm.valid ? false : true;
     })
   }

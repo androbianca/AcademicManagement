@@ -3,10 +3,10 @@
     <app-side-bar></app-side-bar>
   </section>
   <section  class="right-container">
-    <section *ngIf="!home" class="top-bar-container">
+    <section  *ngIf="!home && user" class="top-bar-container">
       <app-top-bar></app-top-bar>
     </section>
-    <section class="content-container"> <router-outlet></router-outlet></section>
+    <section class="content-container" [class.height]="home"> <router-outlet></router-outlet></section>
    
   </section>
 </div>

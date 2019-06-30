@@ -12,5 +12,6 @@ namespace BusinessLogic.Abstractions
         void AddAll();
         FinalGrade Update(FinalGradeDto finalGradeDto);
         IEnumerable<FinalGradeDto> GetAllByCourseId(Guid courseId);
+        double ComputeFinalGrade(Guid courseId, Guid studentId);
     }
 }

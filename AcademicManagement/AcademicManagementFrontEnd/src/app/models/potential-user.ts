@@ -4,4 +4,5 @@ export class PotentialUser {
     roleId:string;
     firstName:string;
     lastName:string;
+    email : string;
 }

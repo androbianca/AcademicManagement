@@ -3,7 +3,7 @@
 
 .page__container {
   @include flex(none, center, center);
-  height: $height-wo-tb;
+  height:100%;
   background: #f9f9ff;
 
   .auth__card {

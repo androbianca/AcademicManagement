@@ -4,21 +4,23 @@
     <input type="text" formControlName="code" placeholder="Code">
     <i class="fas fa-fingerprint" aria-hidden="true"></i>
   </div>
-  <div *ngIf="signupForm.get('code')?.errors && signupForm.get('code')?.touched" class="error-message">This field
-    is required!</div>
+  <div *ngIf="signupForm.get('code')?.errors && signupForm.get('code')?.touched" class="error-message">
+    This
+    field
+    is required!
+  </div>
   <div class="inputWithIcon">
     <input type="password" formControlName="password" placeholder="Password">
     <i class="fas fa-unlock-alt" aria-hidden="true"></i></div>
-    <div *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.touched" class="error-message">This
-      field
-      is required!</div>
+    <div *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.touched" class="error-message">
+      {{errorMessage1}}
+    </div>
     <div class="inputWithIcon">
       <input type="password" formControlName="cpassword" placeholder="Confirm Password">
       <i class="fas fa-unlock-alt" aria-hidden="true"></i></div>
       <div *ngIf="signupForm.get('cpassword')?.errors && signupForm.get('cpassword')?.touched" class="error-message">
-        This
-        field
-        is required!</div>
+       {{errorMessage2}}
+      </div>
       <button [disabled]="isDisabled" class="button" type="submit" (click)="register(signupForm)">Signup</button>
 </form>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"

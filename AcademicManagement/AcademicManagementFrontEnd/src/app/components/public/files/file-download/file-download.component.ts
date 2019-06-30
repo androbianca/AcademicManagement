@@ -22,6 +22,12 @@ export class FileDownloadComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.resources = this.resources.sort((a,b)=> {
+      if(a.file.fileName > b.file.fileName){
+        return 0;
+      }
+      return -1;
+    })
   }
 
  

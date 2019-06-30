@@ -95,7 +95,11 @@ namespace BusinessLogic.Implementations
                     Id = prof.Id
                 };
 
-                profDtos.Add(profDto);
+                var profExists = profDtos.Find(x => x.Id == profDto.Id);
+                if (profExists == null)
+                {
+                    profDtos.Add(profDto);
+                }
 
             }
             return profDtos;

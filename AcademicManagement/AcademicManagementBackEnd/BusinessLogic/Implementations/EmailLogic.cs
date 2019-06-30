@@ -91,7 +91,7 @@ namespace BusinessLogic.Implementations
             mail.Body = body;
             mail.BodyEncoding = Encoding.UTF8;
             mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
-       //     client.Send(mail);
+            client.Send(mail);
             mail.Dispose();
 
         }

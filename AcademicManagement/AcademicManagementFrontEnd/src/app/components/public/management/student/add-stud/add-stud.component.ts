@@ -84,7 +84,7 @@ export class AddStudComponent implements OnInit {
       this.studId = response.id;
       this.snackBar.open('success')
     }, err => {
-      this.snackBar.open('fail')
+     // this.snackBar.open('fail')
     });
     
   }

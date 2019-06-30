@@ -20,6 +20,10 @@ export class AddProfCoursesComponent implements OnInit {
   profs: Professor[];
   courses: CourseRead[];
   groups: GroupRead[];
+  groups1: GroupRead[];
+  groups2: GroupRead[];
+  groups3: GroupRead[];
+
   forms = [{ course: 'course1', group: 'group1' }];
   count = 1;
   isDisabled = true;
@@ -74,12 +78,26 @@ export class AddProfCoursesComponent implements OnInit {
   getGroups() {
     this.groupService.getAll().subscribe(result => {
       this.groups = result;
-      this.allgroups = this.groups
     })
   }
 
-  filterGroups(course) {
-    //this.groups = this.allgroups.filter(x=>x.year === course.year)
+
+  filterGroups(courseFiled) {
+    if (this.groups) {
+      this.groups1 = this.groups.filter(x => x.year == 1);
+      this.groups2 = this.groups.filter(x => x.year == 2);
+      this.groups3 = this.groups.filter(x => x.year == 3);
+      var course = this.addCourses.get(courseFiled);
+      if (course.value.year == 1) {
+        return this.groups1;
+      }
+      if (course.value.year == 2) {
+        return this.groups2;
+      }
+      if (course.value.year == 3) {
+        return this.groups3;
+      }
+    }
   }
 
   add() {

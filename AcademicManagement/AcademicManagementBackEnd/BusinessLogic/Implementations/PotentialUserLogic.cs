@@ -58,7 +58,8 @@ namespace BusinessLogic.Implementations
                 UserCode = potentialUserDto.UserCode,
                 FirstName = potentialUserDto.FirstName,
                 LastName = potentialUserDto.LastName,
-                UserRoleId = potentialUserDto.RoleId
+                UserRoleId = potentialUserDto.RoleId,
+                Email = potentialUserDto.Email
             };
 
             _repository.Insert(potentialUser);

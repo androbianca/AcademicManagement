@@ -86,7 +86,7 @@ namespace BusinessLogic.Implementations
             _repository.Update(grade);
             _repository.Save();
 
-            ComputeFinalGrade(gradeDto.CourseId, gradeDto.StudentId);
+            _finalGradeLogic.ComputeFinalGrade(gradeDto.CourseId, gradeDto.StudentId);
 
             return grade;
         }
@@ -112,120 +112,18 @@ namespace BusinessLogic.Implementations
 
             _notificationLogic.Create(notification);
 
-            var final = ComputeFinalGrade(gradeDto.CourseId, gradeDto.StudentId);
+            var final = _finalGradeLogic.ComputeFinalGrade(gradeDto.CourseId, gradeDto.StudentId);
 
             return grade;
 
         }
 
-        private void UpdateFinalGrade(Guid courseId, Guid studentId, double value)
+
+       public double ComputeFinalGrade(Guid courseId,Guid studentId)
         {
-            var finalGradeDto = new FinalGradeDto
-            {
-                CourseId = courseId,
-                StudentId = studentId,
-                Value = value
-
-            };
-
-            _finalGradeLogic.Update(finalGradeDto);
+            return _finalGradeLogic.ComputeFinalGrade(courseId, studentId);
         }
 
-
-        public double ComputeFinalGrade(Guid courseId, Guid studentId)
-        {
-
-            var finalGrades = _repository.GetAll<FinalGrade>();
-
-            if (finalGrades.Count == 0)
-            {
-                _finalGradeLogic.AddAll();
-            };
-
-            var grades = GetGradesByStud(courseId, studentId);
-            var courseGradeCategories = _repository.GetAllByFilter<GradeCategory>(x => x.CourseId == courseId);
-
-            if (courseGradeCategories.Count == 0)
-            {
-                return 0;
-            }
-
-            var courseFormula = _repository.GetByFilter<CourseFormula>(x => x.CourseId == courseId);
-
-            if (courseFormula == null)
-            {
-                return 0;
-            }
-
-            var formula = courseFormula.Formula;
-
-            Dictionary<string, string> categoryGrade = new Dictionary<string, string>();
-
-            foreach (var courseCategory in courseGradeCategories)
-            {
-                categoryGrade.Add(courseCategory.Name.ToLower(), "0");
-            }
-            foreach (var grade in grades)
-            {
-                var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId);
-                categoryGrade[category.Name.ToLower()] = grade.Value.ToString();
-
-            }
-
-            foreach (KeyValuePair<string, string> entry in categoryGrade)
-            {
-                formula = formula.Replace(entry.Key, entry.Value);
-            }
-
-            DataTable dt = new DataTable();
-            var result = dt.Compute(formula, "").ToString();
-            var finalGrade = Math.Round(Convert.ToDouble(result), 2);
-
-            UpdateFinalGrade(courseId, studentId, finalGrade);
-
-            return finalGrade;
-        }
-
-        //public float ComputeLabFinalGrade(Guid courseId, Guid studentId)
-        //{
-        //    var finalGrades = _repository.GetAll<FinalGrade>();
-
-        //    if(finalGrades.Count == 0)
-        //    {
-        //        _finalGradeLogic.AddAll();
-        //    };
-
-        //    float lab = 0;
-        //    float final = 0;
-        //    var remainingPercentage = 0;
-        //    var percentage = 0;
-
-        //    var grades = this.GetGradesByStud(courseId, studentId);
-        //    foreach (var grade in grades)
-        //    {
-        //        var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId && x.IsCourseCategory == false);
-        //        if (category != null)
-        //        {
-        //            var number = category.Percentage;
-        //            lab += (number * grade.Value) / 100;
-        //        }
-        //    }
-
-        //    foreach (var grade in grades)
-        //    {
-        //        var category = _repository.GetByFilter<GradeCategory>(x => x.Id == grade.CategoryId && x.IsCourseCategory == true);
-        //        if (category != null)
-        //        {
-        //            var number = category.Percentage;
-        //            percentage += number;
-        //            final += (number * grade.Value) / 100;
-        //        }
-        //    }
-        //    remainingPercentage = 100 - percentage;
-        //    final += (remainingPercentage * lab) / 100;
-
-        //    return (float)System.Math.Round(final,2);
-        //}
 
         private NotificationDto CreateNotification(Grade grade)
         {

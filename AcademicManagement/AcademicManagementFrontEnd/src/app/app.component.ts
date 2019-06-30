@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
 
   getAlerts() {
     this.alertService.getAlert(this.user.userCode).subscribe(x => {
+      console.log(x);
       if (x) {
         this.openDialog();
       }

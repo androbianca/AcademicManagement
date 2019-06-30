@@ -2,25 +2,31 @@
   <label>LastName</label>
   <input type="text" formControlName="lastName" placeholder="LastName">
   <div *ngIf="addProfForm.get('lastName')?.errors && addProfForm.get('lastName')?.touched" class="error-message">
-      {{ errorMessage }}
-    </div>
+    {{ errorMessage }}
+  </div>
   <label>FirstName</label>
   <input type="text" formControlName="firstName" placeholder="FirstName">
   <div *ngIf="addProfForm.get('firstName')?.errors && addProfForm.get('firstName')?.touched" class="error-message">
-      {{ errorMessage }}
-    </div>
+    {{ errorMessage }}
+  </div>
+
+  <label>Email</label>
+  <input type="text" formControlName="email" placeholder="Email">
+  <div *ngIf="addProfForm.get('email')?.errors && addProfForm.get('email')?.touched" class="error-message">
+    {{ errorMessage }}
+  </div>
   <label>UserCode</label>
   <input type="text" formControlName="userCode" placeholder="UserCode">
   <div *ngIf="addProfForm.get('userCode')?.errors && addProfForm.get('userCode')?.touched" class="error-message">
-      {{ errorMessage }}
-    </div>
+    {{ errorMessage }}
+  </div>
 
   <ng-container *ngFor="let form of forms">
     <div class="pair">
       <mat-form-field>
         <mat-label>Course</mat-label>
         <mat-select [formControlName]="form.course">
-          <mat-option (click)="filterGroups(course)" *ngFor="let course of courses" [value]="course">{{course.name}}
+          <mat-option *ngFor="let course of courses" [value]="course">{{course.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -28,7 +34,8 @@
       <mat-form-field>
         <mat-label>Group</mat-label>
         <mat-select [formControlName]="form.group">
-          <mat-option *ngFor="let group of groups" [value]="group">{{group.name}} {{group.year}}</mat-option>
+          <mat-option *ngFor="let group of filterGroups(form.course)" [value]="group">{{group.name}} {{group.year}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>

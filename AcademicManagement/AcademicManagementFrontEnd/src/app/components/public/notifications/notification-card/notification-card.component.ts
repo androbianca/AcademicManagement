@@ -54,7 +54,8 @@ export class NotificationCardComponent implements OnInit {
       })
       return;
     }
-    this.route = this.notification.title.toLowerCase().trim() == "New grade".toLowerCase().trim() ? `professors/${this.user.id}` :'newsfeed'; 
+
+    this.route = this.notification.title.toLowerCase().trim() == "New feedback".toLowerCase().trim() ? `professors/${this.user.id}` :'newsfeed'; 
   }
 
   goTo() {
